@@ -1,0 +1,278 @@
+@import url("base.css");
+
+/* 1) קלאסי ונקי */
+.theme-classic {
+  /* רקעים */
+  --card-bg: #ffffff;
+  --about-section-bg: #f9f9f9;
+  --recommendations-section-bg: #f9f9f9;
+  --main-background-color: #f9f9f9;
+
+  /* טקסטים וכותרות */
+  --main-title-color: var(--color-black);
+  --main-title-bg: var(--main-title-color);
+  --about-text-color: var(--color-black);
+  --about-section-p-text-color: var(--color-black);
+  --name-role-color: var(--color-gray-dark);
+
+  /* כפתורים */
+  --contact-btn-bg: #29a9ff;
+  --btn-border-bg-color: #29a9ff;      
+  --contact-btn-hover-bg: var(--color-blue-light);
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #0f6dd1;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #528095;   /* צבע האייקון */
+  --s-bg: #eef0f2;      /* צבע הרקע */
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #f9f9f9;
+
+  /* טיפוגרפיה כללית */
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
+/* 2) מודרני ורענן */
+.theme-modern {
+  --card-bg: #f0f8ff;                  
+  --about-section-bg: #e6f0ff;
+  --recommendations-section-bg: #e6f0ff;
+  --main-background-color: #e6f0ff;
+
+  --main-title-color: #003366;
+  --main-title-bg: #003366;
+  --about-text-color: #003366;
+  --about-section-p-text-color: #003366;
+  --name-role-color: var(--color-gray-dark);
+
+  --contact-btn-bg: #1d6fff;
+  --btn-border-bg-color: #1d6fff;
+  --contact-btn-hover-bg: #3d82ff;
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #1d6fff;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #1d6fff;   
+  --s-bg: #e9f1ff;      
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #e6f0ff;
+
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
+/* 3) חמים ואישי */
+.theme-warm {
+  --card-bg: #fffaf3;
+  --about-section-bg: #f5ede0;
+  --recommendations-section-bg: #f5ede0;
+  --main-background-color: #f5ede0;
+
+  --main-title-color: #5a3e2b;
+  --main-title-bg: #5a3e2b;
+  --about-text-color: #5a3e2b;
+  --about-section-p-text-color: #5a3e2b;
+  --name-role-color: var(--color-gray-dark);
+
+  --contact-btn-bg: #c67c3a;
+  --btn-border-bg-color: #c67c3a;
+  --contact-btn-hover-bg: #e28d45;
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #c67c3a;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #c67c3a;   
+  --s-bg: #fbf0e3;      
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #f5ede0;
+
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
+/* 4) יוקרתי (כהה + זהב) */
+.theme-luxe {
+  --card-bg: #111111;
+  --about-section-bg: #1a1a1a;
+  --recommendations-section-bg: #1a1a1a;
+  --main-background-color: #1a1a1a;
+
+  --main-title-color: #d4af37;
+  --main-title-bg: #d4af37;
+  --about-text-color: #e0e0e0;
+  --about-section-p-text-color: #e0e0e0;
+  --name-role-color: var(--color-gray-dark);
+
+  --contact-btn-bg: #d4af37;
+  --btn-border-bg-color: #d4af37;
+  --contact-btn-hover-bg: #f5d05c;
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #d4af37;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #d4af37;   
+  --s-bg: #222222;      
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #1a1a1a;
+
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
+/* 5) טבעי ואורגני */
+.theme-organic {
+  --card-bg: #e9f5ec;
+  --about-section-bg: #d6ebdc;
+  --recommendations-section-bg: #d6ebdc;
+  --main-background-color: #d6ebdc;
+
+  --main-title-color: #2f5d38;
+  --main-title-bg: #2f5d38;
+  --about-text-color: #2f5d38;
+  --about-section-p-text-color: #2f5d38;
+  --name-role-color: var(--color-gray-dark);
+
+  --contact-btn-bg: #4aa96c;
+  --btn-border-bg-color: #4aa96c;
+  --contact-btn-hover-bg: #65c287;
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #4aa96c;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #4aa96c;   
+  --s-bg: #e6f4eb;      
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #d6ebdc;
+
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
+/* אופציונלי: חיזוק ניגודיות כותרות */
+.theme-strong-titles { 
+  --main-title-color: #111111; 
+  --main-title-bg: #111111; 
+}
+.theme-luxe.theme-strong-titles { 
+  --main-title-color: #f6d97a; 
+  --main-title-bg: #f6d97a; 
+}
+
+/* ============================
+   ♿ Accessibility High-Contrast (uses existing .accessibility-mode)
+   ============================ */
+body.accessibility-mode{
+  /* בסיס */
+  --card-bg: #ffffff !important;
+  --main-background-color: #ffffff !important;
+  --about-section-bg: #ffffff !important;
+  --recommendations-section-bg: #ffffff !important;
+
+  /* טקסטים */
+  --main-title-color: #000000 !important;
+  --about-text-color: #000000 !important;
+  --about-section-p-text-color: #000000 !important;
+  --name-role-color: #000000 !important;
+
+  /* כפתורים */
+  --contact-btn-bg: #000000 !important;
+  --btn-border-bg-color: #000000 !important;
+  --contact-btn-hover-bg: #333333 !important;
+
+  /* אייקונים כלליים + שיתוף */
+  --icon-color: #000000 !important;
+  --s-color: #000000 !important;
+  --s-bg: #ffffff !important;
+
+  /* טפסים */
+  --contact-form-bg: #ffffff !important;
+
+  /* קישורים – הבטחת זיהוי */
+  --link-color: #000000 !important;
+}
+
+/* טקסט וקישורים */
+body.accessibility-mode, 
+body.accessibility-mode *{
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+body.accessibility-mode a{
+  color: #000 !important;
+  text-decoration: underline !important;
+}
+
+/* רקעים והסחות */
+body.accessibility-mode .card,
+body.accessibility-mode .about-section,
+body.accessibility-mode .recommendations-section,
+body.accessibility-mode .share-section,
+body.accessibility-mode .contact-form{
+  background: #fff !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* אייקוני SVG – איפוס צבעים למשתנה (שחור) */
+body.accessibility-mode .icon-svg{
+  color: var(--icon-color) !important;            /* מקור ל-currentColor */
+}
+body.accessibility-mode .icon-svg *,
+body.accessibility-mode .share-buttons .icon-svg *{
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* נקודות/חצים ב-Swiper */
+body.accessibility-mode .swiper-pagination-bullet{
+  background: #000 !important;
+  opacity: 1 !important;
+}
+body.accessibility-mode .swiper-pagination-bullet-active{
+  background: #000 !important;
+}
+
+/* כפתור "הוסף לאנשי קשר" ויתר כפתורים */
+body.accessibility-mode .btn,
+body.accessibility-mode [role="button"],
+body.accessibility-mode button{
+  background: #000 !important;
+  color: #fff !important;   /* ← טקסט לבן על רקע שחור */
+  border-color: #000 !important;
+}
+
+/* גבולות שדות טופס */
+body.accessibility-mode input,
+body.accessibility-mode textarea,
+body.accessibility-mode select{
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  outline: 0 !important;
+}
+
+/* מצבי פוקוס ברורים */
+body.accessibility-mode :focus{
+  outline: 3px solid #000 !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* קישורי שיתוף – רקע נייטרלי ואייקון שחור */
+body.accessibility-mode .share-buttons a{
+  background: var(--s-bg) !important;
+  border: 2px solid #000 !important;
+  color: #000 !important;
+}

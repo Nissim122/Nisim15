@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>התחברות</title>
+</head>
+<body>
+  <h2>כניסה לתבניות</h2>
+  <input type="password" id="password" placeholder="סיסמה" />
+  <button onclick="checkPassword()">המשך</button>
+  <p id="error" style="color:red;"></p>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === "admin123") {
+        localStorage.setItem("templateAuth", "ok");
+        window.location.href = "/template/template-generic.html";
+      } else {
+        document.getElementById("error").textContent = "סיסמה שגויה";
+      }
+    }
+  </script>
+</body>
+</html>
