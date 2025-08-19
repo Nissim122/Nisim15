@@ -1,0 +1,23 @@
+# ✅ קבצי מערכת/עורך
+.DS_Store
+.vscode/
+node_modules/
+
+# ✅ קבצי מערכת של Render (אם קיימים)
+.renderignore
+
+# ✅ קבצי Template פנימיים – לא להעלות ל-GitHub
+/template/
+/scripts/script-generic.js
+/styles/base.css
+/data/
+
+# ✅ גיבויים וזמניים
+*.zip
+*.log
+*.bak
+*.tmp
+
+# ✅ לא לכלול build/ אם תתחיל להשתמש ב־npm
+/build/
+dist/
