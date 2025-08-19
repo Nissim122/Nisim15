@@ -3,7 +3,7 @@ fullName: " דמו",
 role: "אומנות הציפורניים סטודיו ואקדמיה",
 
 // שדה ייעודי לכותרת האתר
-pageTitle: " דמו | כרטיס ביקור",
+pageTitle: " דמגגו | כרטיס ביקור",
 
   phone: "054-8787-702",
   email: "yaelartgallery@gmail.com",
