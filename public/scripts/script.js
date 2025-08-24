@@ -17,6 +17,52 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => loader.remove(), 400);
     }
   };
+  /* ============ VIDEO: YouTube only ============ */
+(() => {
+  const data = window.cardData || {};
+  const features = data.features || {};
+  const mediaContainer = document.querySelector('[data-field="videoSrc"]');
+  if (!mediaContainer) return;
+
+  const yt = (typeof data.youtubeLink === 'string') ? data.youtubeLink.trim() : '';
+  const shouldShow = (features.video === true && yt !== '');
+
+  if (!shouldShow) {
+    mediaContainer.style.display = 'none';
+    mediaContainer.innerHTML = '';
+    return;
+  }
+
+  // תמיכה בקישורי watch / youtu.be / embed
+  const toEmbed = (url) => {
+    if (/\/embed\//.test(url)) return url;
+    const id = (url.match(/[?&]v=([A-Za-z0-9_-]{6,})/) ||
+                url.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/))?.[1] || '';
+    return id ? `https://www.youtube.com/embed/${id}` : '';
+  };
+
+  const embed = toEmbed(yt);
+  if (!embed) { mediaContainer.style.display = 'none'; return; }
+
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('width', '100%');
+  iframe.setAttribute('height', '315');
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.setAttribute('title', data.videoTitle || 'YouTube video');
+  iframe.src = `${embed}?rel=0&modestbranding=1&playsinline=1`;
+
+  mediaContainer.innerHTML = '';
+  mediaContainer.appendChild(iframe);
+  mediaContainer.style.display = '';
+
+  // נגישות
+  mediaContainer.setAttribute('role', 'region');
+  mediaContainer.setAttribute('aria-label', data.videoAriaLabel || 'סרטון תדמית מיוטיוב');
+  mediaContainer.setAttribute('tabindex', '0');
+})();
+
 
   const isVisuallyReady = () => {
     const mainContent = document.querySelector(".main-content");
@@ -577,24 +623,6 @@ if (recommendationsSwiper) {
   if (waBtn && !(features.sendWhatsapp || features.sendWhatsApp)) waBtn.style.display = 'none';
 })();
 
-/* ============ אינטראקציות וידאו (אופציונלי) ============ */
-const videoContainer = document.querySelector('[data-field="videoSrc"]');
-if (videoContainer) {
-  videoContainer.addEventListener('click', function (event) {
-    const video = videoContainer.querySelector('video');
-    if (!video) return;
-    if (event.target.tagName.toLowerCase() === 'video') return;
-    if (video.paused) video.play(); else video.pause();
-  });
-  videoContainer.setAttribute('tabindex', '0');
-  videoContainer.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
-      event.preventDefault();
-      const video = videoContainer.querySelector('video');
-      if (video) { if (video.paused) video.play(); else video.pause(); }
-    }
-  });
-}
 
   videoContainer.setAttribute('tabindex', '0');
   videoContainer.addEventListener('keydown', function (event) {
@@ -732,15 +760,6 @@ function handleAccordionToggle(element) {
   });
 })();
 
-
-const mediaContainer = document.querySelector('[data-field="videoSrc"]');
-if (mediaContainer) {
-  if (data.features?.video === true && window.cardData.videoSrc) {
-    createVideoElement(mediaContainer);
-  } else {
-    mediaContainer.style.display = 'none';
-  }
-}
 });
 
 

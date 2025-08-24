@@ -17,16 +17,12 @@ pageTitle: " יעל חן | כרטיס ביקור",
 
   logoSrc: "/assets/media/yaelNails/yaelLogo.png",
   profileImage: "/assets/media/yaelNails/IMG_0931.jpg",
-<<<<<<< Updated upstream
-  videoSrc: "/assets/media/test/mov_bbb.mp4",
-=======
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
->>>>>>> Stashed changes
+
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
- 
-features: {
-  
+  features: {
+
 
     secondaryField: {
       key: "city",
