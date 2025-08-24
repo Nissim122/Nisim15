@@ -17,7 +17,11 @@ pageTitle: " דמגגו | כרטיס ביקור",
 
   logoSrc: "/assets/media/test/logo-ortopok.png",
   profileImage: "/assets/media/test/profile.jpg",
+<<<<<<< Updated upstream
   videoSrc: "/assets/media/test/mov_bbb.mp4",
+=======
+youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+>>>>>>> Stashed changes
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
  customFormMessage: true, // ✅ מפעיל את הסקריפט
