@@ -15,8 +15,8 @@ pageTitle: " יעל חן | כרטיס ביקור",
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
 
-  logoSrc: "/assets/media/yaelNails/yaelLogo.png",
-  profileImage: "/assets/media/yaelNails/IMG_0931.jpg",
+  logoSrc: "/assets/media/yaelNails/yaelBackground.jpg",
+  profileImage: "/assets/media/yaelNails/yaelLogo.png",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
@@ -57,7 +57,7 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
 aboutParagraphs: `
 <p><strong class="quote-symbol">''</strong></p>
 <p data-field="aboutLine1"><strong>שמי יעל חן רז</strong></p>
-<p data-field="aboutLine2"><strong>מייסדת האקדמיה ללימודי ציפורניים</strong></p>
+<p data-field="aboutLine2"><strong>מייסדת האקדמיה - רזי החן </strong></p>
 
 <p>התחלתי את הדרך מבולבלת וחסרת ביטחון, ומתוך החוויה האישית שלי נולדה האקדמיה – מקום שבו כל אחת יכולה לגדול, להתמקצע וליהנות מהמקצוע שלה בכל יום מחדש.</p>
 <p>האקדמיה פועלת מתוך ההבנה שאין שתי תלמידות זהות. לכן יצרתי תוכנית לימודים מותאמת אישית – לפי הרמה, הקצב והצרכים שלך.</p>
