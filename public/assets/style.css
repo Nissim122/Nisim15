@@ -8,6 +8,7 @@
   --header-img-bg : #fffaf2;
   --header-img-offset-x : 3px;
   --gold-line-bg : #C67C3A;
+
 }
 /* דריסת לוגו – ללקוח ספציפי בלבד */
 .logo-box {
@@ -25,3 +26,4 @@
   object-position: center var(--logo-offset, 65%); /* ברירת מחדל מרכז */
   display: block;
 }
+

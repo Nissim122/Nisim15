@@ -95,6 +95,8 @@
   --gradient-turquoise: linear-gradient(135deg, #40E0D0, #008B8B);
   --gradient-multi: linear-gradient(45deg, #33cc99, #00aaff, #33cc99);
 
+  --quote-font-family: var(--font-family-elegant, serif);
+
 
 }
 
@@ -120,6 +122,39 @@ strong[data-weight="600"]{ --strong-font-weight: 600; }
 strong[data-weight="700"]{ --strong-font-weight: 700; }
 strong[data-weight="800"]{ --strong-font-weight: 800; }
 strong[data-weight="900"]{ --strong-font-weight: 900; }
+
+/* ===== תיקון בסיס להדגשות ===== */
+:where(body) strong {
+  font-weight: var(--strong-font-weight, var(--font-weight-bold, 700)) !important;
+  font-size: inherit !important;   /* לא משנה גודל */
+  line-height: inherit !important; /* לא משנה ריווח שורות */
+  display: inline !important;      /* לא ירד שורה */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===== פס תחתון גנרי ===== */
+.underline {
+  display: inline-block;
+  border-bottom: var(--underline-width, 2px) solid var(--underline-color, currentColor);
+  padding-bottom: var(--underline-gap, 2px); /* רווח בין הטקסט לפס */
+}
+
+/* style-CLIENT.css — שליטה בגרשיים למעלה */
+/* ===== ציטוט פתיחה (גרשיים) ===== */
+.card .about-section strong.quote-symbol {
+  display: block !important;              
+  font-size: var(--quote-size, 70px) !important;  /* גודל ברירת מחדל */
+  line-height: var(--quote-line-height, 1) !important;
+  font-weight: var(--quote-weight, 700) !important;
+  margin: var(--quote-margin, 0 0 12px 0) !important;
+  text-align: var(--quote-align, center) !important;
+  color: var(--quote-color, var(--main-title-color, #000)) !important;
+  font-family: var(--quote-font-family, var(--global-font-family)) !important;
+}
+
+
+
 
 
 * {
