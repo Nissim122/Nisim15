@@ -660,22 +660,100 @@ function handleAccordionToggle(element) {
 }
 
 
-  videoContainer.setAttribute('tabindex', '0');
-  videoContainer.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
-      event.preventDefault();
-      const video = videoContainer.querySelector('video');
-      if (video) {
-        if (video.paused) video.play(); else video.pause();
+/* =========================
+   Share Buttons – script-generic.js
+   ========================= */
+(function initShareButtons(){
+  const PROD_ORIGIN = "https://www.clix-marketing.co.il";
+
+  function buildPublicUrlFromLocal(href){
+    try {
+      if (location.protocol === "file:") {
+        return PROD_ORIGIN + href.replace(/^file:\/\//, "").replace(/^[^/]+/, "");
       }
+      const u = new URL(href);
+      if (u.hostname === "localhost" || u.hostname === "127.0.0.1") {
+        return PROD_ORIGIN + u.pathname + u.search + u.hash;
+      }
+      return href;
+    } catch {
+      return href;
     }
+  }
+
+  function getShareableUrl(){
+    const explicit = window.cardData?.publicShareUrl && String(window.cardData.publicShareUrl).trim();
+    const current  = location.href;
+    return explicit || buildPublicUrlFromLocal(current);
+  }
+
+  document.querySelectorAll('.share-buttons a').forEach(button => {
+    const type = button.dataset.type;
+    if (!type) return; // חייב type
+    const shareOptions = window.cardData?.shareOptions || {};
+    if (shareOptions[type] === false) {
+      button.style.display = 'none';
+      return;
+    }
+
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const rawUrl    = getShareableUrl().replace(/\s+/g, '').replace(/#$/, '');
+      const safeUrl   = encodeURIComponent(rawUrl);
+
+      const fullName  = (window.cardData?.fullName || "").trim();
+      const shareText = `כרטיס ביקור – ${fullName}\n${rawUrl}`;
+      const safeShareText = encodeURIComponent(shareText);
+
+      let shareUrl = "#";
+      switch (type) {
+        case "whatsapp":
+          shareUrl = `https://wa.me/?text=${safeShareText}`;
+          break;
+        case "telegram":
+          shareUrl = `https://t.me/share/url?url=${safeUrl}&text=${encodeURIComponent("כרטיס ביקור – " + fullName)}`;
+          break;
+        case "facebook":
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${safeUrl}&quote=${safeShareText}`;
+          break;
+        case "linkedin":
+          shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${safeUrl}&summary=${safeShareText}`;
+          break;
+        case "twitter":
+        case "x":
+          shareUrl = `https://twitter.com/intent/tweet?url=${safeUrl}&text=${safeShareText}`;
+          break;
+        case "email":
+          shareUrl = `mailto:?subject=${encodeURIComponent("כרטיס ביקור – " + fullName)}&body=${safeShareText}`;
+          break;
+        default:
+          const existing = button.getAttribute('href') || '#';
+          shareUrl = existing !== '#' ? existing : rawUrl;
+          break;
+      }
+
+      if (shareUrl && shareUrl !== '#') {
+        window.open(shareUrl, '_blank', 'noopener,noreferrer');
+      }
+    });
   });
-}
-
-
-
 })();
 
+/* --- המשך קוד הווידאו/סוגרים הקיימים אצלך --- */
+videoContainer.setAttribute('tabindex', '0');
+videoContainer.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
+    event.preventDefault();
+    const video = videoContainer.querySelector('video');
+    if (video) {
+      if (video.paused) video.play(); else video.pause();
+    }
+  }
+});
+}
+
+})();
 
 
 function createVideoElement(container) {
