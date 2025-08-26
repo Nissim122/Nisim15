@@ -624,6 +624,42 @@ if (recommendationsSwiper) {
 })();
 
 
+document.querySelectorAll('.elementor-tab-title').forEach((toggle) => {
+  // שמירה על ההתנהגות הקיימת עם עכבר
+  toggle.addEventListener('click', function () {
+    handleAccordionToggle(this);
+  });
+
+  // הוספת תמיכה ב־Enter ו־Space
+  toggle.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
+      event.preventDefault(); // מונע גלילה
+      handleAccordionToggle(this);
+    }
+  });
+});
+
+function handleAccordionToggle(element) {
+  const isActive = element.classList.contains('elementor-active');
+  const tabContentId = element.getAttribute('aria-controls');
+  const tabContent = document.getElementById(tabContentId);
+
+  document.querySelectorAll('.elementor-tab-title').forEach(el => {
+    el.classList.remove('elementor-active');
+    el.setAttribute('aria-expanded', 'false');
+    el.setAttribute('aria-selected', 'false');
+  });
+  document.querySelectorAll('.elementor-tab-content').forEach(el => el.setAttribute('hidden', true));
+
+  if (!isActive) {
+    element.classList.add('elementor-active');
+    element.setAttribute('aria-expanded', 'true');
+    element.setAttribute('aria-selected', 'true');
+    tabContent.removeAttribute('hidden');
+  }
+}
+
+
   videoContainer.setAttribute('tabindex', '0');
   videoContainer.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
@@ -670,6 +706,7 @@ function handleAccordionToggle(element) {
     tabContent.removeAttribute('hidden');
   }
 }
+
 /* =========================
    Share Buttons – script-generic.js
    ========================= */
