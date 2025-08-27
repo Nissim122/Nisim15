@@ -1163,5 +1163,18 @@ background-size:300px auto;
 .hidden-break {
   display: none;
 }
+/* ===== קישור טקסט לנגישות ===== */
+.accessibility-link {
+  color: var(--link-color, #0d6efd);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.accessibility-link:focus,
+.accessibility-link:hover {
+  color: var(--link-hover-color, #084298);
+  outline: none;
+}
+
 
 
