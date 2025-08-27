@@ -9,7 +9,7 @@ pageTitle: " יעל חן | כרטיס ביקור",
   email: "yaelartgallery@gmail.com",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
-  company: "Cardly",
+  company: "Clix",
   cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
   vcard: { filename: "contact.vcf" },
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
@@ -21,17 +21,19 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
 
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
-  features: {
+features: {
+  secondaryField: {
+    key: "street",               // שם לוגי שיישלח בהודעה
+    label: "האם יש ניסיון ?",               // הכותרת שתופיע וגם תישלח
+    type: "text",
+    placeholder: " האם יש ניסיון ?",    // הטקסט האפור בתוך התיבה
+    inputMode: "text",
+    required: true
+  },
+ 
+  // ...שאר הפיצ'רים
 
 
-    secondaryField: {
-      key: "age",
-      label: "גיל",              // כאן אתה קובע איזה טקסט יוצג (label + בהודעה)
-      type: "text",
-      placeholder: "הכנס עיר",
-      inputMode: "text",
-      required: true
-    },
   video: true,
   about: true,
   recommendations: true,
