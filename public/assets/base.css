@@ -350,7 +350,7 @@ strong {
 
 
 .about-section {
-  padding: var(--about-section-padding, var(--spacing-xxl));
+  padding: var(--about-section-padding, 10px);
   background-color: var(--about-section-bg, var(--main-background-color));
   text-align: var(--about-text-align, center);
   border-radius: var(--about-radius, var(--radius-large));
@@ -363,17 +363,25 @@ strong {
 
 
 
-
 .about-section p {
   line-height: var(--about-text-line-height, 1.6);
-  max-width: var(--about-text-max-width, 800px);
-  margin: var(--about-text-margin, 0 auto);
+  max-width: var(--about-text-max-width, 800px); /* שומר על טור קריא */
+  margin: 0 auto; /* ✅ מרכז את הפסקאות */
+  padding-inline: var(--about-text-padding-inline, 12px); /* ✅ שליטה בריווח מהצדדים */
+
   color: var(--about-text-color, var(--about-section-p-text-color));
   font-size: var(--about-text-font-size, 16px);
-  text-align: var(--about-section-p-text-align, center);
-  direction: var(--about-text-direction, rtl);
+  text-align: center; /* ✅ יישור אמצע */
+  direction: rtl;
   font-family: var(--about-text-font-family, var(--global-font-family));
 }
+@media (max-width: 480px) {
+  .about-section p {
+    --about-text-padding-inline: 8px;
+  }
+}
+
+
 
 .about-section p strong {
   display: block;
@@ -432,6 +440,11 @@ strong {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+/* =========================
+   אזור אודות – עיצוב בסיסי
+   ========================= */
+
+
 
 
 .about-highlight-text {

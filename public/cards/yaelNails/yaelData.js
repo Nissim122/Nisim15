@@ -9,7 +9,7 @@ pageTitle: " יעל חן | כרטיס ביקור",
   email: "yaelartgallery@gmail.com",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
-  company: "Clix",
+  company: "Clix Marketing",
   cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
   vcard: { filename: "contact.vcf" },
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
@@ -69,17 +69,15 @@ aboutParagraphs: `
 
 <p><strong class="fw-500">בלי מסלולים נוקשים, בלי תבניות מוכנות –</strong> כאן בונים עבורך מסלול אישי שמאפשר לך להתפתח בדיוק בדרך שלך.</p>
 
-<p class="align-right">• <strong class="fw-500 underline">קורס מתחילות</strong> – לנשים שרוצות להיכנס לעולם הציפורניים מהצעד הראשון. נתחיל מ־0, נתקדם בקצב אישי, ובליווי צמוד שתומך בכל שלב – עד שתהיי מקצועית ובטוחה בעצמך.</p>
+<p class="align-right">• <strong class="fw-500 underline">קורס מתחילות</strong> – לנשים שרוצות להיכנס לעולם הציפורניים מהצעד הראשון. נתחיל מ־0, נתקדם בקצב אישי, ובליווי צמוד שתומך בכל שלב – <strong class="fw-500">עד שתהיי מקצועית ובטוחה בעצמך</strong>.</p>
 
 <p class="align-right">• <strong class="fw-500 underline">השתלמויות מקצועיות</strong> – למי שכבר עובדת בתחום ורוצה לרענן ידע, ללמוד טכניקות חדשות, להתמקצע ברמות הגבוהות ביותר, ולהרחיב את סל השירותים שלה עם דוגמאות, קישוטים ועבודות ברמה בינלאומית.</p>
 `,
-
-
-
 accordionTitle1: "▼ למה פתחתי את האקדמיה?",
 accordionText1: `
   <p>פתחתי את המקום הזה מתוך רצון אמיתי לאפשר למקצועיות בתחום הציפורניים ליהנות מהמקצוע שלהן באמת – שכל יום בעבודה יהיה מיוחד, צבעוני ומלא ביטחון, ידע והנאה.</p>
 `,
+
 
 accordionTitle2: "▼ לאן אני שואפת להגיע?",
 accordionText2: `
