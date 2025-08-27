@@ -25,8 +25,8 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
 
 
     secondaryField: {
-      key: "city",
-      label: "עיר",              // כאן אתה קובע איזה טקסט יוצג (label + בהודעה)
+      key: "age",
+      label: "גיל",              // כאן אתה קובע איזה טקסט יוצג (label + בהודעה)
       type: "text",
       placeholder: "הכנס עיר",
       inputMode: "text",
@@ -55,12 +55,11 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
     telegram: true
   },
 
-
 aboutParagraphs: `
 <strong class="quote-symbol">''</strong>
 
-<p data-field="aboutLine1"><strong>שמי יעל חן רז</strong></p>
-<p data-field="aboutLine2"><strong>מייסדת האקדמיה ללימודי ציפורניים</strong></p>
+<p data-field="aboutLine1"><strong class="fw-700">שמי יעל חן רז</strong></p>
+<p data-field="aboutLine2"><strong class="fw-700">מייסדת האקדמיה ללימודי ציפורניים</strong></p>
 
 <p>כבר שנים שאני חיה ונושמת את תחום הציפורניים, מביאה איתי ניסיון עשיר, אהבה גדולה לעולם היופי ותשוקה אמיתית ללמד ולהעצים נשים אחרות.</p>
 
@@ -68,10 +67,11 @@ aboutParagraphs: `
 
 <p><strong class="fw-500">בלי מסלולים נוקשים, בלי תבניות מוכנות –</strong> כאן בונים עבורך מסלול אישי שמאפשר לך להתפתח בדיוק בדרך שלך.</p>
 
-<p class="align-right">• <strong class="fw-500">קורס מתחילות</strong> – לנשים שרוצות להיכנס לעולם הציפורניים מהצעד הראשון. נתחיל מ־0, נתקדם בקצב אישי, ובליווי צמוד שתומך בכל שלב – עד שתהיי מקצועית ובטוחה בעצמך.</p>
+<p class="align-right">• <strong class="fw-500 underline">קורס מתחילות</strong> – לנשים שרוצות להיכנס לעולם הציפורניים מהצעד הראשון. נתחיל מ־0, נתקדם בקצב אישי, ובליווי צמוד שתומך בכל שלב – עד שתהיי מקצועית ובטוחה בעצמך.</p>
 
-<p class="align-right">• <strong class="fw-500">השתלמויות מקצועיות</strong> – למי שכבר עובדת בתחום ורוצה לרענן ידע, ללמוד טכניקות חדשות, להתמקצע ברמות הגבוהות ביותר, ולהרחיב את סל השירותים שלה עם דוגמאות, קישוטים ועבודות ברמה בינלאומית.</p>
+<p class="align-right">• <strong class="fw-500 underline">השתלמויות מקצועיות</strong> – למי שכבר עובדת בתחום ורוצה לרענן ידע, ללמוד טכניקות חדשות, להתמקצע ברמות הגבוהות ביותר, ולהרחיב את סל השירותים שלה עם דוגמאות, קישוטים ועבודות ברמה בינלאומית.</p>
 `,
+
 
 
 accordionTitle1: "▼ למה פתחתי את האקדמיה?",
