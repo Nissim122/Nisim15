@@ -669,6 +669,16 @@ function handleAccordionToggle(element) {
 (function initShareButtons(){
   const PROD_ORIGIN = "https://www.clix-marketing.co.il";
 
+  // ✅ החלפה גורפת של כל הקישורים כך שיכילו תמיד את הדומיין שלך
+  document.querySelectorAll('a').forEach(link => {
+    try {
+      const url = new URL(link.href);
+      link.href = PROD_ORIGIN + url.pathname + url.search + url.hash;
+    } catch (e) {
+      console.warn("❌ קישור לא תקני בדילוג:", link.href);
+    }
+  });
+
   function buildPublicUrlFromLocal(href){
     try {
       if (location.protocol === "file:") {
@@ -685,14 +695,13 @@ function handleAccordionToggle(element) {
   }
 
   function getShareableUrl(){
-    const explicit = window.cardData?.publicShareUrl && String(window.cardData.publicShareUrl).trim();
-    const current  = location.href;
-    return explicit || buildPublicUrlFromLocal(current);
-  }
+  return PROD_ORIGIN; // ✅ תמיד מחזיר את הדומיין הראשי
+}
+
 
   document.querySelectorAll('.share-buttons a').forEach(button => {
     const type = button.dataset.type;
-    if (!type) return; // חייב type
+    if (!type) return;
     const shareOptions = window.cardData?.shareOptions || {};
     if (shareOptions[type] === false) {
       button.style.display = 'none';
@@ -707,7 +716,6 @@ function handleAccordionToggle(element) {
       const safeUrl   = encodeURIComponent(rawUrl);
       const safeTitle = encodeURIComponent(rawTitle);
 
-      // ✅ טקסט משותף לכל השיתופים
       const fullName  = (window.cardData?.fullName || "").trim();
       const shareText = `כרטיס ביקור – ${fullName}\n${rawUrl}`;
       const safeShareText = encodeURIComponent(shareText);
@@ -717,29 +725,22 @@ function handleAccordionToggle(element) {
         case "whatsapp":
           shareUrl = `https://wa.me/?text=${safeShareText}`;
           break;
-
         case "telegram":
           shareUrl = `https://t.me/share/url?url=${safeUrl}&text=${encodeURIComponent("כרטיס ביקור – " + fullName)}`;
           break;
-
         case "facebook":
           shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${safeUrl}&quote=${safeShareText}`;
           break;
-
         case "linkedin":
-          // LinkedIn בפועל מתחשב בעיקר ב-url; השאר לא מזיק
           shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${safeUrl}&summary=${safeShareText}`;
           break;
-
         case "twitter":
         case "x":
           shareUrl = `https://twitter.com/intent/tweet?url=${safeUrl}&text=${safeShareText}`;
           break;
-
         case "email":
           shareUrl = `mailto:?subject=${encodeURIComponent("כרטיס ביקור – " + fullName)}&body=${safeShareText}`;
           break;
-
         default:
           const existing = button.getAttribute('href') || '#';
           shareUrl = existing !== '#' ? existing : rawUrl;
