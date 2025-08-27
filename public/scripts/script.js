@@ -669,16 +669,6 @@ function handleAccordionToggle(element) {
 (function initShareButtons(){
   const PROD_ORIGIN = "https://www.clix-marketing.co.il";
 
-  // ✅ החלפה גורפת של כל הקישורים כך שיכילו תמיד את הדומיין שלך
-  document.querySelectorAll('a').forEach(link => {
-    try {
-      const url = new URL(link.href);
-      link.href = PROD_ORIGIN + url.pathname + url.search + url.hash;
-    } catch (e) {
-      console.warn("❌ קישור לא תקני בדילוג:", link.href);
-    }
-  });
-
   function buildPublicUrlFromLocal(href){
     try {
       if (location.protocol === "file:") {
@@ -695,8 +685,11 @@ function handleAccordionToggle(element) {
   }
 
   function getShareableUrl(){
-  return PROD_ORIGIN; // ✅ תמיד מחזיר את הדומיין הראשי
-}
+    const explicit = window.cardData?.publicShareUrl && String(window.cardData.publicShareUrl).trim();
+    const current  = location.href;
+    return explicit || buildPublicUrlFromLocal(current);
+  }
+
 
 
   document.querySelectorAll('.share-buttons a').forEach(button => {
