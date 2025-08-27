@@ -17,54 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => loader.remove(), 400);
     }
   };
-  /* ============ VIDEO: YouTube only ============ */
-(() => {
-  const data = window.cardData || {};
-  const features = data.features || {};
-  const mediaContainer = document.querySelector('[data-field="videoSrc"]');
-  if (!mediaContainer) return;
-
-  const yt = (typeof data.youtubeLink === 'string') ? data.youtubeLink.trim() : '';
-  const shouldShow = (features.video === true && yt !== '');
-
-  if (!shouldShow) {
-    mediaContainer.style.display = 'none';
-    mediaContainer.innerHTML = '';
-    return;
-  }
-
-  // תמיכה בקישורי watch / youtu.be / embed
-  const toEmbed = (url) => {
-    if (/\/embed\//.test(url)) return url;
-    const id = (url.match(/[?&]v=([A-Za-z0-9_-]{6,})/) ||
-                url.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/))?.[1] || '';
-    return id ? `https://www.youtube.com/embed/${id}` : '';
-  };
-
-  const embed = toEmbed(yt);
-  if (!embed) { mediaContainer.style.display = 'none'; return; }
-
-  const iframe = document.createElement('iframe');
-  iframe.setAttribute('width', '100%');
-  iframe.setAttribute('height', '315');
-  iframe.setAttribute('frameborder', '0');
-  iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-  iframe.setAttribute('allowfullscreen', '');
-  iframe.setAttribute('title', data.videoTitle || 'YouTube video');
-  iframe.src = `${embed}?rel=0&modestbranding=1&playsinline=1`;
-
-  mediaContainer.innerHTML = '';
-  mediaContainer.appendChild(iframe);
-  mediaContainer.style.display = '';
-
-  // נגישות
-  mediaContainer.setAttribute('role', 'region');
-  mediaContainer.setAttribute('aria-label', data.videoAriaLabel || 'סרטון תדמית מיוטיוב');
-  mediaContainer.setAttribute('tabindex', '0');
-})();
-
-
-  const isVisuallyReady = () => {
+    const isVisuallyReady = () => {
     const mainContent = document.querySelector(".main-content");
     const allImagesLoaded = Array.from(document.images).every(
       (img) => img.complete && img.naturalHeight > 0
@@ -91,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   window.addEventListener("load", waitUntilReady);
+
+  
 
   const scrollBtn = document.querySelector('.scroll-to-contact-btn');
 const contactForm = document.querySelector('#contactForm');
@@ -315,6 +270,54 @@ if (value === undefined || value === null) {
   }
   return;
 }
+
+
+(() => {
+  const data = window.cardData || {};
+  const features = data.features || {};
+  const mediaContainer = document.querySelector('[data-field="videoSrc"]');
+  if (!mediaContainer) return;
+
+  const yt = (typeof data.youtubeLink === 'string') ? data.youtubeLink.trim() : '';
+  const shouldShow = (features.video === true && yt !== '');
+
+  if (!shouldShow) {
+    mediaContainer.style.display = 'none';
+    mediaContainer.innerHTML = '';
+    return;
+  }
+
+  // תמיכה בקישורי watch / youtu.be / embed
+  const toEmbed = (url) => {
+    if (/\/embed\//.test(url)) return url;
+    const id = (url.match(/[?&]v=([A-Za-z0-9_-]{6,})/) ||
+                url.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/))?.[1] || '';
+    return id ? `https://www.youtube.com/embed/${id}` : '';
+  };
+
+  const embed = toEmbed(yt);
+  if (!embed) { mediaContainer.style.display = 'none'; return; }
+
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('width', '100%');
+  iframe.setAttribute('height', '315');
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.setAttribute('title', data.videoTitle || 'YouTube video');
+  iframe.src = `${embed}?rel=0&modestbranding=1&playsinline=1`;
+
+  mediaContainer.innerHTML = '';
+  mediaContainer.appendChild(iframe);
+  mediaContainer.style.display = '';
+
+  // נגישות
+  mediaContainer.setAttribute('role', 'region');
+  mediaContainer.setAttribute('aria-label', data.videoAriaLabel || 'סרטון תדמית מיוטיוב');
+  mediaContainer.setAttribute('tabindex', '0');
+})();
+
+
 
 const tag = el.tagName;
 if (tag === "IMG") {
@@ -700,8 +703,11 @@ function handleAccordionToggle(element) {
       e.preventDefault();
 
       const rawUrl    = getShareableUrl().replace(/\s+/g, '').replace(/#$/, '');
+      const rawTitle  = document.title || '';
       const safeUrl   = encodeURIComponent(rawUrl);
+      const safeTitle = encodeURIComponent(rawTitle);
 
+      // ✅ טקסט משותף לכל השיתופים
       const fullName  = (window.cardData?.fullName || "").trim();
       const shareText = `כרטיס ביקור – ${fullName}\n${rawUrl}`;
       const safeShareText = encodeURIComponent(shareText);
@@ -711,22 +717,29 @@ function handleAccordionToggle(element) {
         case "whatsapp":
           shareUrl = `https://wa.me/?text=${safeShareText}`;
           break;
+
         case "telegram":
           shareUrl = `https://t.me/share/url?url=${safeUrl}&text=${encodeURIComponent("כרטיס ביקור – " + fullName)}`;
           break;
+
         case "facebook":
           shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${safeUrl}&quote=${safeShareText}`;
           break;
+
         case "linkedin":
+          // LinkedIn בפועל מתחשב בעיקר ב-url; השאר לא מזיק
           shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${safeUrl}&summary=${safeShareText}`;
           break;
+
         case "twitter":
         case "x":
           shareUrl = `https://twitter.com/intent/tweet?url=${safeUrl}&text=${safeShareText}`;
           break;
+
         case "email":
           shareUrl = `mailto:?subject=${encodeURIComponent("כרטיס ביקור – " + fullName)}&body=${safeShareText}`;
           break;
+
         default:
           const existing = button.getAttribute('href') || '#';
           shareUrl = existing !== '#' ? existing : rawUrl;
@@ -739,21 +752,8 @@ function handleAccordionToggle(element) {
     });
   });
 })();
-
-/* --- המשך קוד הווידאו/סוגרים הקיימים אצלך --- */
-videoContainer.setAttribute('tabindex', '0');
-videoContainer.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter' || event.key === ' ' || event.code === 'Space') {
-    event.preventDefault();
-    const video = videoContainer.querySelector('video');
-    if (video) {
-      if (video.paused) video.play(); else video.pause();
-    }
-  }
-});
 }
-
-})();
+});
 
 
 function createVideoElement(container) {
@@ -770,7 +770,10 @@ function createVideoElement(container) {
   videoElement.appendChild(sourceElement);
   container.innerHTML = "";
   container.appendChild(videoElement);
-}// ✅ פקד נגישות – הפעלה/כיבוי מצב נגישות (עם שמירת מצב ו-ARIA)
+}
+
+
+// ✅ פקד נגישות – הפעלה/כיבוי מצב נגישות (עם שמירת מצב ו-ARIA)
 (() => {
   const accessibilityBtn = document.getElementById("accessibilityToggle");
   if (!accessibilityBtn) return;
