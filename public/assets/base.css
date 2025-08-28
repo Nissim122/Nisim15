@@ -1175,6 +1175,20 @@ background-size:300px auto;
   color: var(--link-hover-color, #084298);
   outline: none;
 }
+/* ✅ base.css או style.css */
+.footer-nav a {
+  color: var(--link-color, #005fcc);     /* צבע אחיד לכל הקישורים */
+  text-decoration: underline;
+  margin-inline: 6px;                    /* ריווח ביניהם */
+  font-size: 14px;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus {
+  color: var(--link-hover-color, #003a80);
+  text-decoration: none;
+}
+
 
 
 
