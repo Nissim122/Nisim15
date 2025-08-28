@@ -217,18 +217,22 @@
       </footer>
     </article>
   </main>
-
   <script>
-    // =========================
-    // סקריפט פנימי מינימלי
-    // =========================
-
     // שנה נוכחית + פוקוס לנגישות
     (function initMeta(){
       const y = document.getElementById('year');
       if (y) y.textContent = new Date().getFullYear();
-      const main = document.getElementById('main');
-      if (main) main.focus();
+
+      // ✅ פוקוס ל־header במקום ל-main
+      const header = document.querySelector("header");
+      if (header) {
+        header.setAttribute("tabindex","-1");
+        header.focus();
+      } else {
+        window.scrollTo(0,0);
+        document.body.setAttribute("tabindex","-1");
+        document.body.focus();
+      }
     })();
 
     // כפתור חזרה עם נפילה אחורה ל-index.html אם אין היסטוריה
