@@ -1188,6 +1188,26 @@ background-size:300px auto;
   color: var(--link-hover-color, #003a80);
   text-decoration: none;
 }
+/* ✅ base.css */
+.legal-note {
+  font-size: 13px;
+  color: var(--muted, #666);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.legal-note a {
+  color: var(--link, #0d6efd);
+  text-decoration: underline;
+}
+
+.legal-note a:hover,
+.legal-note a:focus {
+  color: var(--link-hover, #003a80);
+  text-decoration: none;
+}
+
 
 
 
