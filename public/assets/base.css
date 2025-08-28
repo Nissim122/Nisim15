@@ -404,6 +404,7 @@ strong {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: var(--scroll-btn-margin-top, 20px);
+  margin-bottom: var(--scroll-btn-margin-bottom, 20px); /* ריווח תחתון */
 }
 
 .scroll-to-contact-btn:hover,
