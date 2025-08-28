@@ -2,161 +2,220 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title data-field="pageTitle">מדיניות פרטיות</title>
+  <title>מדיניות פרטיות</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" data-field="metaDescription" content="מדיניות פרטיות לשימוש באתר בהתאם לחוק הגנת הפרטיות בישראל">
-  <meta name="keywords" data-field="metaKeywords" content="">
-  <link rel="canonical" data-field="canonicalHref" href="">
-  <meta name="robots" data-field="metaRobots" content="index, follow">
-  <!-- Open Graph -->
-  <meta property="og:title" data-field="ogTitle" content="מדיניות פרטיות">
-  <meta property="og:description" data-field="ogDescription" content="">
-  <meta property="og:image" data-field="ogImage" content="">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" data-field="twitterTitle" content="מדיניות פרטיות">
-  <meta name="twitter:description" data-field="twitterDescription" content="">
-  <meta name="twitter:image" data-field="twitterImage" content="">
-
   <link id="dynamicFavicon" rel="icon" type="image/png" href="/assets/logo/myLogo.jpg" data-field="favicon">
-  <link rel="stylesheet" href="/assets/base.css">
-  <link rel="stylesheet" href="/assets/style.css">
+
+  <style>
+    :root{
+      --bg:#fff; --fg:#111; --muted:#555; --border:#e5e7eb; --link:#0d6efd;
+      --max:900px; --pad:20px; --radius:12px; --btn-bg:#000; --btn-fg:#fff;
+      --shadow:0 6px 18px rgba(0,0,0,.06);
+      --font:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+    /* קישורי דילוג – לא משפיע ויזואלית במצב רגיל */
+    .skip-link{
+      position:absolute; inset-inline-start:10px; top:-40px;
+      background:var(--btn-bg); color:var(--btn-fg);
+      padding:8px 12px; border-radius:8px; text-decoration:none; transition:top .2s ease; z-index:9999;
+    }
+    .skip-link:focus{ top:10px; outline:2px solid #fff; outline-offset:2px }
+
+    header,main,footer{width:100%}
+    .wrap{ max-width:var(--max); margin:0 auto; padding:var(--pad) }
+
+    .doc{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow) }
+    .doc-header{ border-bottom:1px solid var(--border); padding:clamp(14px,2vw,24px) var(--pad) }
+
+    .header-content{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; flex-direction:row-reverse } /* לוגו נשאר משמאל */
+    .header-logo{ width:100px !important; height:100px !important; object-fit:contain; flex-shrink:0; display:block; max-width:none !important; max-height:none !important }
+    .header-text{ flex:1; min-width:200px }
+    .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px) }
+    .doc-sub{ margin:0; color:var(--muted); font-size:14px }
+
+    @media (max-width:480px){
+      .header-content{ flex-direction:column; text-align:center; gap:12px }
+      .header-logo{ width:50px !important; height:50px !important }
+      .doc-body p, .doc-body li{ font-size:16px }
+    }
+
+    .doc-body{ padding:var(--pad) }
+    .doc-body h2{ font-size:20px; margin:20px 0 8px }
+    .doc-body h3{ font-size:16px; margin:16px 0 6px }
+    .doc-body p, .doc-body li{ font-size:15px }
+    .doc-body a{ color:var(--link); text-decoration:underline }
+    .doc-body ul{ padding-inline-start:20px }
+
+    .note{ background:#fafafa; border:1px solid var(--border); padding:14px; border-radius:10px; margin:16px 0 }
+
+    .doc-footer{
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+      border-top:1px solid var(--border); padding:12px var(--pad); color:var(--muted); font-size:13px
+    }
+    .btn{ display:inline-block; background:var(--btn-bg); color:var(--btn-fg); padding:10px 14px; border-radius:8px; text-decoration:none; border:0; cursor:pointer }
+    .btn:focus{ outline:2px solid #aaa; outline-offset:2px }
+
+    @media (prefers-reduced-motion:no-preference){
+      .fade-in{ animation:fade .25s ease-out both }
+      @keyframes fade{ from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none} }
+    }
+  </style>
 </head>
 <body>
-  <main class="doc" role="main" aria-labelledby="h1-privacy">
-    <header class="doc-header">
-      <h1 id="h1-privacy" tabindex="0">מדיניות פרטיות</h1>
-      <p class="doc-sub" data-field="privacySubtitle">
-        אנו מכבדים את פרטיות המשתמשים ועושים מאמצים סבירים להגן על המידע הנמסר לנו.
-      </p>
-    </header>
+  <a class="skip-link" href="#main">דלג לתוכן</a>
 
-    <div class="doc-body">
-      <!-- הקדמה -->
-      <section class="doc-section" aria-labelledby="privacy-intro">
-        <h2 id="privacy-intro" class="doc-section-title">הקדמה ומטרת המסמך</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            מסמך זה מפרט כיצד אנו אוספים, משתמשים, שומרים ומגנים על מידע אישי שנמסר לנו בעת שימוש בשירותים.
-          </p>
+  <!-- Landmark: banner -->
+  <header class="wrap" role="banner" aria-label="כותרת עמוד">
+    <div class="doc fade-in">
+      <div class="doc-header">
+        <div class="header-content">
+          <img src="/assets/logo/myLogo.jpg" alt="לוגו החברה" class="header-logo" data-field="headerLogo">
+          <div class="header-text">
+            <h1 id="pageTitle" class="doc-title" data-field="privacyTitle">מדיניות פרטיות</h1>
+            <p class="doc-sub" id="subtitle">שמירה על פרטיותכם ומתן שקיפות מלאה</p>
+          </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </header>
 
-      <!-- איסוף מידע -->
-      <section class="doc-section" aria-labelledby="privacy-collect">
-        <h2 id="privacy-collect" class="doc-section-title">איסוף מידע</h2>
-        <div class="doc-card" role="article" tabindex="0">
+  <!-- Landmark: main -->
+  <main id="main" class="wrap" role="main" tabindex="-1" aria-label="תוכן העמוד">
+    <article class="doc fade-in" aria-labelledby="h-intro">
+      <div class="doc-body">
+        <section id="intro" aria-labelledby="h-intro">
+          <h2 id="h-intro">הקדמה ומטרת המסמך</h2>
+          <p>מסמך זה מפרט כיצד אנו אוספים, משתמשים, שומרים ומגנים על מידע אישי שמסרתם לנו בעת שימוש בשירות.</p>
+          <div class="note" role="note" aria-label="הבהרה">
+            <p>אנו מעדכנים את המדיניות מעת לעת כדי לשמור על שקיפות ולהתאים לשינויים רגולטוריים.</p>
+          </div>
+        </section>
+
+        <section id="collect" aria-labelledby="h-collect">
+          <h2 id="h-collect">איסוף מידע</h2>
           <ul>
-            <li>פרטים הנמסרים ישירות: שם, טלפון, דוא״ל, ותוכן פנייה בטפסים.</li>
-            <li>לוגים ותפעול בסיסי הדרושים להפעלת השירות ולשיפורו.</li>
-            <li>אין איסוף של מידע מעבר לנדרש למתן השירות.</li>
+            <li>פרטים הנמסרים ישירות: שם, טלפון, דוא״ל ותוכן פנייה.</li>
+            <li>לוגים ותפעול בסיסי הנדרשים להפעלת השירות ושיפורו.</li>
+            <li>אין איסוף מעבר לנדרש לצורך מתן השירות.</li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <!-- שימוש במידע -->
-      <section class="doc-section" aria-labelledby="privacy-use">
-        <h2 id="privacy-use" class="doc-section-title">שימוש במידע</h2>
-        <div class="doc-card" role="article" tabindex="0">
+        <section id="use" aria-labelledby="h-use">
+          <h2 id="h-use">שימוש במידע</h2>
           <ul>
-            <li>מתן השירות, תמיכה ויצירת קשר חוזר.</li>
+            <li>מתן השירות, יצירת קשר חוזר ותמיכה.</li>
             <li>שיפור חוויית המשתמש ותפעול תקין.</li>
-            <li>לא נשתף מידע עם צדדים שלישיים אלא אם קיימת חובה חוקית או בהסכמה מפורשת.</li>
+            <li>ללא שיתוף עם צדדים שלישיים, אלא אם נדרש על פי דין או באישורכם.</li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <!-- עוגיות -->
-      <section class="doc-section" aria-labelledby="privacy-cookies">
-        <h2 id="privacy-cookies" class="doc-section-title">עוגיות (Cookies) וטכנולוגיות דומות</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            שימוש בעוגיות, אם קיים, נועד למדידה, שיפור ביצועים ותפעול תקין. ניתן לחסום עוגיות בהגדרות הדפדפן;
-            חסימה עשויה להגביל פונקציות מסוימות.
-          </p>
-        </div>
-      </section>
+        <section id="cookies" aria-labelledby="h-cookies">
+          <h2 id="h-cookies">עוגיות (Cookies) וטכנולוגיות דומות</h2>
+          <p>שימוש בעוגיות, אם קיים, מיועד למדידה, ביצועים ותפעול תקין. ניתן לחסום עוגיות בהגדרות הדפדפן; חסימה עשויה להגביל פונקציות מסוימות.</p>
+        </section>
 
-      <!-- בסיס משפטי -->
-      <section class="doc-section" aria-labelledby="privacy-legal">
-        <h2 id="privacy-legal" class="doc-section-title">בסיס משפטי לעיבוד</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            עיבוד המידע מבוסס על קיום חוזה, אינטרס לגיטימי לשיפור השירות ולעיתים על הסכמתכם.
-          </p>
-        </div>
-      </section>
+        <section id="legal" aria-labelledby="h-legal">
+          <h2 id="h-legal">בסיס משפטי לעיבוד</h2>
+          <p>עיבוד המידע מבוסס על קיום חוזה, אינטרס לגיטימי לשיפור השירות ולעיתים על הסכמה.</p>
+        </section>
 
-      <!-- שמירת מידע -->
-      <section class="doc-section" aria-labelledby="privacy-retain">
-        <h2 id="privacy-retain" class="doc-section-title">שמירת מידע</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            המידע יישמר לפרק הזמן הנדרש למטרות שלשמן נאסף ובהתאם לחובות הדין, ולאחר מכן יימחק או יעובר לאנונימיזציה.
-          </p>
-        </div>
-      </section>
+        <section id="retention" aria-labelledby="h-retention">
+          <h2 id="h-retention">שמירת מידע</h2>
+          <p>נשמור מידע לפרק הזמן הנדרש למטרותיו ובהתאם לחובות הדין. לאחר מכן יימחק או יעבור לאנונימיזציה.</p>
+        </section>
 
-      <!-- אבטחה -->
-      <section class="doc-section" aria-labelledby="privacy-security">
-        <h2 id="privacy-security" class="doc-section-title">אבטחת מידע</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            אנו מיישמים אמצעי אבטחה מקובלים להפחתת סיכונים, אך אין אפשרות להבטיח הגנה מוחלטת מפני גישה בלתי מורשית.
-          </p>
-        </div>
-      </section>
+        <section id="security" aria-labelledby="h-security">
+          <h2 id="h-security">אבטחת מידע</h2>
+          <p>אנו מיישמים אמצעי אבטחה מקובלים להפחתת סיכונים, אך אין אפשרות להבטיח הגנה מוחלטת מפני גישה בלתי מורשית.</p>
+        </section>
 
-      <!-- זכויות -->
-      <section class="doc-section" aria-labelledby="privacy-rights">
-        <h2 id="privacy-rights" class="doc-section-title">זכויותיכם</h2>
-        <div class="doc-card" role="article" tabindex="0">
+        <section id="rights" aria-labelledby="h-rights">
+          <h2 id="h-rights">זכויותיכם</h2>
           <ul>
             <li>עיון, תיקון, עדכון או מחיקה של מידע אישי בכפוף לדין.</li>
             <li>הגשת בקשה להפסקת דיוור/יצירת קשר שיווקית, אם קיימת.</li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <!-- יצירת קשר -->
-      <section class="doc-section" aria-labelledby="privacy-contact">
-        <h2 id="privacy-contact" class="doc-section-title">יצירת קשר בנושא פרטיות</h2>
-        <div class="doc-card" role="article" tabindex="0">
+        <section id="contact" aria-labelledby="h-contact">
+          <h2 id="h-contact">יצירת קשר בנושא פרטיות</h2>
           <p>לשאלות ובקשות בנושא פרטיות:</p>
           <ul>
             <li>טלפון: <a href="tel:0532407762" data-field="contactPhone">053-2407762</a></li>
             <li>דוא״ל: <a href="mailto:nisimelec77@gmail.com" data-field="contactEmail">nisimelec77@gmail.com</a></li>
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <!-- עדכונים -->
-      <section class="doc-section" aria-labelledby="privacy-update">
-        <h2 id="privacy-update" class="doc-section-title">עדכונים למדיניות</h2>
-        <div class="doc-card" role="article" tabindex="0">
-          <p>
-            ייתכנו עדכונים מעת לעת בעקבות שינויי חוק או תפעול. תאריך העדכון האחרון:
-            <strong data-field="privacyLastUpdated">2025-08-28</strong>
-          </p>
-        </div>
-      </section>
-    </div>
+        <section id="update" aria-labelledby="h-update">
+          <h2 id="h-update">עדכונים למדיניות</h2>
+          <p>תאריך עדכון אחרון: <strong data-field="privacyLastUpdated">2025-08-28</strong></p>
+        </section>
+      </div>
 
-    <footer class="legal-footer" role="contentinfo" aria-label="Footer">
-      <nav class="footer-nav" aria-label="מסמכי אתר">
-        <a class="footer-link accessibility-link"
-           href="/pages/accessibility.html"
-           target="_blank"
-           rel="noopener"
-           aria-label="מעבר להצהרת נגישות">תקנון הנגישות</a>
-        <span aria-hidden="true"> | </span>
-        <a class="footer-link privacy-link"
-           href="/pages/privacy.html"
-           target="_blank"
-           rel="noopener"
-           aria-label="מעבר למדיניות פרטיות">מדיניות פרטיות</a>
-      </nav>
-    </footer>
+      <!-- Landmark: contentinfo -->
+      <footer class="doc-footer" role="contentinfo" aria-label="כותרת תחתונה">
+        <div><button class="btn" id="backBtn" aria-label="חזרה" type="button">חזרה</button></div>
+        <div><span aria-live="polite">© <span id="year"></span></span></div>
+      </footer>
+    </article>
   </main>
+
+  <script>
+    // שנה נוכחית + פוקוס פתיחה (ללא שינוי נראות)
+    (function initMeta(){
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+
+      // הסרת tabindex חיובי אם הושתל בטעות
+      document.querySelectorAll('[tabindex]').forEach(el=>{
+        const v = el.getAttribute('tabindex');
+        if (v && Number(v) > 0) el.removeAttribute('tabindex');
+      });
+
+      // פוקוס ל-H1; נפילה ל-main; גלילה לראש
+      const h1 = document.getElementById('pageTitle');
+      if (h1){ h1.setAttribute('tabindex','-1'); h1.focus(); }
+      else { document.getElementById('main')?.focus(); }
+      window.scrollTo(0,0);
+    })();
+
+    // כפתור חזרה עם נפילה לדף הראשי אם אין היסטוריה
+    (function initBack(){
+      const btn = document.getElementById('backBtn');
+      if (!btn) return;
+      function goBack(){
+        if (history.length > 1){ history.back(); }
+        else { location.href = '../index.html'; }
+      }
+      btn.addEventListener('click', goBack);
+      btn.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space'){ e.preventDefault(); goBack(); }
+      });
+      // קיצור: Alt+ArrowLeft
+      document.addEventListener('keydown', (e)=>{
+        if (e.altKey && e.key === 'ArrowLeft'){ e.preventDefault(); btn.click(); }
+      });
+    })();
+
+    // ניווט חלק לעוגנים – מכבד העדפת Motion
+    (function initInPageNav(){
+      const prefersNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          const id = a.getAttribute('href'); if (!id) return;
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          if (prefersNoMotion){ target.scrollIntoView(); }
+          else { target.scrollIntoView({behavior:'smooth', block:'start'}); }
+          setTimeout(()=>{ target.setAttribute('tabindex','-1'); target.focus(); }, prefersNoMotion?0:250);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
