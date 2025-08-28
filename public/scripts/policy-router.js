@@ -2,7 +2,7 @@
 (function(){
   // מיפוי בין data-open-page לבין הקבצים ב־/pages/
   const MAP = {
-    accessibility: "pages/accessibility.html"
+    accessibility: "/pages/accessibility.html"  // נתיב מלא מהשורש
     // בהמשך אפשר להוסיף: privacy: "pages/privacy.html", terms: "pages/terms.html"
   };
 
