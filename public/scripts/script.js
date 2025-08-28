@@ -284,10 +284,11 @@ if (value === undefined || value === null) {
   if (!shouldShow) {
     mediaContainer.style.display = 'none';
     mediaContainer.innerHTML = '';
+    console.log("[Video] ❌ Hidden (feature off or no link).", { feature: features.video, yt });
     return;
   }
 
-  // תמיכה בקישורי watch / youtu.be / embed
+  // תמיכה בקישורי watch / youtu.be / embed (ללא שינוי מהותי)
   const toEmbed = (url) => {
     if (/\/embed\//.test(url)) return url;
     const id = (url.match(/[?&]v=([A-Za-z0-9_-]{6,})/) ||
@@ -295,8 +296,44 @@ if (value === undefined || value === null) {
     return id ? `https://www.youtube.com/embed/${id}` : '';
   };
 
-  const embed = toEmbed(yt);
-  if (!embed) { mediaContainer.style.display = 'none'; return; }
+  const embedBase = toEmbed(yt);
+  if (!embedBase) { 
+    mediaContainer.style.display = 'none';
+    console.log("[Video] ❌ Invalid YouTube link:", yt);
+    return; 
+  }
+
+  // ✅ נרמול פרמטרים עם URLSearchParams — מונע כפילויות
+  let finalSrc = embedBase;
+  try {
+    const u = new URL(embedBase, location.href);
+    const p = u.searchParams;
+
+    // שומר פרמטרים קיימים ומוודא ערכים רצויים, ללא כפילות
+    if (!p.has('rel'))            p.set('rel', '0');            else p.set('rel', '0');
+    if (!p.has('modestbranding')) p.set('modestbranding', '1'); else p.set('modestbranding', '1');
+    if (!p.has('playsinline'))    p.set('playsinline', '1');    else p.set('playsinline', '1');
+
+    u.search = p.toString(); // מבטיח מפתח יחיד לכל פרמטר
+    finalSrc = u.toString();
+  } catch (e) {
+    // נפילה נדירה בבניית URL — נ fallback ללא כפילות ידנית
+    const hasQ = embedBase.includes('?');
+    const alreadyHasRel            = /[?&]rel=/.test(embedBase);
+    const alreadyHasModestBranding = /[?&]modestbranding=/.test(embedBase);
+    const alreadyHasPlaysinline    = /[?&]playsinline=/.test(embedBase);
+
+    const extra = [];
+    if (!alreadyHasRel)            extra.push('rel=0');
+    if (!alreadyHasModestBranding) extra.push('modestbranding=1');
+    if (!alreadyHasPlaysinline)    extra.push('playsinline=1');
+
+    finalSrc = embedBase + (extra.length ? (hasQ ? '&' : '?') + extra.join('&') : '');
+  }
+
+  console.log("[Video] ℹ️ Input:", yt);
+  console.log("[Video] ℹ️ Embed base:", embedBase);
+  console.log("[Video] ✅ Final src:", finalSrc);
 
   const iframe = document.createElement('iframe');
   iframe.setAttribute('width', '100%');
@@ -305,7 +342,9 @@ if (value === undefined || value === null) {
   iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
   iframe.setAttribute('allowfullscreen', '');
   iframe.setAttribute('title', data.videoTitle || 'YouTube video');
-  iframe.src = `${embed}?rel=0&modestbranding=1&playsinline=1`;
+  iframe.style.width = '100%';
+  iframe.style.aspectRatio = '16/9';
+  iframe.src = finalSrc;
 
   mediaContainer.innerHTML = '';
   mediaContainer.appendChild(iframe);
@@ -316,7 +355,6 @@ if (value === undefined || value === null) {
   mediaContainer.setAttribute('aria-label', data.videoAriaLabel || 'סרטון תדמית מיוטיוב');
   mediaContainer.setAttribute('tabindex', '0');
 })();
-
 
 
 const tag = el.tagName;
