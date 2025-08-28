@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>הצהרת נגישות</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link id="dynamicFavicon" rel="icon" type="image/png" href="/assets/logo/myLogo.jpg" data-field="favicon">
+
 
   <style>
     /* =========================
@@ -51,10 +53,24 @@
     .doc{
       background:#fff; border:1px solid var(--border);
       border-radius:var(--radius); box-shadow:var(--shadow);
-    }
-    .doc-header{
+    }.doc-header{
       border-bottom:1px solid var(--border);
       padding:clamp(14px,2vw,24px) var(--pad);
+    }
+    .header-content{
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    }
+    .header-logo{
+      width:60px; height:60px; object-fit:contain; flex-shrink:0;
+    }
+    .header-text{ flex:1; min-width:200px }
+    .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px); }
+    .doc-sub{ margin:0; color:var(--muted); font-size:14px }
+    
+    /* מובייל: לוגו מעל הטקסט */
+    @media (max-width:480px){
+      .header-content{ flex-direction:column; text-align:center; gap:12px }
+      .header-logo{ width:50px; height:50px }
     }
     .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px); }
     .doc-sub{ margin:0; color:var(--muted); font-size:14px }
@@ -70,6 +86,25 @@
       background:#fafafa; border:1px solid var(--border);
       padding:14px; border-radius:10px; margin:16px 0;
     }
+    .header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-direction: row-reverse; /* ✅ הלוגו בצד שמאל, הטקסט בצד ימין */
+}
+.header-logo {
+  width: 100px !important;   /* ✅ גודל קבוע */
+  height: 100px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+
+
 
     .doc-footer{
       display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
@@ -98,22 +133,29 @@
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
+<header class="wrap" role="banner" aria-label="כותרת עמוד">
+  <div class="doc fade-in">
+    <div class="doc-header">
+      <div class="header-content">
 
-  <header class="wrap" role="banner" aria-label="כותרת עמוד">
-    <div class="doc fade-in" aria-describedby="sub">
-      <div class="doc-header">
-        <h1 class="doc-title">הצהרת נגישות</h1>
-        <p id="sub" class="doc-sub">מחויבות לנגישות ושוויון הזדמנויות</p>
-      </div>
-      <div class="doc-body">
-        <nav aria-label="ניווט מהיר">
-          <a class="btn secondary" href="#commitment">מחויבות לנגישות</a>
-          <a class="btn secondary" href="#implemented">מה מיושם</a>
-          <a class="btn secondary" href="#contact">יצירת קשר</a>
-        </nav>
+        <!-- ✅ הלוגו יוצג בצד שמאל בזכות CSS -->
+        <img src="/assets/logo/myLogo.jpg"
+             alt="לוגו החברה"
+             class="header-logo"
+             data-field="headerLogo">
+
+        <!-- טקסט -->
+        <div class="header-text">
+          <h1 class="doc-title" data-field="accessibilityTitle">הסדרי נגישות</h1>
+          
+        </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+
+
+
 
   <main id="main" class="wrap" role="main" tabindex="0" aria-label="תוכן העמוד">
     <article class="doc fade-in" aria-labelledby="h-commitment">
@@ -132,23 +174,37 @@
         </section>
 
         <section id="implemented" aria-labelledby="h-implemented">
-          <h2 id="h-implemented">מה מיושם בפועל</h2>
-          <ul>
-            <li>מבנה כותרות תקין (H1–H3) ותמיכה בקוראי מסך.</li>
-            <li>טקסט חלופי לתמונות בעמודי הכרטיס.</li>
-            <li>תמיכה בניווט באמצעות מקלדת (Tab, Enter/Space) בפריטי ממשק אינטראקטיביים.</li>
-            <li>כפתור מצב נגישות להגברת ניגודיות/הגדלת טקסט (בכרטיס הראשי).</li>
-            <li>עקרונות רספונסיביות ותצוגה מותאמת למכשירים ניידים.</li>
-          </ul>
-        </section>
+  <h2 id="h-implemented">מה אנחנו מיישמים בפועל</h2>
+  <p>
+    אנחנו מאמינים שכל גולש וגולשת זכאים ליהנות מחוויית שימוש מלאה ונוחה, ולכן השקענו בתהליכי נגישות שמאפשרים לכל אחד לגלוש, לקרוא ולהשתמש בכרטיס הדיגיטלי שלנו בקלות ובפשטות.
+  </p>
+  <ul>
+    <li>מבנה כותרות תקין (H1–H3) המאפשר לקוראי מסך להבין את התוכן בצורה ברורה.</li>
+    <li>טקסט חלופי לתמונות – כדי שכל מידע חזותי יהיה נגיש גם למשתמשי קוראי מסך.</li>
+    <li>תמיכה מלאה בניווט באמצעות מקלדת (Tab, Enter/Space) בפריטי ממשק אינטראקטיביים.</li>
+    <li>כפתור מצב נגישות ייעודי המאפשר להגדיל טקסטים ולהגביר ניגודיות בכרטיס הראשי.</li>
+    <li>עקרונות רספונסיביות מלאים – הכרטיס מותאם לשימוש במחשב, בטאבלט ובטלפון נייד.</li>
+  </ul>
+  <p>
+    נמשיך לפעול לשיפור חוויית הנגישות בכל עת, כדי להבטיח שכל משתמש יוכל ליהנות מהשירות שלנו.
+  </p>
+</section>
+
 
         <section id="contact" aria-labelledby="h-contact">
-          <h2 id="h-contact">יצירת קשר בנושא נגישות</h2>
-          <p>
-            מצאתם בעיית נגישות? אנא פנו אלינו באמצעות פרטי הקשר המופיעים בכרטיס הדיגיטלי.
-            נשתדל לטפל בפנייתכם בהקדם.
-          </p>
-        </section>
+  <h2 id="h-contact">יצירת קשר בנושא נגישות</h2>
+  <p>
+    מצאתם בעיית נגישות? אנא פנו אלינו:
+  </p>
+  <ul>
+    <li>טלפון: <a href="tel:0532407762" aria-label="טלפון ליצירת קשר בנושא נגישות">053-2407762</a></li>
+    <li>דוא"ל: <a href="mailto:nisimelec77@gmail.com" aria-label="כתובת אימייל ליצירת קשר בנושא נגישות">nisimelec77@gmail.com</a></li>
+  </ul>
+  <p>
+    נשתדל לטפל בפנייתכם בהקדם.
+  </p>
+</section>
+
       </div>
 
       <footer class="doc-footer" role="contentinfo" aria-label="כותרת תחתונה">
