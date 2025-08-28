@@ -4,76 +4,44 @@
   <meta charset="utf-8">
   <title>הצהרת נגישות</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link id="dynamicFavicon" rel="icon" type="image/png" href="/assets/logo/myLogo.jpg" data-field="favicon">
-
+  <link id="dynamicFavicon" rel="icon" type="image/png" href="/assets/logo/myLogo.jpg" data-field="favicon">
 
   <style>
-    /* =========================
-       עיצוב פנימי מינימלי לעמוד הסטטי
-       ========================= */
     :root{
-      --bg:#fff;
-      --fg:#111;
-      --muted:#555;
-      --border:#e5e7eb;
-      --link:#0d6efd;
-      --max:900px;
-      --pad:20px;
-      --radius:12px;
-      --btn-bg:#000;
-      --btn-fg:#fff;
+      --bg:#fff; --fg:#111; --muted:#555; --border:#e5e7eb; --link:#0d6efd;
+      --max:900px; --pad:20px; --radius:12px; --btn-bg:#000; --btn-fg:#fff;
       --shadow:0 6px 18px rgba(0,0,0,.06);
-      --font:'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --font:'Open Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--fg);
-      font-family:var(--font);
-      line-height:1.65;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-    /* קישורי דילוג לתוכן */
+    /* קישורי דילוג – לא משפיע ויזואלית במצב רגיל */
     .skip-link{
       position:absolute; inset-inline-start:10px; top:-40px;
       background:var(--btn-bg); color:var(--btn-fg);
-      padding:8px 12px; border-radius:8px; text-decoration:none;
-      transition:top .2s ease;
-      z-index:9999;
+      padding:8px 12px; border-radius:8px; text-decoration:none; transition:top .2s ease; z-index:9999;
     }
     .skip-link:focus{ top:10px; outline:2px solid #fff; outline-offset:2px }
 
     header,main,footer{width:100%}
     .wrap{ max-width:var(--max); margin:0 auto; padding:var(--pad) }
 
-    .doc{
-      background:#fff; border:1px solid var(--border);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-    }.doc-header{
-      border-bottom:1px solid var(--border);
-      padding:clamp(14px,2vw,24px) var(--pad);
-    }
-    .header-content{
-      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-    }
-    .header-logo{
-      width:60px; height:60px; object-fit:contain; flex-shrink:0;
-    }
+    .doc{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow) }
+    .doc-header{ border-bottom:1px solid var(--border); padding:clamp(14px,2vw,24px) var(--pad) }
+
+    .header-content{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; flex-direction:row-reverse } /* לוגו נשאר משמאל */
+    .header-logo{ width:100px !important; height:100px !important; object-fit:contain; flex-shrink:0; display:block; max-width:none !important; max-height:none !important }
     .header-text{ flex:1; min-width:200px }
-    .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px); }
+    .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px) }
     .doc-sub{ margin:0; color:var(--muted); font-size:14px }
-    
-    /* מובייל: לוגו מעל הטקסט */
+
     @media (max-width:480px){
       .header-content{ flex-direction:column; text-align:center; gap:12px }
-      .header-logo{ width:50px; height:50px }
+      .header-logo{ width:50px !important; height:50px !important }
+      .doc-body p, .doc-body li{ font-size:16px }
     }
-    .doc-title{ margin:0 0 6px 0; font-size:clamp(22px,3.2vw,32px); }
-    .doc-sub{ margin:0; color:var(--muted); font-size:14px }
 
     .doc-body{ padding:var(--pad) }
     .doc-body h2{ font-size:20px; margin:20px 0 8px }
@@ -82,190 +50,134 @@
     .doc-body a{ color:var(--link); text-decoration:underline }
     .doc-body ul{ padding-inline-start:20px }
 
-    .note{
-      background:#fafafa; border:1px solid var(--border);
-      padding:14px; border-radius:10px; margin:16px 0;
-    }
-    .header-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  flex-direction: row-reverse; /* ✅ הלוגו בצד שמאל, הטקסט בצד ימין */
-}
-.header-logo {
-  width: 100px !important;   /* ✅ גודל קבוע */
-  height: 100px !important;
-  object-fit: contain;
-  flex-shrink: 0;
-  display: block;
-  max-width: none !important;
-  max-height: none !important;
-}
-
-
-
+    .note{ background:#fafafa; border:1px solid var(--border); padding:14px; border-radius:10px; margin:16px 0 }
 
     .doc-footer{
       display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
       border-top:1px solid var(--border); padding:12px var(--pad); color:var(--muted); font-size:13px
     }
-    .btn{
-      display:inline-block; background:var(--btn-bg); color:var(--btn-fg);
-      padding:10px 14px; border-radius:8px; text-decoration:none; border:0; cursor:pointer;
-    }
+    .btn{ display:inline-block; background:var(--btn-bg); color:var(--btn-fg); padding:10px 14px; border-radius:8px; text-decoration:none; border:0; cursor:pointer }
     .btn:focus{ outline:2px solid #aaa; outline-offset:2px }
-    .btn.secondary{
-      background:transparent; color:inherit; border:1px solid var(--border);
-    }
 
-    /* אנימציה עדינה */
     @media (prefers-reduced-motion:no-preference){
       .fade-in{ animation:fade .25s ease-out both }
       @keyframes fade{ from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none} }
-    }
-
-    /* מובייל: ריווח נעים */
-    @media (max-width:480px){
-      .doc-body p, .doc-body li{ font-size:16px }
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן</a>
-<header class="wrap" role="banner" aria-label="כותרת עמוד">
-  <div class="doc fade-in">
-    <div class="doc-header">
-      <div class="header-content">
 
-        <!-- ✅ הלוגו יוצג בצד שמאל בזכות CSS -->
-        <img src="/assets/logo/myLogo.jpg"
-             alt="לוגו החברה"
-             class="header-logo"
-             data-field="headerLogo">
-
-        <!-- טקסט -->
-        <div class="header-text">
-          <h1 class="doc-title" data-field="accessibilityTitle">הסדרי נגישות</h1>
-          
+  <!-- Landmark: banner -->
+  <header class="wrap" role="banner" aria-label="כותרת עמוד">
+    <div class="doc fade-in">
+      <div class="doc-header">
+        <div class="header-content">
+          <img src="/assets/logo/myLogo.jpg" alt="לוגו החברה" class="header-logo" data-field="headerLogo">
+          <div class="header-text">
+            <h1 id="pageTitle" class="doc-title" data-field="accessibilityTitle">הסדרי נגישות</h1>
+            <p class="doc-sub" id="subtitle">מחויבות לנגישות ושוויון הזדמנויות</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-
-
-
-  <main id="main" class="wrap" role="main" tabindex="0" aria-label="תוכן העמוד">
+  <!-- Landmark: main -->
+  <main id="main" class="wrap" role="main" tabindex="-1" aria-label="תוכן העמוד">
     <article class="doc fade-in" aria-labelledby="h-commitment">
       <div class="doc-body">
         <section id="commitment" aria-labelledby="h-commitment">
           <h2 id="h-commitment">מחויבות לנגישות</h2>
-          <p>
-            אנו פועלים להנגשת הכרטיס הדיגיטלי לכלל המשתמשים, לרבות אנשים עם מוגבלויות,
-            תוך יישום עקרונות של ניגודיות קריאה, היררכיית כותרות תקינה וניווט מקלדת מלא.
-          </p>
+          <p>אנו פועלים להנגשת הכרטיס הדיגיטלי לכלל המשתמשים, לרבות אנשים עם מוגבלויות, תוך יישום עקרונות של ניגודיות קריאה, היררכיית כותרות תקינה וניווט מקלדת מלא.</p>
           <div class="note" role="note" aria-label="הבהרה">
-            <p>
-              העמוד הנוכחי מציג הצהרת נגישות כללית. אם נתקלתם בקושי, נשמח לדעת ולשפר.
-            </p>
+            <p>העמוד הנוכחי מציג הצהרת נגישות כללית. אם נתקלתם בקושי, נשמח לדעת ולשפר.</p>
           </div>
         </section>
 
         <section id="implemented" aria-labelledby="h-implemented">
-  <h2 id="h-implemented">מה אנחנו מיישמים בפועל</h2>
-  <p>
-    אנחנו מאמינים שכל גולש וגולשת זכאים ליהנות מחוויית שימוש מלאה ונוחה, ולכן השקענו בתהליכי נגישות שמאפשרים לכל אחד לגלוש, לקרוא ולהשתמש בכרטיס הדיגיטלי שלנו בקלות ובפשטות.
-  </p>
-  <ul>
-    <li>מבנה כותרות תקין (H1–H3) המאפשר לקוראי מסך להבין את התוכן בצורה ברורה.</li>
-    <li>טקסט חלופי לתמונות – כדי שכל מידע חזותי יהיה נגיש גם למשתמשי קוראי מסך.</li>
-    <li>תמיכה מלאה בניווט באמצעות מקלדת (Tab, Enter/Space) בפריטי ממשק אינטראקטיביים.</li>
-    <li>כפתור מצב נגישות ייעודי המאפשר להגדיל טקסטים ולהגביר ניגודיות בכרטיס הראשי.</li>
-    <li>עקרונות רספונסיביות מלאים – הכרטיס מותאם לשימוש במחשב, בטאבלט ובטלפון נייד.</li>
-  </ul>
-  <p>
-    נמשיך לפעול לשיפור חוויית הנגישות בכל עת, כדי להבטיח שכל משתמש יוכל ליהנות מהשירות שלנו.
-  </p>
-</section>
+          <h2 id="h-implemented">מה אנחנו מיישמים בפועל</h2>
+          <ul>
+            <li>מבנה כותרות תקין (H1–H3) המאפשר לקוראי מסך להבין את התוכן.</li>
+            <li>טקסט חלופי לתמונות בעמודי הכרטיס.</li>
+            <li>ניווט באמצעות מקלדת (Tab, Enter/Space) בפריטי ממשק אינטראקטיביים.</li>
+            <li>כפתור מצב נגישות להגברת ניגודיות/הגדלת טקסט בכרטיס הראשי.</li>
+            <li>עקרונות רספונסיביות ותצוגה מותאמת למכשירים ניידים.</li>
+          </ul>
+        </section>
 
-
-        <section id="contact" aria-labelledby="h-contact">
+       <section id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">יצירת קשר בנושא נגישות</h2>
   <p>
-    מצאתם בעיית נגישות? אנא פנו אלינו:
+    אנו משקיעים מאמצים רבים כדי להנגיש את האתר לכלל הגולשים, מתוך מחויבות לשוויון ונוחות שימוש.
+    אם בכל זאת נתקלתם בקושי או בעיית נגישות – נשמח לשמוע מכם ולטפל בכך במהירות.
   </p>
   <ul>
-    <li>טלפון: <a href="tel:0532407762" aria-label="טלפון ליצירת קשר בנושא נגישות">053-2407762</a></li>
-    <li>דוא"ל: <a href="mailto:nisimelec77@gmail.com" aria-label="כתובת אימייל ליצירת קשר בנושא נגישות">nisimelec77@gmail.com</a></li>
+    <li>טלפון: <a href="tel:0532407762">053-2407762</a></li>
+    <li>דוא"ל: <a href="mailto:nisimelec77@gmail.com">nisimelec77@gmail.com</a></li>
   </ul>
-  <p>
-    נשתדל לטפל בפנייתכם בהקדם.
-  </p>
 </section>
 
       </div>
 
+      <!-- Landmark: contentinfo -->
       <footer class="doc-footer" role="contentinfo" aria-label="כותרת תחתונה">
-        <div>
-          <button class="btn" id="backBtn" aria-label="חזרה">חזרה</button>
-        </div>
-        <div>
-          <span aria-live="polite">© <span id="year"></span></span>
-        </div>
+        <div><button class="btn" id="backBtn" aria-label="חזרה" type="button">חזרה</button></div>
+        <div><span aria-live="polite">© <span id="year"></span></span></div>
       </footer>
     </article>
   </main>
+
   <script>
-    // שנה נוכחית + פוקוס לנגישות
+    // שנה נוכחית + פוקוס פתיחה (ללא שינוי נראות)
     (function initMeta(){
       const y = document.getElementById('year');
       if (y) y.textContent = new Date().getFullYear();
 
-      // ✅ פוקוס ל־header במקום ל-main
-      const header = document.querySelector("header");
-      if (header) {
-        header.setAttribute("tabindex","-1");
-        header.focus();
-      } else {
-        window.scrollTo(0,0);
-        document.body.setAttribute("tabindex","-1");
-        document.body.focus();
-      }
+      // הסרת tabindex חיובי אם הושתל בטעות
+      document.querySelectorAll('[tabindex]').forEach(el=>{
+        const v = el.getAttribute('tabindex');
+        if (v && Number(v) > 0) el.removeAttribute('tabindex');
+      });
+
+      // פוקוס ל-H1; נפילה ל-main; גלילה לראש
+      const h1 = document.getElementById('pageTitle');
+      if (h1){ h1.setAttribute('tabindex','-1'); h1.focus(); }
+      else { document.getElementById('main')?.focus(); }
+      window.scrollTo(0,0);
     })();
 
-    // כפתור חזרה עם נפילה אחורה ל-index.html אם אין היסטוריה
+    // כפתור חזרה עם נפילה לדף הראשי אם אין היסטוריה
     (function initBack(){
       const btn = document.getElementById('backBtn');
       if (!btn) return;
-
-      const goBack = () => {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else {
-          // התאמה: עדכן למסלול הכרטיס אם נדרש
-          window.location.href = '../index.html';
-        }
-      };
-
+      function goBack(){
+        if (history.length > 1){ history.back(); }
+        else { location.href = '../index.html'; }
+      }
       btn.addEventListener('click', goBack);
       btn.addEventListener('keydown', (e)=>{
-        if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space'){
-          e.preventDefault();
-          goBack();
-        }
+        if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space'){ e.preventDefault(); goBack(); }
+      });
+      // קיצור: Alt+ArrowLeft
+      document.addEventListener('keydown', (e)=>{
+        if (e.altKey && e.key === 'ArrowLeft'){ e.preventDefault(); btn.click(); }
       });
     })();
 
-    // קיצור מקלדת: Alt+ArrowLeft לחזרה
-    (function initHotkeys(){
-      document.addEventListener('keydown', (e)=>{
-        if (e.altKey && e.key === 'ArrowLeft'){
+    // ניווט חלק לעוגנים – מכבד העדפת Motion
+    (function initInPageNav(){
+      const prefersNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          const id = a.getAttribute('href'); if (!id) return;
+          const target = document.querySelector(id);
+          if (!target) return;
           e.preventDefault();
-          const btn = document.getElementById('backBtn');
-          if (btn) btn.click();
-        }
+          if (prefersNoMotion){ target.scrollIntoView(); }
+          else { target.scrollIntoView({behavior:'smooth', block:'start'}); }
+          setTimeout(()=>{ target.setAttribute('tabindex','-1'); target.focus(); }, prefersNoMotion?0:250);
+        });
       });
     })();
   </script>
