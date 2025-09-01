@@ -25,4 +25,22 @@
   object-position: center var(--logo-offset, 100%); /* ברירת מחדל מרכז */
   display: block;
 }
+@media (max-width: 768px) {
+  .header-top,
+  .logo-box,
+  .hero-gallery,
+  .cover-collage,
+  .main-content:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .header-top img,
+  .logo-box .logo-img,
+  .hero-gallery img,
+  .cover-collage img {
+    display: block;
+  }
+}
+
 
