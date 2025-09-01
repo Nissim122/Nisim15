@@ -45,6 +45,7 @@ features: {
   phone: true,
   instagram: true,
   mail : true,
+    tiktok: true,
 
   sendEmail: false,
   sendWhatsApp: true,

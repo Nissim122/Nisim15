@@ -727,6 +727,9 @@ strong {
 .icon-item[data-switch="facebookLink"] > a { color: var(--icon-facebook-color, var(--icon-color, #007bff)); }
 .icon-item[data-switch="waze"]         > a { color: var(--icon-waze-color, var(--icon-color, #007bff)); }
 .icon-item[data-switch="instagram"]    > a { color: var(--icon-instagram-color, var(--icon-color, #007bff)); }
+.icon-item[data-switch="tiktok"]       > a { color: var(--icon-tiktok-color, var(--icon-color, #007bff)); }  /* ✅ חדש */
+
+
 
 /* Mobile */
 @media (max-width:390px){
