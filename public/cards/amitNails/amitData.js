@@ -17,18 +17,18 @@ wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
 
 
-  logoSrc: "/assets/media/yaelNails/yaelBackground.jpg",
-  profileImage: "/assets/media/yaelNails/yaelLogo.png",
+  logoSrc: "",
+  profileImage: "/assets/media/amitNails/amitLogo.jpg",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
 features: {
   secondaryField: {
-    key: "street",               // שם לוגי שיישלח בהודעה
-    label: "האם יש ניסיון ?",               // הכותרת שתופיע וגם תישלח
+    key: "treatmentType",           // שם לוגי שיישלח בהודעה
+    label: "סוג טיפול",             // הכותרת שתופיע וגם תישלח
     type: "text",
-    placeholder: " האם יש ניסיון ?",    // הטקסט האפור בתוך התיבה
+    placeholder: "הזן סוג טיפול",   // הטקסט האפור בתוך התיבה
     inputMode: "text",
     required: true
   },
@@ -87,36 +87,30 @@ shareCardTitle: "שיתוף הכרטיס",
 
 recommendations: [
   {
-    name: "שלי הידנה",
-    title: " - קורס מתחילות",
-    text: `תודה רבההה 💕🎊🎉
-תמיד הייתי עושה לעצמי ציפורניים אבל אף פעם לא יצא כזה יפה,
-והכל בזכותך שלימדת והיית סובלנית 🙏
-מחכה כבר להתעסק במקצוע הזה כל היוםם!`
+    name: " שני גבעונה",
+    title: " -  להוסיף",
+    text: `היוש רק רציתי להגיד שעשית לי לק פשוט מדהים! אני מאוהבת!`
   },
   {
     name: "הדס אליאב",
-    title: " - השתלמות מקצועיות",
-    text: `יעלוש המדהימה ♥️
-תודה רבה על קורס בנייה בטיפסים ג׳ל הכי מושלם שיכולתי לבקש!
-על הסבלנות, היחס החם והיד החופשית 🙌🏻
-לא מובן מאליו בכלל.
-אוהבת מלאאא, מוכשרת בטירוף 🫶🏻`
+    title: " -  להוסיף",
+    text: `להוסיף`
   },
   {
-    name: "אורית אשורוב",
-    title: " - מניקוריסטית",
-    text: `היה לי התענוג והעונג ללמוד ממך! ❤️
-את מהממת ומוכשרת, וכיף לי שיצא לי להכיר אותך ולקחת ממך טיפים שווים!
-כל כך נהניתי מכל רגע, את לא רק מורה מדהימה אלא גם בן אדם עם וייב מושלם!
-תודה על הסבלנות, ההשקעה והאווירה הכיפית 🙏
-בטוחה שעוד נפגש לעוד סיגריה בהמשך! ☺️`
+    name: " עידית אזולאי",
+    title: " -  להוסיף",
+    text: ` להוסיף  `
   },
   {
-      name: "עמית אבן-צור",
-      title: " - השתלמות מקצועיות",
-      text: "היי יעל חן,\nהיה לי מדהים בקורס אצלך!!! את כל כך מקצועית ומלמדת בכל מא׳ עד ת׳.\nרציתי להגיד לך שעוד לא יצא לי ללמוד במקום כל כך יסודי, בו את משקיעה בכל אחת ואחת ומוודאת שיש לה את כל הכלים להמשיך הלאה!\nתודה על הכל ❤️❤️❤️"
-    },
+    name: "הדס אליאב",
+    title: " -  להוסיף",
+    text: `להוסיף`
+  },
+  {
+    name: " עידית אזולאי",
+    title: " -  להוסיף",
+    text: ` להוסיף  `
+  },
 ],
 
 };

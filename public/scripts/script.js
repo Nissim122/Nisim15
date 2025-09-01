@@ -511,7 +511,7 @@ if (recommendationsSwiper) {
     min: 1,
     max: 120,
     pattern: '\\d{1,3}',
-    maxLength: 3,
+    maxLength: 80,
     required: true
   }, features.secondaryField || {});
 
