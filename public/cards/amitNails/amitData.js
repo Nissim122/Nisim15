@@ -14,15 +14,12 @@ pageTitle: "  עמית אבן צור | כרטיס ביקור",
   vcard: { filename: "contact.vcf" },
 
 wazeLink: "https://waze.com/ul/hsv8wxcjtf",
-  instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
-
-
-  logoSrc: "",
-  profileImage: "/assets/media/amitNails/amitLogo.jpg",
+instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
+logoSrc: "",
+profileImage: "/assets/media/amitNails/amitLogo.jpg",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
-
- facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
- tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
+facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
 
 
 features: {
@@ -65,20 +62,29 @@ aboutParagraphs: `
 <strong class="quote-symbol">''</strong>
 
 <p data-field="aboutLine1"><strong class="fw-700">שמי עמית אבן צור</strong></p>
-<p data-field="aboutLine2"><strong class="fw-700">   להוסיף</strong></p>
+<p data-field="aboutLine2"><strong class="fw-700">מניקוריסטית ובעלת העסק amit nails</strong></p>
+
+<p>הגעתי לתחום אחרי שחוויתי בעצמי תסכול מהתוצאות שקיבלתי אצל מניקוריסטיות אחרות, וידעתי שאני יכולה לעשות עבודה טובה יותר. 
+מתוך המקום הזה נולד העסק שלי – מקום שבו כל לקוחה מקבלת יחס אישי ותוצאה מושלמת.</p>
+
+
+<p>אני מתמחה במגוון טיפולי ציפורניים: לק ג׳ל עם מבנה אנטומי, לק ג׳ל ללא מבנה אנטומי, בנייה, מילוי ולק ג׳ל ברגליים.</p>
+
+
+<p><strong class="fw-500">מה שמייחד אותי</strong> הוא השילוב בין דיוק, סטריליזציה מוקפדת ואווירה נעימה, לבין יחס אישי שמאפשר לכל אחת להרגיש בנוח, לשתף ולצאת עם תחושה טובה.</p>
+
+<p>עם ניסיון של שנתיים ולימודים אצל מספר מורות מובילות, בניתי קהל לקוחות חוזרות ומרוצות שיודעות שהן בידיים בטוחות.</p>
 `,
-accordionTitle1:  "▼  להוסיף ",
+
+accordionTitle1: "▼ למה פתחתי את העסק?",
 accordionText1: `
-  <p>להוסיף</p>
+  <p>פתחתי את העסק כי לא הייתי מרוצה מהלק שעשו לי בעבר. הרגשתי שאני יכולה להביא יותר דיוק, יותר אסתטיקה ויותר הקשבה – וליצור חוויה אחרת לגמרי עבור כל מי שיושבת מולי.</p>
 `,
 
-
-accordionTitle2: "▼  להוסיף ",
+accordionTitle2: "▼ איך אני רוצה שיזכרו אותי?",
 accordionText2: `
-  <p>להוסיף</p>
+  <p>אני רוצה שיזכרו אותי לא רק בזכות הלק המושלם, אלא גם בזכות האווירה, ההקשבה והתחושה שאת יכולה לסמוך עליי וליהנות מכל רגע.</p>
 `,
-
-
 
 
 scrollToContactText: "השאירי פרטים ונחזור אלייך",
