@@ -1,0 +1,28 @@
+
+@import url("base.css");
+
+:root {
+
+--name-role-font-family: var(--font-family-display);
+  --header-img-bg : #fffaf2;
+  --gold-line-bg : #C67C3A;
+    --profile-img-margin: -50px auto 0 auto; /* מרים יותר */
+
+}
+/* דריסת לוגו – ללקוח ספציפי בלבד */
+.logo-box {
+  width: 100%;
+  height: 400px;              /* גובה קבוע – לשנות לפי הצורך */
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo-box .logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* מילוי מלא עם חיתוך */
+  object-position: center var(--logo-offset, 100%); /* ברירת מחדל מרכז */
+  display: block;
+}
+

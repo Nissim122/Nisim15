@@ -17,7 +17,7 @@ wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
 
 
-  logoSrc: "",
+  logoSrc: "/assets/media/amitNails/a.jpg",
   profileImage: "/assets/media/amitNails/amitLogo.jpg",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
