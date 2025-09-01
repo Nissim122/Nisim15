@@ -12,7 +12,7 @@
 /* דריסת לוגו – ללקוח ספציפי בלבד */
 .logo-box {
   width: 100%;
-  height: 360px;              /* גובה קבוע – לשנות לפי הצורך */
+  height: 400px;              /* גובה קבוע – לשנות לפי הצורך */
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -26,7 +26,7 @@
   display: block;
 }
 @media (max-width: 768px) {
-  .header-top,
+      .header-top,
   .logo-box,
   .hero-gallery,
   .cover-collage,
