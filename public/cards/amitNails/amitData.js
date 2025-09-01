@@ -22,6 +22,8 @@ wazeLink: "https://waze.com/ul/hsv8wxcjtf",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+ tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
+
 
 features: {
   secondaryField: {
@@ -40,12 +42,12 @@ features: {
   recommendations: true,
 
   contactWhatsApp: true, 
-  facebookLink: true,
+  facebookLink: false,
   waze: true,
   phone: true,
   instagram: true,
   mail : true,
-    tiktok: true,
+  tiktok: true,
 
   sendEmail: false,
   sendWhatsApp: true,

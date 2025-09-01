@@ -730,6 +730,15 @@ strong {
 .icon-item[data-switch="tiktok"]       > a { color: var(--icon-tiktok-color, var(--icon-color, #007bff)); }  /* ✅ חדש */
 
 
+/* style.css — יישור אנכי של סמל טיקטוק בלבד */
+.icon-item[data-switch="tiktok"] .tiktok-mark{
+  transform: translateY(-14px);   /* העלה/הורד לפי צורך */
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+
+
 
 /* Mobile */
 @media (max-width:390px){
