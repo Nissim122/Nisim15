@@ -28,15 +28,14 @@ features: {
     key: "treatmentType",           // שם לוגי שיישלח בהודעה
     label: "סוג טיפול",             // הכותרת שתופיע וגם תישלח
     type: "text",
-    placeholder: "הזן סוג טיפול",   // הטקסט האפור בתוך התיבה
+    placeholder: "איזה טיפול מעניין אותך",   // הטקסט האפור בתוך התיבה
     inputMode: "text",
     required: true
   },
  
-  // ...שאר הפיצ'רים
 
 
-  video: true,
+  video: false,
   about: true,
   recommendations: true,
 
