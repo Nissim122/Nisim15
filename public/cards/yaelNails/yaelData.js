@@ -62,8 +62,8 @@ features: {
       key: "treatmentType",
       label: " ואני בת ",
       placeholder: " גיל ",
-      type: "text",
-      inputMode: "text",
+       type: "number",
+    inputMode: "numeric",
       required: true,
       maxLength: 80
     },

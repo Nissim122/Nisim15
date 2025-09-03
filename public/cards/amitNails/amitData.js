@@ -59,8 +59,8 @@ tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
   fields: {
     primary: {
       key: "fullName",
-      label: "שם מלא",
-      placeholder: " מלא",
+      label: "היי שמי",
+      placeholder: "שם מלא ",
       type: "text",
       inputMode: "text",
       required: true,
@@ -68,17 +68,17 @@ tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
     },
     secondary: {
       key: "treatmentType",
-      label: "סוג טיפול",
-      placeholder: "איזה טיפול מעניין אותך",
-      type: "text",
-      inputMode: "text",
+      label: " ואני אשמח שנעשה ",
+      placeholder: " במה תרצי להתפנק ? ",
+       type: "number",
+    inputMode: "numeric",
       required: true,
       maxLength: 80
     },
     message: {
       key: "message",
       label: "הודעה חופשית",
-      placeholder: "כתוב/י כאן הודעה",
+      placeholder: "באיזו שעה תרצי שנקבע ?",
       inputMode: "text",
       required: false,
       maxLength: 500
