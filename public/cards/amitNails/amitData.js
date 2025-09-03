@@ -98,31 +98,32 @@ shareCardTitle: "שיתוף הכרטיס",
 
 recommendations: [
   {
-    name: " שני גבעונה",
-    title: " -  להוסיף",
-    text: `היוש רק רציתי להגיד שעשית לי לק פשוט מדהים! אני מאוהבת!`
+    name: "שני גבעוני",
+    title: " - מורה",
+    text: "היוש  אני חייבת להגיד שעשית לי לק פשוט מדהים! אף פעם לא ראיתי דיוק ברמה הזאת. ראו שהשקעת את כל כולך לסט! אני מאוהבת!!!😍😍"
   },
   {
-    name: "הדס אליאב",
-    title: " -  להוסיף",
-    text: `להוסיף`
+    name: "עידית אזולאי",
+    title: " - מעצבת גינות",
+    text: "הקליניקה מאוד אסטטית והיחס האישי מורגש מאוד. אני מרגישה שאצלך אני יכולה לפרוק את הכל ופשוט להרגע, לקבל לק חדש ולצאת סופר מרוצה❤️"
   },
   {
-    name: " עידית אזולאי",
-    title: " -  להוסיף",
-    text: ` להוסיף  `
+    name: "סתיו גבאי",
+    title: " - מזכירה בקופת חולים",
+    text: "אני מתה על איך שיצא הבנייה!!! תמיד היו עושים לי מבנה אנטומי ענק או שנוזל לפינות והפעם אין שום בעיה כזאת🤩 איזה כיף!"
   },
   {
-    name: "הדס אליאב",
-    title: " -  להוסיף",
-    text: `להוסיף`
+    name: "אבלין יעקב",
+    title: " - מהנדסת",
+    text: "היי עמית אני חייבת לציין שהלק יצא פשוט נדיר. את כל פעם מפתיע אותי מחדש עם העבודות שלך!"
   },
   {
-    name: " עידית אזולאי",
-    title: " -  להוסיף",
-    text: ` להוסיף  `
-  },
+    name: "אריאל רוזנברג",
+    title: " - הייטקיסטית",
+    text: "רק רציתי לומר שכל פעם שאני מגיעה אני פשוט מרגישה הקלה. כל כך כיף לבוא אלי לדבר איתך ולצאת עם שלמות של לק"
+  }
 ],
+
 
 };
 Object.freeze(window.cardData);
