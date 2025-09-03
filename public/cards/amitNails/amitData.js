@@ -14,9 +14,12 @@ pageTitle: "  עמית אבן צור | כרטיס ביקור",
   vcard: { filename: "contact.vcf" },
 
 wazeLink: "https://waze.com/ul/hsv8wxcjtf",
-instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
-logoSrc: "",
-profileImage: "/assets/media/amitNails/amitLogo.jpg",
+
+  instagramLink: "https://www.instagram.com/amit.evenzur.nails?igsh=bGVzbGlhOTI4ZzI5&utm_source=qr",
+
+
+  logoSrc: "/assets/media/amitNails/a.jpg",
+  profileImage: "/assets/media/amitNails/amitLogo.jpg",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
