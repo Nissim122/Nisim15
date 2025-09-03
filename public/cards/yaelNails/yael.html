@@ -280,12 +280,18 @@
       <div id="errorFullName" class="error-message" aria-live="polite"></div>
     </div>
 
-    <!-- טלפון (ברירת מחדל מוצג, מוסתר כשעוברים ל־WhatsApp) -->
-    <div class="form-field">
-      <input id="phoneNumber" placeholder="טלפון" type="tel"
-             aria-label="טלפון" aria-required="true" aria-invalid="false" tabindex="0" />
-      <div id="errorPhone" class="error-message" aria-live="polite"></div>
-    </div>
+<!-- שדה שני (נשלט מתוך DATA) -->
+<div class="form-field">
+  <input id="secondaryField"
+         placeholder="ערך מותאם"
+         type="text"
+         aria-label="שדה משני"
+         aria-required="false"
+         aria-invalid="false"
+         tabindex="0" />
+  <div id="errorSecondary" class="error-message" aria-live="polite"></div>
+</div>
+
    <!-- שדה משני דינמי (מוסתר כברירת מחדל; נחשף כשערוץ = WhatsApp) -->
 <div class="form-field" id="wrapperSecondary" style="display:none;">
   <input id="secondaryField" placeholder="גיל" type="number" min="1" max="120"

@@ -51,8 +51,8 @@ features: {
   fields: {
     primary: {
       key: "fullName",
-      label: "שם מלא",
-      placeholder: " יעל ",
+      label: "היי שמי",
+      placeholder: "שם מלא ",
       type: "text",
       inputMode: "text",
       required: true,
@@ -60,8 +60,8 @@ features: {
     },
     secondary: {
       key: "treatmentType",
-      label: "סוג טיפול",
-      placeholder: "איזה אב מעניין אותך",
+      label: " ואני בת ",
+      placeholder: " גיל ",
       type: "text",
       inputMode: "text",
       required: true,
@@ -69,8 +69,8 @@ features: {
     },
     message: {
       key: "message",
-      label: "הודעה חופשית",
-      placeholder: "כתוב/י כאן הודעה",
+      label: "ואני בעלת ניסיום בתחום ?  ",
+      placeholder: "  בעלת ניסיון בתחום?",
       inputMode: "text",
       required: false,
       maxLength: 500
