@@ -487,171 +487,190 @@ if (recommendationsSwiper) {
         recommendationsSwiper.slideNext();
       }
     });
-  }
-/* =========================
-   Channel ⇄ Form Field Sync (Dynamic Secondary Field)
+  }/* =========================
+   Form Fields from DATA + Channel (WhatsApp/Email)
    ========================= */
-// script-generic.js
+(function initFormFromData(){
+  const root     = window.cardData || {};
+  const features = root.features || {};
+  const F        = root.fields   || {};
 
-(function initChannelFormSync() {
-  const data = window.cardData || window.data || {};
-  const features = data.features || {};
-
-  // תאימות sendWhatsapp / sendWhatsApp
-  const FLAG_SEND_WHATSAPP = (features.sendWhatsapp === true || features.sendWhatsApp === true);
-  const FLAG_SEND_EMAIL    = (features.sendEmail === true);
-
-  // ✅ תצורת שדה משני דינמי מתוך DATA (ברירת מחדל = גיל)
-  const secondary = Object.assign({
-    key: 'age',
-    label: 'גיל',
-    type: 'number',
-    placeholder: 'גיל',
-    inputMode: 'numeric',
-    min: 1,
-    max: 120,
-    pattern: '\\d{1,3}',
-    maxLength: 80,
-    required: true
-  }, features.secondaryField || {});
-
-  // ערוץ ברירת מחדל
-  const channel =
+  // ---- דגלי ערוצים + ערוץ התחלתי ----
+  const FLAG_WA   = features.sendWhatsapp === true || features.sendWhatsApp === true;
+  const FLAG_MAIL = features.sendEmail    === true;
+  let channel =
     (typeof features.formChannel === "string" && features.formChannel.toLowerCase()) ||
-    (FLAG_SEND_WHATSAPP ? "whatsapp" : "email");
+    (FLAG_WA ? "whatsapp" : "email");
 
-  // אלמנטים
-  const nameEl   = document.getElementById('fullName');
-  const phoneEl  = document.getElementById('phoneNumber');
-  const secEl    = document.getElementById('secondaryField');
-  const msgEl    = document.getElementById('message');
+  // ---- קונפיג שדות מה-DATA (עם ברירות מחדל) ----
+  const cfgPrimary = Object.assign({
+    key: "fullName",
+    label: "שם מלא",
+    placeholder: "שם מלא",
+    type: "text",
+    inputMode: "text",
+    required: true,
+    maxLength: 80
+  }, F.primary || {});
 
-  const wrapPhone = document.getElementById('wrapperPhone') || phoneEl?.closest('.form-field') || null;
-  const wrapSec   = document.getElementById('wrapperSecondary') || secEl?.closest('.form-field') || null;
+  const cfgSecondary = Object.assign({
+    key: "customField",
+    label: "שדה משני",
+    placeholder: "ערך מותאם",
+    type: "text",
+    inputMode: "text",
+    required: false,
+    maxLength: 80
+  }, F.secondary || {});
 
-  const labelPhone = document.querySelector('label[for="phoneNumber"]');
-  const labelSec   = document.querySelector('label[for="secondaryField"].label-secondary') || document.querySelector('.label-secondary');
+  const cfgMessage = Object.assign({
+    key: "message",
+    label: "הודעה חופשית",
+    placeholder: "כתוב/י כאן הודעה",
+    inputMode: "text",
+    required: false,
+    maxLength: 500
+  }, F.message || {});
 
-  // ▶️ החלת מטא על טלפון
-  function applyPhoneMeta() {
-    if (!phoneEl) return;
-    phoneEl.type = 'tel';
-    phoneEl.placeholder = 'טלפון';
-    phoneEl.setAttribute('aria-label', 'טלפון');
-    phoneEl.setAttribute('inputmode', 'tel');
-    phoneEl.removeAttribute('pattern');
-    phoneEl.removeAttribute('maxlength');
-    if (labelPhone) labelPhone.textContent = (data.labels?.phone || 'טלפון');
+  const submitText = (F.submitText || "שליחה");
+
+  // ---- אלמנטים ----
+  const elPrimary     = document.getElementById("fullName");
+  const elSecondary   = document.getElementById("secondaryField");
+  const elMessage     = document.getElementById("message");
+  const elPhone       = document.getElementById("phoneNumber");     // לטובת אימייל
+  const wrapSecondary = document.getElementById("wrapperSecondary") || elSecondary?.closest(".form-field") || null;
+  const wrapPhone     = document.getElementById("wrapperPhone")     || elPhone?.closest(".form-field")     || null;
+  const btnSubmit     = document.getElementById("sendBtn");
+
+  const lblPrimary   = document.querySelector('label[for="fullName"]');
+  const lblSecondary = document.querySelector('label[for="secondaryField"].label-secondary') || document.querySelector('label[for="secondaryField"]');
+  const lblMessage   = document.querySelector('label[for="message"]');
+  const lblPhone     = document.querySelector('label[for="phoneNumber"]');
+
+  // ---- החלת מטא גנרית על input ----
+  function applyMetaToInput(el, cfg, labelEl){
+    if (!el || !cfg) return;
+    ["min","max","pattern","maxlength","inputmode","aria-required","aria-label"].forEach(a=>el.removeAttribute(a));
+    if (cfg.type)        el.type = cfg.type;
+    if (cfg.placeholder) el.placeholder = cfg.placeholder;
+    if (cfg.inputMode)   el.setAttribute("inputmode", cfg.inputMode);
+    if (cfg.maxLength)   el.setAttribute("maxlength", String(cfg.maxLength));
+    el.required = !!cfg.required;
+    el.setAttribute("aria-label", cfg.label || "");
+    el.setAttribute("aria-required", String(!!cfg.required));
+    if (typeof cfg.min !== "undefined") el.setAttribute("min", String(cfg.min));
+    if (typeof cfg.max !== "undefined") el.setAttribute("max", String(cfg.max));
+    if (cfg.pattern) el.setAttribute("pattern", cfg.pattern);
+    if (labelEl && cfg.label) labelEl.textContent = cfg.label;
   }
 
-  // ▶️ החלת מטא על השדה המשני לפי DATA
-  function applySecondaryMeta() {
-    if (!secEl) return;
-
-    secEl.type = secondary.type || 'text';
-    secEl.placeholder = secondary.placeholder || secondary.label || '';
-    secEl.setAttribute('aria-label', secondary.label || '');
-    secEl.setAttribute('aria-required', String(!!secondary.required));
-    secEl.required = !!secondary.required;
-
-    // ניקוי קודם
-    secEl.removeAttribute('min'); secEl.removeAttribute('max');
-    secEl.removeAttribute('pattern'); secEl.removeAttribute('maxlength');
-    secEl.removeAttribute('inputmode');
-
-    if (secondary.inputMode) secEl.setAttribute('inputmode', secondary.inputMode);
-    if (typeof secondary.min !== 'undefined') secEl.setAttribute('min', String(secondary.min));
-    if (typeof secondary.max !== 'undefined') secEl.setAttribute('max', String(secondary.max));
-    if (secondary.pattern) secEl.setAttribute('pattern', secondary.pattern);
-    if (secondary.maxLength) secEl.setAttribute('maxlength', String(secondary.maxLength));
-
-    if (labelSec) labelSec.textContent = secondary.label || '';
+  // ---- החלת מטא ספציפי לשדות ----
+  function applyPrimaryMeta(){ applyMetaToInput(elPrimary, cfgPrimary, lblPrimary); }
+  function applySecondaryMeta(){ applyMetaToInput(elSecondary, cfgSecondary, lblSecondary); }
+  function applyMessageMeta(){
+    if (!elMessage) return;
+    ["maxlength","inputmode","aria-required","aria-label"].forEach(a=>elMessage.removeAttribute(a));
+    if (cfgMessage.placeholder) elMessage.placeholder = cfgMessage.placeholder;
+    if (cfgMessage.inputMode)   elMessage.setAttribute("inputmode", cfgMessage.inputMode);
+    if (cfgMessage.maxLength)   elMessage.setAttribute("maxlength", String(cfgMessage.maxLength));
+    elMessage.required = !!cfgMessage.required;
+    elMessage.setAttribute("aria-label", cfgMessage.label || "");
+    elMessage.setAttribute("aria-required", String(!!cfgMessage.required));
+    if (lblMessage && cfgMessage.label) lblMessage.textContent = cfgMessage.label;
+  }
+  function applyPhoneMeta(){
+    if (!elPhone) return;
+    elPhone.type = "tel";
+    elPhone.placeholder = (root.labels?.phone || "טלפון");
+    elPhone.setAttribute("aria-label", (root.labels?.phone || "טלפון"));
+    elPhone.setAttribute("inputmode", "tel");
+    elPhone.removeAttribute("pattern");
+    elPhone.removeAttribute("maxlength");
+    if (lblPhone) lblPhone.textContent = (root.labels?.phone || "טלפון");
   }
 
-  // ▶️ הצגה/הסתרה והחלת מטא לפי ערוץ
-  function applyFormChannelUI(nextChannel) {
-    const useWhatsapp = nextChannel === 'whatsapp';
-
-    if (wrapSec)   wrapSec.style.display   = useWhatsapp ? '' : 'none';
-    if (wrapPhone) wrapPhone.style.display = useWhatsapp ? 'none' : '';
-
-    if (useWhatsapp) {
-      applySecondaryMeta();
-    } else {
-      applyPhoneMeta();
-    }
+  // ---- בחירת ערוץ: וואטסאפ מציג שדה משני; אימייל מציג טלפון ----
+  function applyChannelUI(next){
+    const useWA = next === "whatsapp";
+    if (wrapSecondary) wrapSecondary.style.display = useWA ? "" : "none";
+    if (wrapPhone)     wrapPhone.style.display     = useWA ? "none" : "";
+    if (useWA) { applySecondaryMeta(); } else { applyPhoneMeta(); }
   }
 
-  // ערכים
-  function getSecondaryValue() {
-    if (secEl && wrapSec && wrapSec.style.display !== 'none') return (secEl.value || '').trim();
-    return '';
-  }
-  function getPhoneValue() {
-    if (phoneEl && wrapPhone && wrapPhone.style.display !== 'none') return (phoneEl.value || '').trim();
-    return '';
-  }
-
-  // החלה ראשונית בטוחה
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      applyPhoneMeta();
-      applySecondaryMeta();
-      applyFormChannelUI(channel);
-    });
-  } else {
-    applyPhoneMeta();
-    applySecondaryMeta();
-    applyFormChannelUI(channel);
-  }
-
-  /* ========= שליחה ל־WhatsApp ========= */
-  window.sendToWhatsapp = function(event) {
-    event?.preventDefault?.();
-    window.setFormChannel?.('whatsapp');
-    applyFormChannelUI('whatsapp');
-
-    if (features.formChannel && features.formChannel.toLowerCase() !== 'whatsapp') return;
-
-    const name = (nameEl?.value || '').trim();
-    const secondaryVal = getSecondaryValue();
-    const msg  = (msgEl?.value || '').trim();
-
-    const esc = (v) => encodeURIComponent(v);
-    const number = String(data.phoneDigits || '').replace(/\D/g, '') || "0000000000";
-
-    const line = `${secondary.label || 'שדה'}: ${esc(secondaryVal)}`;
-    const fullMsg = `שם: ${esc(name)}%0A${line}%0Aהודעה: ${esc(msg)}`;
-
-    window.open(`https://wa.me/972${number}?text=${fullMsg}`, '_blank');
+  // ---- ערכי טופס בטוחים ----
+  const val = {
+    primary:  () => (elPrimary?.value   || "").trim(),
+    secondary:() => (wrapSecondary && wrapSecondary.style.display === "none") ? "" : (elSecondary?.value || "").trim(),
+    message:  () => (elMessage?.value   || "").trim(),
+    phone:    () => (wrapPhone && wrapPhone.style.display === "none") ? "" : (elPhone?.value || "").trim()
   };
 
-  /* ========= שליחה לאימייל ========= */
-  window.sendToEmail = function(event) {
-    event?.preventDefault?.();
-    window.setFormChannel?.('email');
-    applyFormChannelUI('email');
+  // ---- שליחה לוואטסאפ ----
+  window.sendToWhatsapp = function(e){
+    e?.preventDefault?.();
+    setFormChannel("whatsapp");
+    if (!FLAG_WA) return;
+    if (features.formChannel && String(features.formChannel).toLowerCase() !== "whatsapp") return;
 
-    if (features.formChannel && features.formChannel.toLowerCase() !== 'email') return;
-    if (!FLAG_SEND_EMAIL) return;
+    const esc = encodeURIComponent;
+    const num = String(root.phoneDigits || "").replace(/\D/g,"").replace(/^0+/, "");
+    const msg =
+      `${cfgPrimary.label}: ${esc(val.primary())}%0A` +
+      `${cfgSecondary.label}: ${esc(val.secondary())}%0A` +
+      `${cfgMessage.label}: ${esc(val.message())}`;
 
-    const name  = (nameEl?.value || '').trim();
-    const phone = getPhoneValue();
-    const msg   = (msgEl?.value || '').trim();
-    const email = (data.email || '').trim();
-
-    const subject = encodeURIComponent(`פניה מכרטיס ביקור – ${name}`);
-    const body = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\nהודעה: ${msg}`);
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    if (num) window.open(`https://wa.me/972${num}?text=${msg}`, "_blank");
   };
 
-  // סוויצ'ר ידני
-  window.setFormChannel = function(nextChannel) {
-    const nc = String(nextChannel || '').toLowerCase();
-    if (!['whatsapp','email'].includes(nc)) return;
+  // ---- שליחה לאימייל ----
+  window.sendToEmail = function(e){
+    e?.preventDefault?.();
+    setFormChannel("email");
+    if (!FLAG_MAIL) return;
+    if (features.formChannel && String(features.formChannel).toLowerCase() !== "email") return;
+
+    const subject = encodeURIComponent(`פניה מכרטיס ביקור – ${val.primary()}`);
+    const body = encodeURIComponent(
+      `${cfgPrimary.label}: ${val.primary()}\n` +
+      `${(root.labels?.phone || "טלפון")}: ${val.phone()}\n` +  // טלפון כלול בגוף האימייל
+      `${cfgSecondary.label}: ${val.secondary()}\n` +
+      `${cfgMessage.label}: ${val.message()}`
+    );
+    const to = (root.email || "").trim();
+    if (to) window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  };
+
+  // ---- סוויצ'ר ידני ----
+  window.setFormChannel = function(next){
+    const nc = String(next||"").toLowerCase();
+    if (!["whatsapp","email"].includes(nc)) return;
     features.formChannel = nc;
-    applyFormChannelUI(nc);
+    channel = nc;
+    applyChannelUI(nc);
   };
+
+  // ---- אתחול ----
+  function init(){
+    applyPrimaryMeta();
+    applySecondaryMeta();
+    applyMessageMeta();
+    applyPhoneMeta();
+    if (btnSubmit) btnSubmit.textContent = submitText;
+
+    // הצגת/הסתרת כפתורים לפי פיצ'רים
+    const emailBtn = document.querySelector('[data-action="sendEmail"]');
+    const waBtn    = document.querySelector('[data-action="sendWhatsApp"], [data-action="sendWhatsapp"]');
+    if (emailBtn) emailBtn.style.display = FLAG_MAIL ? "" : "none";
+    if (waBtn)    waBtn.style.display    = FLAG_WA   ? "" : "none";
+
+    applyChannelUI(channel);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
 
 /* ============ הסתרת כפתורים לפי פיצ'רים ============ */

@@ -22,17 +22,7 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
 features: {
-  secondaryField: {
-    key: "street",               // שם לוגי שיישלח בהודעה
-    label: "האם יש ניסיון ?",               // הכותרת שתופיע וגם תישלח
-    type: "text",
-    placeholder: " האם יש ניסיון ?",    // הטקסט האפור בתוך התיבה
-    inputMode: "text",
-    required: true
-  },
- 
-  // ...שאר הפיצ'רים
-
+  
 
   video: true,
   about: true,
@@ -45,8 +35,8 @@ features: {
   instagram: true,
   mail : true,
 
-  sendEmail: false,
-  sendWhatsApp: true,
+  sendEmail: true,
+  sendWhatsApp: false,
 },
     shareOptions: {
     email: true,
@@ -55,6 +45,37 @@ features: {
     twitter: true,
     facebook: true,
     telegram: true
+  },
+  
+  // שלושת השדות להגדרה פר־לקוח
+  fields: {
+    primary: {
+      key: "fullName",
+      label: "שם מלא",
+      placeholder: " יעל ",
+      type: "text",
+      inputMode: "text",
+      required: true,
+      maxLength: 80
+    },
+    secondary: {
+      key: "treatmentType",
+      label: "סוג טיפול",
+      placeholder: "איזה אב מעניין אותך",
+      type: "text",
+      inputMode: "text",
+      required: true,
+      maxLength: 80
+    },
+    message: {
+      key: "message",
+      label: "הודעה חופשית",
+      placeholder: "כתוב/י כאן הודעה",
+      inputMode: "text",
+      required: false,
+      maxLength: 500
+    },
+    submitText: "שליחה"
   },
 
 aboutParagraphs: `

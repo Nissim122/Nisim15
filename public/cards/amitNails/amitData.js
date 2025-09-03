@@ -24,35 +24,29 @@ youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&p
 facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
 
+  features: {
 
-features: {
-  secondaryField: {
-    key: "treatmentType",           // שם לוגי שיישלח בהודעה
-    label: "סוג טיפול",             // הכותרת שתופיע וגם תישלח
-    type: "text",
-    placeholder: "איזה טיפול מעניין אותך",   // הטקסט האפור בתוך התיבה
-    inputMode: "text",
-    required: true
+    // שליטה במודולים בכרטיס
+    video: false,
+    about: true,
+    recommendations: true,
+
+    // כפתורי יצירת קשר
+    contactWhatsApp: true,
+    facebookLink: false,
+    waze: true,
+    phone: true,
+    instagram: true,
+    mail: true,
+    tiktok: true,
+
+    // ערוצי שליחה
+    sendEmail: false,
+    sendWhatsApp: true
   },
- 
 
-
-  video: false,
-  about: true,
-  recommendations: true,
-
-  contactWhatsApp: true, 
-  facebookLink: false,
-  waze: true,
-  phone: true,
-  instagram: true,
-  mail : true,
-  tiktok: true,
-
-  sendEmail: false,
-  sendWhatsApp: true,
-},
-    shareOptions: {
+  // כפתורי שיתוף
+  shareOptions: {
     email: true,
     whatsapp: true,
     linkedin: false,
@@ -61,6 +55,36 @@ features: {
     telegram: true
   },
 
+  // שלושת השדות להגדרה פר־לקוח
+  fields: {
+    primary: {
+      key: "fullName",
+      label: "שם מלא",
+      placeholder: " מלא",
+      type: "text",
+      inputMode: "text",
+      required: true,
+      maxLength: 80
+    },
+    secondary: {
+      key: "treatmentType",
+      label: "סוג טיפול",
+      placeholder: "איזה טיפול מעניין אותך",
+      type: "text",
+      inputMode: "text",
+      required: true,
+      maxLength: 80
+    },
+    message: {
+      key: "message",
+      label: "הודעה חופשית",
+      placeholder: "כתוב/י כאן הודעה",
+      inputMode: "text",
+      required: false,
+      maxLength: 500
+    },
+    submitText: "שליחה"
+  },
 aboutParagraphs: `
 <strong class="quote-symbol">''</strong>
 
