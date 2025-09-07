@@ -147,7 +147,7 @@ strong[data-weight="900"]{ --strong-font-weight: 900; }
   font-size: var(--quote-size, 70px) !important;  /* גודל ברירת מחדל */
   line-height: var(--quote-line-height, 1) !important;
   font-weight: var(--quote-weight, 700) !important;
-  margin: var(--quote-margin, 0 0 12px 0) !important;
+  margin: var(--quote-margin, 0 0 -10px 0) !important;
   text-align: var(--quote-align, center) !important;
   color: var(--quote-color, var(--main-title-color, #000)) !important;
   font-family: var(--quote-font-family, var(--global-font-family)) !important;
