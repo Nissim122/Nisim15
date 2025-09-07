@@ -5,7 +5,7 @@
 
 --name-role-font-family: var(--font-family-display);
   --header-img-bg: #fffaf2;
-  --gold-line-bg: #C67C3A;
+  --gold-line-bg: var(--main-title-bg);
   --profile-img-margin: -50px auto 0 auto; /* מרים יותר */
 
 }
