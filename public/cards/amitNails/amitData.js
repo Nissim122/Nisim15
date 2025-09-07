@@ -115,7 +115,7 @@ accordionText2: `
 
 
 scrollToContactText: "השאירי פרטים ונחזור אלייך",
-recommendationsMainTitle: "מה הבוגרות מספרות",
+recommendationsMainTitle: "לקוחות מספרות",
 videoMainTitle: "קצת עלי",
 contactFormTitle: "השאירי פרטים<br>ואחזור אלייך בהקדם",
 shareCardTitle: "שיתוף הכרטיס",
