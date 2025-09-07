@@ -1,9 +1,9 @@
 window.cardData = {
-fullName: "יעל חן",
-role: "אומנות הציפורניים סטודיו ואקדמיה",
+fullName: "רזי החן",
+role: "  סטודיו ואקדמיה לציפורניים",
 
 // שדה ייעודי לכותרת האתר
-pageTitle: " יעל חן | כרטיס ביקור",
+pageTitle: " רזי החן | כרטיס ביקור",
 
   phone: "054-8787-702",
   email: "yaelartgallery@gmail.com",
@@ -15,7 +15,7 @@ pageTitle: " יעל חן | כרטיס ביקור",
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
 
-  logoSrc: "/assets/media/yaelNails/yaelBackground.jpg",
+  logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
 youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
