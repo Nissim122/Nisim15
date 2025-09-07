@@ -158,6 +158,37 @@
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
 }
+/* 6) ירוק בהיר */
+.theme-lightgreen {
+  --card-bg: #f2fbf5;
+  --about-section-bg: #e1f7e8;
+  --recommendations-section-bg: #e1f7e8;
+  --main-background-color: #e1f7e8;
+
+  --main-title-color: #1e5631;
+  --main-title-bg: #1e5631;
+  --about-text-color: #1e5631;
+  --about-section-p-text-color: #1e5631;
+  --name-role-color: var(--color-gray-dark);
+
+  --contact-btn-bg: #37b24d;
+  --btn-border-bg-color: #37b24d;
+  --contact-btn-hover-bg: #51cf66;
+
+  /* צבע פקדי יצירת קשר */
+  --icon-color: #37b24d;
+
+  /* שיתוף – צבע אייקון + רקע */
+  --s-color: #37b24d;   
+  --s-bg: #eaf9ef;      
+
+  /* טופס יצירת קשר */
+  --contact-form-bg: #e1f7e8;
+
+  --title-font-size: var(--font-size-title-XL);
+  --global-font-family: var(--font-family-modern, sans-serif);
+}
+
 
 /* אופציונלי: חיזוק ניגודיות כותרות */
 .theme-strong-titles { 
