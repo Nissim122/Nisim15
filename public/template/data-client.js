@@ -1,28 +1,42 @@
 window.cardData = {
-fullName: " דמדדו",
-role: "אומנות הציפורניים סטודיו ואקדמיה",
+  fullName: "ניסים בנגייב",
+  role: "מייסד ובעלים - Clix Marketing",
 
-// שדה ייעודי לכותרת האתר
-pageTitle: " דמגגו | כרטיס ביקור",
+  // שדה ייעודי לכותרת האתר
+  pageTitle: "ניסים בנגייב | כרטיס ביקור",
 
-  phone: "054-8787-702",
-  email: "yaelartgallery@gmail.com",
-  phoneDigits: "548787702",
+  phone: "053-2407-762",
+  email: "nisimelec77@gmail.com",
+  phoneDigits: "532407762",
   vcardLink: "./contact.vcf",
-  company: "Cardly",
-  cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
+  company: "Clix Marketing",
+  cardUrl: "https://www.clix-marketing.co.il/template/templeye-generic.html#",
   vcard: { filename: "contact.vcf" },
+
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
+  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
   logoSrc: "/assets/media/test/logo-ortopok.png",
   profileImage: "/assets/media/test/profile.jpg",
-youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+  youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+  // ✅ SEO בסיסי
+  metaDescription: "כרטיס ביקור דיגיטלי מקצועי – כל מה שהלקוחות צריכים לדעת עליך במקום אחד: שירותים, המלצות, טפסי יצירת קשר וקישורים ישירים לרשתות החברתיות.",
+  metaKeywords: "כרטיס ביקור דיגיטלי, יצירת קשר, טופס וואטסאפ, פרופיל עסקי, שיתוף רשתות חברתיות, לקוחות ממליצים, Clix Marketing",
+  canonicalHref: "https://www.clix-marketing.co.il/template/templeye-generic.html",
+  metaRobots: "index, follow",
 
- facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+  // ✅ Open Graph
+  ogTitle: "כרטיס ביקור דיגיטלי | כל המידע על העסק שלך במקום אחד",
+  ogDescription: "בנה לעצמך נוכחות דיגיטלית מרשימה: כרטיס ביקור דיגיטלי עם תמונות, סרטון, טפסי יצירת קשר והמלצות אמיתיות מלקוחות.",
+  ogImage: "/assets/media/test/logo-ortopok.png",
+  ogUrl: "https://www.clix-marketing.co.il/template/templeye-generic.html",
 
- customFormMessage: true, // ✅ מפעיל את הסקריפט
-  formMessageTemplate: "היי, קוראים לי {fullName}{agePart}. {msg}",
+  // ✅ Twitter Cards
+  twitterTitle: "כרטיס ביקור דיגיטלי – חכם, נגיש ומעוצב",
+  twitterDescription: "הכירו את הפתרון החדשני של Clix Marketing – כרטיס ביקור דיגיטלי מותאם אישית עם חיבור ישיר ללקוחות.",
+  twitterImage: "/assets/media/test/logo-ortopok.png",
+
 
 features: {
   
