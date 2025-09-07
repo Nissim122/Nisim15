@@ -52,7 +52,7 @@ features: {
     primary: {
       key: "fullName",
       label: "היי שמי",
-      placeholder: "שם מלא ",
+      placeholder: "מה השם שלך ?   ",
       type: "text",
       inputMode: "text",
       required: true,
@@ -61,7 +61,7 @@ features: {
     secondary: {
       key: "treatmentType",
       label: " ואני בת ",
-      placeholder: " גיל ",
+      placeholder: " בת כמה ?",
        type: "number",
     inputMode: "numeric",
       required: true,
@@ -69,7 +69,7 @@ features: {
     },
     message: {
       key: "message",
-      label: "ואני בעלת ניסיום בתחום ?  ",
+      label: "הודעה חופשית :  ",
       placeholder: "  בעלת ניסיון בתחום?",
       inputMode: "text",
       required: false,
