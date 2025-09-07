@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-
   <meta charset="utf-8" />
-  <link id="dynamicFavicon" rel="icon" type="image/png" href="/assets/logo/myLogo.jpg" data-field="favicon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link id="dynamicFavicon" rel="icon" type="image/jpeg" href="/assets/logo/myLogo.jpg" data-field="favicon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- ✅ SEO בסיסי (data-field בלבד) -->
   <title data-field="pageTitle">כרטיס ביקור דיגיטלי</title>
@@ -13,18 +12,12 @@
   <link rel="canonical" data-field="canonicalHref" href="">
   <meta name="robots" data-field="metaRobots" content="index, follow">
 
-  <!-- ✅ Open Graph כלליות + לשיתוף -->
+  <!-- ✅ Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" data-field="ogTitle" content="">
   <meta property="og:description" data-field="ogDescription" content="">
   <meta property="og:image" data-field="ogImage" content="">
   <meta property="og:url" data-field="ogUrl" content="">
-
-  <!-- ערכי שיתוף ברירת מחדל (יספיקו לכל הכפתורים) -->
-  <meta property="og:title" data-field="shareOgTitle" content="">
-  <meta property="og:description" data-field="shareOgDescription" content="">
-  <meta property="og:image" data-field="shareOgImage" content="">
-  <meta property="og:url" data-field="shareOgUrl" content="">
 
   <!-- ✅ Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
@@ -32,44 +25,19 @@
   <meta name="twitter:description" data-field="twitterDescription" content="">
   <meta name="twitter:image" data-field="twitterImage" content="">
 
-  <!-- ערכי שיתוף לטוויטר (ברירת מחדל) -->
-  <meta name="twitter:title" data-field="shareTwitterTitle" content="">
-  <meta name="twitter:description" data-field="shareTwitterDescription" content="">
-  <meta name="twitter:image" data-field="shareTwitterImage" content="">
+  <!-- ✅ Sitemap (placeholder מוזן מה-DATA) -->
+  <link rel="sitemap" type="application/xml" href="" data-field="sitemapHref">
 
-<title data-field="pageTitle"></title>
-<meta name="description" content="" data-field="metaDescription">
-<meta name="keywords" content="" data-field="metaKeywords">
-<link rel="canonical" href="" data-field="canonicalHref">
-<meta name="robots" content="" data-field="metaRobots">
-
-<!-- Open Graph -->
-<meta property="og:title" content="" data-field="ogTitle">
-<meta property="og:description" content="" data-field="ogDescription">
-<meta property="og:image" content="" data-field="ogImage">
-<meta property="og:url" content="" data-field="ogUrl">
-<meta property="og:type" content="website">
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="" data-field="twitterTitle">
-<meta name="twitter:description" content="" data-field="twitterDescription">
-<meta name="twitter:image" content="" data-field="twitterImage">
-
-<!-- Sitemap (placeholder מוזן מה-DATA) -->
-<link rel="sitemap" type="application/xml" href="" data-field="sitemapHref">
-
-<script src="/template/data-client.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<link rel="stylesheet" href="/assets/base.css">
-<link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/assets/themes.css"> <!-- נטען אחרון כדי לדרוס -->
-<script src="/scripts/script.js" defer></script>
-<script src="/scripts/policy-router.js" defer></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <!-- ⬇️ משאבים קיימים (ללא שינוי פונקציונליות/נראות) -->
+  <script src="/template/data-client.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="/assets/base.css">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/themes.css"> <!-- נטען אחרון כדי לדרוס -->
+  <script src="/scripts/script.js" defer></script>
+  <script src="/scripts/policy-router.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body class="theme-warm"
@@ -277,7 +245,7 @@
            M85,98.2c-7.3,0-13.2-5.9-13.2-13.2c0-7.3,5.9-13.2,13.2-13.2S98.2,77.8,98.2,85C98.2,92.3,92.3,98.2,85,98.2z"/>
         <path d="M110.5,64.2c0,2.5-2,4.5-4.5,4.5c-2.5,0-4.5-2-4.5-4.5c0-2.5,2-4.5,4.5-4.5C108.4,59.6,110.5,61.7,110.5,64.2z"/>
           <circle cx="106" cy="61" r="4.5"/>
-        </g>
+      </g>
       </svg>
     </a>
     <span class="icon-text" data-field="instagramText">אינסטגרם</span>
@@ -403,7 +371,6 @@
   </div>
 </section>
 
-
 <section class="video-section"
          data-switch="video"
          role="region"
@@ -412,13 +379,23 @@
 
   <h2 id="videoMainTitle"
       class="main-title video-title"
-      data-field="videoMainTitle"></h2>
+      data-field="videoMainTitle">וידאו</h2>
 
   <div class="video-wrapper">
     <figure class="video-container"
             data-field="videoSrc"
             role="group"
             aria-label="נגן וידאו">
+      <iframe src=""
+              data-field="youtubeEmbed"
+              title="וידאו תדמית"
+              width="560"
+              height="315"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+      </iframe>
     </figure>
   </div>
 
@@ -661,9 +638,9 @@
       </div>
 <!-- ✅ קרדיט (תוכן קבוע לפי הדרישה) -->
 <div class="credit" role="contentinfo" aria-label="קרדיט על פיתוח הכרטיס" tabindex="0">
-  <p>This business card was built by Cardly</p>
+  <p>This business card was built by Clix</p>
   <button class="cardly-btn" type="button" aria-label="כפתור CARDLY" title="CARDLY" tabindex="0">CARDLY</button>
-  <p>© כל הזכויות שמורות ל־Cardly</p>
+  <p>© כל הזכויות שמורות Clix</p>
 </div>
 
 <!-- ✅ כפתור נגישות -->
