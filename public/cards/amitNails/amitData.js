@@ -77,8 +77,8 @@ tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
     },
     message: {
       key: "message",
-      label: "הודעה חופשית",
-      placeholder: "באיזו שעה תרצי שנקבע ?",
+      label: "לקבוע בתאריך",
+      placeholder: " באיזה תאריך תרצי להגיע ?",
       inputMode: "text",
       required: false,
       maxLength: 500
