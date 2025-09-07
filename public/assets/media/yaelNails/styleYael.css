@@ -8,6 +8,7 @@
   --header-img-bg : #fffaf2;
   --header-img-offset-x : 3px;
   --gold-line-bg : #C67C3A;
+  --quote-font-color : var(--about-bg-color);
 
 }
 /* דריסת לוגו – ללקוח ספציפי בלבד */
