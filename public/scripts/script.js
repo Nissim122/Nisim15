@@ -223,7 +223,17 @@ window.addEventListener("load", function () {
     return;
   }
 
+  // ✅ Structured Data JSON-LD injection
+  if (data.schema) {
+    const ldJson = document.createElement("script");
+    ldJson.type = "application/ld+json";
+    ldJson.textContent = JSON.stringify(data.schema, null, 2);
+    document.head.appendChild(ldJson);
+    console.log("✅ JSON-LD schema injected");
+  }
+
   isInitialized = true;
+  
 document.querySelectorAll("[data-switch]").forEach(el => {
   const key = el.dataset.switch;
   if (data.features?.[key] !== true) el.remove();
@@ -271,12 +281,15 @@ if (value === undefined || value === null) {
   return;
 }
 
-
 (() => {
   const data = window.cardData || {};
   const features = data.features || {};
   const mediaContainer = document.querySelector('[data-field="videoSrc"]');
   if (!mediaContainer) return;
+
+  // ✅ FIX: מניעת ריצה כפולה שיוצרת כמה iframes
+  if (mediaContainer.dataset.videoInit === '1') return;
+  mediaContainer.dataset.videoInit = '1';
 
   const yt = (typeof data.youtubeLink === 'string') ? data.youtubeLink.trim() : '';
   const shouldShow = (features.video === true && yt !== '');
@@ -334,6 +347,9 @@ if (value === undefined || value === null) {
   console.log("[Video] ℹ️ Input:", yt);
   console.log("[Video] ℹ️ Embed base:", embedBase);
   console.log("[Video] ✅ Final src:", finalSrc);
+
+  // ✅ FIX: מנקה כל IFRAME קיים בתוך הקונטיינר לפני יצירת חדש
+  mediaContainer.querySelectorAll('iframe').forEach(el => el.remove());
 
   const iframe = document.createElement('iframe');
   iframe.setAttribute('width', '100%');
