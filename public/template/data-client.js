@@ -17,7 +17,7 @@ window.cardData = {
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
 
   logoSrc: "/assets/logo/myLogo.jpg",
-  profileImage: "/assets/media/test/profile.jpg",
+  profileImage: "/assets/logo/myLogo.jpg",
   youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
   // ✅ SEO בסיסי
