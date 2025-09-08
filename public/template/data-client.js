@@ -15,6 +15,9 @@ window.cardData = {
   cardUrl: "https://www.clix-marketing.co.il/template/template-generic.html#",
   vcard: { filename: "contact.vcf" },
 
+  googleAnalyticsId: "G-5S0Q47GFVE",
+
+
   // ✅ רשתות חברתיות
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",

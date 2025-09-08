@@ -208,7 +208,6 @@ window.addEventListener("pageshow", function () {
     window.dispatchEvent(loadEvent);
   }
 });
-
 window.addEventListener("load", function () {
   if (isInitialized) {
     console.log("⚠️ כבר הותחל - מדלג על טעינה חוזרת");
@@ -232,8 +231,63 @@ window.addEventListener("load", function () {
     console.log("✅ JSON-LD schema injected");
   }
 
+  /* ✅ Google Analytics Dynamic Injection */
+  if (data.googleAnalyticsId) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${data.googleAnalyticsId}`;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", data.googleAnalyticsId);
+
+    // אופציונלי: מדידת זמן בדף
+    let engagedMs = 0, last = null, vis = !document.hidden;
+    const now = () => performance.now();
+    const start = () => { if (vis && last == null) last = now(); };
+    const stop = () => { if (last != null) { engagedMs += now() - last; last = null; } };
+
+    document.addEventListener("visibilitychange", () => { vis = !document.hidden; vis ? start() : stop(); });
+    window.addEventListener("pagehide", () => {
+      stop();
+      gtag("event", "time_spent", { engaged_ms: Math.round(engagedMs) });
+    });
+    start();
+
+    // אופציונלי: מעקב אחרי קליקים
+    const textOf = (el, max = 60) => (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
+    document.addEventListener("click", (e) => {
+      const t = e.target.closest('[data-track="click"],a,button,[role="button"]'); if (!t) return;
+      const href = t.tagName === "A" ? t.getAttribute("href") : null;
+      const common = {
+        element_id: t.id || undefined,
+        element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
+        element_href: href || undefined,
+        element_field: t.getAttribute("data-field") || undefined,
+        element_label: t.getAttribute("aria-label") || undefined,
+        element_text: textOf(t)
+      };
+      if (href?.startsWith("tel:"))    return gtag("event", "click_call", common);
+      if (href?.startsWith("mailto:")) return gtag("event", "click_email", common);
+      if (href?.includes("wa.me"))     return gtag("event", "click_whatsapp", common);
+      gtag("event", "click_generic", common);
+    });
+
+    // אופציונלי: שליחת form_submit אוטומטית
+    document.addEventListener("submit", (e) => {
+      const f = e.target.closest('form[data-track="form"]'); if (!f) return;
+      gtag("event", "form_submit", {
+        form_id: f.id || undefined,
+        form_name: f.getAttribute("name") || undefined
+      });
+    });
+  }
+  /* 🔚 Google Analytics */
+
   isInitialized = true;
-  
+
 document.querySelectorAll("[data-switch]").forEach(el => {
   const key = el.dataset.switch;
   if (data.features?.[key] !== true) el.remove();
