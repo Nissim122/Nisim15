@@ -1,9 +1,9 @@
 window.cardData = {
-  fullName: "ניסים בנגייב",
-  role: "מייסד ובעלים - Clix Marketing",
+  fullName: "Clix Marketing",
+  role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים ",
 
   // ✅ Title & Favicon
-  pageTitle: "קליקס | כרטיסי ביקור",
+  pageTitle: "Clix Marketing | כרטיסי ביקור",
   favicon: "/assets/logo/favicon.png",
 
   // ✅ פרטי קשר
@@ -19,12 +19,19 @@ window.cardData = {
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
   youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+  tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
 
-  // ✅ לוגו ותמונת פרופיל עם alt
-  logoSrc: "/assets/logo/myLogo.jpg",
-  logoAlt: "לוגו של Clix Marketing",
-  profileImage: "/assets/logo/myLogo.jpg",
-  profileImageAlt: "תמונת פרופיל של ניסים בנגייב - Clix Marketing",
+    // ✅ טקסטים לטפסים
+  submitText: "שלח לוואטסאפ",
+  btnEmailText: "תחזרו אלי ",
+
+
+
+// ✅ לוגו ותמונת פרופיל עם alt
+logoSrc: "/assets/logo/myLogo.jpg",
+logoAlt: "לוגו של Clix Marketing",
+profileImage: "/assets/logo/myLogo.jpg",
+profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
   // ✅ SEO בסיסי
   metaDescription: "כרטיס ביקור דיגיטלי מקצועי – כל מה שהלקוחות צריכים לדעת עליך במקום אחד: שירותים, המלצות, טפסי יצירת קשר וקישורים ישירים לרשתות החברתיות.",
@@ -36,20 +43,16 @@ window.cardData = {
   // ✅ Open Graph
   ogType: "website",
   ogTitle: "כרטיס ביקור דיגיטלי | כל המידע על העסק שלך במקום אחד",
-  ogDescription: "בנה לעצמך נוכחות דיגיטלית מרשימה: כרטיס ביקור דיגיטלי עם תמונות, סרטון, טפסי יצירת קשר והמלצות אמיתיות מלקוחות.",
-  ogImage: "/assets/media/test/logo-ortopok.png",
-  ogImageAlt: "לוגו של Clix Marketing",
-  ogUrl: "https://www.clix-marketing.co.il/template/templeye-generic.html",
+  ogDescription: "בנה לעצמך נוכחות דיגיטלית מרשימה: כרטיס ביקור דיגיטלי , סרטון תדמית, טפסי יצירת קשר והמלצות אמיתיות מלקוחות.",
+ ogImage: "/assets/logo/myLogo.jpg",
+ogImageAlt: "לוגו של Clix Marketing",
+  ogUrl: "https://www.clix-marketing.co.il/template/template-generic.html",
 
-  // ✅ Twitter Cards
-  twitterCard: "summary_large_image",
-  twitterTitle: "כרטיס ביקור דיגיטלי – חכם, נגיש ומעוצב",
-  twitterDescription: "הכירו את הפתרון החדשני של Clix Marketing – כרטיס ביקור דיגיטלי מותאם אישית עם חיבור ישיר ללקוחות.",
-  twitterImage: "/assets/media/test/logo-ortopok.png",
-
-  // ✅ טקסטים לטפסים
-  submitText: "שלח לוואטסאפ",
-  btnEmailText: "תחזרו אלי ",
+// ✅ Twitter Cards
+twitterCard: "summary_large_image",
+twitterTitle: "Clix Marketing – כרטיסי ביקור דיגיטליים לעסקים",
+twitterDescription: "בנה כרטיס ביקור דיגיטלי מותאם אישית וקדם את העסק שלך עם פתרונות חכמים של Clix Marketing.",
+twitterImage: "/assets/logo/twitter-card-banner.jpg", // לשים כאן את הבאנר החדש
 
   // ✅ Structured Data – Schema.org JSON-LD
   schema: {
@@ -87,6 +90,8 @@ window.cardData = {
     phone: true,
     instagram: true,
     mail: true,
+    tiktok: true,
+
 
     sendEmail: true,
     sendWhatsApp: false,
