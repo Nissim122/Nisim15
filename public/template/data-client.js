@@ -2,9 +2,11 @@ window.cardData = {
   fullName: "ניסים בנגייב",
   role: "מייסד ובעלים - Clix Marketing",
 
-  // שדה ייעודי לכותרת האתר
-  pageTitle: " קליקס | כרטיסי ביקור",
+  // ✅ Title & Favicon
+  pageTitle: "קליקס | כרטיסי ביקור",
+  favicon: "/assets/logo/favicon.png",
 
+  // ✅ פרטי קשר
   phone: "053-2407-762",
   email: "nisimelec77@gmail.com",
   phoneDigits: "532407762",
@@ -13,18 +15,23 @@ window.cardData = {
   cardUrl: "https://www.clix-marketing.co.il/template/templeye-generic.html#",
   vcard: { filename: "contact.vcf" },
 
+  // ✅ רשתות חברתיות
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-
-  logoSrc: "/assets/logo/myLogo.jpg",
-  profileImage: "/assets/logo/myLogo.jpg",
   youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+
+  // ✅ לוגו ותמונת פרופיל עם alt
+  logoSrc: "/assets/logo/myLogo.jpg",
+  logoAlt: "לוגו של Clix Marketing",
+  profileImage: "/assets/logo/myLogo.jpg",
+  profileImageAlt: "תמונת פרופיל של ניסים בנגייב - Clix Marketing",
 
   // ✅ SEO בסיסי
   metaDescription: "כרטיס ביקור דיגיטלי מקצועי – כל מה שהלקוחות צריכים לדעת עליך במקום אחד: שירותים, המלצות, טפסי יצירת קשר וקישורים ישירים לרשתות החברתיות.",
   metaKeywords: "כרטיס ביקור דיגיטלי, יצירת קשר, טופס וואטסאפ, פרופיל עסקי, שיתוף רשתות חברתיות, לקוחות ממליצים, Clix Marketing",
   canonicalHref: "https://www.clix-marketing.co.il/template/templeye-generic.html",
   metaRobots: "index, follow",
+  sitemapHref: "https://www.clix-marketing.co.il/sitemap.xml",
 
   // ✅ Open Graph
   ogType: "website",
@@ -39,8 +46,35 @@ window.cardData = {
   twitterTitle: "כרטיס ביקור דיגיטלי – חכם, נגיש ומעוצב",
   twitterDescription: "הכירו את הפתרון החדשני של Clix Marketing – כרטיס ביקור דיגיטלי מותאם אישית עם חיבור ישיר ללקוחות.",
   twitterImage: "/assets/media/test/logo-ortopok.png",
+
+  // ✅ טקסטים לטפסים
   submitText: "שלח לוואטסאפ",
   btnEmailText: "תחזרו אלי ",
+
+  // ✅ Structured Data – Schema.org JSON-LD
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Clix Marketing",
+    "description": "כרטיסי ביקור דיגיטליים, קידום ממומן ונוכחות דיגיטלית לעסקים קטנים.",
+    "url": "https://www.clix-marketing.co.il",
+    "logo": "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
+    "image": "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
+    "telephone": "+972-53-2407-762",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "מושב חמד",
+      "addressLocality": "חמד",
+      "addressRegion": "מרכז",
+      "postalCode": "60965",
+      "addressCountry": "IL"
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+      "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+      "https://www.youtube.com/channel/UCxxxxxxx"
+    ]
+  },
 
   features: {
     video: true,
