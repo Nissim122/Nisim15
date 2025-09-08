@@ -33,20 +33,27 @@
   /* טיפוגרפיה כללית */
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #d6d6d6;   /* אפור עדין, מינימליסטי */
+
 }
 
 /* 2) מודרני ורענן */
 .theme-modern {
-  --card-bg: #e6f0ff;                  
-  --about-section-bg: #e6f0ff;
-  --recommendations-section-bg: #e6f0ff;
+  --card-bg: #e6f0ff;                   /* רקע כללי */
+  --about-section-bg: #f0f6ff;         /* אודות על רקע לבן */
+  --recommendations-section-bg: #f0f6ff;/* המלצות על רקע תכלת בהיר יותר */
   --main-background-color: #e6f0ff;
+  --contact-form-bg: #f0f6ff;  
 
   --main-title-color: #003366;
   --main-title-bg: #003366;
   --about-text-color: #003366;
   --about-section-p-text-color: #003366;
-  --name-role-color: var(--color-gray-dark);
+  --gold-line-bg : #003366;  /* קו זהב מתחת לכותרת הראשית */
+    
+--name-role-color: #5a3e2b;  /* אפור־שחור אלגנטי */
+--secondary-title-color: #5a5a5a;  /* אפור חם בינוני */
 
   --contact-btn-bg: #1d6fff;
   --btn-border-bg-color: #1d6fff;
@@ -60,10 +67,12 @@
   --s-bg: #e9f1ff;      
 
   /* טופס יצירת קשר */
-  --contact-form-bg: #e6f0ff;
 
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #1d6fff;   /* כחול מודרני תואם לאקשנט */
+
 }
 
 /* 3) חמים ואישי */
@@ -98,6 +107,9 @@
 
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #d4af37;   /* זהב קלאסי */
+
 }
 
 /* 4) יוקרתי (כהה + זהב) */
@@ -129,6 +141,9 @@
 
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #4aa96c;   /* ירוק אקשנט טבעי */
+
 }
 
 /* 5) טבעי ואורגני */
@@ -160,6 +175,9 @@
 
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #37b24d;   /* ירוק רענן */
+
 }
 /* 6) ירוק בהיר */
 .theme-lightgreen {
@@ -190,10 +208,13 @@
 
   --title-font-size: var(--font-size-title-XL);
   --global-font-family: var(--font-family-modern, sans-serif);
+
+    --gold-line-bg: #37b24d;   /* ירוק רענן */
+
 }
-
-
-/* אופציונלי: חיזוק ניגודיות כותרות */
+/* ============================
+   ♿ ניגודיות מוגברת לכותרות ראשיות
+   ============================ */
 .theme-strong-titles { 
   --main-title-color: #111111; 
   --main-title-bg: #111111; 
