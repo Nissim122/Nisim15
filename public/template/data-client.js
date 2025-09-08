@@ -3,7 +3,7 @@ window.cardData = {
   role: "מייסד ובעלים - Clix Marketing",
 
   // שדה ייעודי לכותרת האתר
-  pageTitle: "ניסים בנגייב | כרטיס ביקור",
+  pageTitle: " קליקס | כרטיסי ביקור",
 
   phone: "053-2407-762",
   email: "nisimelec77@gmail.com",
@@ -13,11 +13,10 @@ window.cardData = {
   cardUrl: "https://www.clix-marketing.co.il/template/templeye-generic.html#",
   vcard: { filename: "contact.vcf" },
 
-  wazeLink: "https://waze.com/ul/hsv8wxcjtf",
-  instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
-  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+  instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+  facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
 
-  logoSrc: "/assets/media/test/logo-ortopok.png",
+  logoSrc: "/assets/logo/myLogo.jpg",
   profileImage: "/assets/media/test/profile.jpg",
   youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
 
@@ -48,7 +47,7 @@ window.cardData = {
 
     contactWhatsApp: true,
     facebookLink: true,
-    waze: true,
+    waze: false,
     phone: true,
     instagram: true,
     mail: true,
@@ -79,16 +78,16 @@ window.cardData = {
     secondary: {
       key: "treatmentType",
       label: " ואני בת ",
-      placeholder: " בת כמה ?",
-       type: "number",
-    inputMode: "numeric",
+      placeholder: " באיזה תחום את/ה עוסק/ת ?   ",
+       type: "text",
+    inputMode: "text",
       required: true,
       maxLength: 80
     },
     message: {
       key: "message",
       label: "הודעה חופשית :  ",
-      placeholder: "  בעלת ניסיון בתחום?",
+      placeholder: "  מה תרצה/י לכתוב ?   ",
       inputMode: "text",
       required: false,
       maxLength: 500
