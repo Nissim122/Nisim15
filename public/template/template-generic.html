@@ -452,101 +452,89 @@
 </section>
 
 
-<!-- ✅ יצירת קשר -->
-<h2 class="main-title"
-    id="contactFormTitle"
-    data-field="contactFormTitle"
-    tabindex="0"></h2>
 
-<div id="contactForm"
-     class="contact-form"
-     role="form"
-     aria-labelledby="contactFormTitle"
-     tabindex="0">
+<!-- ✅ טופס יצירת קשר -->
+<section id="contact-section" class="contact-section" role="region" aria-labelledby="contactFormTitle">
 
-  <div class="form-description"
-       data-field="contactFormDescription"
-       aria-live="polite"></div>
+  <!-- כותרת סקשן (SEO) -->
+  <h2 class="main-title"
+      id="contactFormTitle"
+      tabindex="0"
+      data-field="contactFormTitle"></h2>
 
-  <form onsubmit="return validateForm(event)">
-    <!-- שם מלא -->
-    <div class="form-field">
-      <input id="fullName"
-             placeholder="שם מלא"
-             required
-             type="text"
-             aria-label="שם מלא"
-             aria-required="true"
-             aria-invalid="false"
-             aria-describedby="errorFullName"
-             autocomplete="name"
-             inputmode="text"
-             tabindex="0" />
-      <div id="errorFullName" class="error-message" aria-live="polite"></div>
-    </div>
+  <div id="contactForm"
+       class="contact-form"
+       role="form"
+       aria-labelledby="contactFormTitle"
+       tabindex="0">
 
-    <!-- טלפון -->
-    <div class="form-field">
-      <input id="phoneNumber"
-             placeholder="טלפון"
-             type="tel"
-             aria-label="טלפון"
-             aria-required="true"
-             aria-invalid="false"
-             aria-describedby="errorPhone"
-             autocomplete="tel"
-             inputmode="tel"
-             tabindex="0" />
-      <div id="errorPhone" class="error-message" aria-live="polite"></div>
-    </div>
+    <div class="form-description"
+         aria-live="polite"
+         data-field="contactFormDescription"></div>
 
-    <!-- שדה משני דינמי -->
-    <div class="form-field" id="wrapperSecondary" style="display:none;">
-      <input id="secondaryField"
-             placeholder="גיל"
-             type="number"
-             min="1"
-             max="120"
-             aria-label="גיל"
-             aria-required="true"
-             aria-invalid="false"
-             aria-describedby="errorSecondary"
-             inputmode="numeric"
-             autocomplete="off"
-             tabindex="0" />
-      <div id="errorSecondary" class="error-message" aria-live="polite"></div>
-    </div>
+    <form onsubmit="return validateForm(event)" novalidate>
 
-    <!-- הודעה -->
-    <div class="form-field">
-      <textarea id="message"
-                placeholder="הודעה חופשית"
-                aria-label="הודעה חופשית"
-                aria-describedby="errorMessage"
-                autocomplete="off"
-                tabindex="0"></textarea>
-      <div id="errorMessage" class="error-message" aria-live="polite"></div>
-    </div>
+      <!-- שם מלא -->
+      <div class="form-field">
+        <input id="fullName"
+               name="fullName"
+               type="text"
+               aria-label="שם מלא"
+               aria-required="true"
+               aria-invalid="false"
+               required
+               tabindex="0"
+               data-field="fields.primary.placeholder" />
+        <div id="errorFullName" class="error-message" aria-live="polite"></div>
+      </div>
 
-    <!-- כפתורים -->
-    <button type="button"
-            onclick="sendToWhatsapp(event)"
-            data-action="sendWhatsapp"
-            aria-label="שלח לוואטסאפ"
-            tabindex="0">
-      דברו איתי !
-    </button>
+      <!-- תחום עיסוק -->
+      <div class="form-field">
+        <input id="secondaryField"
+               name="secondary"
+               type="text"
+               aria-label="תחום עיסוק"
+               aria-required="false"
+               aria-invalid="false"
+               tabindex="0"
+               data-field="fields.secondary.placeholder" />
+        <div id="errorSecondary" class="error-message" aria-live="polite"></div>
+      </div>
 
-    <button type="button"
-            class="btn"
-            onclick="sendToEmail(event)"
-            data-action="sendEmail"
-            aria-label="שלח למייל"
-            tabindex="0">
-      דברו איתי !
-    </button>
-  </form>
+      <!-- הודעה -->
+      <div class="form-field">
+        <textarea id="message"
+                  name="message"
+                  aria-label="הודעה חופשית"
+                  tabindex="0"
+                  data-field="fields.message.placeholder"></textarea>
+        <div id="errorMessage" class="error-message" aria-live="polite"></div>
+      </div>
+<!-- כפתורים (נשלטים ע"י sendEmail / sendWhatsApp) -->
+<!-- template-generic.html – כפתורים עם data-field לשורש ה-DATA -->
+<div class="form-actions">
+  <button type="button"
+          data-switch="sendWhatsApp"
+          onclick="sendToWhatsapp(event)"
+          data-action="sendWhatsapp"
+          aria-label="שלח לוואטסאפ"
+          tabindex="0"
+          data-field="submitText"></button>
+
+  <button type="button"
+          class="btn"
+          data-switch="sendEmail"
+          onclick="sendToEmail(event)"
+          data-action="sendEmail"
+          aria-label="שלח למייל"
+          tabindex="0"
+          data-field="btnEmailText"></button>
 </div>
+
+
+    </form>
+  </div>
+</section>
 
 
 <!-- ✅ שורת טקסט קבועה + קידום אורגני -->

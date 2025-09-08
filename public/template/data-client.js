@@ -39,6 +39,8 @@ window.cardData = {
   twitterTitle: "כרטיס ביקור דיגיטלי – חכם, נגיש ומעוצב",
   twitterDescription: "הכירו את הפתרון החדשני של Clix Marketing – כרטיס ביקור דיגיטלי מותאם אישית עם חיבור ישיר ללקוחות.",
   twitterImage: "/assets/media/test/logo-ortopok.png",
+  submitText: "שלח לוואטסאפ",
+  btnEmailText: "תחזרו אלי ",
 
   features: {
     video: true,
@@ -52,8 +54,8 @@ window.cardData = {
     instagram: true,
     mail: true,
 
-    sendEmail: false,
-    sendWhatsApp: true,
+    sendEmail: true,
+    sendWhatsApp: false,
   },
 
   shareOptions: {
@@ -77,7 +79,7 @@ window.cardData = {
     },
     secondary: {
       key: "treatmentType",
-      label: " ואני בת ",
+      label: " תחום העיסוק שלי הוא ",
       placeholder: " באיזה תחום את/ה עוסק/ת ?   ",
        type: "text",
     inputMode: "text",
@@ -86,14 +88,13 @@ window.cardData = {
     },
     message: {
       key: "message",
-      label: "הודעה חופשית :  ",
+      label: "הודעה חופשית",
       placeholder: "  מה תרצה/י לכתוב ?   ",
       inputMode: "text",
       required: false,
       maxLength: 500
     },
-    submitText: "שליחה"
-  },
+},
 
   // ✅ About
   aboutParagraphs: `
