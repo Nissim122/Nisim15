@@ -78,7 +78,9 @@
   --about-text-color: #5a3e2b;
   --quote-font-color: #5a3e2b;
   --about-section-p-text-color: #5a3e2b;
-  --name-role-color: var(--color-gray-dark);
+  
+--name-role-color: #5a3e2b;  /* אפור־שחור אלגנטי */
+--secondary-title-color: #5a5a5a;  /* אפור חם בינוני */
 
   --contact-btn-bg: #c67c3a;
   --btn-border-bg-color: #c67c3a;

@@ -11,7 +11,16 @@
   --quote-font-color : var(--about-bg-color);
   --btn-scl-text-color-filled : #fffaf2;
 
+
 }
+/* style-client.css */
+.profile-img {
+  object-fit: contain !important;   /* לא יחתוך, אלא יצמצם פנימה */
+  padding: 10px;                   /* יוצר “מסגרת פנימית” שמקטינה את התוכן */
+  background-color: #fffaf2;          /* צבע רקע אחיד */
+}
+
+
 
 /* דריסת לוגו – ללקוח ספציפי בלבד */
 .logo-box {
