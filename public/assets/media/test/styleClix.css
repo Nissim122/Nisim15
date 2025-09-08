@@ -15,8 +15,10 @@
   --gold-line-bg: #C67C3A;
   --quote-font-color: var(--about-bg-color);
   --btn-scl-text-color-filled: #fffaf2;
+  --header-img-bg : #ffffff;
 
 }
+
 
 /* דריסת לוגו – ללקוח ספציפי בלבד */
 .logo-box {
