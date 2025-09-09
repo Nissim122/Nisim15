@@ -428,6 +428,17 @@ if (value === undefined || value === null) {
 
 
 const tag = el.tagName;
+
+// ✅ הוספה חדשה: META / LINK
+if (tag === "META") {
+  if (value) el.setAttribute("content", value);
+  return;
+}
+if (tag === "LINK") {
+  if (value) el.setAttribute("href", value);
+  return;
+}
+
 if (tag === "IMG") {
   el.src = value;
 } else if (tag === "A") {

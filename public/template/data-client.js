@@ -12,7 +12,7 @@ pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיו
   phoneDigits: "532407762",
   vcardLink: "./contact.vcf",
   company: "Clix Marketing",
-  cardUrl: "https://www.clix-marketing.co.il/template/template-generic.html#",
+cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
@@ -39,21 +39,21 @@ metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנ�
   metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
   canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
-  sitemapHref: "https://www.clix-marketing.co.il/sitemap.xml",
+sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
   // ✅ Open Graph
   ogType: "website",
   ogTitle: "כרטיסי ביקור דיגיטליים – Clix Marketing",
   ogDescription: "כל המידע של העסק שלך במקום אחד: יצירת קשר, וידאו, המלצות ושיתוף. נבנה מהר, נראה מצוין, עובד בשבילך.",
-  ogImage: "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
+ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
   ogImageAlt: "לוגו של Clix Marketing",
-  ogUrl: "https://www.clix-marketing.co.il/template/template-generic.html",
+ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
 
   // ✅ Twitter Cards
   twitterCard: "summary_large_image",
   twitterTitle: "Clix Marketing – כרטיסי ביקור דיגיטליים לעסקים",
   twitterDescription: "בנו כרטיס ביקור דיגיטלי ממיר וקדמו את העסק עם פתרונות חכמים של Clix Marketing.",
-  twitterImage: "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
+twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
 
   // ✅ Structured Data – Schema.org JSON-LD
   schema: {
