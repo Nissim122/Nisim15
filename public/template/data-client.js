@@ -3,7 +3,7 @@ window.cardData = {
   role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
   // ✅ Title & Favicon
-  pageTitle: "Clix Marketing | שיווק ופרסום   ",
+pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
   favicon: "/assets/logo/favicon.ico",
 
   // ✅ פרטי קשר
@@ -35,7 +35,7 @@ window.cardData = {
   profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
   // ✅ SEO בסיסי
-  metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות.",
+metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות החברתיות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות עם Clix Marketing.",
   metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
   canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
@@ -88,10 +88,13 @@ window.cardData = {
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-      "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-      "https://www.youtube.com/channel/UCxxxxxxx"
-    ]
+  "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+  "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+  "https://youtube.com/@nisimbeng",
+  "https://www.tiktok.com/@clix_beauty_cards"
+]
+
+
   },
 
   features: {
