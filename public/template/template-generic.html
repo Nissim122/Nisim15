@@ -50,7 +50,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 </head>
-
 <body class="theme-modern"
       data-email="להגדיר FALLBACK"
       data-whatsapp="להגדיר FALLBACK">
@@ -63,6 +62,20 @@
 
   <!-- כרטיס (Main) עם ייחוס לכותרת הראשית -->
   <div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
+
+    <!-- ✅ כותרת ראשית ל-SEO -->
+    <h1 id="pageMainTitle" data-field="h1Title">כרטיס ביקור דיגיטלי</h1>
+    <script>
+      (function(){
+        const d = window.cardData || {};
+        const el = document.querySelector('[data-field="h1Title"]');
+        if (el) {
+          el.textContent = d.fullName 
+            ? d.fullName + (d.role ? ' – ' + d.role : '')
+            : 'כרטיס ביקור דיגיטלי';
+        }
+      })();
+    </script>
 
     <!-- אזור עליון כ־Header -->
     <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
