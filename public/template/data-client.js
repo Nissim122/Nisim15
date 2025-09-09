@@ -37,7 +37,7 @@ window.cardData = {
   // ✅ SEO בסיסי
   metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות.",
   metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
-  canonicalHref: "https://www.clix-marketing.co.il/template/template-generic.html",
+  canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
   sitemapHref: "https://www.clix-marketing.co.il/sitemap.xml",
 
