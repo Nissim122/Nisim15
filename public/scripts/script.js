@@ -4,6 +4,70 @@ let isInitialized = false; // ← דגל למניעת טעינה כפולה
 // ✅ זיהוי סביבת הפקה או רנדר
 const isLive = location.hostname.includes("clix-marketing.co.il") || location.hostname.includes("render.com");
 console.log("📡 isLive:", isLive);
+
+// 🔎 SEO: Canonical + OG URL (לפני DOMContentLoaded)
+(() => {
+  const data = window.cardData || {};
+  const pageURL = (() => {
+    const u = new URL(window.location.href);
+    u.search = ''; u.hash = '';
+    return u.origin + u.pathname;
+  })();
+
+  // מניעת כפילויות קאנוניקל בדף
+  const allCanon = document.querySelectorAll('link[rel="canonical"]');
+  allCanon.forEach((n, i) => { if (i > 0) n.remove(); });
+
+  // 1) Canonical
+  const canonicalEl = document.querySelector('link[rel="canonical"][data-field="canonicalHref"]');
+  if (canonicalEl) {
+    let canonical = (typeof data.canonicalHref === 'string' ? data.canonicalHref.trim() : '');
+    if (canonical) {
+      try {
+        const u = new URL(canonical);
+        u.search=''; u.hash='';
+        const isTemplateGeneric = /\/template\/template-generic\.html$/i.test(u.pathname);
+        canonical = isTemplateGeneric ? pageURL : (u.origin + u.pathname);
+      } catch { canonical = pageURL; }
+    } else { canonical = pageURL; }
+    canonicalEl.setAttribute('href', canonical);
+
+    // 2) og:url (אם לא הגיע ב-DATA)
+    const ogUrlEl = document.querySelector('meta[property="og:url"][data-field="ogUrl"]');
+    const hasOgUrlData = typeof data.ogUrl === 'string' && data.ogUrl.trim() !== '';
+    if (ogUrlEl && !hasOgUrlData) ogUrlEl.setAttribute('content', canonical);
+  }
+
+  // 3) robots
+  const robotsEl = document.querySelector('meta[name="robots"][data-field="metaRobots"]');
+  if (robotsEl) {
+    const val = (typeof data.metaRobots === 'string' && data.metaRobots.trim()) ? data.metaRobots.trim() : 'index, follow';
+    robotsEl.setAttribute('content', val);
+  }
+
+  // 4) title / description / keywords
+  const titleEl = document.querySelector('title[data-field="pageTitle"]');
+  if (titleEl && typeof data.pageTitle === 'string') titleEl.textContent = data.pageTitle;
+
+  const descEl = document.querySelector('meta[name="description"][data-field="metaDescription"]');
+  if (descEl && typeof data.metaDescription === 'string') descEl.setAttribute('content', data.metaDescription);
+
+  const kwEl = document.querySelector('meta[name="keywords"][data-field="metaKeywords"]');
+  if (kwEl && typeof data.metaKeywords === 'string') kwEl.setAttribute('content', data.metaKeywords);
+})();
+// 🔧 SEO: Normalize OG Image to absolute URL (append after existing SEO block)
+(() => {
+  const el = document.querySelector('meta[property="og:image"][data-field="ogImage"]');
+  if (!el) return;
+  const val = (el.getAttribute('content') || '').trim();
+  if (!val) return;
+  try {
+    const abs = new URL(val, location.href).toString();
+    el.setAttribute('content', abs);
+  } catch {}
+})();
+
+
 document.addEventListener("DOMContentLoaded", function () {
   document.body.classList.remove("accessibility-mode");
   document.body.style.filter = "";

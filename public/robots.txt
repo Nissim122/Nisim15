@@ -1,0 +1,4 @@
+# https://www.clix-marketing.co.il/robots.txt
+User-agent: *
+Allow: /
+Sitemap: https://www.clix-marketing.co.il/sitemap.xml
