@@ -215,9 +215,10 @@ img {
 
 @media (min-width: 769px) {
   .card {
-    max-width: 410px;
+    max-width: 440px;
   }
 }
+
 
 /* ==========================================
    🎯 HEADER SECTION - אזור עליון/כותרת
