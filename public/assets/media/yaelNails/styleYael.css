@@ -40,17 +40,4 @@
 }
 
 
-.card-yael .about-section .quote-symbol{
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
-  vertical-align: middle;
-  position: relative;
-  top: 0.1em; /* כוונון עדין בלבד */
-}
-
-@media (max-width: 480px){
-  .card-yael .about-section .quote-symbol{ top: 0.14em; }
-}
-
 
