@@ -896,10 +896,22 @@ function handleAccordionToggle(element) {
         case "email":
           shareUrl = `mailto:?subject=${encodeURIComponent("כרטיס ביקור – " + fullName)}&body=${safeShareText}`;
           break;
-          
+        
           case "instagram":
-            shareUrl = `https://www.instagram.com/?url=${safeUrl}`;
-            break;
+          case "ig":
+            if (navigator.share) {
+              // יפתח חלון שיתוף מערכת (אם מותקן אינסטגרם – יופיע שם)
+              navigator.share({
+                title: `כרטיס ביקור – ${fullName}`,
+                text: `כרטיס ביקור – ${fullName}`,
+                url: rawUrl
+              }).catch(()=>{});
+            } else {
+              // פולבאק – העתקה + פתיחת אינסטגרם
+              copyToClipboard(rawUrl).then(() => toast('הקישור הועתק – הדבק אותו באינסטגרם.'));
+              window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
+            }
+            return;
 
         default:
           const existing = button.getAttribute('href') || '#';
