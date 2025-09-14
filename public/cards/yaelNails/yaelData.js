@@ -52,7 +52,7 @@ features: {
     primary: {
       key: "fullName",
       label: "היי שמי",
-      placeholder: "מה השם שלך ?   ",
+      placeholder: "שם מלא",
       type: "text",
       inputMode: "text",
       required: true,
@@ -61,7 +61,7 @@ features: {
     secondary: {
       key: "treatmentType",
       label: " ואני בת ",
-      placeholder: " בת כמה ?",
+      placeholder: " גיל ",
        type: "number",
     inputMode: "numeric",
       required: true,
@@ -75,7 +75,6 @@ features: {
       required: false,
       maxLength: 500
     },
-    submitText: "שליחה"
   },
 aboutParagraphs: `
 <strong class="quote-symbol">''</strong>
