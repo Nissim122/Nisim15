@@ -295,99 +295,119 @@ window.addEventListener("load", function () {
     console.log("✅ JSON-LD schema injected");
   }
 
-  /* ✅ Google Analytics Dynamic Injection */
-  if (data.googleAnalyticsId) {
-    const s = document.createElement("script");
-    s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${data.googleAnalyticsId}`;
-    document.head.appendChild(s);
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(){ dataLayer.push(arguments); };
-    gtag("js", new Date());
-    // ✅ קונפיג אנליטיקס עם Debug Mode רק בלוקאל
-    const isLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
-    gtag("config", data.googleAnalyticsId, {
-      debug_mode: isLocal,   // true רק בלוקאל, false ב-LIVE
-      send_page_view: true
-    });
+/* ✅ Google Analytics Dynamic Injection */
+if (data.googleAnalyticsId) {
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${data.googleAnalyticsId}`;
+  document.head.appendChild(s);
 
-    gtag("config", data.googleAnalyticsId);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){ dataLayer.push(arguments); };
+  gtag("js", new Date());
+  // ✅ קונפיג אנליטיקס עם Debug Mode רק בלוקאל
+  const isLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
+  gtag("config", data.googleAnalyticsId, {
+    debug_mode: isLocal,   // true רק בלוקאל, false ב-LIVE
+    send_page_view: true
+  });
 
-    // אופציונלי: מדידת זמן בדף
-    let engagedMs = 0, last = null, vis = !document.hidden;
-    const now = () => performance.now();
-    const start = () => { if (vis && last == null) last = now(); };
-    const stop = () => { if (last != null) { engagedMs += now() - last; last = null; } };
+  gtag("config", data.googleAnalyticsId);
 
-    document.addEventListener("visibilitychange", () => { vis = !document.hidden; vis ? start() : stop(); });
-    window.addEventListener("pagehide", () => {
-      stop();
-      gtag("event", "time_spent", { engaged_ms: Math.round(engagedMs) });
-    });
-    start();
+  // אופציונלי: מדידת זמן בדף
+  let engagedMs = 0, last = null, vis = !document.hidden;
+  const now = () => performance.now();
+  const start = () => { if (vis && last == null) last = now(); };
+  const stop = () => { if (last != null) { engagedMs += now() - last; last = null; } };
 
-
-
-    // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
-const textOf = (el, max = 60) =>
-  (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
-
-document.addEventListener("click", (e) => {
-  const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
-  if (!t) return;
-
-  const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
-  const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
-
-  const common = {
-    element_id: t.id || undefined,
-    element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
-    element_href: href || undefined,
-    element_field: t.getAttribute("data-field") || undefined,
-    element_label: t.getAttribute("aria-label") || undefined,
-    element_text: textOf(t),
-    page_title: document.title || ""
-  };
-
-  // מיפוי ערוצים
-  let ev = null;
-  if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
-  else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
-else if (href.includes("wa.me") || type === "whatsapp")
-  ev = "contact_whatsapp";
-  else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
-  else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
-  else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
-  else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
-                                                                              ev = "contact_telegram";
-  else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
-  else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
-                                                                              ev = "contact_directions";
-
-  if (ev) {
-    // אירוע ייעודי לפי ערוץ
-    gtag("event", ev, common);
-    // אירוע מצטבר אחד לכולם
-    gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
-    return; // לא שולחים click_generic כשזוהה ערוץ
-  }
-
-  // ברירת מחדל (אלמנטים שאינם ערוצי יצירת קשר)
-  gtag("event", "click_generic", common);
-});
+  document.addEventListener("visibilitychange", () => { vis = !document.hidden; vis ? start() : stop(); });
+  window.addEventListener("pagehide", () => {
+    stop();
+    gtag("event", "time_spent", { engaged_ms: Math.round(engagedMs) });
+  });
+  start();
 
 
-    // אופציונלי: שליחת form_submit אוטומטית
-    document.addEventListener("submit", (e) => {
-      const f = e.target.closest('form[data-track="form"]'); if (!f) return;
-      gtag("event", "form_submit", {
-        form_id: f.id || undefined,
-        form_name: f.getAttribute("name") || undefined
+
+  // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
+  const textOf = (el, max = 60) =>
+    (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
+
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
+    if (!t) return;
+
+    const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
+    const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
+
+    const common = {
+      element_id: t.id || undefined,
+      element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
+      element_href: href || undefined,
+      element_field: t.getAttribute("data-field") || undefined,
+      element_label: t.getAttribute("aria-label") || undefined,
+      element_text: textOf(t),
+      page_title: document.title || ""
+    };
+
+    // 🪗 מעקב קליקים על כותרות אקורדיון (נשלח רק האירוע הייעודי)
+    if (t.classList.contains("elementor-tab-title")) {
+      const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
+        .trim().replace(/\s+/g, " ").slice(0, 80);
+
+      gtag("event", "accordion_click", {
+        ...common,
+        accordion_title: titleText,
+        accordion_id: t.id || undefined,
+        accordion_key: t.getAttribute("data-tab") || undefined,
+        aria_controls: t.getAttribute("aria-controls") || undefined
       });
+      return; // לא לשגר click_generic בנוסף
+    }
+
+    // מיפוי ערוצים
+    let ev = null;
+
+    if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
+    else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
+    else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
+    else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
+    else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
+    else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
+    else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
+                                                                                ev = "contact_telegram";
+    else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
+                                                                                ev = "contact_directions";
+    else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
+    // ✅ כפתור הוספת איש קשר
+    else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
+
+    if (ev) {
+      // אירוע ייעודי לפי ערוץ
+      gtag("event", ev, common);
+      // אירוע מצטבר אחד לכולם
+      gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
+      return; // לא שולחים click_generic כשזוהה ערוץ
+    }
+
+    // ברירת מחדל (אלמנטים שאינם ערוצי יצירת קשר)
+    gtag("event", "click_generic", common);
+  });
+
+
+  // אופציונלי: שליחת form_submit אוטומטית
+  document.addEventListener("submit", (e) => {
+    const f = e.target.closest('form[data-track="form"]'); if (!f) return;
+    gtag("event", "form_submit", {
+      form_id: f.id || undefined,
+      form_name: f.getAttribute("name") || undefined
     });
-  }
-  /* 🔚 Google Analytics */
+  });
+}
+/* 🔚 Google Analytics */
+
+
 
   isInitialized = true;
 
