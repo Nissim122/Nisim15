@@ -42,9 +42,10 @@ features: {
     email: true,
     whatsapp: true,
     linkedin: false,
-    twitter: true,
+    twitter: false,
     facebook: true,
-    telegram: true
+    telegram: true,
+    instagram: true   
   },
   
   // שלושת השדות להגדרה פר־לקוח

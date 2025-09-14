@@ -829,7 +829,7 @@ function handleAccordionToggle(element) {
    Share Buttons – script-generic.js
    ========================= */
 (function initShareButtons(){
-  const PROD_ORIGIN = "https://www.clix-marketing.co.il";
+  const PROD_ORIGIN = "https://clix-marketing.co.il";
 
   function buildPublicUrlFromLocal(href){
     try {
@@ -896,6 +896,11 @@ function handleAccordionToggle(element) {
         case "email":
           shareUrl = `mailto:?subject=${encodeURIComponent("כרטיס ביקור – " + fullName)}&body=${safeShareText}`;
           break;
+          
+          case "instagram":
+            shareUrl = `https://www.instagram.com/?url=${safeUrl}`;
+            break;
+
         default:
           const existing = button.getAttribute('href') || '#';
           shareUrl = existing !== '#' ? existing : rawUrl;
