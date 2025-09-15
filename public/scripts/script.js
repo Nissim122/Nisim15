@@ -295,6 +295,17 @@ window.addEventListener("load", function () {
     console.log("✅ JSON-LD schema injected");
   }
 
+  
+
+
+
+
+
+
+
+
+
+
 
 /* ✅ Google Analytics Dynamic Injection */
 if (data.googleAnalyticsId) {
@@ -306,28 +317,269 @@ if (data.googleAnalyticsId) {
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag(){ dataLayer.push(arguments); };
   gtag("js", new Date());
+
   // ✅ קונפיג אנליטיקס עם Debug Mode רק בלוקאל
   const isLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
-  gtag("config", data.googleAnalyticsId, {
-    debug_mode: isLocal,   // true רק בלוקאל, false ב-LIVE
-    send_page_view: true
-  });
+  const GA_ID = data.googleAnalyticsId;
 
-  gtag("config", data.googleAnalyticsId);
+  // שולח page_view פעם אחת בלבד
+  if (!window.__gaPageViewSent) {
+    gtag("config", GA_ID, {
+      debug_mode: isLocal,
+      send_page_view: true
+    });
+    window.__gaPageViewSent = true;
+  } else {
+    gtag("config", GA_ID, { send_page_view: false });
+  }
 
-  // אופציונלי: מדידת זמן בדף
+  // ✅ מדידת זמן בדף
   let engagedMs = 0, last = null, vis = !document.hidden;
   const now = () => performance.now();
   const start = () => { if (vis && last == null) last = now(); };
-  const stop = () => { if (last != null) { engagedMs += now() - last; last = null; } };
+  const stop  = () => { if (last != null) { engagedMs += now() - last; last = null; } };
 
-  document.addEventListener("visibilitychange", () => { vis = !document.hidden; vis ? start() : stop(); });
+  document.addEventListener("visibilitychange", () => { 
+    vis = !document.hidden; 
+    vis ? start() : stop(); 
+  });
+
   window.addEventListener("pagehide", () => {
     stop();
     gtag("event", "time_spent", { engaged_ms: Math.round(engagedMs) });
   });
-  start();
 
+  start();/* ✅ YouTube PLAY Tracking (drop-in בתוך script-generic.js, בלי למחוק קיים) */
+/* ✅ GA4 YouTube Tracking – robust on fresh load (drop-in, hardened) */
+(function trackYouTubePlayRobust(){
+  const iframeSel    = '.video-section iframe[data-field="youtubeEmbed"], .video-section .video-container iframe';
+  const containerSel = '.video-section .video-container';
+  const isLocal      = ["localhost","127.0.0.1","127.0.0.1:5500"].includes(location.host);
+
+  /* 🔎 GA Live Logger (כמו בקונסול) */
+  try {
+    if (!window.__gaLiveLoggerAttached) {
+      window.dataLayer = window.dataLayer || [];
+      const _push = window.dataLayer.push.bind(window.dataLayer);
+      window.dataLayer.push = function(){
+        try { console.warn("📡 GA:", ...arguments); } catch(_) {}
+        return _push(...arguments);
+      };
+      window.__gaLiveLoggerAttached = true;
+      console.log("✅ live GA logger attached");
+    }
+  } catch(_) {}
+
+  // ---- small utils ----
+  const once = (key, fn) => {
+    if (window.__ytOnce && window.__ytOnce[key]) return;
+    window.__ytOnce = window.__ytOnce || {};
+    window.__ytOnce[key] = true;
+    try { fn(); } catch(_){}
+  };
+
+  function waitFor(pred, {interval=120, timeout=10000} = {}){
+    return new Promise((resolve, reject) => {
+      const t0 = Date.now();
+      const id = setInterval(() => {
+        try{
+          const v = pred();
+          if (v) { clearInterval(id); resolve(v); }
+          else if (Date.now() - t0 > timeout) { clearInterval(id); resolve(null); }
+        }catch(e){ clearInterval(id); reject(e); }
+      }, interval);
+    });
+  }
+
+  function sendGA(eventName, payload){
+    if (typeof window.gtag !== 'function') return;
+    const debug = isLocal ? { debug_mode: true } : {};
+    window.gtag('event', eventName, { ...payload, ...debug });
+  }
+
+  // ---- load YT Iframe API once ----
+  function injectYT(){
+    once('ytApiInjected', () => {
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function(){
+        try { if (typeof prev === 'function') prev(); } catch(_){}
+        const cbs = (window.__ytReadyCbs || []).splice(0);
+        cbs.forEach(cb => { try{ cb(); }catch(_){ } });
+      };
+    });
+  }
+  window.__ytReadyCbs = window.__ytReadyCbs || [];
+  function onYTReady(cb){ window.__ytReadyCbs.push(cb); }
+
+  /* 🧩 forceParams: הכרחת enablejsapi+origin + reload קשיח */
+  function forceParams(iframe){
+    try{
+      const current = iframe.getAttribute('src') || '';
+      if (!current) return false;
+      const u = new URL(current, location.href);
+      const hostpath = (u.hostname + u.pathname);
+      if (!/youtube(?:-nocookie)?\.com\/embed\//.test(hostpath)) return false;
+
+      const before = u.toString();
+      if (!u.searchParams.has('enablejsapi')) u.searchParams.set('enablejsapi','1');
+      if (!u.searchParams.has('origin') && /^https?:/.test(location.origin)) {
+        u.searchParams.set('origin', location.origin);
+      }
+      const after = u.toString();
+      if (after !== before) {
+        // flip ל-about:blank כדי לאלץ רענון אמיתי של ה-iframe
+        iframe.__ytRewrote = true;
+        iframe.setAttribute('src', 'about:blank');
+        // microtask → החזרה לערך החדש
+        queueMicrotask(() => iframe.setAttribute('src', after));
+        console.log("[Video] 🔁 rewrite src →", after);
+      } else {
+        console.log("[Video] ✅ params ok:", after);
+      }
+      return true;
+    }catch(_){ return false; }
+  }
+
+  // ---- de-dupe window for rapid duplicate events ----
+  const SEND_GAP_MS = 1200;
+  let lastSig = "", lastAt = 0;
+  function shouldSend(sig){
+    const now = Date.now();
+    if (sig === lastSig && (now - lastAt) < SEND_GAP_MS) return false;
+    lastSig = sig; lastAt = now; return true;
+  }
+
+  function sendPlayEvent(player, iframe, source){
+    let duration = 0, current = 0;
+    try{
+      duration = Number(player?.getDuration?.() || 0);
+      current  = Number(player?.getCurrentTime?.() || 0);
+    }catch(_){}
+    const base = {
+      video_title: iframe.getAttribute('title') || 'Video',
+      video_url: iframe.getAttribute('src') || '',
+      current_time: Math.round(current),
+      duration: Math.round(duration),
+      page_title: document.title || '',
+      card_name: window.cardData?.fullName || 'Unknown',
+      event_source: source
+    };
+    const sig = `play|${base.video_url}|${source}|${base.current_time}`;
+    if (!shouldSend(sig)) return;
+    sendGA('video_play', base);
+    console && console.warn && console.warn('▶️ video_play sent', base);
+  }
+
+  function sendClickEvent(iframe){
+    const base = {
+      video_title: iframe.getAttribute('title') || 'Video',
+      video_url: iframe.getAttribute('src') || '',
+      page_title: document.title || '',
+      card_name: window.cardData?.fullName || 'Unknown',
+      event_source: 'fallback'
+    };
+    const sig = `click|${base.video_url}`;
+    if (!shouldSend(sig)) return;
+    sendGA('video_click', base);
+    console && console.warn && console.warn('👉 video_click (fallback) sent', base);
+  }
+
+  /* ♿️ נטרול aria-hidden חוסם מעל הנגן (מונע אזהרת focus) */
+  function uncloackA11y(iframe){
+    try{
+      const anc = iframe.closest('[aria-hidden="true"], [inert]');
+      if (anc) {
+        if (anc.hasAttribute('aria-hidden')) anc.removeAttribute('aria-hidden');
+        if (anc.hasAttribute('inert')) anc.removeAttribute('inert');
+        console.log("[Video] ♿ removed blocking aria-hidden/inert on ancestor");
+      }
+    }catch(_){}
+  }
+
+  // ---- bind one iframe (idempotent) ----
+  function bindIframe(iframe){
+    if (!iframe || iframe.__ytBindMounted) return;
+    iframe.__ytBindMounted = true;
+
+    if (!iframe.hasAttribute('tabindex')) iframe.setAttribute('tabindex','0'); // a11y
+    uncloackA11y(iframe);
+
+    // fallback click on container (pointerdown for iOS)
+    const container = iframe.closest(containerSel) || iframe.parentElement;
+    if (container && !container.__ytPointerBound){
+      container.__ytPointerBound = true;
+      container.addEventListener('pointerdown', (ev) => {
+        if (!container.contains(ev.target)) return;
+        sendClickEvent(iframe);
+      }, { passive:true, capture:true });
+      console.log("✅ fallback pointerdown bound");
+    }
+
+    const ok = forceParams(iframe);
+    if (!ok) return; // נמתין ל-src תקין
+
+    injectYT();
+    onYTReady(() => {
+      if (!window.YT || !YT.Player) return;
+      if (iframe.__ytPlayerBound) return;
+      iframe.__ytPlayerBound = true;
+
+      const player = new YT.Player(iframe, {
+        events: {
+          onStateChange: (ev) => {
+            if (ev?.data === YT.PlayerState.PLAYING) {
+              sendPlayEvent(ev.target, iframe, 'yt_api');
+            }
+          }
+        }
+      });
+      iframe.__ytPlayerInstance = player;
+      console && console.log && console.log('✅ YT.Player bound');
+    });
+  }
+
+  // ---- wait for GA + DOM + iframe src then bind ----
+  async function bootstrap(){
+    if (document.readyState === 'loading') {
+      await new Promise(res => document.addEventListener('DOMContentLoaded', res, {once:true}));
+    }
+
+    // ודא gtag קיים לפני שליחת אירוע ראשון
+    await waitFor(() => typeof window.gtag === 'function', {interval:150, timeout:8000});
+
+    // bind ראשוני
+    document.querySelectorAll(iframeSel).forEach(ifr => { if (ifr.getAttribute('src')) bindIframe(ifr); });
+
+    // observe הזרקות/שינויים מאוחרים
+    const root = document.querySelector('.video-section') || document.body;
+    const mo = new MutationObserver((muts) => {
+      document.querySelectorAll(iframeSel).forEach(ifr => {
+        if (ifr.getAttribute('src') && !ifr.__ytPlayerBound) bindIframe(ifr);
+      });
+      muts.forEach(m => {
+        if (m.type === 'attributes' && (m.attributeName === 'src' || m.attributeName === 'aria-hidden') && m.target.matches?.(iframeSel)) {
+          bindIframe(m.target);
+        }
+      });
+    });
+    mo.observe(root, { subtree:true, childList:true, attributes:true, attributeFilter:['src','aria-hidden'] });
+
+    // safety: periodic rebinder (עד ~12.5s)
+    let ticks = 0;
+    const rebinder = setInterval(() => {
+      const ifr = document.querySelector(iframeSel);
+      if (ifr && ifr.getAttribute('src') && !ifr.__ytPlayerBound) bindIframe(ifr);
+      if (++ticks > 100) clearInterval(rebinder);
+    }, 125);
+
+    console && console.log && console.log('🟢 GA4 YouTube tracker ready.');
+  }
+
+  bootstrap();
+})();
 
 
   // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
@@ -348,10 +600,11 @@ if (data.googleAnalyticsId) {
       element_field: t.getAttribute("data-field") || undefined,
       element_label: t.getAttribute("aria-label") || undefined,
       element_text: textOf(t),
-      page_title: document.title || ""
+      page_title: document.title || "",
+      card_name: window.cardData?.fullName || "Unknown"
     };
 
-    // 🪗 מעקב קליקים על כותרות אקורדיון (נשלח רק האירוע הייעודי)
+    // 🪗 אקורדיון
     if (t.classList.contains("elementor-tab-title")) {
       const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
         .trim().replace(/\s+/g, " ").slice(0, 80);
@@ -363,12 +616,11 @@ if (data.googleAnalyticsId) {
         accordion_key: t.getAttribute("data-tab") || undefined,
         aria_controls: t.getAttribute("aria-controls") || undefined
       });
-      return; // לא לשגר click_generic בנוסף
+      return;
     }
 
-    // מיפוי ערוצים
+    // ערוצי יצירת קשר
     let ev = null;
-
     if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
     else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
     else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
@@ -380,32 +632,45 @@ if (data.googleAnalyticsId) {
     else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
                                                                                 ev = "contact_directions";
     else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
-    // ✅ כפתור הוספת איש קשר
     else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
+    else if (t.classList.contains("scroll-to-contact-btn") || type === "scroll_to_contact_click")
+                                                                                ev = "scroll_to_contact_click";
 
     if (ev) {
-      // אירוע ייעודי לפי ערוץ
       gtag("event", ev, common);
-      // אירוע מצטבר אחד לכולם
-      gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
-      return; // לא שולחים click_generic כשזוהה ערוץ
+      if (ev.startsWith("contact_")) {
+        gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
+      }
+      return;
     }
 
-    // ברירת מחדל (אלמנטים שאינם ערוצי יצירת קשר)
     gtag("event", "click_generic", common);
   });
 
-
-  // אופציונלי: שליחת form_submit אוטומטית
+  // 📨 form_submit
   document.addEventListener("submit", (e) => {
-    const f = e.target.closest('form[data-track="form"]'); if (!f) return;
+    const f = e.target.closest('form[data-track="form"]'); 
+    if (!f) return;
     gtag("event", "form_submit", {
       form_id: f.id || undefined,
-      form_name: f.getAttribute("name") || undefined
+      form_name: f.getAttribute("name") || undefined,
+      page_title: document.title || "",
+      card_name: window.cardData?.fullName || "Unknown"
     });
   });
 }
 /* 🔚 Google Analytics */
+
+
+
+
+
+
+
+
+
+
+
 
 
 
