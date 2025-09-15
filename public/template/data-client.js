@@ -3,8 +3,8 @@ window.cardData = {
   role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
   // ✅ Title & Favicon
-pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
-  favicon: "/assets/logo/favicon.ico",
+  pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
+  favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
 
   // ✅ פרטי קשר
   phone: "053-2407-762",
@@ -12,7 +12,7 @@ pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיו
   phoneDigits: "532407762",
   vcardLink: "./contact.vcf",
   company: "Clix Marketing",
-cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
+  cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
@@ -35,19 +35,19 @@ cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
   profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
   // ✅ SEO בסיסי
-metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות החברתיות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות עם Clix Marketing.",
+  metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות החברתיות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות עם Clix Marketing.",
   metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
   canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
-sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
+  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
   // ✅ Open Graph
   ogType: "website",
   ogTitle: "כרטיסי ביקור דיגיטליים – Clix Marketing",
   ogDescription: "כל המידע של העסק שלך במקום אחד: יצירת קשר, וידאו, המלצות ושיתוף. נבנה מהר, נראה מצוין, עובד בשבילך.",
-ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+  ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
   ogImageAlt: "לוגו של Clix Marketing",
-ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
+  ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
 
   // ✅ Twitter Cards
   twitterCard: "summary_large_image",
