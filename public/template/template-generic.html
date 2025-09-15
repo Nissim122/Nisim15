@@ -461,8 +461,6 @@
   </div>
 
 </section>
-
-
 <!-- ✅ המלצות -->
 <h2 class="main-title" id="recommendationsTitle" data-field="recommendationsMainTitle">המלצות</h2>
 
@@ -470,19 +468,24 @@
          data-switch="recommendations"
          role="region"
          aria-labelledby="recommendationsTitle"
-         tabindex="0">
+         tabindex="0"
+         data-analytics="recommendations">
 
   <div class="swiper recommendations-swiper"
        dir="rtl"
        aria-roledescription="carousel"
-       aria-label="המלצות לקוחות">
+       aria-label="המלצות לקוחות"
+       data-analytics="recommendationsCarousel">
     <!-- עטיפת השקופיות: מוזן דינמית ע״י הסקריפט -->
     <div class="swiper-wrapper"
          id="recommendationSlides"
          aria-live="polite"
          aria-atomic="false">
-      <!-- דוגמת שקופית (רשות, להסרה בהזרקה דינמית)
-      <div class="swiper-slide" role="group" aria-label="המלצה 1">
+      <!-- דוגמת שקופית (רשות, להסרה בהזרקה דינמית) -->
+      <div class="swiper-slide"
+           role="group"
+           aria-label="המלצה 1"
+           data-analytics="recommendationSlide">
         <blockquote class="rec-item" itemprop="review" itemscope itemtype="https://schema.org/Review">
           <p class="rec-text" data-field="recText">שירות מצוין, חוויה מעולה!</p>
           <footer class="rec-meta">
@@ -491,19 +494,22 @@
           </footer>
         </blockquote>
       </div>
-      -->
     </div>
 
     <!-- פגינציה נגישה לקרוסלה -->
     <div class="swiper-pagination recommendations-pagination"
          aria-label="ניווט בין ההמלצות"
-         tabindex="0"></div>
+         tabindex="0"
+         data-analytics="recommendationsPagination"></div>
   </div>
 
   <!-- Fallback ללא JS -->
   <noscript>
-    <div class="recommendations-fallback" role="list" aria-label="המלצות לקוחות">
-      <div role="listitem">
+    <div class="recommendations-fallback"
+         role="list"
+         aria-label="המלצות לקוחות"
+         data-analytics="recommendationsFallback">
+      <div role="listitem" data-analytics="recommendationSlide">
         <blockquote>
           <p data-field="recTextFallback">כאן יוצגו ההמלצות כאשר JavaScript כבוי.</p>
           <footer><span data-field="recAuthorFallback">לקוח מרוצה</span></footer>
@@ -512,7 +518,6 @@
     </div>
   </noscript>
 </section>
-
 
 
 <!-- ✅ טופס יצירת קשר -->
