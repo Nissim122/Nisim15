@@ -581,85 +581,117 @@ if (data.googleAnalyticsId) {
   bootstrap();
 })();
 
+/* ✅ GA4 – Track ANY click inside contact form */
+(function trackAllContactFormClicks(){
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector('#contactForm form');
+    if (!form) return;
 
+    form.addEventListener("click", (ev) => {
+      // נוודא שלא שולחים כפול (אפשר להרחיב לסוגי אלמנטים ספציפיים אם תרצה)
+      const payload = {
+        event_category: 'Form Actions',
+        contact_channel: "formClick",   // 👈 תמיד אותו ערך
+        value: 1,
+        transport_type: 'beacon'
+      };
 
-
-  // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
-  const textOf = (el, max = 60) =>
-    (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
-
-  document.addEventListener("click", (e) => {
-    const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
-    if (!t) return;
-
-    const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
-    const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
-
-    const common = {
-      element_id: t.id || undefined,
-      element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
-      element_href: href || undefined,
-      element_field: t.getAttribute("data-field") || undefined,
-      element_label: t.getAttribute("aria-label") || undefined,
-      element_text: textOf(t),
-      page_title: document.title || "",
-      card_name: window.cardData?.fullName || "Unknown"
-    };
-
-    // 🪗 אקורדיון
-    if (t.classList.contains("elementor-tab-title")) {
-      const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
-        .trim().replace(/\s+/g, " ").slice(0, 80);
-
-      gtag("event", "accordion_click", {
-        ...common,
-        accordion_title: titleText,
-        accordion_id: t.id || undefined,
-        accordion_key: t.getAttribute("data-tab") || undefined,
-        aria_controls: t.getAttribute("aria-controls") || undefined
-      });
-      return;
-    }
-
-    // ערוצי יצירת קשר
-    let ev = null;
-    if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
-    else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
-    else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
-    else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
-    else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
-    else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
-    else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
-                                                                                ev = "contact_telegram";
-    else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
-                                                                                ev = "contact_directions";
-    else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
-    else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
-    else if (t.classList.contains("scroll-to-contact-btn") || type === "scroll_to_contact_click")
-                                                                                ev = "scroll_to_contact_click";
-
-    if (ev) {
-      gtag("event", ev, common);
-      if (ev.startsWith("contact_")) {
-        gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
+      console.log("📡 GA:", ['event', 'contact_click', payload]);
+      if (typeof window.gtag === "function") {
+        try { window.gtag('event', 'contact_click', payload); } catch(_){}
       }
-      return;
-    }
-
-    gtag("event", "click_generic", common);
-  });
-
-  // 📨 form_submit
-  document.addEventListener("submit", (e) => {
-    const f = e.target.closest('form[data-track="form"]'); 
-    if (!f) return;
-    gtag("event", "form_submit", {
-      form_id: f.id || undefined,
-      form_name: f.getAttribute("name") || undefined,
-      page_title: document.title || "",
-      card_name: window.cardData?.fullName || "Unknown"
     });
   });
+})();
+
+
+
+
+// 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
+const textOf = (el, max = 60) =>
+  (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
+
+document.addEventListener("click", (e) => {
+  const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
+  if (!t) return;
+
+  const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
+  const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
+
+  const common = {
+    element_id: t.id || undefined,
+    element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
+    element_href: href || undefined,
+    element_field: t.getAttribute("data-field") || undefined,
+    element_label: t.getAttribute("aria-label") || undefined,
+    element_text: textOf(t),
+    page_title: document.title || "",
+    card_name: window.cardData?.fullName || "Unknown"
+  };
+
+  // 🔒 FORCE: כל קליק בתוך טופס יצירת קשר → contact_click עם sendFormE
+  if (t.closest('#contactForm form')) {
+    const payload = { sendFormE: "1", ...common };  // 👈 שדה מותאם
+    console && console.log && console.log("📡 GA:", ['event', 'sendFormE_click', payload]);
+    gtag("event", "sendFormE_click", payload);
+    return;
+  }
+
+  // 🪗 אקורדיון
+  if (t.classList.contains("elementor-tab-title")) {
+    const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
+      .trim().replace(/\s+/g, " ").slice(0, 80);
+
+    gtag("event", "accordion_click", {
+      ...common,
+      accordion_title: titleText,
+      accordion_id: t.id || undefined,
+      accordion_key: t.getAttribute("data-tab") || undefined,
+      aria_controls: t.getAttribute("aria-controls") || undefined
+    });
+    return;
+  }
+
+  // ערוצי יצירת קשר (מחוץ לטופס)
+  let ev = null;
+  if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
+  else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
+  else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
+  else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
+  else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
+  else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
+  else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
+                                                                              ev = "contact_telegram";
+  else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
+                                                                              ev = "contact_directions";
+  else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
+  else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
+  else if (t.classList.contains("scroll-to-contact-btn") || type === "scroll_to_contact_click")
+                                                                              ev = "scroll_to_contact_click";
+
+  if (ev) {
+    gtag("event", ev, common);
+    if (ev.startsWith("contact_")) {
+      gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
+    }
+    return;
+  }
+
+  gtag("event", "click_generic", common);
+});
+
+// 📨 form_submit
+document.addEventListener("submit", (e) => {
+  const f = e.target.closest('form[data-track="form"]'); 
+  if (!f) return;
+  gtag("event", "form_submit", {
+    form_id: f.id || undefined,
+    form_name: f.getAttribute("name") || undefined,
+    page_title: document.title || "",
+    card_name: window.cardData?.fullName || "Unknown"
+  });
+});
+
 }
 /* 🔚 Google Analytics */
 
