@@ -21,7 +21,7 @@ window.cardData = {
   // ✅ רשתות חברתיות
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-  youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
   tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
 
   // ✅ טקסטים לטפסים
