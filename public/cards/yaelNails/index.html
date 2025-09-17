@@ -3,37 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: #fff;
-      text-align: center;
-      padding: 24px;
-    }
-  </style>
-</head>
-<body>
 
+  <!-- ✅ הפניה מיידית -->
+  <meta http-equiv="refresh" content="0; url=./yael.html">
   <script>
-    /**
-     * 📌 לשנות את השם כאן לפי שם הקובץ של הכרטיס באותה תיקייה
-     * לדוגמה: "amit.html" / "yael.html" / "hila.html"
-     */
-    var TARGET_HTML = "yael.html";
-
-    // טעינה ישירה של הכרטיס
-    fetch("./" + TARGET_HTML, { credentials: "same-origin" })
-      .then(r => r.text())
-      .then(html => {
-        document.open();
-        document.write(html);
-        document.close();
-      })
-      .catch(() => {
-        // fallback – במקרה של תקלה
-        location.href = "./" + TARGET_HTML;
-      });
+    (function(){
+      try { window.location.replace('./yael.html'); }
+      catch(_) { location.href = './yael.html'; }
+    })();
   </script>
-</body>
+</head>
+<body aria-label="Redirecting"></body>
 </html>
