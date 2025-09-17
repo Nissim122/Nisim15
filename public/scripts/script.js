@@ -56,6 +56,7 @@ console.log("📡 isLive:", isLive);
   if (kwEl && typeof data.metaKeywords === 'string') kwEl.setAttribute('content', data.metaKeywords);
 })();
 // 🔧 SEO: Normalize OG Image to absolute URL (append after existing SEO block)
+// 🔧 SEO: Normalize OG Image to absolute URL (append after existing SEO block)
 (() => {
   const el = document.querySelector('meta[property="og:image"][data-field="ogImage"]');
   if (!el) return;
@@ -67,8 +68,33 @@ console.log("📡 isLive:", isLive);
   } catch {}
 })();
 
+// ✅ Ensure <meta name="robots"> exists + apply from DATA (before DOMContentLoaded)
+(() => {
+  const data = window.cardData || {};
+  let tag =
+    document.querySelector('meta[name="robots"][data-field="metaRobots"]') ||
+    document.querySelector('meta[name="robots"]');
+
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute('name', 'robots');
+    tag.setAttribute('data-field', 'metaRobots');
+    document.head.appendChild(tag);
+  } else if (!tag.hasAttribute('data-field')) {
+    tag.setAttribute('data-field', 'metaRobots');
+  }
+
+  const val =
+    (typeof data.metaRobots === 'string' && data.metaRobots.trim()) ?
+    data.metaRobots.trim() :
+    'index, follow';
+
+  tag.setAttribute('content', val);
+  console.log('📌 Robots tag ensured:', val);
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
+
   document.body.classList.remove("accessibility-mode");
   document.body.style.filter = "";
   document.body.style.fontSize = "";

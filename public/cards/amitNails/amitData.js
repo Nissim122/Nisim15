@@ -4,6 +4,8 @@ role: "מניקוריסטית",
 
 // שדה ייעודי לכותרת האתר
 pageTitle: "  עמית אבן צור | כרטיס ביקור",
+  metaRobots: "noindex, follow", // 👈 שליטה ישירה באינדוקס
+
 
   phone: "054-9151-945",
   email: "amitezur@gmail.com",
