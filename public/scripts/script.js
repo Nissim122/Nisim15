@@ -56,6 +56,7 @@ console.log("📡 isLive:", isLive);
   if (kwEl && typeof data.metaKeywords === 'string') kwEl.setAttribute('content', data.metaKeywords);
 })();
 // 🔧 SEO: Normalize OG Image to absolute URL (append after existing SEO block)
+// 🔧 SEO: Normalize OG Image to absolute URL (append after existing SEO block)
 (() => {
   const el = document.querySelector('meta[property="og:image"][data-field="ogImage"]');
   if (!el) return;
@@ -67,8 +68,33 @@ console.log("📡 isLive:", isLive);
   } catch {}
 })();
 
+// ✅ Ensure <meta name="robots"> exists + apply from DATA (before DOMContentLoaded)
+(() => {
+  const data = window.cardData || {};
+  let tag =
+    document.querySelector('meta[name="robots"][data-field="metaRobots"]') ||
+    document.querySelector('meta[name="robots"]');
+
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute('name', 'robots');
+    tag.setAttribute('data-field', 'metaRobots');
+    document.head.appendChild(tag);
+  } else if (!tag.hasAttribute('data-field')) {
+    tag.setAttribute('data-field', 'metaRobots');
+  }
+
+  const val =
+    (typeof data.metaRobots === 'string' && data.metaRobots.trim()) ?
+    data.metaRobots.trim() :
+    'index, follow';
+
+  tag.setAttribute('content', val);
+  console.log('📌 Robots tag ensured:', val);
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
+
   document.body.classList.remove("accessibility-mode");
   document.body.style.filter = "";
   document.body.style.fontSize = "";
@@ -581,356 +607,117 @@ if (data.googleAnalyticsId) {
   bootstrap();
 })();
 
-/* =========================
-   GA4 – Recommendations Tracking (resilient v2)
-   ========================= */
-(function trackRecommendationsUsage(){
-  const isLocal = ["localhost","127.0.0.1"].includes(location.hostname);
+/* ✅ GA4 – Track ANY click inside contact form */
+(function trackAllContactFormClicks(){
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector('#contactForm form');
+    if (!form) return;
 
-  // ---- GA queue (flush when gtag ready) ----
-  window.__gaQueue = window.__gaQueue || [];
-  function flushGAQueue(){
-    if (typeof window.gtag !== "function") return;
-    while (window.__gaQueue.length){
-      const [name, payload] = window.__gaQueue.shift();
-      try { window.gtag("event", name, payload); } catch(_){}
-    }
-  }
-  function whenGtagReady(cb){
-    if (typeof window.gtag === "function") { cb(); return; }
-    const iv = setInterval(() => {
-      if (typeof window.gtag === "function"){ clearInterval(iv); cb(); }
-    }, 200);
-    setTimeout(() => clearInterval(iv), 10000);
-  }
-  function sendGA(name, payload){
-    const debug = isLocal ? { debug_mode: true } : {};
-    const p = { ...payload, ...debug };
-    if (typeof window.gtag === "function") window.gtag("event", name, p);
-    else window.__gaQueue.push([name, p]);
-  }
-  whenGtagReady(flushGAQueue);
-
-  // ---- bind to Swiper instance ----
-  function attachToInstance(sw, source){
-    if (!sw || sw.__gaRecBound) return;
-    sw.__gaRecBound = true;
-
-    let usageCount = 0;
-    const fire = (label) => {
-      usageCount++;
-      sendGA("recommendations_interaction", {
-        event_category: "Recommendations",
-        event_label: label,
-        value: usageCount,
-        source
-      });
-    };
-
-    sw.on("slideChange", () => fire("Slide Change"));
-    // אופציונלי: כיוון
-    sw.on("slideNextTransitionStart", () => sendGA("recommendations_next", { event_category: "Recommendations", source }));
-    sw.on("slidePrevTransitionStart", () => sendGA("recommendations_prev", { event_category: "Recommendations", source }));
-
-    console.log("✅ GA4: bound (swiper listeners)");
-  }
-
-  // ---- watch a single carousel element ----
-  function watchCarousel(el){
-    if (!el) return;
-
-    // 1) attach now if already initialized
-    if (el.swiper) attachToInstance(el.swiper, "init");
-
-    // 2) poll for late instance
-    let tries = 0;
-    const iv = setInterval(() => {
-      if (el.swiper){ attachToInstance(el.swiper, "poll"); clearInterval(iv); }
-      if (++tries > 50) clearInterval(iv);
-    }, 200);
-
-    // 3) observe class change to swiper-initialized
-    const mo = new MutationObserver(() => {
-      if (el.classList.contains("swiper-initialized") && el.swiper){
-        attachToInstance(el.swiper, "mo");
-      }
-    });
-    mo.observe(el, { attributes: true, attributeFilter: ["class"] });
-
-    // 4) DOM fallback (tracks active slide class changes)
-    const wrapper = el.querySelector(".swiper-wrapper");
-    if (wrapper && !el.__gaRecDOMBound){
-      el.__gaRecDOMBound = true;
-      let last = -1;
-      const detect = () => {
-        const slides = el.querySelectorAll(".swiper-slide");
-        let idx = -1;
-        slides.forEach((s,i) => { if (s.classList.contains("swiper-slide-active")) idx = i; });
-        if (idx !== -1 && idx !== last){
-          last = idx;
-          sendGA("recommendations_interaction", {
-            event_category: "Recommendations",
-            event_label: "Slide Change (DOM)",
-            value: idx + 1,
-            source: "dom_fallback"
-          });
-        }
+    form.addEventListener("click", (ev) => {
+      // נוודא שלא שולחים כפול (אפשר להרחיב לסוגי אלמנטים ספציפיים אם תרצה)
+      const payload = {
+        event_category: 'Form Actions',
+        contact_channel: "formClick",   // 👈 תמיד אותו ערך
+        value: 1,
+        transport_type: 'beacon'
       };
-      const mo2 = new MutationObserver(() => setTimeout(detect, 60));
-      mo2.observe(wrapper, { attributes: true, subtree: true, attributeFilter: ["class"] });
-      setTimeout(detect, 200);
-      console.log("✅ GA4: DOM fallback listener attached");
-    }
 
-    // 5) pagination click fallback
-    const pag = el.querySelector(".recommendations-pagination, .swiper-pagination");
-    if (pag && !pag.__gaRecPagBound){
-      el.__gaRecPagBound = true;
-      pag.addEventListener("click", () => {
-        sendGA("recommendations_interaction", {
-          event_category: "Recommendations",
-          event_label: "Pagination Click",
-          source: "pagination"
-        });
-      }, { passive: true });
-    }
-
-    // 6) view-once via IntersectionObserver
-    if (!el.__gaRecViewBound && "IntersectionObserver" in window){
-      el.__gaRecViewBound = true;
-      const io = new IntersectionObserver((ents) => {
-        ents.forEach(en => {
-          if (en.isIntersecting){
-            sendGA("recommendations_view", { event_category: "Recommendations", source: "io" });
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.25 });
-      io.observe(el);
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const carousels = document.querySelectorAll('[data-analytics="recommendationsCarousel"], .recommendations-swiper');
-    if (!carousels.length) return;
-    carousels.forEach(watchCarousel);
-  });
-})();
-
-/* =========================
-   GA4 – Recommendations Tracking (hardened attach + rebind)
-   ========================= */
-(function trackRecommendationsUsage(){
-  const isLocal = ["localhost","127.0.0.1"].includes(location.hostname);
-
-  // GA sender עם תור + debug בלוקאל
-  window.__gaQueue = window.__gaQueue || [];
-  function sendGA(name, payload){
-    const p = { ...payload, ...(isLocal ? { debug_mode: true } : {}) };
-    if (typeof window.gtag === "function") window.gtag("event", name, p);
-    else window.__gaQueue.push([name, p]);
-  }
-  (function flushWhenReady(){
-    if (typeof window.gtag === "function") {
-      while (window.__gaQueue.length){
-        const [n,p] = window.__gaQueue.shift(); try{ gtag("event", n, p); }catch(_){}
-      }
-    } else { setTimeout(flushWhenReady, 300); }
-  })();
-
-  // חיבור ל-instance + ריביינד אחרי reset
-  function attach(sw, source){
-    if (!sw) return;
-    if (sw.__gaRecBound) return;
-    sw.__gaRecBound = true;
-
-    let usage = 0;
-    const fire = (label) => {
-      usage++;
-      sendGA("recommendations_interaction", {
-        event_category: "Recommendations",
-        event_label: label,
-        value: usage,
-        source
-      });
-    };
-
-    sw.on("slideChange", () => fire("Slide Change"));
-    sw.on("slideNextTransitionStart", () => sendGA("recommendations_next", { event_category:"Recommendations", source }));
-    sw.on("slidePrevTransitionStart", () => sendGA("recommendations_prev", { event_category:"Recommendations", source }));
-
-    // אם Swiper יעשה re-init (destroy/init), נסיר דגל כדי להתחבר מחדש
-    sw.on("destroy", () => { sw.__gaRecBound = false; });
-    console.log("✅ GA4: recommendations listener bound (", source, ")");
-  }
-
-  // פולבק לפי שינויי class אם אין גישה ל-instance
-  function domFallback(el){
-    if (el.__gaRecDOMBound) return;
-    el.__gaRecDOMBound = true;
-    const wrap = el.querySelector(".swiper-wrapper");
-    if (!wrap) return;
-    let last = -1;
-    const detect = () => {
-      const slides = el.querySelectorAll(".swiper-slide");
-      let idx = -1;
-      slides.forEach((s,i)=>{ if (s.classList.contains("swiper-slide-active")) idx = i; });
-      if (idx !== -1 && idx !== last){
-        last = idx;
-        sendGA("recommendations_interaction", {
-          event_category: "Recommendations",
-          event_label: "Slide Change (DOM)",
-          value: idx + 1,
-          source: "dom_fallback"
-        });
-      }
-    };
-    new MutationObserver(() => setTimeout(detect, 60))
-      .observe(wrap, { attributes:true, subtree:true, attributeFilter:["class"] });
-    setTimeout(detect, 150);
-    console.log("✅ GA4: DOM fallback armed");
-  }
-
-  // ווצ'ר לקרוסלה אחת
-  function watch(el){
-    if (!el) return;
-
-    // התחברות מיידית אם יש אינסטנס
-    if (el.swiper) attach(el.swiper, "init");
-
-    // Poll מאוחר לאתחול איטי
-    let tries = 0;
-    const iv = setInterval(() => {
-      if (el.swiper){ attach(el.swiper, "poll"); clearInterval(iv); }
-      if (++tries > 60) clearInterval(iv);
-    }, 200);
-
-    // Rebind כשמתווספת המחלקה swiper-initialized (אחרי destroy/init)
-    const mo = new MutationObserver(() => {
-      if (el.classList.contains("swiper-initialized") && el.swiper && !el.swiper.__gaRecBound){
-        attach(el.swiper, "mo");
+      console.log("📡 GA:", ['event', 'contact_click', payload]);
+      if (typeof window.gtag === "function") {
+        try { window.gtag('event', 'contact_click', payload); } catch(_){}
       }
     });
-    mo.observe(el, { attributes:true, attributeFilter:["class"] });
-
-    // פולבק DOM תמיד, למקרה שה-instance לא נגיש
-    domFallback(el);
-
-    // פגינציה כטריגר נוסף
-    const pag = el.querySelector(".recommendations-pagination, .swiper-pagination");
-    if (pag && !pag.__gaRecPagBound){
-      pag.__gaRecPagBound = true;
-      pag.addEventListener("click", () => {
-        sendGA("recommendations_interaction", {
-          event_category: "Recommendations",
-          event_label: "Pagination Click",
-          source: "pagination"
-        });
-      }, { passive:true });
-    }
-
-    // view-once (IntersectionObserver)
-    if (!el.__gaRecViewBound && "IntersectionObserver" in window){
-      el.__gaRecViewBound = true;
-      const io = new IntersectionObserver((ents) => {
-        ents.forEach(en => {
-          if (en.isIntersecting){
-            sendGA("recommendations_view", { event_category: "Recommendations", source: "io" });
-            io.disconnect();
-          }
-        });
-      }, { threshold: 0.25 });
-      io.observe(el);
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // תופס גם data-analytics וגם class כללי
-    const carousels = document.querySelectorAll('[data-analytics="recommendationsCarousel"], .recommendations-swiper');
-    carousels.forEach(watch);
   });
 })();
 
 
 
 
+// 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
+const textOf = (el, max = 60) =>
+  (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
 
-  // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
-  const textOf = (el, max = 60) =>
-    (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
+document.addEventListener("click", (e) => {
+  const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
+  if (!t) return;
 
-  document.addEventListener("click", (e) => {
-    const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
-    if (!t) return;
+  const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
+  const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
 
-    const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
-    const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
+  const common = {
+    element_id: t.id || undefined,
+    element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
+    element_href: href || undefined,
+    element_field: t.getAttribute("data-field") || undefined,
+    element_label: t.getAttribute("aria-label") || undefined,
+    element_text: textOf(t),
+    page_title: document.title || "",
+    card_name: window.cardData?.fullName || "Unknown"
+  };
 
-    const common = {
-      element_id: t.id || undefined,
-      element_role: t.getAttribute("role") || t.tagName.toLowerCase(),
-      element_href: href || undefined,
-      element_field: t.getAttribute("data-field") || undefined,
-      element_label: t.getAttribute("aria-label") || undefined,
-      element_text: textOf(t),
-      page_title: document.title || "",
-      card_name: window.cardData?.fullName || "Unknown"
-    };
+  // 🔒 FORCE: כל קליק בתוך טופס יצירת קשר → contact_click עם sendFormE
+  if (t.closest('#contactForm form')) {
+    const payload = { sendFormE: "1", ...common };  // 👈 שדה מותאם
+    console && console.log && console.log("📡 GA:", ['event', 'sendFormE_click', payload]);
+    gtag("event", "sendFormE_click", payload);
+    return;
+  }
 
-    // 🪗 אקורדיון
-    if (t.classList.contains("elementor-tab-title")) {
-      const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
-        .trim().replace(/\s+/g, " ").slice(0, 80);
+  // 🪗 אקורדיון
+  if (t.classList.contains("elementor-tab-title")) {
+    const titleText = (t.querySelector(".elementor-toggle-title")?.textContent || t.textContent || "")
+      .trim().replace(/\s+/g, " ").slice(0, 80);
 
-      gtag("event", "accordion_click", {
-        ...common,
-        accordion_title: titleText,
-        accordion_id: t.id || undefined,
-        accordion_key: t.getAttribute("data-tab") || undefined,
-        aria_controls: t.getAttribute("aria-controls") || undefined
-      });
-      return;
-    }
-
-    // ערוצי יצירת קשר
-    let ev = null;
-    if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
-    else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
-    else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
-    else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
-    else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
-    else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
-    else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
-                                                                                ev = "contact_telegram";
-    else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
-                                                                                ev = "contact_directions";
-    else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
-    else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
-    else if (t.classList.contains("scroll-to-contact-btn") || type === "scroll_to_contact_click")
-                                                                                ev = "scroll_to_contact_click";
-
-    if (ev) {
-      gtag("event", ev, common);
-      if (ev.startsWith("contact_")) {
-        gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
-      }
-      return;
-    }
-
-    gtag("event", "click_generic", common);
-  });
-
-  // 📨 form_submit
-  document.addEventListener("submit", (e) => {
-    const f = e.target.closest('form[data-track="form"]'); 
-    if (!f) return;
-    gtag("event", "form_submit", {
-      form_id: f.id || undefined,
-      form_name: f.getAttribute("name") || undefined,
-      page_title: document.title || "",
-      card_name: window.cardData?.fullName || "Unknown"
+    gtag("event", "accordion_click", {
+      ...common,
+      accordion_title: titleText,
+      accordion_id: t.id || undefined,
+      accordion_key: t.getAttribute("data-tab") || undefined,
+      aria_controls: t.getAttribute("aria-controls") || undefined
     });
+    return;
+  }
+
+  // ערוצי יצירת קשר (מחוץ לטופס)
+  let ev = null;
+  if (href.startsWith("tel:") || type === "phone")                           ev = "contact_phone";
+  else if (href.startsWith("mailto:") || type === "email")                   ev = "contact_email";
+  else if (href.includes("wa.me") || type === "whatsapp")                    ev = "contact_whatsapp";
+  else if (href.includes("facebook.com")  || type === "facebook")            ev = "contact_facebook";
+  else if (href.includes("instagram.com") || type === "instagram")           ev = "contact_instagram";
+  else if (href.includes("tiktok.com")    || type === "tiktok")              ev = "contact_tiktok";
+  else if (href.includes("t.me") || href.includes("telegram.me") || type==="telegram")
+                                                                              ev = "contact_telegram";
+  else if (type === "directions" || href.startsWith("geo:") || href.includes("maps.google"))
+                                                                              ev = "contact_directions";
+  else if (type === "website" || href.startsWith("http"))                    ev = "contact_website";
+  else if (type === "addcontact" || t.id === "vcardDownload")                ev = "add_contact";
+  else if (t.classList.contains("scroll-to-contact-btn") || type === "scroll_to_contact_click")
+                                                                              ev = "scroll_to_contact_click";
+
+  if (ev) {
+    gtag("event", ev, common);
+    if (ev.startsWith("contact_")) {
+      gtag("event", "contact_click", { contact_type: ev.replace("contact_",""), ...common });
+    }
+    return;
+  }
+
+  gtag("event", "click_generic", common);
+});
+
+// 📨 form_submit
+document.addEventListener("submit", (e) => {
+  const f = e.target.closest('form[data-track="form"]'); 
+  if (!f) return;
+  gtag("event", "form_submit", {
+    form_id: f.id || undefined,
+    form_name: f.getAttribute("name") || undefined,
+    page_title: document.title || "",
+    card_name: window.cardData?.fullName || "Unknown"
   });
+});
+
 }
 /* 🔚 Google Analytics */
 

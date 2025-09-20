@@ -1,6 +1,8 @@
 window.cardData = {
 fullName: "רזי החן",
 role: "  סטודיו ואקדמיה לציפורניים",
+  metaRobots: "index, follow",
+
 
 // שדה ייעודי לכותרת האתר
 pageTitle: " רזי החן | כרטיס ביקור",
