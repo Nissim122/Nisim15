@@ -1,34 +1,82 @@
-/* === Profile In – אנימציית כניסה לתמונת פרופיל === */
+/* ===========================
+   PROFILE — כל העיצוב במקום אחד
+   =========================== */
 
 /* נגישות: כיבוי אנימציות + מצב סופי תקין */
 @media (prefers-reduced-motion: reduce){
-  [data-anim]{ animation: none !important; transition: none !important; }
-  [data-anim][data-anim-target="profile"]{ opacity: 1 !important; transform: none !important; }
+  [data-anim][data-anim-target="profile"]{
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
-/* ברירת מחדל: מוכנים אך על pause (Gate עדיין סגור) */
+/* בסיס: מוכנים אך על pause (Gate סגור) */
 [data-anim][data-anim-target="profile"]{
-  animation: kf-profile-in var(--profile-in-duration, 700ms) var(--profile-in-ease, cubic-bezier(.22,.61,.36,1)) both;
+  /* שם ברירת מחדל; JS יעקוף עם animation-name מה-DATA */
+  animation: kf-profile-in var(--profile-in-duration, 700ms)
+             var(--profile-in-ease, cubic-bezier(.22,.61,.36,1)) both;
   animation-play-state: paused;
-  opacity: 0; /* מייצב פריים ראשון */
+  opacity: 0;              /* מייצב פריים ראשון */
   transform-origin: 50% 0%;
 }
 
-/* כשה-Gate (.anim-ready על ה-body) נפתח — מפעילים ורק אז מסמנים will-change */
+/* פתיחת Gate (class על body) */
 .anim-ready [data-anim][data-anim-target="profile"]{
   animation-play-state: running;
   will-change: transform, opacity;
 }
 
+/* -------- Profile keyframes (כולן כאן ברצף) -------- */
+
+/* 0) ברירת המחדל */
 @keyframes kf-profile-in{
   0%   { transform: translate3d(0,-80px,0) scale(.92); opacity: 0; }
   60%  { transform: translate3d(0,  0,0)   scale(1);   opacity: 1; }
   75%  { transform: translate3d(0,-12px,0); }
-  100% { transform: translate3d(0,  0,0);   opacity: 1; } /* ← סיום יציב */
+  100% { transform: translate3d(0,  0,0);   opacity: 1; }
+}
+
+/* 1) Drop Tech – ירידה חדה עם באונס קטן */
+@keyframes kf-profile-drop-tech {
+  0%   { transform: translateY(-120px) scale(0.9); opacity: 0; filter: blur(6px); }
+  60%  { transform: translateY(0) scale(1);        opacity: 1; filter: blur(0); }
+  75%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* 2) Matrix Fade – ירידה עם fade “דיגיטלי” */
+@keyframes kf-profile-matrix-fade {
+  0%   { transform: translateY(-100px); opacity: 0; filter: brightness(200%) grayscale(100%); }
+  50%  { opacity: 0.5;                  filter: brightness(120%) grayscale(50%); }
+  100% { transform: translateY(0);      opacity: 1; filter: brightness(100%) grayscale(0); }
+}
+
+/* 3) Cyber Slide – ירידה עם scale ושינוי רוויה */
+@keyframes kf-profile-cyber-slide {
+  0%   { transform: translateY(-150px) scale(1.2); opacity: 0;   filter: saturate(0); }
+  70%  { transform: translateY(10px)   scale(0.98);opacity: 0.9; filter: saturate(150%); }
+  100% { transform: translateY(0)      scale(1);   opacity: 1;   filter: saturate(100%); }
+}
+
+/* 4) Futuristic Drop – ירידה עם skew ו־glow */
+@keyframes kf-profile-futuristic-drop {
+  0%   { transform: translateY(-200px) skewX(10deg); opacity: 0; filter: drop-shadow(0 0 10px cyan); }
+  50%  { transform: translateY(20px)   skewX(-5deg); opacity: 1; filter: drop-shadow(0 0 5px cyan); }
+  100% { transform: translateY(0)      skewX(0);     opacity: 1; filter: none; }
+}
+
+/* (אופציונלי) class עזר אם תרצה ליישר מקור־טרנספורם לזום-פייד */
+[data-anim][data-anim-target="profile"].anim-zoom-fade {
+  transform-origin: center center;
 }
 
 
-/* === כללי – מופעל על כל data-anim אחרים (נשאר מהקיים) === */
+/* ===========================
+   כלליים — לשאר האלמנטים
+   =========================== */
+
 [data-anim]{
   animation-duration: 800ms;
   animation-timing-function: cubic-bezier(.22,.61,.36,1);
@@ -37,21 +85,10 @@
   animation-delay: 0ms; /* ברירת מחדל */
 }
 
-/* דוגמה לעיכובים פר-סקשן */
+/* דוגמה לעיכובים פר-סקשן (CSS בלבד) */
 [data-anim="header"] { animation-delay: 200ms; }
 [data-anim="cta"]    { animation-delay: 300ms; }
 
-/* keyframes נוספים */
-@keyframes kf-zoom-fade {0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes kf-slide-right{0%{transform:translateX(-60px);opacity:0}100%{transform:translateX(0);opacity:1}}
-
-/* === Profile Zoom Fade – אלטרנטיבה לאנימציית פרופיל === */
-[data-anim][data-anim-target="profile"].anim-zoom-fade {
-  transform-origin: center center;
-}
-
-@keyframes kf-profile-zoom-fade {
-  0%   { transform: scale(0.6); opacity: 0; }
-  60%  { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1);   opacity: 1; }
-}
+/* keyframes כלליים */
+@keyframes kf-zoom-fade { 0%{transform:scale(.7);opacity:0} 100%{transform:scale(1);opacity:1} }
+@keyframes kf-slide-right{ 0%{transform:translateX(-60px);opacity:0} 100%{transform:translateX(0);opacity:1} }
