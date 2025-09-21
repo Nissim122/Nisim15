@@ -40,6 +40,12 @@
 
 /* 2) מודרני ורענן */
 .theme-modern {
+
+  --card-bg-image: url("/assets/media/test/wallpaper.jpg");
+  --card-bg-opacity: 1;
+  --card-bg-blur: 0px;
+
+
   --card-bg: #e6f0ff;                   /* רקע כללי */
   --about-section-bg: #f0f6ff;         /* אודות על רקע לבן */
   --recommendations-section-bg: #f0f6ff;/* המלצות על רקע תכלת בהיר יותר */

@@ -155,9 +155,11 @@
         armOnce();
       }
     });
+    
 
     // === BG PARALLAX (single, idempotent, managed by animations.js) ===
     function initParallaxBG(){
+
       try {
         const cfg  = (window.cardData && window.cardData.theme && window.cardData.theme.bg) || {};
         const root = document.documentElement;
@@ -222,5 +224,23 @@
   } catch (e) {
     console.warn("Animations init error:", e);
   }
+  document.addEventListener("DOMContentLoaded", () => {
+  const bg = document.querySelector(".card .parallax-bg");
+  if (!bg) return;
+
+  // פקטור תזוזה – שלוט דרך CSS var (--scroll-factor)
+  const getFactor = () =>
+    parseFloat(getComputedStyle(bg).getPropertyValue("--scroll-factor")) || 0.3;
+
+  function updateParallax() {
+    const offset = window.scrollY * getFactor();
+    bg.style.backgroundPosition = `center ${-offset}px`;
+  }
+
+  // להריץ מיד + לעדכן בגלילה
+  updateParallax();
+  window.addEventListener("scroll", updateParallax, { passive: true });
+  window.addEventListener("resize", updateParallax);
+});
 
 })();

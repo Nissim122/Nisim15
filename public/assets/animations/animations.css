@@ -97,24 +97,37 @@
 /* keyframes כלליים */
 @keyframes kf-zoom-fade { 0%{transform:scale(.7);opacity:0} 100%{transform:scale(1);opacity:1} }
 @keyframes kf-slide-right{ 0%{transform:translateX(-60px);opacity:0} 100%{transform:translateX(0);opacity:1} }
-
-/* === אפקט פרלקסה בגלילה (Parallax Scroll) === */
-.parallax-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
+/* === Parallax Scroll === */
+.card {
+  position: relative;
+  overflow: hidden; /* כדי שהטפט לא יברח מחוץ לכרטיס */
+  z-index: 1;       /* התוכן מעל שכבת הרקע הכללית */
+}
+/* שכבת טפט פרלקסה בתוך כרטיס */
+.card .parallax-bg {
+  position: absolute;
+  inset: 0; /* למלא את כל הכרטיס */
+  z-index: 0;
   pointer-events: none;
   background-image: var(--card-bg-image, none);
   background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
-  background-position: center 0;
   opacity: var(--card-bg-opacity, 1);
   filter: blur(var(--card-bg-blur, 0px));
   will-change: background-position;
   transition: background-position 0.1s linear;
 }
 
-/* דוגמת וריאנטים – אם נרצה לבחור מהירות */
-.parallax-slow  { --scroll-factor: 0.2; }
-.parallax-medium{ --scroll-factor: 0.3; } /* ברירת מחדל */
-.parallax-fast  { --scroll-factor: 0.5; }
+/* כל שאר התוכן בכרטיס תמיד מעל */
+.card > *:not(.parallax-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ערכי ברירת מחדל לנושא modern */
+body.theme-modern {
+  --card-bg-image: url("/assets/bg/test.jpg");
+  --card-bg-opacity: 1;
+  --card-bg-blur: 0px;
+}
