@@ -119,7 +119,7 @@ features : {
   animationsEnabled: true,
 },
  animations: {
-    profile: "kf-profile-cyber-slide",  // או kf-profile-drop-tech / kf-profile-matrix-fade / kf-profile-futuristic-drop
+    profile: "kf-profile-slide-in-left",  // או kf-profile-drop-tech / kf-profile-matrix-fade / kf-profile-futuristic-drop
     header:  "kf-zoom-fade",      // אלמנט עם data-anim-target="header"
     cta:     "kf-slide-right"     // אלמנט עם data-anim-target="cta"
     // אם לא נגדיר מפתח → האלמנט לא יקבל אנימציה (animationName="none")

@@ -27,49 +27,54 @@
   animation-play-state: running;
   will-change: transform, opacity;
 }
+/* === 2 מלמעלה === */
 
-/* -------- Profile keyframes (כולן כאן ברצף) -------- */
-
-/* 0) ברירת המחדל */
-@keyframes kf-profile-in{
-  0%   { transform: translate3d(0,-80px,0) scale(.92); opacity: 0; }
-  60%  { transform: translate3d(0,  0,0)   scale(1);   opacity: 1; }
-  75%  { transform: translate3d(0,-12px,0); }
-  100% { transform: translate3d(0,  0,0);   opacity: 1; }
+/* 1. Drop Elegant – נפילה אלגנטית עם ריכוך */
+@keyframes kf-profile-drop-elegant {
+  0%   { transform: translateY(-120px) scale(.98); opacity: 0; filter: blur(6px); }
+  60%  { transform: translateY(0)      scale(1.00); opacity: 1; filter: blur(0); }
+  80%  { transform: translateY(-8px); }
+  100% { transform: translateY(0)      scale(1.00); opacity: 1; }
 }
 
-/* 1) Drop Tech – ירידה חדה עם באונס קטן */
-@keyframes kf-profile-drop-tech {
-  0%   { transform: translateY(-120px) scale(0.9); opacity: 0; filter: blur(6px); }
-  60%  { transform: translateY(0) scale(1);        opacity: 1; filter: blur(0); }
-  75%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+/* 2. Drop Spring – נפילה “קפיצית” רכה */
+@keyframes kf-profile-drop-spring {
+  0%   { transform: translateY(-160px) scale(.96); opacity: 0; }
+  55%  { transform: translateY(0)      scale(1.02);opacity: 1; }
+  75%  { transform: translateY(-10px)  scale(1.00); }
+  100% { transform: translateY(0)      scale(1.00);opacity: 1; }
 }
 
-/* 2) Matrix Fade – ירידה עם fade “דיגיטלי” */
-@keyframes kf-profile-matrix-fade {
-  0%   { transform: translateY(-100px); opacity: 0; filter: brightness(200%) grayscale(100%); }
-  50%  { opacity: 0.5;                  filter: brightness(120%) grayscale(50%); }
-  100% { transform: translateY(0);      opacity: 1; filter: brightness(100%) grayscale(0); }
+
+/* === 4 נוספות — שונות מהשניים הראשונים === */
+
+/* 3. Slide In Left – גלישה חלקה משמאל */
+@keyframes kf-profile-slide-in-left {
+  0%   { transform: translateX(-120px); opacity: 0; filter: blur(4px); }
+  60%  { transform: translateX(0);      opacity: 1; filter: blur(0); }
+  100% { transform: translateX(0);      opacity: 1; }
 }
 
-/* 3) Cyber Slide – ירידה עם scale ושינוי רוויה */
-@keyframes kf-profile-cyber-slide {
-  0%   { transform: translateY(-150px) scale(1.2); opacity: 0;   filter: saturate(0); }
-  70%  { transform: translateY(10px)   scale(0.98);opacity: 0.9; filter: saturate(150%); }
-  100% { transform: translateY(0)      scale(1);   opacity: 1;   filter: saturate(100%); }
+/* 4. Slide In Right – גלישה חלקה מימין */
+@keyframes kf-profile-slide-in-right {
+  0%   { transform: translateX(120px); opacity: 0; filter: blur(4px); }
+  60%  { transform: translateX(0);     opacity: 1; filter: blur(0); }
+  100% { transform: translateX(0);     opacity: 1; }
 }
 
-/* 4) Futuristic Drop – ירידה עם skew ו־glow */
-@keyframes kf-profile-futuristic-drop {
-  0%   { transform: translateY(-200px) skewX(10deg); opacity: 0; filter: drop-shadow(0 0 10px cyan); }
-  50%  { transform: translateY(20px)   skewX(-5deg); opacity: 1; filter: drop-shadow(0 0 5px cyan); }
-  100% { transform: translateY(0)      skewX(0);     opacity: 1; filter: none; }
+/* 5. Rise Up – עליה מלמטה עם bounce קטן */
+@keyframes kf-profile-rise-up {
+  0%   { transform: translateY(120px)  scale(.98); opacity: 0; }
+  60%  { transform: translateY(0)      scale(1.00);opacity: 1; }
+  80%  { transform: translateY(6px); }
+  100% { transform: translateY(0)      scale(1.00);opacity: 1; }
 }
 
-/* (אופציונלי) class עזר אם תרצה ליישר מקור־טרנספורם לזום-פייד */
-[data-anim][data-anim-target="profile"].anim-zoom-fade {
-  transform-origin: center center;
+/* 6. Pop In – הופעה פתאומית (scale + fade) */
+@keyframes kf-profile-pop-in {
+  0%   { transform: scale(.84); opacity: 0; filter: blur(6px); }
+  60%  { transform: scale(1.02); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1.00); opacity: 1; }
 }
 
 
