@@ -24,6 +24,23 @@
   0%   { transform: translate3d(0,-80px,0) scale(.92); opacity: 0; }
   60%  { transform: translate3d(0,  0,0)   scale(1);   opacity: 1; }
   75%  { transform: translate3d(0,-12px,0); }
-  100% { transform: translate3d(0,  0,0);   opacity: 1; } /* ← הוספתי */
+  100% { transform: translate3d(0,  0,0);   opacity: 1; } /* ← סיום יציב */
 }
 
+
+/* === כללי – מופעל על כל data-anim אחרים (נשאר מהקיים) === */
+[data-anim]{
+  animation-duration: 800ms;
+  animation-timing-function: cubic-bezier(.22,.61,.36,1);
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+  animation-delay: 0ms; /* ברירת מחדל */
+}
+
+/* דוגמה לעיכובים פר-סקשן */
+[data-anim="header"] { animation-delay: 200ms; }
+[data-anim="cta"]    { animation-delay: 300ms; }
+
+/* keyframes נוספים */
+@keyframes kf-zoom-fade {0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes kf-slide-right{0%{transform:translateX(-60px);opacity:0}100%{transform:translateX(0);opacity:1}}

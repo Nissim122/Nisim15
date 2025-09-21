@@ -118,6 +118,23 @@ features : {
   // ✅ דגלי האנימציה
   animationsEnabled: true,
 },
+features : {
+  video: true,
+  about: true,
+  recommendations: true,
+  contactWhatsApp: true,
+  facebookLink: true,
+  waze: false,
+  phone: true,
+  instagram: true,
+  mail: true,
+  tiktok: true,
+  sendEmail: true,
+  sendWhatsApp: false,
+
+  // ✅ דגלי האנימציה
+  animationsEnabled: true,
+},
 
   shareOptions: {
     email: true,

@@ -31,6 +31,30 @@
       return Array.from(document.querySelectorAll('[data-anim][data-anim-target="profile"]'));
     }
 
+    // --- NEW: שם האנימציה מה-DATA (ולא נוגעים ב-delay) ---
+    function applyProfileAnimationNameFromData() {
+      const map = window.cardData?.animations || {};
+      const fallback = "kf-profile-in"; // שם ברירת המחדל התואם ל-CSS שלך
+      getProfileNodes().forEach(node => {
+        // מאפשר גם הרחבה עתידית לפי data-anim-target, כרגע "profile"
+        const key = node.getAttribute("data-anim-target") || "profile";
+        const name = map[key] || map.profile || fallback;
+
+        if (name && name !== "none") {
+          // חשוב: לעקוף את ה־shorthand מה-CSS באמצעות animationName
+          node.style.animationName = name;
+          // במקרה שבעבר קבענו "none"
+          node.style.removeProperty("opacity");
+          node.style.removeProperty("transform");
+        } else {
+          // אם אין אנימציה לאלמנט הזה – וודא מצב סופי תקין
+          node.style.animationName = "none";
+          node.style.opacity = "1";
+          node.style.transform = "none";
+        }
+      });
+    }
+
     // --- אימות טעינת תמונות בפרופיל ---
     function profileImagesLoaded() {
       const nodes = getProfileNodes();
@@ -83,6 +107,9 @@
           });
         }
 
+        // --- NEW: ליישם שם האנימציה מה-DATA לפני הכל (חשוב לעקוף את ה-CSS) ---
+        applyProfileAnimationNameFromData();
+
         // החלת דיליי פר־אלמנט לפני ריצה
         applyPerElementDelays();
 
@@ -109,6 +136,8 @@
     window.addEventListener("pageshow", (ev) => {
       if (ev.persisted) {
         document.body.classList.remove("anim-ready");
+        // NEW: לוודא שהשם מיושם גם בחזרה מה-cache (למקרה של שינוי DATA)
+        applyProfileAnimationNameFromData();
         requestAnimationFrame(() =>
           requestAnimationFrame(() => document.body.classList.add("anim-ready"))
         );
@@ -121,6 +150,8 @@
     // --- אם הטאב היה מוסתר — לנסות שוב כשנראה ---
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible" && !document.body.classList.contains("anim-ready")) {
+        // NEW: ליישם שוב שם מה-DATA לפני armOnce (אם נחוץ)
+        applyProfileAnimationNameFromData();
         armOnce();
       }
     });
