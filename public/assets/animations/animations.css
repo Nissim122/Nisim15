@@ -1,34 +1,29 @@
 /* === Profile In – אנימציית כניסה לתמונת פרופיל === */
 
-/* נגישות: כיבוי אנימציות למעדיפים פחות תנועה */
+/* נגישות: כיבוי אנימציות + מצב סופי תקין */
 @media (prefers-reduced-motion: reduce){
   [data-anim]{ animation: none !important; transition: none !important; }
+  [data-anim][data-anim-target="profile"]{ opacity: 1 !important; transform: none !important; }
 }
 
-/* פאוזה ברירת מחדל – לא ירוץ עד שנוסף .anim-ready */
+/* ברירת מחדל: מוכנים אך על pause (Gate עדיין סגור) */
 [data-anim][data-anim-target="profile"]{
-  animation: kf-profile-in
-             var(--profile-in-duration, 700ms)
-             var(--profile-in-ease, cubic-bezier(.22,.61,.36,1))
-             both;
+  animation: kf-profile-in var(--profile-in-duration, 700ms) var(--profile-in-ease, cubic-bezier(.22,.61,.36,1)) both;
   animation-play-state: paused;
+  opacity: 0; /* מייצב פריים ראשון */
+  transform-origin: 50% 0%;
+}
+
+/* כשה-Gate (.anim-ready על ה-body) נפתח — מפעילים ורק אז מסמנים will-change */
+.anim-ready [data-anim][data-anim-target="profile"]{
+  animation-play-state: running;
   will-change: transform, opacity;
 }
 
-/* אם בכל זאת יש data-anim-delay, ה-JS ידרוס ל-inline style */
-[data-anim][data-anim-target="profile"][data-anim-delay]{
-  /* animation-delay: attr(data-anim-delay time);  ← לא מסתמך על זה */
-}
-
-/* כשה-Gate מוסיף .anim-ready — האנימציה תרוץ */
-.anim-ready [data-anim][data-anim-target="profile"]{
-  animation-play-state: running;
-}
-
-/* Keyframes */
 @keyframes kf-profile-in{
   0%   { transform: translate3d(0,-80px,0) scale(.92); opacity: 0; }
   60%  { transform: translate3d(0,  0,0)   scale(1);   opacity: 1; }
   75%  { transform: translate3d(0,-12px,0); }
-  100% { transform: translate3d(0,  0,0); }
+  100% { transform: translate3d(0,  0,0);   opacity: 1; } /* ← הוספתי */
 }
+

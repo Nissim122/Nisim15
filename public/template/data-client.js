@@ -117,7 +117,6 @@ features : {
 
   // ✅ דגלי האנימציה
   animationsEnabled: true,
-  animationStartDelayMs: 300 // אופציונלי: מכבד גם data-anim-delay על האלמנט
 },
 
   shareOptions: {
