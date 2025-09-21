@@ -111,12 +111,16 @@
   inset: 0; /* למלא את כל הכרטיס */
   z-index: 0;
   pointer-events: none;
+
+  /* ברירת מחדל – רקע רגיל (תמונה או fallback תכלת) */
   background-image: var(--card-bg-image, none);
+  background-color: var(--card-bg-fallback, #dff3ff);
+
   background-repeat: no-repeat;
   background-position: center top;
 
   /* Overscan: להגדיל קצת את גובה התמונה כדי שלא תיגמר בגלילה */
-  background-size: auto 120%; /* היה cover; 120% גובה נותן מרווח תנועה */
+  background-size: auto 120%;
 
   opacity: var(--card-bg-opacity, 1);
   filter: blur(var(--card-bg-blur, 0px));
@@ -130,3 +134,22 @@
   z-index: 1;
 }
 
+/* ✅ מצב נגישות: רקע לבן תמיד, ללא טפט/טשטוש/פרלקסה */
+body.accessibility-mode .card { background: #fff !important; }
+body.accessibility-mode .card .parallax-bg {
+  background: #fff !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* לכבד גם העדפת מערכת להפחתת תנועה/ניגודיות גבוהה */
+@media (prefers-reduced-motion: reduce) {
+  .card .parallax-bg {
+    background-position: center top !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}

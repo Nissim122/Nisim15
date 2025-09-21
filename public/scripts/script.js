@@ -1330,14 +1330,11 @@ function createVideoElement(container) {
   container.innerHTML = "";
   container.appendChild(videoElement);
 }
-
-
-// ✅ פקד נגישות – הפעלה/כיבוי מצב נגישות (עם שמירת מצב ו-ARIA)
 (() => {
   const accessibilityBtn = document.getElementById("accessibilityToggle");
   if (!accessibilityBtn) return;
 
-  // החלת המצב בפועל + עדכון ARIA + שמירה
+  // הפעל/כבה מצב נגישות
   const applyAccessibility = (on) => {
     if (on) {
       document.body.classList.add("accessibility-mode");
@@ -1350,19 +1347,26 @@ function createVideoElement(container) {
     }
     accessibilityBtn.setAttribute("aria-pressed", on ? "true" : "false");
     localStorage.setItem("accessibilityMode", on ? "1" : "0");
+
+    // כיבוי פרלקסה מיידי
+    const bg = document.querySelector(".card .parallax-bg");
+    if (bg) bg.style.backgroundPosition = "center top";
+    window.dispatchEvent(
+      new CustomEvent("parallax:toggle", { detail: { enabled: !on } })
+    );
   };
 
   // שחזור מצב אחרון
   const saved = localStorage.getItem("accessibilityMode") === "1";
   applyAccessibility(saved);
 
-  // קליק עכבר
+  // קליק כפתור
   accessibilityBtn.addEventListener("click", () => {
     const next = !document.body.classList.contains("accessibility-mode");
     applyAccessibility(next);
   });
 
-  // תמיכה במקלדת (Enter / Space)
+  // תמיכה במקלדת
   accessibilityBtn.setAttribute("tabindex", "0");
   accessibilityBtn.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " " || e.code === "Space") {
@@ -1372,6 +1376,7 @@ function createVideoElement(container) {
     }
   });
 })();
+
 
 
 
