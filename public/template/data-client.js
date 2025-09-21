@@ -118,23 +118,12 @@ features : {
   // ✅ דגלי האנימציה
   animationsEnabled: true,
 },
-features : {
-  video: true,
-  about: true,
-  recommendations: true,
-  contactWhatsApp: true,
-  facebookLink: true,
-  waze: false,
-  phone: true,
-  instagram: true,
-  mail: true,
-  tiktok: true,
-  sendEmail: true,
-  sendWhatsApp: false,
-
-  // ✅ דגלי האנימציה
-  animationsEnabled: true,
-},
+ animations: {
+    profile: "kf-profile-zoom-fade", // כאן שמים את השם החדש
+    header:  "kf-zoom-fade",      // אלמנט עם data-anim-target="header"
+    cta:     "kf-slide-right"     // אלמנט עם data-anim-target="cta"
+    // אם לא נגדיר מפתח → האלמנט לא יקבל אנימציה (animationName="none")
+  },
 
   shareOptions: {
     email: true,

@@ -44,3 +44,14 @@
 /* keyframes נוספים */
 @keyframes kf-zoom-fade {0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes kf-slide-right{0%{transform:translateX(-60px);opacity:0}100%{transform:translateX(0);opacity:1}}
+
+/* === Profile Zoom Fade – אלטרנטיבה לאנימציית פרופיל === */
+[data-anim][data-anim-target="profile"].anim-zoom-fade {
+  transform-origin: center center;
+}
+
+@keyframes kf-profile-zoom-fade {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
