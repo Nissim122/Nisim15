@@ -1,0 +1,34 @@
+/* === Profile In – אנימציית כניסה לתמונת פרופיל === */
+
+/* נגישות: כיבוי אנימציות למעדיפים פחות תנועה */
+@media (prefers-reduced-motion: reduce){
+  [data-anim]{ animation: none !important; transition: none !important; }
+}
+
+/* פאוזה ברירת מחדל – לא ירוץ עד שנוסף .anim-ready */
+[data-anim][data-anim-target="profile"]{
+  animation: kf-profile-in
+             var(--profile-in-duration, 700ms)
+             var(--profile-in-ease, cubic-bezier(.22,.61,.36,1))
+             both;
+  animation-play-state: paused;
+  will-change: transform, opacity;
+}
+
+/* אם בכל זאת יש data-anim-delay, ה-JS ידרוס ל-inline style */
+[data-anim][data-anim-target="profile"][data-anim-delay]{
+  /* animation-delay: attr(data-anim-delay time);  ← לא מסתמך על זה */
+}
+
+/* כשה-Gate מוסיף .anim-ready — האנימציה תרוץ */
+.anim-ready [data-anim][data-anim-target="profile"]{
+  animation-play-state: running;
+}
+
+/* Keyframes */
+@keyframes kf-profile-in{
+  0%   { transform: translate3d(0,-80px,0) scale(.92); opacity: 0; }
+  60%  { transform: translate3d(0,  0,0)   scale(1);   opacity: 1; }
+  75%  { transform: translate3d(0,-12px,0); }
+  100% { transform: translate3d(0,  0,0); }
+}

@@ -56,6 +56,8 @@
   <script src="/scripts/script.js" defer></script>
   <script src="/scripts/policy-router.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script src="assets/animations/animations.js"></script>
 
 </head>
 <body class="theme-modern"
@@ -101,20 +103,23 @@
       </div>
     </header>
 
-    <!-- תוכן ראשי -->
-    <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
-      <div class="profile-wrapper">
-        <img class="profile-img"
-             data-field="profileImage"
-             src="#"
-             alt=""
-             data-field-alt="profileImageAlt"
-             width="240" height="240"
-             decoding="async"
-             loading="lazy"
-             tabindex="0" />
-      </div>
+<main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
 
+  <!-- מעטפת אנימציה -->
+  <div class="anim-wrapper" data-anim data-anim-target="profile" data-anim-delay="300ms">
+    <div class="profile-wrapper">
+      <img class="profile-img"
+           data-field="profileImage"
+           src="#"
+           alt=""
+           data-field-alt="profileImageAlt"
+           width="240" height="240"
+           decoding="async"
+           loading="lazy"
+           tabindex="0" />
+    </div>
+
+    
       <!-- H1 יחיד ברור לנושא הדף -->
       <div class="name-role" tabindex="0">
         <h1 id="pageMainTitle" class="main-title" data-field="fullName">שם מלא</h1>

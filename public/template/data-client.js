@@ -16,6 +16,10 @@ window.cardData = {
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
+   features: {
+    animationsEnabled: true,      // ← אם true האנימציות ירוצו
+    animationStartDelayMs: 0      // דיליי גלובלי לפני תחילת כל האנימציות (ms)
+  },
 
 
   // ✅ רשתות חברתיות
