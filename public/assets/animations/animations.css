@@ -102,7 +102,9 @@
   position: relative;
   overflow: hidden; /* כדי שהטפט לא יברח מחוץ לכרטיס */
   z-index: 1;       /* התוכן מעל שכבת הרקע הכללית */
+  min-height: 100vh; /* אופציונלי: לוודא שהכרטיס תמיד לפחות בגובה המסך */
 }
+
 /* שכבת טפט פרלקסה בתוך כרטיס */
 .card .parallax-bg {
   position: absolute;
@@ -110,13 +112,16 @@
   z-index: 0;
   pointer-events: none;
   background-image: var(--card-bg-image, none);
-  background-size: cover;
-  background-position: center top;
   background-repeat: no-repeat;
+  background-position: center top;
+
+  /* Overscan: להגדיל קצת את גובה התמונה כדי שלא תיגמר בגלילה */
+  background-size: auto 120%; /* היה cover; 120% גובה נותן מרווח תנועה */
+
   opacity: var(--card-bg-opacity, 1);
   filter: blur(var(--card-bg-blur, 0px));
   will-change: background-position;
-  transition: background-position 0.1s linear;
+  transition: background-position 0.08s linear;
 }
 
 /* כל שאר התוכן בכרטיס תמיד מעל */
@@ -125,9 +130,3 @@
   z-index: 1;
 }
 
-/* ערכי ברירת מחדל לנושא modern */
-body.theme-modern {
-  --card-bg-image: url("/assets/bg/test.jpg");
-  --card-bg-opacity: 1;
-  --card-bg-blur: 0px;
-}
