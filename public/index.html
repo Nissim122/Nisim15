@@ -53,11 +53,19 @@
   <link rel="stylesheet" href="/assets/base.css">
   <link rel="stylesheet" href="/assets/media/test/styleClix.css">
   <link rel="stylesheet" href="/assets/themes.css"> <!-- נטען אחרון כדי לדרוס -->
+  <link rel="stylesheet" href="/assets/animations/animations.css"> <!-- אחרון -->
+
   <script src="/scripts/script.js" defer></script>
   <script src="/scripts/policy-router.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <script src="assets/animations/animations.js"></script>
+<script>
+  window.isInitialized = true;
+  document.dispatchEvent(new Event("cardReady"));
+</script>
+
+<!-- ✅ זה חייב להיות אחרון -->
+<script src="/assets/animations/animations.js" defer></script>
 
 </head>
 <body class="theme-modern"
@@ -105,19 +113,20 @@
 
 <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
 
-  <!-- מעטפת אנימציה -->
-  <div class="anim-wrapper" data-anim data-anim-target="profile" data-anim-delay="300ms">
-    <div class="profile-wrapper">
-      <img class="profile-img"
-           data-field="profileImage"
-           src="#"
-           alt=""
-           data-field-alt="profileImageAlt"
-           width="240" height="240"
-           decoding="async"
-           loading="lazy"
-           tabindex="0" />
-    </div>
+<!-- מעטפת אחת בלבד עם data-anim -->
+<div class="profile-wrapper" data-anim data-anim-target="profile" data-anim-delay="300ms">
+  <div class="anim-wrapper">
+    <img class="profile-img"
+         data-field="profileImage"
+         src="#"
+         alt=""
+         data-field-alt="profileImageAlt"
+         width="240" height="240"
+         decoding="async"
+         loading="lazy"
+         tabindex="0" />
+  </div>
+</div>
 
     
       <!-- H1 יחיד ברור לנושא הדף -->

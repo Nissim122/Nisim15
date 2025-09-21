@@ -101,20 +101,24 @@ twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
 
   },
 
-  features: {
-    video: true,
-    about: true,
-    recommendations: true,
-    contactWhatsApp: true,
-    facebookLink: true,
-    waze: false,
-    phone: true,
-    instagram: true,
-    mail: true,
-    tiktok: true,
-    sendEmail: true,
-    sendWhatsApp: false
-  },
+features : {
+  video: true,
+  about: true,
+  recommendations: true,
+  contactWhatsApp: true,
+  facebookLink: true,
+  waze: false,
+  phone: true,
+  instagram: true,
+  mail: true,
+  tiktok: true,
+  sendEmail: true,
+  sendWhatsApp: false,
+
+  // ✅ דגלי האנימציה
+  animationsEnabled: true,
+  animationStartDelayMs: 300 // אופציונלי: מכבד גם data-anim-delay על האלמנט
+},
 
   shareOptions: {
     email: true,
