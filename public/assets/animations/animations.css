@@ -97,3 +97,24 @@
 /* keyframes כלליים */
 @keyframes kf-zoom-fade { 0%{transform:scale(.7);opacity:0} 100%{transform:scale(1);opacity:1} }
 @keyframes kf-slide-right{ 0%{transform:translateX(-60px);opacity:0} 100%{transform:translateX(0);opacity:1} }
+
+/* === אפקט פרלקסה בגלילה (Parallax Scroll) === */
+.parallax-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--card-bg-image, none);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 0;
+  opacity: var(--card-bg-opacity, 1);
+  filter: blur(var(--card-bg-blur, 0px));
+  will-change: background-position;
+  transition: background-position 0.1s linear;
+}
+
+/* דוגמת וריאנטים – אם נרצה לבחור מהירות */
+.parallax-slow  { --scroll-factor: 0.2; }
+.parallax-medium{ --scroll-factor: 0.3; } /* ברירת מחדל */
+.parallax-fast  { --scroll-factor: 0.5; }

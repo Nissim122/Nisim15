@@ -155,7 +155,72 @@
         armOnce();
       }
     });
+
+    // === BG PARALLAX (single, idempotent, managed by animations.js) ===
+    function initParallaxBG(){
+      try {
+        const cfg  = (window.cardData && window.cardData.theme && window.cardData.theme.bg) || {};
+        const root = document.documentElement;
+        const bg   = document.querySelector(".parallax-bg");
+        if (!bg) return;
+
+        // הזרקת משתני CSS מתוך DATA (אם סופקו)
+        if (cfg.url)             root.style.setProperty("--card-bg-image", `url("${cfg.url}")`);
+        if (cfg.positionX)       root.style.setProperty("--card-bg-position-x", String(cfg.positionX));
+        if (cfg.positionY)       root.style.setProperty("--card-bg-position-y", String(cfg.positionY));
+        if (cfg.size)            root.style.setProperty("--card-bg-size", String(cfg.size));
+        if (cfg.repeat)          root.style.setProperty("--card-bg-repeat", String(cfg.repeat));
+        if (cfg.opacity != null) root.style.setProperty("--card-bg-opacity", String(cfg.opacity));
+        if (cfg.blur)            root.style.setProperty("--card-bg-blur", String(cfg.blur));
+        if (cfg.scrollFactor != null) bg.style.setProperty("--scroll-factor", String(cfg.scrollFactor));
+
+        // מניעת רישום כפול של מאזינים
+        if (bg.__parallaxBound) {
+          requestAnimationFrame(apply);
+          return;
+        }
+
+        const getFactor = () =>
+          parseFloat(getComputedStyle(bg).getPropertyValue("--scroll-factor")) || 0.3;
+
+        let rafId = null;
+        function apply(){
+          const offset = window.scrollY * getFactor();
+          bg.style.backgroundPosition = `center ${offset}px`;
+          rafId = null;
+        }
+        function onScroll(){
+          if (rafId == null) rafId = requestAnimationFrame(apply);
+        }
+
+        // הפעלה ראשונית + מאזינים
+        apply();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", () => requestAnimationFrame(apply), { passive: true });
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") requestAnimationFrame(apply);
+        });
+
+        bg.__parallaxBound = true;
+      } catch (e) {
+        console.warn("Anim BG Parallax init error:", e);
+      }
+    }
+
+    // הפעלה: אם cardReady כבר נורה → להפעיל מיד; אחרת פעם אחת כשיינתן
+    if (window.__cardReadyFired) {
+      initParallaxBG();
+    } else {
+      document.addEventListener("cardReady", initParallaxBG, { once: true });
+    }
+
+    // חזרה מ-BFCache: לרענן פרלקסה
+    window.addEventListener("pageshow", (ev) => {
+      if (ev.persisted) initParallaxBG();
+    });
+
   } catch (e) {
     console.warn("Animations init error:", e);
   }
+
 })();

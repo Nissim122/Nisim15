@@ -2,11 +2,24 @@ window.cardData = {
   fullName: "Clix Marketing",
   role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
-  // ✅ Title & Favicon
+theme: {
+  bg: {
+    url: "/assets/bg/test.jpg",
+    size: "cover",         // "contain" או יחידות
+    repeat: "no-repeat",   // repeat-x / repeat-y
+    positionX: "center",   // "left"/"right"/"50%"
+    positionY: "0px",      // "50%" / "20px" וכו'
+    opacity: 1,            // 0–1
+    blur: "0px",           // למשל "2px"
+    scrollFactor: 0.3      // מהירות הפרלקסה (0.2 איטי, 0.5 מהיר)
+  }
+},
+
+  /* ✅ Title & Favicon */
   pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
   favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
 
-  // ✅ פרטי קשר
+  /* ✅ פרטי קשר */
   phone: "053-2407-762",
   email: "nisimelec77@gmail.com",
   phoneDigits: "532407762",
@@ -16,36 +29,58 @@ window.cardData = {
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
-   features: {
-    animationsEnabled: true,      // ← אם true האנימציות ירוצו
-    animationStartDelayMs: 0      // דיליי גלובלי לפני תחילת כל האנימציות (ms)
+
+  /* ✅ פיצ'רים + דגלי אנימציה (מאוחד) */
+  features: {
+    video: true,
+    about: true,
+    recommendations: true,
+    contactWhatsApp: true,
+    facebookLink: true,
+    waze: false,
+    phone: true,
+    instagram: true,
+    mail: true,
+    tiktok: true,
+    sendEmail: true,
+    sendWhatsApp: false,
+
+    animationsEnabled: true,       // ← מדליק שכבת האנימציות
+    animationStartDelayMs: 0       // דיליי גלובלי לכל האנימציות (ms)
   },
 
+  /* ✅ מיפוי אנימציות לפי target */
+  animations: {
+    profile: "kf-profile-slide-in-left", // data-anim-target="profile"
+    header:  "kf-zoom-fade",             // data-anim-target="header"
+    cta:     "kf-slide-right"            // data-anim-target="cta"
+    // אם target לא מוגדר כאן → animationName="none"
+  },
 
-  // ✅ רשתות חברתיות
+  /* ✅ רשתות חברתיות */
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
   facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
+  youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
   tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
 
-  // ✅ טקסטים לטפסים
+  /* ✅ טקסטים לטפסים */
   submitText: "שלח לוואטסאפ",
   btnEmailText: "תחזרו אלי",
 
-  // ✅ לוגו ותמונת פרופיל עם alt
+  /* ✅ לוגו/פרופיל */
   logoSrc: "/assets/logo/myLogo.jpg",
   logoAlt: "לוגו של Clix Marketing",
   profileImage: "/assets/logo/myLogo.jpg",
   profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
-  // ✅ SEO בסיסי
+  /* ✅ SEO בסיסי */
   metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות החברתיות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות עם Clix Marketing.",
   metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
   canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
   sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
-  // ✅ Open Graph
+  /* ✅ Open Graph */
   ogType: "website",
   ogTitle: "כרטיסי ביקור דיגיטליים – Clix Marketing",
   ogDescription: "כל המידע של העסק שלך במקום אחד: יצירת קשר, וידאו, המלצות ושיתוף. נבנה מהר, נראה מצוין, עובד בשבילך.",
@@ -53,13 +88,13 @@ youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&p
   ogImageAlt: "לוגו של Clix Marketing",
   ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
 
-  // ✅ Twitter Cards
+  /* ✅ Twitter Cards */
   twitterCard: "summary_large_image",
   twitterTitle: "Clix Marketing – כרטיסי ביקור דיגיטליים לעסקים",
   twitterDescription: "בנו כרטיס ביקור דיגיטלי ממיר וקדמו את העסק עם פתרונות חכמים של Clix Marketing.",
-twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+  twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
 
-  // ✅ Structured Data – Schema.org JSON-LD
+  /* ✅ Structured Data – JSON-LD */
   schema: {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -68,9 +103,7 @@ twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
     "description": "Clix Marketing מתמחה בכרטיסי ביקור דיגיטליים לעסקים קטנים, קידום ממומן ובניית נוכחות דיגיטלית מקצועית.",
     "url": "https://www.clix-marketing.co.il",
     "logo": "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
-    "image": [
-      "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg"
-    ],
+    "image": ["https://www.clix-marketing.co.il/assets/logo/myLogo.jpg"],
     "telephone": "+972-53-2407-762",
     "priceRange": "$$",
     "areaServed": { "@type": "Country", "name": "IL" },
@@ -83,48 +116,21 @@ twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
       "addressCountry": "IL"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
-        "opens": "09:00",
-        "closes": "19:00"
-      }
-    ],
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }],
     "sameAs": [
-  "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-  "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-  "https://youtube.com/@nisimbeng",
-  "https://www.tiktok.com/@clix_beauty_cards"
-]
-
-
+      "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+      "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+      "https://youtube.com/@nisimbeng",
+      "https://www.tiktok.com/@clix_beauty_cards"
+    ]
   },
 
-features : {
-  video: true,
-  about: true,
-  recommendations: true,
-  contactWhatsApp: true,
-  facebookLink: true,
-  waze: false,
-  phone: true,
-  instagram: true,
-  mail: true,
-  tiktok: true,
-  sendEmail: true,
-  sendWhatsApp: false,
-
-  // ✅ דגלי האנימציה
-  animationsEnabled: true,
-},
- animations: {
-    profile: "kf-profile-slide-in-left",  // או kf-profile-drop-tech / kf-profile-matrix-fade / kf-profile-futuristic-drop
-    header:  "kf-zoom-fade",      // אלמנט עם data-anim-target="header"
-    cta:     "kf-slide-right"     // אלמנט עם data-anim-target="cta"
-    // אם לא נגדיר מפתח → האלמנט לא יקבל אנימציה (animationName="none")
-  },
-
+  /* ✅ שיתוף */
   shareOptions: {
     email: true,
     whatsapp: true,
@@ -134,6 +140,7 @@ features : {
     telegram: true
   },
 
+  /* ✅ שדות טופס */
   fields: {
     primary: {
       key: "fullName",
