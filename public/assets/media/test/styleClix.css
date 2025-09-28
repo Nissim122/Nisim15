@@ -4,12 +4,12 @@
 :root {
   /* קיבוע גובה האזור העליון */
   --header-height: 60px;  
-          /* שים כאן חצי מהגובה שהיה קודם בפיקסלים */
-            --icon-button-bg: transparent;
+  --icon-button-bg: transparent;
 
 
   /* התמונה תמלא את הגובה של הקונטיינר */
   --header-img-height: 100%;
+  
 
   /* שאר ה־overrides שביקשת (לא חובה לשינוי הגובה) */
   --name-role-font-family: var(--font-family-display);
