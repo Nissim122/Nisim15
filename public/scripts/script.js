@@ -607,6 +607,112 @@ if (data.googleAnalyticsId) {
   bootstrap();
 })();
 
+/* ✅ GA4 – Recommendations (Swiper) Tracking */
+(function trackRecommendationsGA4(){
+  if (window.__recGAInitDone__) return;
+  window.__recGAInitDone__ = true;
+
+  const onReady = (fn) =>
+    (document.readyState === "loading")
+      ? document.addEventListener("DOMContentLoaded", fn, { once: true })
+      : fn();
+
+  function sendGA(eventName, payload){
+    if (typeof window.gtag !== "function") return;
+    try {
+      const debug = (typeof isLocal !== "undefined" && isLocal) ? { debug_mode: true } : {};
+      window.gtag("event", eventName, { ...payload, ...debug });
+      console.warn("📡 GA:", ["event", eventName, payload]);
+    } catch(_){}
+  }
+
+  function getSlideLabel(slideEl, fallbackIndex){
+    const aria = slideEl?.getAttribute?.("aria-label");
+    if (aria) return aria;
+    const did = slideEl?.getAttribute?.("data-rec-id");
+    if (did) return `rec:${did}`;
+    return `Slide ${fallbackIndex}`;
+  }
+
+  onReady(async () => {
+    const section = document.querySelector('section.recommendations-section[data-analytics="recommendations"]');
+    if (!section) return;
+
+    const swiperContainer = section.querySelector('.swiper.recommendations-swiper[data-analytics="recommendationsCarousel"]');
+    const paginationEl    = section.querySelector('.swiper-pagination.recommendations-pagination[data-analytics="recommendationsPagination"]');
+    const wrapperEl       = section.querySelector('#recommendationSlides.swiper-wrapper');
+    if (!swiperContainer || !paginationEl || !wrapperEl) return;
+
+    // חכה ל־Swiper אם נטען מאוחר
+    let tries = 0;
+    while (typeof window.Swiper === "undefined" && tries++ < 80) { await new Promise(r=>setTimeout(r,125)); }
+    if (typeof window.Swiper === "undefined") { console.warn("Swiper not found – skip GA tracking."); return; }
+
+    // קח אינסטנס קיים (el.swiper) או אתחל חדש, ואז חשוף ל־window
+    let recSwiper = window.recommendationsSwiper || swiperContainer.swiper || null;
+    if (!recSwiper) {
+      recSwiper = new Swiper(swiperContainer, {
+        pagination: { el: paginationEl, clickable: true }
+      });
+    }
+    window.recommendationsSwiper = recSwiper;
+
+    // שינוי שקופית – Swipe/Drag/Keyboard/Autoplay
+    recSwiper.on("slideChange", (sw) => {
+      const realIndex  = sw.realIndex ?? sw.activeIndex ?? 0;
+      const humanIndex = realIndex + 1;
+      const total      = sw.slides?.length || wrapperEl.children.length || 0;
+      const slideEl    = sw.slides?.[sw.activeIndex];
+      const label      = getSlideLabel(slideEl, humanIndex);
+
+      sendGA("recommendation_slide", {
+        event_category: "Recommendations",
+        interaction_type: "slideChange",
+        slide_index: humanIndex,
+        slide_total: total,
+        slide_label: label
+      });
+    });
+
+    // צפייה ראשונית
+    const fireInitView = (sw) => {
+      const realIndex  = sw.realIndex ?? sw.activeIndex ?? 0;
+      const humanIndex = realIndex + 1;
+      const slideEl    = sw.slides?.[sw.activeIndex];
+      const label      = getSlideLabel(slideEl, humanIndex);
+      sendGA("recommendation_slide", {
+        event_category: "Recommendations",
+        interaction_type: "initView",
+        slide_index: humanIndex,
+        slide_label: label
+      });
+    };
+    if (recSwiper.initialized === true) { fireInitView(recSwiper); }
+    else { recSwiper.on("afterInit", fireInitView); }
+
+    // קליק על נקודת פגינציה – מתעד מקור פעולה
+    paginationEl.addEventListener("click", () => {
+      queueMicrotask(() => {
+        const sw         = window.recommendationsSwiper || swiperContainer.swiper;
+        if (!sw) return;
+        const realIndex  = sw.realIndex ?? sw.activeIndex ?? 0;
+        const humanIndex = realIndex + 1;
+        const slideEl    = sw.slides?.[sw.activeIndex];
+        const label      = getSlideLabel(slideEl, humanIndex);
+
+        sendGA("recommendation_slide", {
+          event_category: "Recommendations",
+          interaction_type: "paginationClick",
+          slide_index: humanIndex,
+          slide_label: label
+        });
+      });
+    }, { passive: true });
+        console.log("🟢 Recommendations GA tracker ready.");
+
+  });
+})();
+
 /* ✅ GA4 – Track ANY click inside contact form */
 (function trackAllContactFormClicks(){
   document.addEventListener("DOMContentLoaded", () => {
