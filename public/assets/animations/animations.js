@@ -221,30 +221,6 @@ if (window.__cardReadyFired) {
   document.addEventListener("cardReady", initParallaxBG, { once: true });
 }
 
-// BFCache return: refresh parallax
-window.addEventListener("pageshow", (ev) => {
-  if (ev.persisted) initParallaxBG();
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const bg = document.querySelector(".card .parallax-bg");
-  if (!bg) return;
-
-  // פקטור תזוזה – שלוט דרך CSS var (--scroll-factor)
-  const getFactor = () =>
-    parseFloat(getComputedStyle(bg).getPropertyValue("--scroll-factor")) || 0.3;
-
-  function updateParallax() {
-    const offset = window.scrollY * getFactor();
-    bg.style.backgroundPosition = `center ${-offset}px`;
-  }
-
-  // להריץ מיד + לעדכן בגלילה
-  updateParallax();
-  window.addEventListener("scroll", updateParallax, { passive: true });
-  window.addEventListener("resize", updateParallax);
-});
-
-
 
 
 

@@ -54,7 +54,6 @@ theme: {
     profile: "kf-profile-slide-in-left", // data-anim-target="profile"
     header:  "kf-zoom-fade",             // data-anim-target="header"
     cta:     "kf-slide-right"            // data-anim-target="cta"
-    // אם target לא מוגדר כאן → animationName="none"
   },
 
   /* ✅ רשתות חברתיות */
@@ -74,61 +73,111 @@ theme: {
   profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
   /* ✅ SEO בסיסי */
-  metaDescription: "כרטיסי ביקור דיגיטליים לעסקים: בנייה מקצועית, חיבור מהיר לוואטסאפ, טפסי יצירת קשר, המלצות ושיתוף לרשתות החברתיות. פתרון מלא לנוכחות דיגיטלית ממוקדת המרות עם Clix Marketing.",
-  metaKeywords: "כרטיס ביקור דיגיטלי, דיגיטל לעסקים, טופס וואטסאפ, המלצות לקוחות, שיתוף ברשתות, Clix Marketing, קידום ממומן",
+metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
+metaKeywords: "כרטיס ביקור דיגיטלי NFC, דוגמאות כרטיס ביקור דיגיטלי, מה זה כרטיס ביקור דיגיטלי, כרטיס דיגיטלי לעסקים, כרטיס ביקור דיגיטלי בזול, כרטיס ביקור דיגיטלי מעוצב, כרטיס ביקור דיגיטלי עם שיתוף, כרטיס ביקור דיגיטלי 2025, כרטיס ביקור דיגיטלי היתרונות",
   canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
   metaRobots: "index, follow",
   sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
   /* ✅ Open Graph */
   ogType: "website",
-  ogTitle: "כרטיסי ביקור דיגיטליים – Clix Marketing",
-  ogDescription: "כל המידע של העסק שלך במקום אחד: יצירת קשר, וידאו, המלצות ושיתוף. נבנה מהר, נראה מצוין, עובד בשבילך.",
+ogTitle: "כרטיס ביקור דיגיטלי – הדור החדש לעסקים",
+ogDescription: "כרטיס דיגיטלי שמופיע בגוגל, תומך ב-NFC, כולל דוגמאות מעוצבות ושיתוף קל. זול יותר מאתר – ומוכן בשבילך במהירות.",
   ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
   ogImageAlt: "לוגו של Clix Marketing",
   ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
 
   /* ✅ Twitter Cards */
   twitterCard: "summary_large_image",
-  twitterTitle: "Clix Marketing – כרטיסי ביקור דיגיטליים לעסקים",
-  twitterDescription: "בנו כרטיס ביקור דיגיטלי ממיר וקדמו את העסק עם פתרונות חכמים של Clix Marketing.",
+twitterTitle: "כרטיס ביקור דיגיטלי NFC – זול, מהיר ומעוצב",
+twitterDescription: "גלה דוגמאות לכרטיסי ביקור דיגיטליים שמופיעים בגוגל, תומכים ב־NFC ונותנים לעסק שלך יתרון אמיתי.",
   twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+/* ✅ Structured Data – JSON-LD (Focused on Digital Business Card + NFC) */
+schema: {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "name": "Clix Marketing",
+  "alternateName": "קליקס מרקטינג",
+  "inLanguage": "he-IL",
 
-  /* ✅ Structured Data – JSON-LD */
-  schema: {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Clix Marketing",
-    "alternateName": "קליקס מרקטינג",
-    "description": "Clix Marketing מתמחה בכרטיסי ביקור דיגיטליים לעסקים קטנים, קידום ממומן ובניית נוכחות דיגיטלית מקצועית.",
-    "url": "https://www.clix-marketing.co.il",
-    "logo": "https://www.clix-marketing.co.il/assets/logo/myLogo.jpg",
-    "image": ["https://www.clix-marketing.co.il/assets/logo/myLogo.jpg"],
-    "telephone": "+972-53-2407-762",
-    "priceRange": "$$",
-    "areaServed": { "@type": "Country", "name": "IL" },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "מושב חמד",
-      "addressLocality": "חמד",
-      "addressRegion": "מרכז",
-      "postalCode": "60965",
-      "addressCountry": "IL"
-    },
-    "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
-      "opens": "09:00",
-      "closes": "19:00"
-    }],
-    "sameAs": [
-      "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-      "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-      "https://youtube.com/@nisimbeng",
-      "https://www.tiktok.com/@clix_beauty_cards"
-    ]
+  "description": "Clix Marketing מתמחה בבניית כרטיסי ביקור דיגיטליים לעסקים – כולל דוגמאות חיות, תמיכה ב-NFC לשיתוף בלחיצה, התאמה אישית לעסק והגדרה לנראות בגוגל.",
+  "url": "https://clix-marketing.co.il",
+  "logo": "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+  "image": ["https://clix-marketing.co.il/assets/logo/myLogo.jpg"],
+  "telephone": "+972-53-2407-762",
+  "priceRange": "$$",
+
+  "areaServed": { "@type": "Country", "name": "IL" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "מושב חמד",
+    "addressLocality": "חמד",
+    "addressRegion": "מרכז",
+    "postalCode": "60965",
+    "addressCountry": "IL"
   },
+  "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
+
+  /* 🔎 Keywords & Topics */
+  "keywords": [
+    "כרטיס ביקור דיגיטלי",
+    "כרטיס ביקור דיגיטלי NFC",
+    "דוגמאות כרטיס ביקור דיגיטלי",
+    "מה זה כרטיס ביקור דיגיטלי",
+    "כרטיס דיגיטלי לעסקים",
+    "כרטיס ביקור דיגיטלי בזול",
+    "כרטיס ביקור דיגיטלי מעוצב",
+    "כרטיס ביקור דיגיטלי עם שיתוף",
+    "כרטיס ביקור דיגיטלי 2025",
+    "כרטיס ביקור דיגיטלי היתרונות"
+  ],
+  "knowsAbout": [
+    "NFC לשיתוף כרטיס ביקור דיגיטלי",
+    "הופעה בגוגל לכרטיסים דיגיטליים",
+    "דוגמאות לכרטיסי ביקור דיגיטליים",
+    "התאמה אישית לעסק",
+    "UX במובייל לעסקים קטנים"
+  ],
+
+  /* 🧩 Service Offer */
+  "makesOffer": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "בניית כרטיס ביקור דיגיטלי (כולל NFC)",
+      "category": "Digital Business Card",
+      "provider": { "@type": "Organization", "name": "Clix Marketing" },
+      "areaServed": "IL",
+      "description": "כרטיס ביקור דיגיטלי מעוצב שמופיע בגוגל, כולל דוגמאות חיות, תמיכה ב-NFC, התאמה אישית והגדרת שיתוף בלחיצה אחת."
+    }
+  },
+
+  /* 🕘 Opening Hours */
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  }],
+
+  /* 🔗 Social */
+  "sameAs": [
+    "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+    "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+    "https://youtube.com/@nisimbeng",
+    "https://www.tiktok.com/@clix_beauty_cards"
+  ],
+
+  /* ▶️ Helpful for link previews / actions */
+  "potentialAction": {
+    "@type": "ViewAction",
+    "target": "https://clix-marketing.co.il/template/template-generic.html",
+    "name": "צפה בכרטיס ביקור דיגיטלי לדוגמה"
+  },
+  "brand": { "@type": "Brand", "name": "Clix Marketing" }
+},
+
 
   /* ✅ שיתוף */
   shareOptions: {
