@@ -61,6 +61,10 @@ features: {
   logoAlt: "לוגו של Clix Marketing",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
   profileImageAlt: "תמונת פרופיל של Clix Marketing",
+    /* ✅ טקסטים לטפסים */
+    
+  submitText: "שליחת הודעה",
+  btnEmailText: "תחזרו אלי",
 
   
   /* ✅ SEO בסיסי */
@@ -190,8 +194,8 @@ features: {
   instagram: true,
   mail : true,
 
-  sendEmail: true,
-  sendWhatsApp: false,
+  sendEmail: false,
+  sendWhatsApp: true,
 },
     shareOptions: {
     email: true,
