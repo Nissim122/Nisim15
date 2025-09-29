@@ -79,33 +79,41 @@
     <div class="loader-spinner" aria-hidden="true"></div>
     <p class="loader-text" data-field="loaderText">טוען...</p>
   </div>
+<div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
+  <div class="parallax-bg" aria-hidden="true"></div>
 
-  <!-- כרטיס (Main) עם ייחוס לכותרת הראשית -->
-  <div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
-      <div class="parallax-bg" aria-hidden="true"></div>
+  <!-- ✅ כותרת ראשית ל-SEO (מוסתרת ויזואלית, נשארת לגוגל ונגישות) -->
+  <h1 id="pageMainTitle" data-field="h1Title" class="visually-hidden">כרטיס ביקור דיגיטלי</h1>
+  <script>
+    (function(){
+      const d = window.cardData || {};
+      const el = document.querySelector('[data-field="h1Title"]');
+      if (el) {
+        el.textContent = d.fullName 
+          ? d.fullName + (d.role ? ' – ' + d.role : '')
+          : 'כרטיס ביקור דיגיטלי';
+      }
+    })();
+  </script>
 
+  <!-- ✅ אזור עליון כ־Header -->
+  <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
+    <!-- <div class="logo-box">
+      <a href="/" aria-label="דף הבית">
+        <img 
+          class="logo-img" 
+          data-field="logoSrc" 
+          src="assets/logo-fallback.png" 
+          alt="לוגו העסק – כרטיס ביקור דיגיטלי" 
+          tabindex="3" 
+        />
+      </a>
+    </div>
+    <hr class="gold-line" /> -->
+  </header>
 
-    <!-- ✅ כותרת ראשית ל-SEO -->
-    <h1 id="pageMainTitle" data-field="h1Title">כרטיס ביקור דיגיטלי</h1>
-    <script>
-      (function(){
-        const d = window.cardData || {};
-        const el = document.querySelector('[data-field="h1Title"]');
-        if (el) {
-          el.textContent = d.fullName 
-            ? d.fullName + (d.role ? ' – ' + d.role : '')
-            : 'כרטיס ביקור דיגיטלי';
-        }
-      })();
-    </script>
-
-    <!-- אזור עליון כ־Header -->
-    <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
-      
-    </header>
-
-<main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
-
+  <!-- ✅ תוכן ראשי -->
+  <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
 <!-- מעטפת אחת בלבד עם data-anim -->
 <div class="profile-wrapper" data-anim data-anim-target="profile">
   <div class="anim-wrapper">
