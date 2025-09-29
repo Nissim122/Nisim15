@@ -19,7 +19,7 @@ pageTitle: " רזי החן | כרטיס ביקור",
 
   logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
-youtubeLink: "https://www.youtube.com/embed/9YZjFtFK6lc?rel=0&modestbranding=1&playsinline=1",
+youtubeLink: "https://www.youtube.com/embed/i9PvrYbA-zw?rel=0&modestbranding=1&playsinline=1",
 
  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 
