@@ -1,213 +1,154 @@
 window.cardData = {
-fullName: "רזי החן",
-role: "  סטודיו ואקדמיה לציפורניים",
+  fullName: "רזי החן",
+  role: "סטודיו ואקדמיה לציפורניים",
 
-
-// שדה ייעודי לכותרת האתר
-pageTitle: " רזי החן | כרטיס ביקור",
-  favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
-
+  // שדה ייעודי לכותרת האתר
+  pageTitle: "רזי החן | כרטיס ביקור",
+  favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
 
   phone: "054-8787-702",
   email: "yaelartgallery@gmail.com",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
-  company: "Clix Marketing",
+  company: "אקדמיה רזי החן",
   cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
   vcard: { filename: "contact.vcf" },
 
-  
-features: {
-  
-
-  video: true,
-  about: true,
-  recommendations: true,
-
-  contactWhatsApp: true, 
-  facebookLink: true,
-  waze: true,
-  phone: true,
-  instagram: true,
-  mail : true,
-
-  sendEmail: true,
-  sendWhatsApp: false,
-},
-    shareOptions: {
-    email: true,
-    whatsapp: true,
-    linkedin: false,
-    twitter: false,
-    facebook: true,
-    telegram: true,
-    instagram: true   
-  },
-  
-
-
-
-
-
+  /* ✅ קישורים */
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
-   facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
-   youtubeLink: "https://www.youtube.com/embed/i9PvrYbA-zw?rel=0&modestbranding=1&playsinline=1",
+  facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+  youtubeLink: "https://www.youtube.com/embed/i9PvrYbA-zw?rel=0&modestbranding=1&playsinline=1",
   tiktokLink: "https://www.tiktok.com/@yael_artgallery?_t=8ZlqY3XJH7V&_r=1",
-
 
   /* ✅ לוגו/פרופיל */
   logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
-  logoAlt: "לוגו של Clix Marketing",
+  logoAlt: "לוגו רזי החן – אקדמיה לציפורניים",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
-  profileImageAlt: "תמונת פרופיל של Clix Marketing",
-    /* ✅ טקסטים לטפסים */
-    
+  profileImageAlt: "סמל אקדמיה רזי החן",
+
+  /* ✅ טקסטים לטפסים */
   submitText: "שליחת הודעה",
   btnEmailText: "תחזרו אלי",
 
-  
-  /* ✅ SEO בסיסי */
-metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
-metaKeywords: "כרטיס ביקור דיגיטלי NFC, דוגמאות כרטיס ביקור דיגיטלי, מה זה כרטיס ביקור דיגיטלי, כרטיס דיגיטלי לעסקים, כרטיס ביקור דיגיטלי בזול, כרטיס ביקור דיגיטלי מעוצב, כרטיס ביקור דיגיטלי עם שיתוף, כרטיס ביקור דיגיטלי 2025, כרטיס ביקור דיגיטלי היתרונות",
-  canonicalHref: "https://clix-marketing.co.il/cards/yaelNails/yael.html",
-  metaRobots: "index, follow",
-  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
-  
-  /* ✅ Open Graph */
-  ogType: "website",
-ogTitle: "כרטיס ביקור דיגיטלי – הדור החדש לעסקים",
-ogDescription: "כרטיס דיגיטלי שמופיע בגוגל, תומך ב-NFC, כולל דוגמאות מעוצבות ושיתוף קל. זול יותר מאתר – ומוכן בשבילך במהירות.",
-  ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-  ogImageAlt: "לוגו של Clix Marketing",
-  ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
-
-  /* ✅ Twitter Cards */
-  twitterCard: "summary_large_image",
-twitterTitle: "כרטיס ביקור דיגיטלי NFC – זול, מהיר ומעוצב",
-twitterDescription: "גלה דוגמאות לכרטיסי ביקור דיגיטליים שמופיעים בגוגל, תומכים ב־NFC ונותנים לעסק שלך יתרון אמיתי.",
-  twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-/* ✅ Structured Data – JSON-LD (Focused on Digital Business Card + NFC) */
-
-schema: {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  "name": "Clix Marketing",
-  "alternateName": "קליקס מרקטינג",
-  "inLanguage": "he-IL",
-
-  "description": "Clix Marketing מתמחה בבניית כרטיסי ביקור דיגיטליים לעסקים – כולל דוגמאות חיות, תמיכה ב-NFC לשיתוף בלחיצה, התאמה אישית לעסק והגדרה לנראות בגוגל.",
-  "url": "https://clix-marketing.co.il",
-  "logo": "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-  "image": ["https://clix-marketing.co.il/assets/logo/myLogo.jpg"],
-  "telephone": "+972-53-2407-762",
-  "priceRange": "$$",
-
-  "areaServed": { "@type": "Country", "name": "IL" },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "מושב חמד",
-    "addressLocality": "חמד",
-    "addressRegion": "מרכז",
-    "postalCode": "60965",
-    "addressCountry": "IL"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
-
-  /* 🔎 Keywords & Topics */
-  "keywords": [
-    "כרטיס ביקור דיגיטלי",
-    "כרטיס ביקור דיגיטלי NFC",
-    "דוגמאות כרטיס ביקור דיגיטלי",
-    "מה זה כרטיס ביקור דיגיטלי",
-    "כרטיס דיגיטלי לעסקים",
-    "כרטיס ביקור דיגיטלי בזול",
-    "כרטיס ביקור דיגיטלי מעוצב",
-    "כרטיס ביקור דיגיטלי עם שיתוף",
-    "כרטיס ביקור דיגיטלי 2025",
-    "כרטיס ביקור דיגיטלי היתרונות"
-  ],
-  "knowsAbout": [
-    "NFC לשיתוף כרטיס ביקור דיגיטלי",
-    "הופעה בגוגל לכרטיסים דיגיטליים",
-    "דוגמאות לכרטיסי ביקור דיגיטליים",
-    "התאמה אישית לעסק",
-    "UX במובייל לעסקים קטנים"
-  ],
-
-  /* 🧩 Service Offer */
-  "makesOffer": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "itemOffered": {
-      "@type": "Service",
-      "name": "בניית כרטיס ביקור דיגיטלי (כולל NFC)",
-      "category": "Digital Business Card",
-      "provider": { "@type": "Organization", "name": "Clix Marketing" },
-      "areaServed": "IL",
-      "description": "כרטיס ביקור דיגיטלי מעוצב שמופיע בגוגל, כולל דוגמאות חיות, תמיכה ב-NFC, התאמה אישית והגדרת שיתוף בלחיצה אחת."
-    }
+  /* ✅ תכונות (מאוחד, ללא כפילויות) */
+  features: {
+    video: true,
+    about: true,
+    recommendations: true,
+    contactWhatsApp: true,
+    facebookLink: true,
+    waze: true,
+    phone: true,
+    instagram: true,
+    mail: true,
+    sendEmail: false,
+    sendWhatsApp: true
   },
 
-  /* 🕘 Opening Hours */
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
-    "opens": "09:00",
-    "closes": "19:00"
-  }],
-
-  /* 🔗 Social */
-  "sameAs": [
-    "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-    "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-    "https://youtube.com/@nisimbeng",
-    "https://www.tiktok.com/@clix_beauty_cards"
-  ],
-
-  /* ▶️ Helpful for link previews / actions */
-  "potentialAction": {
-    "@type": "ViewAction",
-    "target": "https://clix-marketing.co.il/template/template-generic.html",
-    "name": "צפה בכרטיס ביקור דיגיטלי לדוגמה"
-  },
-  "brand": { "@type": "Brand", "name": "Clix Marketing" }
-},
-
-
-
-
-
-
-
-features: {
-  
-
-  video: true,
-  about: true,
-  recommendations: true,
-
-  contactWhatsApp: true, 
-  facebookLink: true,
-  waze: true,
-  phone: true,
-  instagram: true,
-  mail : true,
-
-  sendEmail: false,
-  sendWhatsApp: true,
-},
-    shareOptions: {
+  /* ✅ שיתוף */
+  shareOptions: {
     email: true,
     whatsapp: true,
     linkedin: false,
     twitter: false,
     facebook: true,
     telegram: true,
-    instagram: true   
+    instagram: true
   },
-  
-  // שלושת השדות להגדרה פר־לקוח
+
+  /* ✅ SEO בסיסי */
+  metaDescription: "אקדמיה רזי החן ללימודי ציפורניים בהובלת יעל חן רז – קורסי לק ג'ל, השתלמויות מקצועיות ומניקוריסטית ברמת גן, אזור הבורסה. תוכנית לימודים מותאמת אישית עד לרמה הגבוהה ביותר.",
+  metaKeywords: "רזי החן, אקדמיה רזי החן, לימודי ציפורניים, קורס לק ג'ל רמת גן, מניקוריסטית אזור הבורסה, קורס בניית ציפורניים, השתלמות ציפורניים, עיצוב ציפורניים מקצועי, קורס מניקוריסטיות, קורסי ציפורניים לנשים",
+  canonicalHref: "https://clix-marketing.co.il/cards/yaelNails/yael.html",
+  metaRobots: "index, follow",
+  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
+
+  /* ✅ Open Graph */
+  ogType: "website",
+  ogTitle: "רזי החן – אקדמיה לציפורניים ברמת גן | יעל חן רז",
+  ogDescription: "קורסי לק ג'ל, בניית ציפורניים והשתלמויות מקצועיות באקדמיה רזי החן. מיקום מרכזי באיזור הבורסה רמת גן. תוכנית אישית לכל תלמידה – עד שתהיי מקצועית ובטוחה בעצמך.",
+  ogImage: "https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg",
+  ogImageAlt: "רזי החן – רקע מותג וציפורניים",
+  ogUrl: "https://clix-marketing.co.il/cards/yaelNails/yael.html",
+
+  /* ✅ Twitter Cards */
+  twitterCard: "summary_large_image",
+  twitterTitle: "רזי החן – קורסי ציפורניים ולק ג'ל ברמת גן",
+  twitterDescription: "האקדמיה של יעל חן רז – לימודי ציפורניים ברמת גן, קורסי לק ג'ל והשתלמויות מקצועיות עם תוכנית מותאמת אישית.",
+  twitterImage: "https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg",
+
+  /* ✅ Structured Data – JSON-LD */
+  schema: {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "EducationalOrganization"],
+    "name": "אקדמיה רזי החן לציפורניים",
+    "alternateName": "רזי החן – יעל חן רז",
+    "inLanguage": "he-IL",
+    "description": "אקדמיה רזי החן בהובלת יעל חן רז – קורסי ציפורניים, לק ג'ל, בניית ציפורניים והשתלמויות מקצועיות ברמת גן, אזור הבורסה.",
+    "url": "https://clix-marketing.co.il/cards/yaelNails/yael.html",
+    "logo": "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
+    "image": ["https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg"],
+    "priceRange": "$$",
+    "areaServed": { "@type": "City", "name": "Ramat Gan" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "רמת גן",
+      "addressRegion": "מרכז",
+      "addressCountry": "IL"
+    },
+    "keywords": [
+      "רזי החן",
+      "אקדמיה רזי החן",
+      "יעל חן רז",
+      "לימודי ציפורניים",
+      "קורס ציפורניים",
+      "קורס לק ג׳ל",
+      "קורס בניית ציפורניים",
+      "השתלמות ציפורניים",
+      "מניקוריסטית רמת גן",
+      "ציפורניים רמת גן",
+      "לק ג׳ל רמת גן",
+      "אזור הבורסה רמת גן",
+      "עיצוב ציפורניים",
+      "סדנאות ציפורניים"
+    ],
+    "knowsAbout": [
+      "לק ג׳ל",
+      "בניית ציפורניים בטפסים",
+      "בניית ציפורניים באקריל ופוליג׳ל",
+      "מניקור מקצועי",
+      "עיצוב וקישוטי ציפורניים",
+      "סדנאות והשתלמויות",
+      "מניקוריסטית ברמת גן",
+      "אזור הבורסה רמת גן"
+    ],
+    "makesOffer": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "Course",
+        "name": "קורס לק ג׳ל ולימודי ציפורניים",
+        "provider": { "@type": "Organization", "name": "אקדמיה רזי החן" },
+        "areaServed": "IL",
+        "description": "קורסי לק ג'ל, בניית ציפורניים והשתלמויות מקצועיות ברמת גן – בהדרכת יעל חן רז."
+      }
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/yael.razchen",
+      "https://www.instagram.com/yael.razchen",
+      "https://www.tiktok.com/@yael.razchen"
+    ],
+    "brand": { "@type": "Brand", "name": "רזי החן" }
+  },
+
+  /* ✅ תוכן */
   fields: {
     primary: {
       key: "fullName",
@@ -222,8 +163,8 @@ features: {
       key: "treatmentType",
       label: " ואני בת ",
       placeholder: " גיל ",
-       type: "number",
-    inputMode: "numeric",
+      type: "number",
+      inputMode: "numeric",
       required: true,
       maxLength: 80
     },
@@ -234,9 +175,10 @@ features: {
       inputMode: "text",
       required: false,
       maxLength: 500
-    },
+    }
   },
-aboutParagraphs: `
+
+  aboutParagraphs: `
 <strong class="quote-symbol">''</strong>
 
 <p data-field="aboutLine1"><strong class="fw-700">שמי יעל חן רז</strong></p>
@@ -253,61 +195,55 @@ aboutParagraphs: `
 <p class="align-right">• <strong class="fw-500">השתלמויות מקצועיות</strong> - למי שכבר עובדת בתחום ורוצה לרענן ידע,<br>ללמוד טכניקות חדשות, להתמקצע ברמות הגבוהות ביותר,<br>ולהרחיב את סל השירותים שלה עם דוגמאות, קישוטים ועבודות ברמה בינלאומית.</p>
 `,
 
-
-accordionTitle1: "▼ למה פתחתי את האקדמיה?",
-accordionText1: `
+  accordionTitle1: "▼ למה פתחתי את האקדמיה?",
+  accordionText1: `
   <p>פתחתי את המקום הזה מתוך רצון אמיתי לאפשר למקצועיות בתחום הציפורניים ליהנות מהמקצוע שלהן באמת -<br>שכל יום בעבודה יהיה מיוחד, צבעוני ומלא ביטחון, ידע והנאה.</p>
 `,
-
-accordionTitle2: "▼ לאן אני שואפת להגיע?",
-accordionText2: `
+  accordionTitle2: "▼ לאן אני שואפת להגיע?",
+  accordionText2: `
   <p>המטרה שלי היא ליצור מקום שבו כל תלמידה תרגיש ביטחון מלא בעבודה שלה ובמפגש עם הלקוחות.</p>
   <p>אני שואפת שדרך הליווי הצמוד וההכשרה המקצועית - כל אחת תוכל לפרוץ גבולות, להתמקצע ולהגשים את החלום שלה בעולם הציפורניים.</p>
 `,
 
+  scrollToContactText: "השאירי פרטים ונחזור אלייך",
+  recommendationsMainTitle: "מה הבוגרות מספרות",
+  videoMainTitle: "קצת עלי",
+  contactFormTitle: "השאירי פרטים<br>ואחזור אלייך בהקדם",
+  shareCardTitle: "שיתוף הכרטיס",
 
-
-
-scrollToContactText: "השאירי פרטים ונחזור אלייך",
-recommendationsMainTitle: "מה הבוגרות מספרות",
-videoMainTitle: "קצת עלי",
-contactFormTitle: "השאירי פרטים<br>ואחזור אלייך בהקדם",
-shareCardTitle: "שיתוף הכרטיס",
-
-recommendations: [
-  {
-    name: "שלי הידנה",
-    title: " - קורס מתחילות",
-    text: `תודה רבההה 💕🎊🎉
+  recommendations: [
+    {
+      name: "שלי הידנה",
+      title: " - קורס מתחילות",
+      text: `תודה רבההה 💕🎊🎉
 תמיד הייתי עושה לעצמי ציפורניים אבל אף פעם לא יצא כזה יפה,
 והכל בזכותך שלימדת והיית סובלנית 🙏
 מחכה כבר להתעסק במקצוע הזה כל היוםם!`
-  },
-  {
-    name: "הדס אליאב",
-    title: " - השתלמות מקצועיות",
-    text: `יעלוש המדהימה ♥️
+    },
+    {
+      name: "הדס אליאב",
+      title: " - השתלמות מקצועיות",
+      text: `יעלוש המדהימה ♥️
 תודה רבה על קורס בנייה בטיפסים ג׳ל הכי מושלם שיכולתי לבקש!
 על הסבלנות, היחס החם והיד החופשית 🙌🏻
 לא מובן מאליו בכלל.
 אוהבת מלאאא, מוכשרת בטירוף 🫶🏻`
-  },
-  {
-    name: "אורית אשורוב",
-    title: " - מניקוריסטית",
-    text: `היה לי התענוג והעונג ללמוד ממך! ❤️
+    },
+    {
+      name: "אורית אשורוב",
+      title: " - מניקוריסטית",
+      text: `היה לי התענוג והעונג ללמוד ממך! ❤️
 את מהממת ומוכשרת, וכיף לי שיצא לי להכיר אותך ולקחת ממך טיפים שווים!
 כל כך נהניתי מכל רגע, את לא רק מורה מדהימה אלא גם בן אדם עם וייב מושלם!
 תודה על הסבלנות, ההשקעה והאווירה הכיפית 🙏
 בטוחה שעוד נפגש לעוד סיגריה בהמשך! ☺️`
-  },
-  {
+    },
+    {
       name: "עמית אבן-צור",
       title: " - השתלמות מקצועיות",
       text: "היי יעל חן,\nהיה לי מדהים בקורס אצלך!!! את כל כך מקצועית ומלמדת בכל מא׳ עד ת׳.\nרציתי להגיד לך שעוד לא יצא לי ללמוד במקום כל כך יסודי, בו את משקיעה בכל אחת ואחת ומוודאת שיש לה את כל הכלים להמשיך הלאה!\nתודה על הכל ❤️❤️❤️"
-    },
-],
-
+    }
+  ]
 };
 
 console.log("📦 data-client.js loaded OK");
