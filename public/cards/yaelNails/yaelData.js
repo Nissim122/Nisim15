@@ -1,11 +1,12 @@
 window.cardData = {
 fullName: "רזי החן",
 role: "  סטודיו ואקדמיה לציפורניים",
-  metaRobots: "index, follow",
 
 
 // שדה ייעודי לכותרת האתר
 pageTitle: " רזי החן | כרטיס ביקור",
+  favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
+
 
   phone: "054-8787-702",
   email: "yaelartgallery@gmail.com",
@@ -14,14 +15,166 @@ pageTitle: " רזי החן | כרטיס ביקור",
   company: "Clix Marketing",
   cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
   vcard: { filename: "contact.vcf" },
+
+  
+features: {
+  
+
+  video: true,
+  about: true,
+  recommendations: true,
+
+  contactWhatsApp: true, 
+  facebookLink: true,
+  waze: true,
+  phone: true,
+  instagram: true,
+  mail : true,
+
+  sendEmail: true,
+  sendWhatsApp: false,
+},
+    shareOptions: {
+    email: true,
+    whatsapp: true,
+    linkedin: false,
+    twitter: false,
+    facebook: true,
+    telegram: true,
+    instagram: true   
+  },
+  
+
+
+
+
+
   wazeLink: "https://waze.com/ul/hsv8wxcjtf",
   instagramLink: "https://www.instagram.com/yael_artgallery?igsh=MTJuNzh4NTQ5aDV4YQ%3D%3D&utm_source=qr",
+   facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+   youtubeLink: "https://www.youtube.com/embed/i9PvrYbA-zw?rel=0&modestbranding=1&playsinline=1",
+  tiktokLink: "https://www.tiktok.com/@yael_artgallery?_t=8ZlqY3XJH7V&_r=1",
 
+
+  /* ✅ לוגו/פרופיל */
   logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
+  logoAlt: "לוגו של Clix Marketing",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
-youtubeLink: "https://www.youtube.com/embed/i9PvrYbA-zw?rel=0&modestbranding=1&playsinline=1",
+  profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
- facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
+  
+  /* ✅ SEO בסיסי */
+metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
+metaKeywords: "כרטיס ביקור דיגיטלי NFC, דוגמאות כרטיס ביקור דיגיטלי, מה זה כרטיס ביקור דיגיטלי, כרטיס דיגיטלי לעסקים, כרטיס ביקור דיגיטלי בזול, כרטיס ביקור דיגיטלי מעוצב, כרטיס ביקור דיגיטלי עם שיתוף, כרטיס ביקור דיגיטלי 2025, כרטיס ביקור דיגיטלי היתרונות",
+  canonicalHref: "https://clix-marketing.co.il/cards/yaelNails/yael.html",
+  metaRobots: "index, follow",
+  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
+  
+  /* ✅ Open Graph */
+  ogType: "website",
+ogTitle: "כרטיס ביקור דיגיטלי – הדור החדש לעסקים",
+ogDescription: "כרטיס דיגיטלי שמופיע בגוגל, תומך ב-NFC, כולל דוגמאות מעוצבות ושיתוף קל. זול יותר מאתר – ומוכן בשבילך במהירות.",
+  ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+  ogImageAlt: "לוגו של Clix Marketing",
+  ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
+
+  /* ✅ Twitter Cards */
+  twitterCard: "summary_large_image",
+twitterTitle: "כרטיס ביקור דיגיטלי NFC – זול, מהיר ומעוצב",
+twitterDescription: "גלה דוגמאות לכרטיסי ביקור דיגיטליים שמופיעים בגוגל, תומכים ב־NFC ונותנים לעסק שלך יתרון אמיתי.",
+  twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+/* ✅ Structured Data – JSON-LD (Focused on Digital Business Card + NFC) */
+
+schema: {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  "name": "Clix Marketing",
+  "alternateName": "קליקס מרקטינג",
+  "inLanguage": "he-IL",
+
+  "description": "Clix Marketing מתמחה בבניית כרטיסי ביקור דיגיטליים לעסקים – כולל דוגמאות חיות, תמיכה ב-NFC לשיתוף בלחיצה, התאמה אישית לעסק והגדרה לנראות בגוגל.",
+  "url": "https://clix-marketing.co.il",
+  "logo": "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+  "image": ["https://clix-marketing.co.il/assets/logo/myLogo.jpg"],
+  "telephone": "+972-53-2407-762",
+  "priceRange": "$$",
+
+  "areaServed": { "@type": "Country", "name": "IL" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "מושב חמד",
+    "addressLocality": "חמד",
+    "addressRegion": "מרכז",
+    "postalCode": "60965",
+    "addressCountry": "IL"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
+
+  /* 🔎 Keywords & Topics */
+  "keywords": [
+    "כרטיס ביקור דיגיטלי",
+    "כרטיס ביקור דיגיטלי NFC",
+    "דוגמאות כרטיס ביקור דיגיטלי",
+    "מה זה כרטיס ביקור דיגיטלי",
+    "כרטיס דיגיטלי לעסקים",
+    "כרטיס ביקור דיגיטלי בזול",
+    "כרטיס ביקור דיגיטלי מעוצב",
+    "כרטיס ביקור דיגיטלי עם שיתוף",
+    "כרטיס ביקור דיגיטלי 2025",
+    "כרטיס ביקור דיגיטלי היתרונות"
+  ],
+  "knowsAbout": [
+    "NFC לשיתוף כרטיס ביקור דיגיטלי",
+    "הופעה בגוגל לכרטיסים דיגיטליים",
+    "דוגמאות לכרטיסי ביקור דיגיטליים",
+    "התאמה אישית לעסק",
+    "UX במובייל לעסקים קטנים"
+  ],
+
+  /* 🧩 Service Offer */
+  "makesOffer": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "בניית כרטיס ביקור דיגיטלי (כולל NFC)",
+      "category": "Digital Business Card",
+      "provider": { "@type": "Organization", "name": "Clix Marketing" },
+      "areaServed": "IL",
+      "description": "כרטיס ביקור דיגיטלי מעוצב שמופיע בגוגל, כולל דוגמאות חיות, תמיכה ב-NFC, התאמה אישית והגדרת שיתוף בלחיצה אחת."
+    }
+  },
+
+  /* 🕘 Opening Hours */
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  }],
+
+  /* 🔗 Social */
+  "sameAs": [
+    "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+    "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+    "https://youtube.com/@nisimbeng",
+    "https://www.tiktok.com/@clix_beauty_cards"
+  ],
+
+  /* ▶️ Helpful for link previews / actions */
+  "potentialAction": {
+    "@type": "ViewAction",
+    "target": "https://clix-marketing.co.il/template/template-generic.html",
+    "name": "צפה בכרטיס ביקור דיגיטלי לדוגמה"
+  },
+  "brand": { "@type": "Brand", "name": "Clix Marketing" }
+},
+
+
+
+
+
+
 
 features: {
   
@@ -152,7 +305,5 @@ recommendations: [
 ],
 
 };
-Object.freeze(window.cardData);
-
 
 console.log("📦 data-client.js loaded OK");
