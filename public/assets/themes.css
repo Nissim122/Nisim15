@@ -60,7 +60,7 @@
   --gold-line-bg : #003366;  /* קו זהב מתחת לכותרת הראשית */
     
 --name-role-color: #5a3e2b;  /* אפור־שחור אלגנטי */
---secondary-title-color: #5a5a5a;  /* אפור חם בינוני */
+--secondary-title-color: #dd0d0d;  /* אפור חם בינוני */
 
   --contact-btn-bg: #1d6fff;
   --btn-border-bg-color: #1d6fff;
@@ -94,10 +94,7 @@
   --about-text-color: #5a3e2b;
   --quote-font-color: #5a3e2b;
   --about-section-p-text-color: #5a3e2b;
-  
---name-role-color: #5a3e2b;  /* אפור־שחור אלגנטי */
---secondary-title-color: #5a5a5a;  /* אפור חם בינוני */
-
+ 
   --contact-btn-bg: #c67c3a;
   --btn-border-bg-color: #c67c3a;
   --contact-btn-hover-bg: #e28d45;

@@ -73,60 +73,71 @@
     <div class="loader-spinner" aria-hidden="true"></div>
     <p class="loader-text" data-field="loaderText">טוען...</p>
   </div>
+<!-- כרטיס (Main) עם ייחוס לכותרת הראשית -->
+<div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
+  <div class="parallax-bg" aria-hidden="true"></div>
 
-  <!-- כרטיס (Main) עם ייחוס לכותרת הראשית -->
-  <div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
-      <div class="parallax-bg" aria-hidden="true"></div>
+  <!-- ✅ אלמנט חבוי לשימור פונקציונליות קיימת (לא H1 כדי לא ליצור כפילות SEO) -->
+  <div data-field="h1Title" class="visually-hidden">כרטיס ביקור דיגיטלי</div>
 
+  <script>
+    (function(){
+      const d = window.cardData || {};
 
-    <!-- ✅ כותרת ראשית ל-SEO -->
-<h1 id="pageMainTitle" data-field="h1Title" class="visually-hidden">כרטיס ביקור דיגיטלי</h1>
-    <script>
-      (function(){
-        const d = window.cardData || {};
-        const el = document.querySelector('[data-field="h1Title"]');
-        if (el) {
-          el.textContent = d.fullName 
-            ? d.fullName + (d.role ? ' – ' + d.role : '')
-            : 'כרטיס ביקור דיגיטלי';
-        }
-      })();
-    </script>
+      // עדכון האלמנט החבוי הישן (לא משפיע על SEO/תצוגה)
+      const legacyEl = document.querySelector('[data-field="h1Title"]');
+      if (legacyEl) {
+        legacyEl.textContent = d.fullName
+          ? d.fullName + (d.role ? ' – ' + d.role : '')
+          : 'כרטיס ביקור דיגיטלי';
+      }
 
-    <!-- אזור עליון כ־Header -->
-    <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
-       <div class="header-top">
+      // עדכון כותרות גלויות
+      const visibleH1 = document.querySelector('[data-field="fullName"]');
+      if (visibleH1) {
+        visibleH1.textContent = d.fullName || 'כרטיס ביקור דיגיטלי';
+      }
+
+      const visibleH2 = document.querySelector('[data-field="role"]');
+      if (visibleH2) {
+        visibleH2.textContent = d.role || 'תפקיד';
+      }
+    })();
+  </script>
+
+  <!-- אזור עליון כ־Header -->
+  <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
+    <div class="header-top">
       <div class="logo-box">
         <img class="logo-img" data-field="logoSrc" src="להגדיר FALLBACK" alt="לוגו העסק" tabindex="3" />
       </div>
       <hr class="gold-line" />
     </div>
-      
-    </header>
+  </header>
 
-<main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
+  <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
 
-<!-- מעטפת אחת בלבד עם data-anim -->
-<div class="profile-wrapper" data-anim data-anim-target="profile">
-  <div class="anim-wrapper">
-    <img class="profile-img"
-         data-field="profileImage"
-         src="#"
-         alt=""
-         data-field-alt="profileImageAlt"
-         width="240" height="240"
-         decoding="async"
-         loading="lazy"
-         tabindex="0" />
-  </div>
-</div>
-
-    
-      <!-- H1 יחיד ברור לנושא הדף -->
-      <div class="name-role" tabindex="0">
-        <h1 id="pageMainTitle" class="main-title" data-field="fullName">שם מלא</h1>
+    <!-- מעטפת אחת בלבד עם data-anim -->
+    <div class="profile-wrapper" data-anim data-anim-target="profile">
+      <div class="anim-wrapper">
+        <img class="profile-img"
+             data-field="profileImage"
+             src="#"
+             alt=""
+             data-field-alt="profileImageAlt"
+             width="240" height="240"
+             decoding="async"
+             loading="lazy"
+             tabindex="0" />
       </div>
-    </main>
+    </div>
+
+    <!-- ✅ כותרות גלויות לעיצוב ו-SEO -->
+    <div class="name-role" tabindex="0">
+      <h1 id="pageMainTitle" class="main-title" data-field="fullName">שם מלא</h1>
+      <h2 class="secondary-title role-text" data-field="role">תפקיד</h2>
+    </div>
+
 
   <nav class="icons icon-grid" role="navigation" aria-label="קישורי יצירת קשר">
 
