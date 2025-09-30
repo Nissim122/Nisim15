@@ -1029,15 +1029,38 @@ if (tag === "IMG") {
     }
   });
 }; //
-
-
   document.title = data.pageTitle || "כרטיס ביקור דיגיטלי";
   document.body.dataset.whatsapp = data.phone;
   document.body.dataset.email = data.email;
+
+  // === FullName bind (now + on cardReady + retry) ===
+  (function bindFullName(){
+    function setName(name){
+      if (!name) return;
+      document.querySelectorAll('[data-field="fullName"]').forEach(el => {
+        el.textContent = name;
+      });
+    }
+
+    const nowName = (window.cardData?.fullName || "").trim();
+    setName(nowName);
+
+    document.addEventListener("cardReady", () => {
+      const v = (window.cardData?.fullName || "").trim();
+      setName(v);
+    });
+
+    let tries = 0, id = setInterval(() => {
+      const v = (window.cardData?.fullName || "").trim();
+      if (v) { setName(v); clearInterval(id); }
+      if (++tries >= 20) clearInterval(id);
+    }, 150);
+  })();
+
   replaceAll();
-const swiperEl = document.querySelector('.recommendations-swiper');
-const recWrapper = document.getElementById('recommendationSlides');
-const recData = (data.recommendations || []).filter(rec => rec?.name && rec?.text);
+  const swiperEl = document.querySelector('.recommendations-swiper');
+  const recWrapper = document.getElementById('recommendationSlides');
+  const recData = (data.recommendations || []).filter(rec => rec?.name && rec?.text);
 
 if (!swiperEl || recData.length === 0) {
   swiperEl?.remove();

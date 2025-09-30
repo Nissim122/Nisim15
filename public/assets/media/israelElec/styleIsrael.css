@@ -1,0 +1,59 @@
+
+@import url("/assets/base.css");  /* ← נתיב מוחלט נכון */
+
+:root {
+  /* קיבוע גובה האזור העליון */
+  --header-height: 300px;  
+  --icon-button-bg: transparent;
+
+
+  /* התמונה תמלא את הגובה של הקונטיינר */
+  --header-img-height: 100%;
+  
+
+  /* שאר ה־overrides שביקשת (לא חובה לשינוי הגובה) */
+  --name-role-font-family: var(--font-family-display);
+  --header-img-bg: #fffaf2;
+  --header-img-offset-x: 3px;
+  --quote-font-color: var(--about-bg-color);
+  --btn-scl-text-color-filled: #fffaf2;
+  --header-img-bg : #ffffff;
+
+}
+#pageMainTitle {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+/* ערכי ברירת מחדל לנושא modern */
+body.theme-modern {
+  --card-bg-image: url("/assets/bg/test.jpg");
+  --card-bg-opacity: 1;
+  --card-bg-blur: 0px;
+}
+
+
+
+/* דריסת לוגו – ללקוח ספציפי בלבד */
+.logo-box {
+  width: 100%;
+  height: 280px;              /* גובה קבוע – לשנות לפי הצורך */
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo-box .logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* מילוי מלא עם חיתוך */
+  object-position: center var(--logo-offset, 65%); /* ברירת מחדל מרכז */
+  display: block;
+}
+
