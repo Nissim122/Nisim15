@@ -45,16 +45,24 @@ theme: {
     sendEmail: true,
     sendWhatsApp: false,
 
-    animationsEnabled: true,       // ← מדליק שכבת האנימציות
-    animationStartDelayMs: 0       // דיליי גלובלי לכל האנימציות (ms)
+    animationsEnabled: true,   // ✅ חובה להפעיל
+    animations: {
+      process: "Alpha",        // שם המסלול (Alpha זה ברירת מחדל שלנו)
+      openDelay: 0,          // עיכוב לפני P1 (ms)
+      stagger: 120,            // סטאגר בין אלמנטים בתוך שלב
+      runOnce: true,           // להריץ פעם אחת
+      mobileMotionScale: 0.75, // תנועה קצרה יותר במובייל
+      thresholds: {            // מתי טריגרים של גלילה (לשלבים P2–P6)
+        P2: 0.15,
+        P3: 0.15,
+        P4: 0.15,
+        P5: 0.15,
+        P6: 0.10
+      }
+    }
+
   },
 
-  /* ✅ מיפוי אנימציות לפי target */
-  animations: {
-    profile: "kf-profile-slide-in-left", // data-anim-target="profile"
-    header:  "kf-zoom-fade",             // data-anim-target="header"
-    cta:     "kf-slide-right"            // data-anim-target="cta"
-  },
 
   /* ✅ רשתות חברתיות */
   instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",

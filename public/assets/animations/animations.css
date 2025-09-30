@@ -1,125 +1,126 @@
-/* ===========================
-   PROFILE — כל העיצוב במקום אחד
-   =========================== */
+/* =========================================================
+   FLOW ENGINE — Base Styles
+   ========================================================= */
 
-/* נגישות: כיבוי אנימציות + מצב סופי תקין */
+/* Accessibility: respect reduced motion */
 @media (prefers-reduced-motion: reduce){
-  [data-anim][data-anim-target="profile"]{
+  [data-phase] [data-role]{
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 
-/* בסיס: מוכנים אך על pause (Gate סגור) */
-[data-anim][data-anim-target="profile"]{
-  /* שם ברירת מחדל; JS יעקוף עם animation-name מה-DATA */
-  animation: kf-profile-in var(--profile-in-duration, 700ms)
-             var(--profile-in-ease, cubic-bezier(.22,.61,.36,1)) both;
+/* Base: elements are paused until Flow.js triggers them */
+[data-phase] [data-role]{
+  opacity: 0;
+  animation-duration: var(--flow-dur, 800ms);
+  animation-timing-function: var(--flow-ease, cubic-bezier(.22,.61,.36,1));
+  animation-fill-mode: both;
   animation-play-state: paused;
-  opacity: 0;              /* מייצב פריים ראשון */
-  transform-origin: 50% 0%;
+  will-change: transform, opacity, filter;
 }
 
-/* פתיחת Gate (class על body) */
-.anim-ready [data-anim][data-anim-target="profile"]{
+/* Activated */
+[data-phase] [data-role].anim-run{
   animation-play-state: running;
-  will-change: transform, opacity;
 }
-/* === 2 מלמעלה === */
 
-/* 1. Drop Elegant – נפילה אלגנטית עם ריכוך */
-@keyframes kf-profile-drop-elegant {
+/* =========================================================
+   EFFECTS — P1 Hero Intro
+   ========================================================= */
+
+/* A. Drop Elegant — logo/profile */
+@keyframes kf-drop-elegant {
   0%   { transform: translateY(-120px) scale(.98); opacity: 0; filter: blur(6px); }
   60%  { transform: translateY(0)      scale(1.00); opacity: 1; filter: blur(0); }
   80%  { transform: translateY(-8px); }
-  100% { transform: translateY(0)      scale(1.00); opacity: 1; }
+  100% { transform: translateY(0)      scale(1.00); opacity: 1; } /* ← חובה */
 }
+[data-effect="drop-elegant"] { animation-name: kf-drop-elegant; }
 
-/* 2. Drop Spring – נפילה “קפיצית” רכה */
-@keyframes kf-profile-drop-spring {
-  0%   { transform: translateY(-160px) scale(.96); opacity: 0; }
-  55%  { transform: translateY(0)      scale(1.02);opacity: 1; }
-  75%  { transform: translateY(-10px)  scale(1.00); }
-  100% { transform: translateY(0)      scale(1.00);opacity: 1; }
+/* (אם יש) גרסת מובייל */
+@keyframes kf-drop-elegant-m {
+  0%   { transform: translateY(-80px) scale(.98); opacity: 0; filter: blur(6px); }
+  60%  { transform: translateY(0)     scale(1.00); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0)     scale(1.00); opacity: 1; } /* ← חובה */
 }
+[data-effect="drop-elegant-m"] { animation-name: kf-drop-elegant-m; }
 
-
-/* === 4 נוספות — שונות מהשניים הראשונים === */
-
-/* 3. Slide In Left – גלישה חלקה משמאל */
-@keyframes kf-profile-slide-in-left {
-  0%   { transform: translateX(-120px); opacity: 0; filter: blur(4px); }
-  60%  { transform: translateX(0);      opacity: 1; filter: blur(0); }
-  100% { transform: translateX(0);      opacity: 1; }
+/* B. Rise Soft — title */
+@keyframes kf-rise-soft {
+  0%   { transform: translateY(40px); opacity: 0; filter: blur(2px); }
+  100% { transform: translateY(0);    opacity: 1; filter: blur(0); }
 }
+[data-effect="rise-soft"] { animation-name: kf-rise-soft; }
 
-/* 4. Slide In Right – גלישה חלקה מימין */
-@keyframes kf-profile-slide-in-right {
-  0%   { transform: translateX(120px); opacity: 0; filter: blur(4px); }
-  60%  { transform: translateX(0);     opacity: 1; filter: blur(0); }
-  100% { transform: translateX(0);     opacity: 1; }
+@keyframes kf-rise-soft-m {
+  0%   { transform: translateY(26px); opacity: 0; filter: blur(2px); }
+  100% { transform: translateY(0);    opacity: 1; filter: blur(0); }
 }
+[data-effect="rise-soft-m"] { animation-name: kf-rise-soft-m; }
 
-/* 5. Rise Up – עליה מלמטה עם bounce קטן */
-@keyframes kf-profile-rise-up {
-  0%   { transform: translateY(120px)  scale(.98); opacity: 0; }
-  60%  { transform: translateY(0)      scale(1.00);opacity: 1; }
-  80%  { transform: translateY(6px); }
-  100% { transform: translateY(0)      scale(1.00);opacity: 1; }
+/* C. Fade Up — role/subtitle */
+@keyframes kf-fade-up {
+  0%   { transform: translateY(18px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
 }
+[data-effect="fade-up"] { animation-name: kf-fade-up; }
 
-/* 6. Pop In – הופעה פתאומית (scale + fade) */
-@keyframes kf-profile-pop-in {
-  0%   { transform: scale(.84); opacity: 0; filter: blur(6px); }
+@keyframes kf-fade-up-m {
+  0%   { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+[data-effect="fade-up-m"] { animation-name: kf-fade-up-m; }
+
+/* D. Pop In — hero CTA */
+@keyframes kf-pop-in {
+  0%   { transform: scale(.84); opacity: 0; filter: blur(4px); }
   60%  { transform: scale(1.02); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1.00); }
+}
+[data-effect="pop-in"] { animation-name: kf-pop-in; }
+
+@keyframes kf-pop-in-m {
+  0%   { transform: scale(.90); opacity: 0; }
   100% { transform: scale(1.00); opacity: 1; }
 }
+[data-effect="pop-in-m"] { animation-name: kf-pop-in-m; }
 
-
-/* ===========================
-   כלליים — לשאר האלמנטים
-   =========================== */
-
-[data-anim]{
-  animation-duration: 800ms;
-  animation-timing-function: cubic-bezier(.22,.61,.36,1);
-  animation-fill-mode: both;
-  will-change: transform, opacity;
-  animation-delay: 0ms; /* ברירת מחדל */
+/* =========================================================
+   OPTIONAL — Soft pulse (e.g. Save to Contacts button)
+   ========================================================= */
+@keyframes kf-pulse-soft {
+  0%   { transform: scale(1);    opacity: 1; }
+  50%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+.pulse-soft {
+  animation: kf-pulse-soft 800ms ease-in-out 1;
 }
 
-/* דוגמה לעיכובים פר-סקשן (CSS בלבד) */
-[data-anim="header"] { animation-delay: 200ms; }
-[data-anim="cta"]    { animation-delay: 300ms; }
-
-/* keyframes כלליים */
-@keyframes kf-zoom-fade { 0%{transform:scale(.7);opacity:0} 100%{transform:scale(1);opacity:1} }
-@keyframes kf-slide-right{ 0%{transform:translateX(-60px);opacity:0} 100%{transform:translateX(0);opacity:1} }
-/* === Parallax Scroll === */
+/* =========================================================
+   PARALLAX BACKGROUND
+   ========================================================= */
 .card {
   position: relative;
-  overflow: hidden; /* כדי שהטפט לא יברח מחוץ לכרטיס */
-  z-index: 1;       /* התוכן מעל שכבת הרקע הכללית */
-  min-height: 100vh; /* אופציונלי: לוודא שהכרטיס תמיד לפחות בגובה המסך */
+  overflow: hidden; /* Keep background inside card */
+  z-index: 1;
+  min-height: 100vh; /* Optional: ensure card fills viewport */
 }
 
-/* שכבת טפט פרלקסה בתוך כרטיס */
 .card .parallax-bg {
   position: absolute;
-  inset: 0; /* למלא את כל הכרטיס */
+  inset: 0;
   z-index: 0;
   pointer-events: none;
 
-  /* ברירת מחדל – רקע רגיל (תמונה או fallback תכלת) */
   background-image: var(--card-bg-image, none);
   background-color: var(--card-bg-fallback, #dff3ff);
-
   background-repeat: no-repeat;
   background-position: center top;
-
-  /* Overscan: להגדיל קצת את גובה התמונה כדי שלא תיגמר בגלילה */
   background-size: auto 120%;
 
   opacity: var(--card-bg-opacity, 1);
@@ -128,13 +129,12 @@
   transition: background-position 0.08s linear;
 }
 
-/* כל שאר התוכן בכרטיס תמיד מעל */
 .card > *:not(.parallax-bg) {
   position: relative;
   z-index: 1;
 }
 
-/* ✅ מצב נגישות: רקע לבן תמיד, ללא טפט/טשטוש/פרלקסה */
+/* Accessibility: always white background in accessibility mode */
 body.accessibility-mode .card { background: #fff !important; }
 body.accessibility-mode .card .parallax-bg {
   background: #fff !important;
@@ -145,7 +145,6 @@ body.accessibility-mode .card .parallax-bg {
   will-change: auto !important;
 }
 
-/* לכבד גם העדפת מערכת להפחתת תנועה/ניגודיות גבוהה */
 @media (prefers-reduced-motion: reduce) {
   .card .parallax-bg {
     background-position: center top !important;

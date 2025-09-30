@@ -113,23 +113,34 @@
 
   <!-- ✅ תוכן ראשי -->
   <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
-<!-- מעטפת אחת בלבד עם data-anim -->
-<div class="profile-wrapper" data-anim data-anim-target="profile">
-  <div class="anim-wrapper">
-    <img class="profile-img"
-         data-field="profileImage"
-         src="#"
-         alt=""
-         data-field-alt="profileImageAlt"
-         width="240" height="240"
-         decoding="async"
-         loading="lazy"
-         tabindex="0" />
-  </div>
+
+<div class="profile-wrapper" data-phase="P1">
+  <img class="profile-img"
+       data-role="logo"
+       data-order="0"
+       data-field="profileImage"
+       src="#"
+       alt=""
+       data-field-alt="profileImageAlt"
+       width="240" height="240"
+       decoding="async"
+       loading="lazy" />
 </div>
 
+
+<!-- ✅ Titles: start AFTER logo animation ends -->
+<div class="name-role" data-phase="P1" tabindex="0">
+  <h1 id="pageMainTitle"
+      class="main-title"
+      data-role="title"
+      data-order="1"
+      data-field="fullName">
+      שפ מלא
+  </h1>
+</div>
+
+
     
-      <!-- H1 יחיד ברור לנושא הדף -->
       <div class="name-role" tabindex="0">
         <h1 id="pageMainTitle" class="main-title" data-field="fullName">שם מלא</h1>
       </div>

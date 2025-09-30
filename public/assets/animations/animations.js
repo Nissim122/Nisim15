@@ -1,19 +1,28 @@
-/* assets/animations/animations.js
- * 🎬 Animation Gate (v1) — Profile In only
- * תנאים להפעלה: features.animationsEnabled === true + isInitialized + cardReady
- * שימוש: סמן אלמנט(ים) עם [data-anim][data-anim-target="profile"] ואופציונלי data-anim-delay="400ms"
- */
+/* =======================================================
+ * ANIMATIONS FLOW ENGINE — Alpha / P1 Hero Intro
+ * File: assets/animations/animations.js
+ * Covers legacy expectations: enabled flag, isInitialized,
+ * cardReady wait + fallback, BFCache, visibilitychange,
+ * and Parallax BG init.
+ * ======================================================= */
 (function () {
   try {
-    // --- הגדרות בסיס ---
+    // ---------- Legacy compatibility flags ----------
     const enabled = (window.cardData?.features?.animationsEnabled === true);
-    if (!enabled) return; // ברירת מחדל: כבוי, לא עושים כלום
+    if (!enabled) return;
 
-    const START_DELAY_MS = Number(window.cardData?.features?.animationStartDelayMs ?? 0);
+    const START_DELAY_MS = Number(window.cardData?.features?.animationStartDelayMs ?? 0); // legacy global delay (kept)
+    const fx  = (window.cardData?.features?.animations) || {};
+    const PROCESS        = fx.process || 'Alpha';
+    const OPEN_DELAY     = Number(fx.openDelay ?? 250);   // Flow P1 open delay
+    const STAGGER        = Number(fx.stagger ?? 120);
+    const RUN_ONCE       = (fx.runOnce !== false);
+    const MOBILE_MOTION  = Number(fx.mobileMotionScale ?? 0.75);
+    const THRESHOLDS     = Object.assign({ P2:0.15, P3:0.15, P4:0.15, P5:0.15, P6:0.10 }, fx.thresholds || {});
     const DEBUG = false;
-    const log = (...a) => DEBUG && console.log("🎬 AnimGate:", ...a);
+    const log = (...a) => DEBUG && console.log('[Flow]', ...a);
 
-    // --- עוזר המתנה קטן ---
+    // ---------- Utilities ----------
     function waitFor(pred, { interval = 60, timeout = 15000 } = {}) {
       return new Promise((resolve, reject) => {
         const t0 = Date.now();
@@ -25,81 +34,204 @@
         }, interval);
       });
     }
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const delay = (ms) => new Promise(r => setTimeout(r, Math.max(0, ms|0)));
 
-    // --- בחירת אלמנטים ל"כניסת פרופיל" ---
-    function getProfileNodes() {
-      return Array.from(document.querySelectorAll('[data-anim][data-anim-target="profile"]'));
+    // Reduce-motion: CSS already renders final state, so no JS animations.
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      // עדיין נאתחל פרלקסה כדי שתאפס מצב (היא כבר מכבדת reduce)
+      armParallaxInit();
+      return;
     }
 
-    // --- NEW: שם האנימציה מה-DATA (ולא נוגעים ב-delay) ---
-    function applyProfileAnimationNameFromData() {
-      const map = window.cardData?.animations || {};
-      const fallback = "kf-profile-in"; // שם ברירת המחדל התואם ל-CSS שלך
-      getProfileNodes().forEach(node => {
-        // מאפשר גם הרחבה עתידית לפי data-anim-target, כרגע "profile"
-        const key = node.getAttribute("data-anim-target") || "profile";
-        const name = map[key] || map.profile || fallback;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-        if (name && name !== "none") {
-          // חשוב: לעקוף את ה־shorthand מה-CSS באמצעות animationName
-          node.style.animationName = name;
-          // במקרה שבעבר קבענו "none"
-          node.style.removeProperty("opacity");
-          node.style.removeProperty("transform");
-        } else {
-          // אם אין אנימציה לאלמנט הזה – וודא מצב סופי תקין
-          node.style.animationName = "none";
-          node.style.opacity = "1";
-          node.style.transform = "none";
+    function setDelay(el, ms){ el.style.animationDelay = `${Math.max(0, ms|0)}ms`; }
+    function setDuration(el, ms){ if (ms) el.style.animationDuration = `${Math.max(1, ms|0)}ms`; }
+
+    function runBatch(list, { baseDelay=0, stagger=STAGGER, effect, duration, mobileVariant } = {}){
+      list.forEach((el, i) => {
+        const eff = isMobile && mobileVariant ? mobileVariant : effect;
+        if (eff) el.setAttribute('data-effect', eff);
+        setDelay(el, baseDelay + (i * stagger));
+        setDuration(el, duration);
+        requestAnimationFrame(() => el.classList.add('anim-run'));
+      });
+    }
+
+    // ---------- P1 (Hero Intro) role maps ----------
+    const P1_ROLES = {
+      logo:         (root) => $$('[data-role="logo"]', root),
+      profileImage: (root) => $$('[data-role="profileImage"]', root),
+      title:        (root) => $$('[data-role="title"]', root),
+      role:         (root) => $$('[data-role="role"]', root),
+      heroCTA:      (root) => $$('[data-role="heroCTA"]', root),
+    };
+    const P1_EFFECTS = {
+      logo:         { effect: 'drop-elegant', mobileVariant: 'drop-elegant-m', duration: 800 },
+      profileImage: { effect: 'drop-elegant', mobileVariant: 'drop-elegant-m', duration: 800 },
+      title:        { effect: 'rise-soft',    mobileVariant: 'rise-soft-m',    duration: 600 },
+      role:         { effect: 'fade-up',      mobileVariant: 'fade-up-m',      duration: 520 },
+      heroCTA:      { effect: 'pop-in',       mobileVariant: 'pop-in-m',       duration: 520 },
+    };
+    const P1_ORDER = ['logo','profileImage','title','role','heroCTA'];
+
+    function collectPhaseEls_P1(phaseRoot){
+      const bundles = [];
+      P1_ORDER.forEach(role => {
+        const getter = P1_ROLES[role];
+        if (!getter) return;
+        let nodes = getter(phaseRoot);
+        if (!nodes.length) return;
+        nodes = nodes.sort((a,b) => {
+          const ai = Number(a.getAttribute('data-order') ?? 0);
+          const bi = Number(b.getAttribute('data-order') ?? 0);
+          return ai - bi;
+        });
+        bundles.push({ role, nodes });
+      });
+      return bundles;
+    }
+
+    async function runP1(){
+      const root = document.querySelector('[data-phase="P1"]');
+      if (!root) return;
+
+      // Flow open delay
+      if (OPEN_DELAY > 0) await delay(OPEN_DELAY);
+
+      // Legacy global start delay (kept)
+      if (START_DELAY_MS > 0) await delay(START_DELAY_MS);
+
+      const bundles = collectPhaseEls_P1(root);
+      if (!bundles || !bundles.length) return;
+
+      if (typeof window.gtag === 'function') {
+        try { window.gtag('event', 'flow_phase_started', { process: PROCESS, phase: 'P1' }); } catch(_){}
+      }
+
+      let base = 0;
+      bundles.forEach(({ role, nodes }) => {
+        const preset = P1_EFFECTS[role] || {};
+        runBatch(nodes, {
+          baseDelay: base,
+          stagger: STAGGER,
+          effect: preset.effect,
+          mobileVariant: preset.mobileVariant,
+          duration: preset.duration
+        });
+        base += STAGGER;
+      });
+
+      if (typeof window.gtag === 'function') {
+        const approx = Math.max(1200, OPEN_DELAY + START_DELAY_MS + (P1_ORDER.length * STAGGER) + 600);
+        setTimeout(() => {
+          try { window.gtag('event', 'flow_phase_done', { process: PROCESS, phase: 'P1' }); } catch(_){}
+        }, approx);
+      }
+    }
+
+    // ---------- Scroll Phases skeleton (P2..P6) ----------
+    const IO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        const phase = el.getAttribute('data-phase');
+        const th = Number(THRESHOLDS[phase] ?? 0.15);
+
+        if (entry.isIntersecting && entry.intersectionRatio >= th) {
+          // TODO: runPhase(phase, el) when maps/effects for P2..P6 are defined
+          if (RUN_ONCE) IO.unobserve(el);
         }
       });
-    }
+    }, {
+      root: null,
+      rootMargin: '0px 0px -10% 0px',
+      threshold: [0, 0.1, 0.15, 0.25, 0.5, 0.75, 1]
+    });
 
-    // --- אימות טעינת תמונות בפרופיל ---
-    function profileImagesLoaded() {
-      const nodes = getProfileNodes();
-      if (!nodes.length) return true;
-      const imgs = nodes.flatMap(n => {
-        const inner = Array.from(n.querySelectorAll("img"));
-        return n.tagName === "IMG" ? [n, ...inner] : inner;
+    function watchScrollPhases(){
+      ['P2','P3','P4','P5','P6'].forEach(p => {
+        const root = document.querySelector(`[data-phase="${p}"]`);
+        if (root) IO.observe(root);
       });
-      if (!imgs.length) return true;
-      return imgs.every(img => img.complete && img.naturalWidth > 0);
     }
 
-    // --- החלת דיליי פר־אלמנט (data-anim-delay) ---
-    function applyPerElementDelays() {
-      getProfileNodes().forEach(node => {
-        const d = node.getAttribute("data-anim-delay");
-        if (d && !node.__animDelayApplied) {
-          node.style.animationDelay = d.trim(); // "400ms" / "0.25s"
-          node.__animDelayApplied = true;
+    // ---------- Parallax BG (unchanged API; cardReady-friendly) ----------
+    function initParallaxBG() {
+      try {
+        const cfg  = (window.cardData && window.cardData.theme && window.cardData.theme.bg) || {};
+        const root = document.documentElement;
+        const bg   = document.querySelector(".card .parallax-bg");
+        if (!bg) return;
+
+        if (cfg.url)             root.style.setProperty("--card-bg-image", `url("${cfg.url}")`);
+        if (cfg.positionX)       root.style.setProperty("--card-bg-position-x", String(cfg.positionX));
+        if (cfg.positionY)       root.style.setProperty("--card-bg-position-y", String(cfg.positionY));
+        if (cfg.size)            root.style.setProperty("--card-bg-size", String(cfg.size));
+        if (cfg.repeat)          root.style.setProperty("--card-bg-repeat", String(cfg.repeat));
+        if (cfg.opacity != null) root.style.setProperty("--card-bg-opacity", String(cfg.opacity));
+        if (cfg.blur)            root.style.setProperty("--card-bg-blur", String(cfg.blur));
+        if (cfg.scrollFactor != null) bg.style.setProperty("--scroll-factor", String(cfg.scrollFactor));
+
+        if (bg.__parallaxBound) {
+          requestAnimationFrame(apply);
+          return;
         }
-      });
+
+        const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const getFactor = () => {
+          if (prefersReduced) return 0;
+          const v = parseFloat(getComputedStyle(bg).getPropertyValue("--scroll-factor"));
+          return Number.isFinite(v) ? v : 0.3;
+        };
+
+        let rafId = null;
+        function apply() {
+          const offset = window.scrollY * getFactor();
+          bg.style.backgroundPosition = `center ${offset}px`;
+          rafId = null;
+        }
+        function onScroll() { if (rafId == null) rafId = requestAnimationFrame(apply); }
+
+        apply();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", () => requestAnimationFrame(apply), { passive: true });
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") requestAnimationFrame(apply);
+        });
+
+        bg.__parallaxBound = true;
+      } catch (e) {
+        console.warn("Anim BG Parallax init error:", e);
+      }
     }
 
-    // --- שחרור גלובלי (CSS שלך כבר על pause/play) ---
-    function release() {
-      document.body.classList.add("anim-ready");
-      log("released");
+    function armParallaxInit(){
+      // If cardReady already fired, init now; otherwise wait for it.
+      if (window.__cardReadyFired) {
+        initParallaxBG();
+      } else {
+        document.addEventListener("cardReady", initParallaxBG, { once: true });
+      }
     }
 
-    // --- מעקב אם cardReady נורה לפני שהמאזין עלה ---
-    const origDispatch = document.dispatchEvent.bind(document);
+    // ---------- Legacy: capture cardReady if dispatched before listeners ----------
+    const _origDispatch = document.dispatchEvent.bind(document);
     document.dispatchEvent = function (ev) {
       if (ev && ev.type === "cardReady") { window.__cardReadyFired = true; }
-      return origDispatch(ev);
+      return _origDispatch(ev);
     };
 
-    // --- הזרימה הראשית ---
-    async function armOnce() {
+    // ---------- Main arming (keeps legacy waits) ----------
+    async function armOnce(){
       try {
-        // DOM מוכן
+        // 1) DOM ready
         await waitFor(() => document.readyState !== "loading", { timeout: 10000 });
-        // דגל אתחול מוכן
+        // 2) isInitialized === true
         await waitFor(() => window.isInitialized === true, { timeout: 15000 });
 
-        // המתנה ל-cardReady (או פולבק קצר)
+        // 3) wait for cardReady or fallback after 3s
         if (!window.__cardReadyFired) {
           await new Promise(res => {
             const to = setTimeout(res, 3000);
@@ -107,125 +239,40 @@
           });
         }
 
-        // --- NEW: ליישם שם האנימציה מה-DATA לפני הכל (חשוב לעקוף את ה-CSS) ---
-        applyProfileAnimationNameFromData();
+        // Parallax init (same timing as before)
+        armParallaxInit();
 
-        // החלת דיליי פר־אלמנט לפני ריצה
-        applyPerElementDelays();
-
-        // להמתין לטעינת תמונות הפרופיל
-        if (!profileImagesLoaded()) {
-          await waitFor(() => profileImagesLoaded(), { timeout: 8000 }).catch(() => { /* נמשיך גם אם נכשל */ });
-        }
-
-        // דיליי גלובלי אופציונלי
-        if (START_DELAY_MS > 0) {
-          await new Promise(r => setTimeout(r, START_DELAY_MS));
-        }
-
-        // לשחרר בפריים הבא לרינדור נקי
-        requestAnimationFrame(() => requestAnimationFrame(release));
+        // Run Flow P1 + prepare scroll phases
+        runP1();
+        watchScrollPhases();
       } catch (e) {
-        console.warn("Anim gate error:", e.message);
-        // גם במקרה תקלה — לא נתקע את הדף
-        release();
+        console.warn("Flow arm error:", e.message);
+        // In case of failure, at least init parallax
+        armParallaxInit();
       }
     }
 
-    // --- BFCache: חזרה אחורה/קדימה ---
+    // BFCache: re-run when returning to the page
     window.addEventListener("pageshow", (ev) => {
       if (ev.persisted) {
-        document.body.classList.remove("anim-ready");
-        // NEW: לוודא שהשם מיושם גם בחזרה מה-cache (למקרה של שינוי DATA)
-        applyProfileAnimationNameFromData();
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => document.body.classList.add("anim-ready"))
-        );
+        // Re-run P1 and observers so flow appears consistent
+        runP1();
+        watchScrollPhases();
       }
     });
 
-    // --- להריץ עכשיו פעם אחת ---
+    // If tab becomes visible again and nothing ran (rare), arm again
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        // lightweight re-arm
+        runP1();
+      }
+    });
+
+    // Kickoff once
     armOnce();
-
-    // --- אם הטאב היה מוסתר — לנסות שוב כשנראה ---
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible" && !document.body.classList.contains("anim-ready")) {
-        // NEW: ליישם שוב שם מה-DATA לפני armOnce (אם נחוץ)
-        applyProfileAnimationNameFromData();
-        armOnce();
-      }
-    });
-    
-
-// === BG PARALLAX (single, idempotent, works on mobile) ===
-function initParallaxBG() {
-  try {
-    const cfg  = (window.cardData && window.cardData.theme && window.cardData.theme.bg) || {};
-    const root = document.documentElement;
-    const bg   = document.querySelector(".card .parallax-bg");
-    if (!bg) return;
-
-    // Inject CSS vars from DATA (optional)
-    if (cfg.url)             root.style.setProperty("--card-bg-image", `url("${cfg.url}")`);
-    if (cfg.positionX)       root.style.setProperty("--card-bg-position-x", String(cfg.positionX));
-    if (cfg.positionY)       root.style.setProperty("--card-bg-position-y", String(cfg.positionY));
-    if (cfg.size)            root.style.setProperty("--card-bg-size", String(cfg.size));
-    if (cfg.repeat)          root.style.setProperty("--card-bg-repeat", String(cfg.repeat));
-    if (cfg.opacity != null) root.style.setProperty("--card-bg-opacity", String(cfg.opacity));
-    if (cfg.blur)            root.style.setProperty("--card-bg-blur", String(cfg.blur));
-    if (cfg.scrollFactor != null) bg.style.setProperty("--scroll-factor", String(cfg.scrollFactor));
-
-    // Avoid double-binding
-    if (bg.__parallaxBound) {
-      requestAnimationFrame(apply);
-      return;
-    }
-
-    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const getFactor = () => {
-      // אם המשתמש ביקש להפחית תנועה – לא נזיז (כיבוד נגישות)
-      if (prefersReduced) return 0;
-      const v = parseFloat(getComputedStyle(bg).getPropertyValue("--scroll-factor"));
-      return Number.isFinite(v) ? v : 0.3;
-    };
-
-    let rafId = null;
-    function apply() {
-      const offset = window.scrollY * getFactor();
-      // חיובי = תזוזה יחד עם המשתמש; שנה ל- -offset כדי לקבל תחושת עומק הפוכה
-      bg.style.backgroundPosition = `center ${offset}px`;
-      rafId = null;
-    }
-    function onScroll() {
-      if (rafId == null) rafId = requestAnimationFrame(apply);
-    }
-
-    // Initial apply + listeners (mobile-friendly)
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", () => requestAnimationFrame(apply), { passive: true });
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") requestAnimationFrame(apply);
-    });
-
-    bg.__parallaxBound = true;
-  } catch (e) {
-    console.warn("Anim BG Parallax init error:", e);
-  }
-}
-
-// Fire on cardReady (or immediately if already fired)
-if (window.__cardReadyFired) {
-  initParallaxBG();
-} else {
-  document.addEventListener("cardReady", initParallaxBG, { once: true });
-}
-
-
-
 
   } catch (e) {
     console.warn("Animations init error:", e);
   }
- 
 })();
