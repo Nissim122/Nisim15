@@ -20,6 +20,8 @@
   animation-timing-function: var(--flow-ease, cubic-bezier(.22,.61,.36,1));
   animation-fill-mode: both;
   animation-play-state: paused;
+  /* ✅ חדש: תמיכה בדיליי פר־אלמנט */
+  animation-delay: var(--flow-delay, 0ms);
   will-change: transform, opacity, filter;
 }
 
@@ -106,9 +108,9 @@
    ========================================================= */
 .card {
   position: relative;
-  overflow: hidden; /* Keep background inside card */
+  overflow: hidden;
   z-index: 1;
-  min-height: 100vh; /* Optional: ensure card fills viewport */
+  min-height: 100vh;
 }
 
 .card .parallax-bg {
@@ -129,10 +131,7 @@
   transition: background-position 0.08s linear;
 }
 
-.card > *:not(.parallax-bg) {
-  position: relative;
-  z-index: 1;
-}
+.card > *:not(.parallax-bg) { position: relative; z-index: 1; }
 
 /* Accessibility: always white background in accessibility mode */
 body.accessibility-mode .card { background: #fff !important; }
@@ -152,3 +151,4 @@ body.accessibility-mode .card .parallax-bg {
     will-change: auto !important;
   }
 }
+
