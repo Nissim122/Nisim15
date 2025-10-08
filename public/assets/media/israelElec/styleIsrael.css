@@ -33,6 +33,75 @@ body.theme-modern {
   --card-bg-opacity: 1;
   --card-bg-blur: 0px;
 }
+/* style-israel.css */
+.header-top,
+.top-section {
+  --header-padding: 0!important;
+  padding: 0 !important;
+}
+
+/* === Israel (client) – no side gaps around logo === */
+/* שכבה: style.css (מותאם לקוח) */
+
+.header-top,
+.top-section,
+.top-section .logo-box {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* מנטרל ריווחי קונטיינרים כלליים בתוך הכרטיס אם קיימים */
+.card,
+.card .section,
+.card .section-inner,
+.card .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* התמונה עצמה – ללא רווחים, נמתחת לרוחב המסגרת */
+.top-section .logo-img {
+  display: block;     /* מבטל רווח inline סביב img */
+  width: 100%;        /* ממלאת את כל הרוחב */
+  max-width: none;    /* מונע הגבלת רוחב חיצונית */
+  height: auto;
+  object-fit: contain;
+}
+
+/* למקרה שיש padding כללי בהידר דרך משתנה – נועל ל-0 */
+.header-top,
+.top-section {
+  --header-padding: 0;
+  padding: 0 !important;
+}
+
+/* אם יש wrapper נוסף סביב הלוגו (פולבאק) */
+.top-section [class*="container"],
+.top-section [class*="wrap"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* ביטול ריווח עליון בלוגו ובחלק העליון */
+.header-top,
+.top-section,
+.top-section .logo-box,
+.top-section .logo-img {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* לוודא שגם הכרטיס עצמו צמוד למעלה */
+.card {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+
 
 
 
