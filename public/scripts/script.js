@@ -158,7 +158,10 @@ function formatForWa(phoneDigits = "") {
   const raw = String(phoneDigits).replace(/\D/g, "");
   const noLeadingZeros = raw.replace(/^0+/, "");
   return noLeadingZeros.startsWith("972") ? noLeadingZeros : `972${noLeadingZeros}`;
-}/* =========================
+}
+
+
+/* =========================
    vCard Auto from DATA – no anchor required
    ========================= */
 (() => {
@@ -197,19 +200,18 @@ function formatForWa(phoneDigits = "") {
 // ✅ הפקת URL אוטומטית לפי סביבת העבודה
 const cardUrl = (() => {
   try {
-    // 1. דומיין הפקה
+    // 1. דומיין הפקה קבוע
     const base = "https://www.clix-marketing.co.il";
-    // 2. נורמליזציה של הנתיב הנוכחי
+    // 2. נורמליזציה של הנתיב הנוכחי (ללא / בסוף)
     const path = location.pathname.replace(/\/+$/, "");
-    // 3. אם הקובץ לא רץ מהשרת – מחליף את localhost ל־production
-    const full = location.hostname.includes("clix-marketing.co.il")
-      ? location.origin + path
-      : base + path;
+    // ✅ 3. שימוש קבוע בבסיס ההפקה — גם בלוקאל וגם בפרודקשן
+    const full = base + path;
     return esc(full);
   } catch {
     return esc(location.href);
   }
 })();
+
 
     // שדות אופציונליים ייכנסו רק אם מולאו
     const lines = [
@@ -261,17 +263,23 @@ const cardUrl = (() => {
   }
 
   // הורדה מיידית תכנותית (לא תלויה ב־DOM)
-  function triggerVCardDownload(filename = "contact.vcf") {
-    if (!vcardURL) return false;
-    const a = document.createElement("a");
-    a.href = vcardURL;
-    a.download = filename;
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    return true;
+ function triggerVCardDownload(filename = "contact.vcf") {
+  // ✅ אם אין URL פעיל – ניצור חדש לפני הורדה
+  if (!vcardURL) {
+    const res = window.VCardAPI?.refresh?.();
+    if (!res?.url) return false;
   }
+
+  const a = document.createElement("a");
+  a.href = vcardURL;
+  a.download = filename;
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  return true;
+}
+
 
   // רענון מלא: יצירה + הצמדה + עדכון cardData.vcardLink
   function refreshVCard() {
@@ -763,9 +771,11 @@ document.addEventListener("click", (e) => {
   if (!t) return;
     // ✅ חריג: אל תעכב הורדה של איש קשר (vCard)
   if (t.matches('[data-field="addContact"], [data-action="addContact"], #vcardDownload')) {
-    console.log("📇 הורדת איש קשר — דילוג על GA");
-    return; // לא ננטר, נאפשר הורדה מידית
-  }
+  console.log("📇 הורדת איש קשר — דילוג על GA בלבד");
+  // לא מחזירים return כדי לא לחסום הורדה
+  return true; // ← רק סימון לוגי, לא עצירה של קליק
+}
+
 
 
   const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
@@ -1078,8 +1088,10 @@ if (tag === "IMG") {
     }, 150);
   })();
 
-  replaceAll();
-  const swiperEl = document.querySelector('.recommendations-swiper');
+replaceAll();
+if (window.VCardAPI) window.VCardAPI.refresh(); // ✅ רענון קובץ איש קשר לאחר הזרקת נתונים
+const swiperEl = document.querySelector('.recommendations-swiper');
+
   const recWrapper = document.getElementById('recommendationSlides');
   const recData = (data.recommendations || []).filter(rec => rec?.name && rec?.text);
 
