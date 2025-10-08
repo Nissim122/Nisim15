@@ -118,6 +118,14 @@
        loading="lazy" />
 </div> -->
 
+<!-- בלוק שני (נשמר, ללא מחיקה) -->
+<div class="name-role" tabindex="0" aria-hidden="true">
+  <h1 id="pageMainTitleClone" class="main-title" data-field="fullName">שם מלא</h1>
+</div>
+
+
+
+<!-- ✅ כותרת עליונה עם שם מלא ותפקיד - ערכים מוזרקים מ־DATA -->
 <div class="name-role" data-phase="P1" tabindex="0">
   <h1
     id="pageMainTitle"
@@ -125,14 +133,13 @@
     data-role="title"
     data-order="1"
     data-field="fullName"
-  >שם מלא</h1>
+  >
+    <span data-field="fullName">מומלץ להכניס כאן שם מלא</span>
+  </h1>
+  <h2 class="secondary-title">
+    <span data-field="role">מומלץ להכניס כאן תיאור תפקיד</span>
+  </h2>
 </div>
-
-<!-- בלוק שני (נשמר, ללא מחיקה) -->
-<div class="name-role" tabindex="0" aria-hidden="true">
-  <h1 id="pageMainTitleClone" class="main-title" data-field="fullName">שם מלא</h1>
-</div>
-
 
 
   <nav class="icons icon-grid" role="navigation" aria-label="קישורי יצירת קשר">

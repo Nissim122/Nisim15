@@ -33,7 +33,7 @@
 }
 /* ערכי ברירת מחדל לנושא modern */
 body.theme-modern {
-  --card-bg-image: url("/assets/bg/test.jpg");
+  --card-bg-image: url("/assets/bg/light_gray_background.jpg");
   --card-bg-opacity: 1;
   --card-bg-blur: 0px;
 }

@@ -239,17 +239,24 @@
           });
         }
 
-        // Parallax init (same timing as before)
-        armParallaxInit();
+    // Parallax init (same timing as before)
+armParallaxInit();
 
-        // Run Flow P1 + prepare scroll phases
-        runP1();
-        watchScrollPhases();
-      } catch (e) {
-        console.warn("Flow arm error:", e.message);
-        // In case of failure, at least init parallax
-        armParallaxInit();
-      }
+// --- Force background init (in case cardReady wasn't dispatched)
+if (window.cardData?.theme?.bg?.url) {
+  const bg = window.cardData.theme.bg;
+  document.documentElement.style.setProperty("--card-bg-image", `url("${bg.url}")`);
+}
+
+// Run Flow P1 + prepare scroll phases
+runP1();
+watchScrollPhases();
+} catch (e) {
+  console.warn("Flow arm error:", e.message);
+  // In case of failure, at least init parallax
+  armParallaxInit();
+}
+
     }
 
     // BFCache: re-run when returning to the page

@@ -1,19 +1,6 @@
 window.cardData = {
-  fullName: "Clix Marketing",
-  role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים",
-
-theme: {
-  bg: {
-    url: "/assets/bg/test.jpg",
-    size: "cover",         // "contain" או יחידות
-    repeat: "no-repeat",   // repeat-x / repeat-y
-    positionX: "center",   // "left"/"right"/"50%"
-    positionY: "0px",      // "50%" / "20px" וכו'
-    opacity: 1,            // 0–1
-    blur: "0px",           // למשל "2px"
-    scrollFactor: 0.3      // מהירות הפרלקסה (0.2 איטי, 0.5 מהיר)
-  }
-},
+fullName: "ישראל יוסופוביץ",
+role: "חשמל ומיזוג אוויר – התקנות, תיקונים ותחזוקה מקצועית",
 
   /* ✅ Title & Favicon */
   pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
