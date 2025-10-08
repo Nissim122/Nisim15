@@ -346,6 +346,19 @@ window.addEventListener("load", function () {
     document.head.appendChild(ldJson);
     console.log("✅ JSON-LD schema injected");
   }
+  document.addEventListener("click", (e) => {
+  const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
+  if (btn) {
+    e.preventDefault();
+    const filename = (window.cardData?.vcard?.filename || "contact.vcf");
+    if (window.VCardAPI?.download) {
+      console.log("📥 הורדת vCard ישירה (Safari fix)");
+      window.VCardAPI.download(filename);
+    } else {
+      console.warn("⚠️ VCardAPI לא נטען עדיין");
+    }
+  }
+});
 
   
 
