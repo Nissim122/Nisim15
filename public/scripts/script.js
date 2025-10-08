@@ -194,7 +194,22 @@ function formatForWa(phoneDigits = "") {
     const email    = esc(data.email || "");
     const role     = esc(data.role || data.jobTitle || "");
     const company  = esc(data.company || data.org || "");
-    const cardUrl  = esc(data.cardUrl || location.href);
+// ✅ הפקת URL אוטומטית לפי סביבת העבודה
+const cardUrl = (() => {
+  try {
+    // 1. דומיין הפקה
+    const base = "https://www.clix-marketing.co.il";
+    // 2. נורמליזציה של הנתיב הנוכחי
+    const path = location.pathname.replace(/\/+$/, "");
+    // 3. אם הקובץ לא רץ מהשרת – מחליף את localhost ל־production
+    const full = location.hostname.includes("clix-marketing.co.il")
+      ? location.origin + path
+      : base + path;
+    return esc(full);
+  } catch {
+    return esc(location.href);
+  }
+})();
 
     // שדות אופציונליים ייכנסו רק אם מולאו
     const lines = [
@@ -746,6 +761,12 @@ const textOf = (el, max = 60) =>
 document.addEventListener("click", (e) => {
   const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
   if (!t) return;
+    // ✅ חריג: אל תעכב הורדה של איש קשר (vCard)
+  if (t.matches('[data-field="addContact"], [data-action="addContact"], #vcardDownload')) {
+    console.log("📇 הורדת איש קשר — דילוג על GA");
+    return; // לא ננטר, נאפשר הורדה מידית
+  }
+
 
   const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
   const type = (t.dataset.type || t.getAttribute("data-field") || "").trim().toLowerCase();
