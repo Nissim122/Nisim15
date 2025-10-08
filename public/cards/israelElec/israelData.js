@@ -29,8 +29,8 @@ pageTitle: "ישראל יוסופוביץ | חשמל ומיזוג אוויר",
     instagram: false,
     mail: false,
     tiktok: false,
-    sendEmail: true,
-    sendWhatsApp: false,
+    sendEmail: false,
+    sendWhatsApp: true,
 
     animationsEnabled: true,   // ✅ חובה להפעיל
 
