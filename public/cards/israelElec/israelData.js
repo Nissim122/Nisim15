@@ -1,71 +1,65 @@
 window.cardData = {
 fullName: "ישראל יוסופוביץ",
-role: "חשמל ומיזוג אוויר – התקנות, תיקונים ותחזוקה מקצועית",
+role: "חשמל  | מיזוג אוויר   ",
 
   /* ✅ Title & Favicon */
-  pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
+pageTitle: "ישראל יוסופוביץ | חשמל ומיזוג אוויר",
   favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
 
   /* ✅ פרטי קשר */
-  phone: "053-2407-762",
-  email: "nisimelec77@gmail.com",
-  phoneDigits: "532407762",
+  phone: "054-2920-605",
+  email: "yosi0542920605@gmail.com",
+  phoneDigits: "542920605", // רק ספרות, ללא מקף
   vcardLink: "./contact.vcf",
-  company: "Clix Marketing",
-  cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
+  company: "ישראל חשמל ומיזוג אוויר",
+  cardUrl: "https://clix-marketing.co.il/cards/israel-yosupovitch.html",
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
 
-  /* ✅ פיצ'רים + דגלי אנימציה (מאוחד) */
   features: {
-    video: true,
+    video: false,
     about: true,
     recommendations: true,
+
     contactWhatsApp: true,
-    facebookLink: true,
-    waze: false,
+    facebookLink: false,
+    waze: true,
     phone: true,
-    instagram: true,
-    mail: true,
-    tiktok: true,
+    instagram: false,
+    mail: false,
+    tiktok: false,
     sendEmail: true,
     sendWhatsApp: false,
 
     animationsEnabled: true,   // ✅ חובה להפעיל
-    animations: {
-      process: "Alpha",        // שם המסלול (Alpha זה ברירת מחדל שלנו)
-      openDelay: 0,          // עיכוב לפני P1 (ms)
-      stagger: 120,            // סטאגר בין אלמנטים בתוך שלב
-      runOnce: true,           // להריץ פעם אחת
-      mobileMotionScale: 0.75, // תנועה קצרה יותר במובייל
-      thresholds: {            // מתי טריגרים של גלילה (לשלבים P2–P6)
-        P2: 0.15,
-        P3: 0.15,
-        P4: 0.15,
-        P5: 0.15,
-        P6: 0.10
-      }
-    }
+
+    // animations: {
+    //   process: "Alpha",        // שם המסלול (Alpha זה ברירת מחדל שלנו)
+    //   openDelay: 0,          // עיכוב לפני P1 (ms)
+    //   stagger: 120,            // סטאגר בין אלמנטים בתוך שלב
+    //   runOnce: true,           // להריץ פעם אחת
+    //   mobileMotionScale: 0.75, // תנועה קצרה יותר במובייל
+    //   thresholds: {            // מתי טריגרים של גלילה (לשלבים P2–P6)
+    //     P2: 0.15,
+    //     P3: 0.15,
+    //     P4: 0.15,
+    //     P5: 0.15,
+    //     P6: 0.10
+    //   }
+    // }
 
   },
 
-
-  /* ✅ רשתות חברתיות */
-  instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-  facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-  youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
-  tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
-
   /* ✅ טקסטים לטפסים */
   submitText: "שלח לוואטסאפ",
-  btnEmailText: "תחזרו אלי",
+  btnEmailText: "שלח",
 
   /* ✅ לוגו/פרופיל */
-  logoSrc: "/assets/logo/myLogo.jpg",
-  logoAlt: "לוגו של Clix Marketing",
-  profileImage: "/assets/logo/myLogo.jpg",
-  profileImageAlt: "תמונת פרופיל של Clix Marketing",
+logoSrc: "/assets/media/israelElec/AA.JPG",
+  logoAlt: "לוגו של ישראל יוסופוביץ - חשמל ומיזוג אוויר",
+// profileImage: "/assets/media/israelElec/AA.JPG",
+  profileImageAlt: "ישראל יוסופוביץ - חשמל ומיזוג אוויר",
 
   /* ✅ SEO בסיסי */
 metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
