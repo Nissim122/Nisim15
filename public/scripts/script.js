@@ -321,6 +321,7 @@ window.addEventListener("pageshow", function () {
     window.dispatchEvent(loadEvent);
   }
 });
+
 window.addEventListener("load", function () {
   if (isInitialized) {
     console.log("⚠️ כבר הותחל - מדלג על טעינה חוזרת");
@@ -334,21 +335,7 @@ window.addEventListener("load", function () {
     console.error("❌ window.cardData לא קיים!");
     return;
   }
-});
-
-// ✅ תיקון ספציפי ל־iPhone / Safari – הפעלה ישירה בעת לחיצה
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
-  if (btn) {
-    e.preventDefault();
-    const filename = (window.cardData?.vcard?.filename || "contact.vcf");
-    if (window.VCardAPI?.download) {
-      console.log("📥 הורדת vCard בהורדה ישירה (Safari fix)");
-      window.VCardAPI.download(filename);
-    } else {
-      console.warn("⚠️ VCardAPI לא נטען עדיין");
-    }
-  }
+  
 
 
   // ✅ Structured Data JSON-LD injection
