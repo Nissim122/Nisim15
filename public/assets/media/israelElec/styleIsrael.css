@@ -2,22 +2,18 @@
 @import url("/assets/base.css");  /* ← נתיב מוחלט נכון */
 
 :root {
-  /* קיבוע גובה האזור העליון */
   --header-height: 300px;  
   --icon-button-bg: transparent;
-
-
-  /* התמונה תמלא את הגובה של הקונטיינר */
   --header-img-height: 100%;
-  
-
-  /* שאר ה־overrides שביקשת (לא חובה לשינוי הגובה) */
   --name-role-font-family: var(--font-family-display);
   --header-img-bg: #fffaf2;
   --header-img-offset-x: 3px;
   --quote-font-color: var(--about-bg-color);
   --btn-scl-text-color-filled: #fffaf2;
   --header-img-bg : #ffffff;
+
+  --name-role-margin-top: 50px; /* לדוגמה – קצת יותר רווח מתחת ללוגו */
+
 
 }
 #pageMainTitle {
@@ -37,6 +33,7 @@ body.theme-modern {
   --card-bg-opacity: 1;
   --card-bg-blur: 0px;
 }
+
 
 
 
