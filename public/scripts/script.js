@@ -343,29 +343,51 @@ window.addEventListener("load", function () {
     document.head.appendChild(ldJson);
     console.log("✅ JSON-LD schema injected");
   }
+// ✅ האזנה לכפתור שמירת איש קשר (vCard)
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
+  if (!btn) return;
 
-  // ✅ האזנה לכפתור שמירת איש קשר (vCard)
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
-    if (btn) {
-      e.preventDefault();
+  e.preventDefault();
 
-      const filename = (window.cardData?.vcard?.filename || "contact.vcf");
+  const filename = window.cardData?.vcard?.filename || "contact.vcf";
+  const vcfURL   = window.cardData?.vcard?.url || window.cardData?.vcardLink || `/data/${filename}`;
+  const isChrome = /chrome|crios/i.test(navigator.userAgent);
+  const cleanOrigin = window.location.origin.replace("www.", "");
 
-      // 🔧 הסרת www מהדומיין תמיד
-      const cleanOrigin = window.location.origin.replace("www.", "");
+  // אם יש API פעיל נעדיף אותו
+  if (window.VCardAPI?.download) {
+    console.log("📇 שימוש ב־VCardAPI.download()");
+    window.VCardAPI.download(filename);
+    return;
+  }
 
-      if (window.VCardAPI?.download) {
-        console.log("📥 הורדת vCard ישירה (Safari fix)");
-        window.VCardAPI.download(filename);
-      } else {
-        // 🔁 fallback – פתיחת הקובץ דרך קישור נקי מ־www
-        const vcardUrl = `${cleanOrigin}/${filename}`;
-        console.log("🔗 פתיחת vCard דרך קישור:", vcardUrl);
-        window.open(vcardUrl, "_blank");
-      }
-    }
-  });
+  // אם מדובר בכרום (בעיקר באנדרואיד / iOS) — נפתח בטאב חדש
+  if (isChrome) {
+    console.log("📂 Chrome מזוהה – פתיחת הקובץ בטאב חדש");
+    const fullUrl = vcfURL.startsWith("http")
+      ? vcfURL
+      : `${cleanOrigin.replace(/\/$/, "")}/${vcfURL.replace(/^\//, "")}`;
+    window.open(fullUrl, "_blank");
+    return;
+  }
+
+  // ✅ דפדפנים אחרים – הורדה ישירה
+  try {
+    const a = document.createElement("a");
+    a.href = vcfURL;
+    a.download = filename;
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    console.log("📥 הורדת vCard ישירה הופעלה");
+  } catch (err) {
+    console.error("❌ שגיאה בהורדה:", err);
+    window.open(vcfURL, "_blank"); // fallback
+  }
+});
+
 
   
 
