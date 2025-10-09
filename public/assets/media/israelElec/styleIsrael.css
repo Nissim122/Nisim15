@@ -11,11 +11,10 @@
   --quote-font-color: var(--about-bg-color);
   --btn-scl-text-color-filled: #fffaf2;
   --header-img-bg : #ffffff;
-
   --name-role-margin-top: 50px; /* לדוגמה – קצת יותר רווח מתחת ללוגו */
-
-
 }
+
+
 #pageMainTitle {
   position: absolute !important;
   width: 1px !important;
@@ -27,12 +26,14 @@
   white-space: nowrap !important;
   border: 0 !important;
 }
-/* ערכי ברירת מחדל לנושא modern */
-body.theme-modern {
+
+
+/* body.theme-modern {
   --card-bg-image: url("/assets/bg/light_gray_background.jpg");
   --card-bg-opacity: 1;
   --card-bg-blur: 0px;
-}
+} */
+
 /* style-israel.css */
 .header-top,
 .top-section {
