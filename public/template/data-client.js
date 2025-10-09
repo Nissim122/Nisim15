@@ -1,6 +1,6 @@
 window.cardData = {
   fullName: "Clix Marketing",
-  role: "בניית כרטיסי ביקור דיגיטליים ושיווק לעסקים",
+  role: " כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
 theme: {
   bg: {

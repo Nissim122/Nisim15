@@ -3,7 +3,7 @@ fullName: " עמית אבן צור",
 role: "מניקוריסטית",
 
 // שדה ייעודי לכותרת האתר
-pageTitle: "  עמית אבן צור | כרטיס ביקור",
+pageTitle: "  עמית אבן צור |  מניקוריסטית",
   metaRobots: "noindex, follow", // 👈 שליטה ישירה באינדוקס
 
 
@@ -12,7 +12,7 @@ pageTitle: "  עמית אבן צור | כרטיס ביקור",
   phoneDigits: "549151945",
   vcardLink: "./contact.vcf",
   company: "Clix Marketing",
-  cardUrl: "https://www.clix-marketing.co.il/cards/amitNails/amit.html#",
+  cardUrl: "https://clix-marketing.co.il/cards/amitNails/amit.html#",
   vcard: { filename: "contact.vcf" },
 
 wazeLink: "https://waze.com/ul/hsv8wxcjtf",

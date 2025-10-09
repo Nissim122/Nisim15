@@ -3,7 +3,7 @@ window.cardData = {
   role: "סטודיו ואקדמיה לציפורניים",
 
   // שדה ייעודי לכותרת האתר
-  pageTitle: "רזי החן | כרטיס ביקור",
+  pageTitle: "רזי החן |  אקדמיה לציפורניים",
   favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
 
   phone: "054-8787-702",
@@ -11,7 +11,7 @@ window.cardData = {
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
   company: "אקדמיה רזי החן",
-  cardUrl: "https://www.clix-marketing.co.il/cards/yaelNails/yael.html#",
+cardUrl: "https://clix-marketing.co.il/cards/yaelNails/yael.html#",
   vcard: { filename: "contact.vcf" },
 
   /* ✅ קישורים */
