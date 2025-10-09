@@ -1,9 +1,9 @@
 window.cardData = {
 fullName: "ישראל יוסופוביץ",
-role: "חשמל  | מיזוג אוויר   ",
+role: "חשמל | תקשורת | מיזוג אוויר",
 
   /* ✅ Title & Favicon */
-pageTitle: "ישראל יוסופוביץ | חשמל ומיזוג אוויר",
+pageTitle: "ישראל יוסופוביץ | חשמל תקשורת ומיזוג אוויר",
   favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
 
   /* ✅ פרטי קשר */
@@ -12,7 +12,7 @@ pageTitle: "ישראל יוסופוביץ | חשמל ומיזוג אוויר",
   phoneDigits: "542920605", // רק ספרות, ללא מקף
   vcardLink: "./contact.vcf",
   company: "ישראל חשמל ומיזוג אוויר",
-  cardUrl: "https://clix-marketing.co.il/cards/israel-yosupovitch.html",
+  cardUrl: "https://clix-marketing.co.il/cards/israelElec/index.html",
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",
@@ -57,115 +57,128 @@ pageTitle: "ישראל יוסופוביץ | חשמל ומיזוג אוויר",
 
   /* ✅ לוגו/פרופיל */
 logoSrc: "/assets/media/israelElec/AA.JPG",
-  logoAlt: "לוגו של ישראל יוסופוביץ - חשמל ומיזוג אוויר",
+  logoAlt: "לוגו של ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
 // profileImage: "/assets/media/israelElec/AA.JPG",
-  profileImageAlt: "ישראל יוסופוביץ - חשמל ומיזוג אוויר",
+  profileImageAlt: "ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
+/* ✅ SEO + Open Graph – ישראל יוסופוביץ | חשמל ומיזוג אוויר */
+metaDescription: "ישראל יוסופוביץ – חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. מבצע התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים, עם שירות אמין, מקצועי וזמינות גבוהה.",
+metaKeywords: "ישראל יוסופוביץ, חשמלאי מוסמך, חשמלאי במרכז, חשמלאי באזור המרכז, מיזוג אוויר במרכז, תיקון מזגנים במרכז, התקנת מזגנים במרכז, חשמלאי מקצועי, עבודות חשמל, חשמל לבית ולעסק, תחזוקת חשמל, שירותי חשמל לעסקים",
+canonicalHref: "https://clix-marketing.co.il/cards/israelElec/index.html",
+metaRobots: "index, follow",
+sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
-  /* ✅ SEO בסיסי */
-metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
-metaKeywords: "כרטיס ביקור דיגיטלי NFC, דוגמאות כרטיס ביקור דיגיטלי, מה זה כרטיס ביקור דיגיטלי, כרטיס דיגיטלי לעסקים, כרטיס ביקור דיגיטלי בזול, כרטיס ביקור דיגיטלי מעוצב, כרטיס ביקור דיגיטלי עם שיתוף, כרטיס ביקור דיגיטלי 2025, כרטיס ביקור דיגיטלי היתרונות",
-  canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
-  metaRobots: "index, follow",
-  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
+/* ✅ Open Graph */
+ogType: "website",
+ogTitle: "ישראל יוסופוביץ – חשמל ומיזוג אוויר | שירות מקצועי ואמין במרכז",
+ogDescription: "ישראל יוסופוביץ – חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים עם שירות מהיר ומקצועי.",
+ogImage: "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
+ogImageAlt: "ישראל יוסופוביץ – חשמל ומיזוג אוויר",
+ogUrl: "https://clix-marketing.co.il/cards/israelElec/index.html",
 
-  /* ✅ Open Graph */
-  ogType: "website",
-ogTitle: "כרטיס ביקור דיגיטלי – הדור החדש לעסקים",
-ogDescription: "כרטיס דיגיטלי שמופיע בגוגל, תומך ב-NFC, כולל דוגמאות מעוצבות ושיתוף קל. זול יותר מאתר – ומוכן בשבילך במהירות.",
-  ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-  ogImageAlt: "לוגו של Clix Marketing",
-  ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
 
-  /* ✅ Twitter Cards */
-  twitterCard: "summary_large_image",
-twitterTitle: "כרטיס ביקור דיגיטלי NFC – זול, מהיר ומעוצב",
-twitterDescription: "גלה דוגמאות לכרטיסי ביקור דיגיטליים שמופיעים בגוגל, תומכים ב־NFC ונותנים לעסק שלך יתרון אמיתי.",
-  twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-/* ✅ Structured Data – JSON-LD (Focused on Digital Business Card + NFC) */
+ /* ✅ Twitter Cards – ישראל יוסופוביץ | חשמל ומיזוג אוויר */
+twitterCard: "summary_large_image",
+twitterTitle: "ישראל יוסופוביץ – חשמל ומיזוג אוויר במרכז | שירות אמין ומקצועי",
+twitterDescription: "חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. התקנות, תיקונים ותחזוקה לבתים ולעסקים – באמינות, מקצועיות וזמינות גבוהה.",
+twitterImage: "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
+
+/* ✅ Structured Data – JSON-LD (ישראל יוסופוביץ | חשמל ומיזוג אוויר) */
 schema: {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
-  "name": "Clix Marketing",
-  "alternateName": "קליקס מרקטינג",
+  "name": "ישראל יוסופוביץ – חשמל ומיזוג אוויר",
+  "alternateName": "חשמלאי מוסמך ומתקין מזגנים במרכז",
   "inLanguage": "he-IL",
 
-  "description": "Clix Marketing מתמחה בבניית כרטיסי ביקור דיגיטליים לעסקים – כולל דוגמאות חיות, תמיכה ב-NFC לשיתוף בלחיצה, התאמה אישית לעסק והגדרה לנראות בגוגל.",
-  "url": "https://clix-marketing.co.il",
-  "logo": "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-  "image": ["https://clix-marketing.co.il/assets/logo/myLogo.jpg"],
-  "telephone": "+972-53-2407-762",
+  "description": "ישראל יוסופוביץ – חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. מבצע התקנות, תיקונים ותחזוקה לבתים ולעסקים, עם שירות אמין, מקצועי וזמינות גבוהה בכל ימות השבוע (א'-ה').",
+  "url": "https://clix-marketing.co.il/cards/israelElec/index.html",
+  "logo": "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
+  "image": ["https://clix-marketing.co.il/cards/israelElec/og-image.jpg"],
+  "telephone": "+972-54-2920-605",
   "priceRange": "$$",
 
-  "areaServed": { "@type": "Country", "name": "IL" },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "מושב חמד",
-    "addressLocality": "חמד",
+    "streetAddress": "הרימון 61",
+    "addressLocality": "מושב חמד",
     "addressRegion": "מרכז",
     "postalCode": "60965",
     "addressCountry": "IL"
   },
-  "geo": { "@type": "GeoCoordinates", "latitude": "31.9702", "longitude": "34.8595" },
 
-  /* 🔎 Keywords & Topics */
+  "geo": { 
+    "@type": "GeoCoordinates", 
+    "latitude": "31.9702", 
+    "longitude": "34.8595" 
+  },
+
+  "areaServed": [
+    { "@type": "Place", "name": "מרכז הארץ" },
+    { "@type": "City", "name": "תל אביב" },
+    { "@type": "City", "name": "ראשון לציון" },
+    { "@type": "City", "name": "חולון" },
+    { "@type": "City", "name": "בת ים" },
+    { "@type": "City", "name": "רמת גן" },
+    { "@type": "City", "name": "פתח תקווה" },
+    { "@type": "City", "name": "גבעתיים" }
+  ],
+
+  /* 🔑 מילות מפתח לחיפושים אמיתיים */
   "keywords": [
-    "כרטיס ביקור דיגיטלי",
-    "כרטיס ביקור דיגיטלי NFC",
-    "דוגמאות כרטיס ביקור דיגיטלי",
-    "מה זה כרטיס ביקור דיגיטלי",
-    "כרטיס דיגיטלי לעסקים",
-    "כרטיס ביקור דיגיטלי בזול",
-    "כרטיס ביקור דיגיטלי מעוצב",
-    "כרטיס ביקור דיגיטלי עם שיתוף",
-    "כרטיס ביקור דיגיטלי 2025",
-    "כרטיס ביקור דיגיטלי היתרונות"
-  ],
-  "knowsAbout": [
-    "NFC לשיתוף כרטיס ביקור דיגיטלי",
-    "הופעה בגוגל לכרטיסים דיגיטליים",
-    "דוגמאות לכרטיסי ביקור דיגיטליים",
-    "התאמה אישית לעסק",
-    "UX במובייל לעסקים קטנים"
+    "חשמלאי במרכז",
+    "חשמלאי מומלץ",
+    "מתקין מזגנים במרכז",
+    "תיקון מזגנים",
+    "התקנת מזגן",
+    "חשמלאי 24 שעות",
+    "קצר חשמלי בבית",
+    "תיקון לוח חשמל",
+    "חשמלאי מוסמך באזור המרכז",
+    "חשמלאי לבית ולעסק",
+    "בדיקות חשמל",
+    "החלפת גוף חימום",
+    "חשמלאי במושב חמד",
+    "התקנת מזגנים לתעשייה",
+    "מיזוג אוויר לבית ולעסק"
   ],
 
-  /* 🧩 Service Offer */
+  /* 🕘 שעות פעילות */
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+    "opens": "07:00",
+    "closes": "20:00"
+  }],
+
+  /* 🔗 רשתות חברתיות ויצירת קשר */
+  "sameAs": [
+    "https://wa.me/972542920605"
+  ],
+
+  /* 🧩 הצעת שירות */
   "makesOffer": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
     "itemOffered": {
       "@type": "Service",
-      "name": "בניית כרטיס ביקור דיגיטלי (כולל NFC)",
-      "category": "Digital Business Card",
-      "provider": { "@type": "Organization", "name": "Clix Marketing" },
-      "areaServed": "IL",
-      "description": "כרטיס ביקור דיגיטלי מעוצב שמופיע בגוגל, כולל דוגמאות חיות, תמיכה ב-NFC, התאמה אישית והגדרת שיתוף בלחיצה אחת."
+      "name": "שירותי חשמל ומיזוג אוויר",
+      "category": "Electrical & HVAC Services",
+      "provider": { "@type": "Person", "name": "ישראל יוסופוביץ" },
+      "areaServed": "מרכז הארץ",
+      "description": "חשמלאי מוסמך ומתקין מערכות מיזוג אוויר – התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים במרכז הארץ."
     }
   },
 
-  /* 🕘 Opening Hours */
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
-    "opens": "09:00",
-    "closes": "19:00"
-  }],
-
-  /* 🔗 Social */
-  "sameAs": [
-    "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-    "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-    "https://youtube.com/@nisimbeng",
-    "https://www.tiktok.com/@clix_beauty_cards"
-  ],
-
-  /* ▶️ Helpful for link previews / actions */
+  /* ▶️ פעולת צפייה */
   "potentialAction": {
     "@type": "ViewAction",
-    "target": "https://clix-marketing.co.il/template/template-generic.html",
-    "name": "צפה בכרטיס ביקור דיגיטלי לדוגמה"
+    "target": "https://clix-marketing.co.il/cards/israelElec/index.html",
+    "name": "צפה בכרטיס של ישראל יוסופוביץ – חשמל ומיזוג אוויר"
   },
-  "brand": { "@type": "Brand", "name": "Clix Marketing" }
+
+  "brand": { "@type": "Brand", "name": "ישראל יוסופוביץ" }
 },
+
 
 
   /* ✅ שיתוף */
