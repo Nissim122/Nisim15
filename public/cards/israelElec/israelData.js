@@ -10,6 +10,8 @@ pageTitle: "ישראל יוסופוביץ | חשמל תקשורת ומיזוג �
   phone: "054-2920-605",
   email: "yosi0542920605@gmail.com",
   phoneDigits: "542920605", // רק ספרות, ללא מקף
+/* ✅ מיקום בוויז */
+wazeLink: "https://waze.com/ul/hsv8y0u3z2",
   vcardLink: "./contact.vcf",
   company: "ישראל חשמל ומיזוג אוויר",
   cardUrl: "https://clix-marketing.co.il/cards/israelElec/index.html",
