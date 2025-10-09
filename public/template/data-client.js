@@ -16,7 +16,7 @@ theme: {
 },
 
   /* ✅ Title & Favicon */
-  pageTitle: "Clix Marketing | כרטיסי ביקור דיגיטליים ושיווק לעסקים",
+pageTitle: "כרטיסי ביקור דיגיטליים, שיווק וקידום ממומן לעסקים | Clix Marketing",
   favicon: "https://clix-marketing.co.il/assets/logo/favicon.ico",
 
   /* ✅ פרטי קשר */
@@ -25,7 +25,7 @@ theme: {
   phoneDigits: "532407762",
   vcardLink: "./contact.vcf",
   company: "Clix Marketing",
-  cardUrl: "https://clix-marketing.co.il/template/template-generic.html",
+cardUrl: "https://clix-marketing.co.il/",
   vcard: { filename: "contact.vcf" },
 
   googleAnalyticsId: "G-5S0Q47GFVE",

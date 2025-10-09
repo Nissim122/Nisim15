@@ -11,7 +11,7 @@ favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
   company: "אקדמיה רזי החן",
-cardUrl: "https://clix-marketing.co.il/cards/yaelNails/yael.html#",
+  cardUrl: "https://clix-marketing.co.il/cards/yaelNails/index.html",
   vcard: { filename: "contact.vcf" },
 
   /* ✅ קישורים */

@@ -12,7 +12,7 @@ pageTitle: "  עמית אבן צור |  מניקוריסטית",
   phoneDigits: "549151945",
   vcardLink: "./contact.vcf",
   company: "Clix Marketing",
-  cardUrl: "https://clix-marketing.co.il/cards/amitNails/amit.html#",
+  cardUrl: "https://clix-marketing.co.il/cards/amitNails/index.html",
   vcard: { filename: "contact.vcf" },
 
 wazeLink: "https://waze.com/ul/hsv8wxcjtf",
