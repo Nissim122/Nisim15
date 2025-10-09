@@ -53,14 +53,14 @@
   --main-background-color: #e6f0ff;
   --contact-form-bg: #f0f6ff;  
 
-  --main-title-color: #003366;
+  --main-title-color: #3d82ff;
   --main-title-bg: #003366;
 --about-text-color: #000000;
 --about-section-p-text-color: #000000;
   --gold-line-bg : #003366;  /* קו זהב מתחת לכותרת הראשית */
     
---name-role-color: #5a3e2b;  /* אפור־שחור אלגנטי */
---secondary-title-color: #dd0d0d;  /* אפור חם בינוני */
+--name-role-color: #3d82ff;
+--secondary-title-color: #000000;
 
   --contact-btn-bg: #1d6fff;
   --btn-border-bg-color: #1d6fff;
