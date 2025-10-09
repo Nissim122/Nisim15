@@ -26,6 +26,9 @@ youtubeLink: "https://www.youtube.com/embed/QexDH4Z9X-0?rel=0&modestbranding=1&p
 facebookLink: "https://www.facebook.com/share/178LGRDcLN/?mibextid=wwXIfr",
 tiktokLink: "https://www.tiktok.com/@amit.evenzur.nails?_t=ZP-8zKXH34S2M2&_r=1",
 
+  googleAnalyticsId: "G-5S0Q47GFVE",
+
+
   features: {
 
     // שליטה במודולים בכרטיס
