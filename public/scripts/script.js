@@ -356,10 +356,14 @@ document.addEventListener("click", (e) => {
 
   e.preventDefault();
 
-  const filename = window.cardData?.vcard?.filename || "contact.vcf";
-  const vcfURL   = window.cardData?.vcard?.url || window.cardData?.vcardLink || `/data/${filename}`;
-  const isChrome = /chrome|crios/i.test(navigator.userAgent);
-  const cleanOrigin = window.location.origin.replace("www.", "");
+const filename = window.cardData?.vcard?.filename || "contact.vcf";
+const vcfURL   = window.cardData?.vcard?.url || window.cardData?.vcardLink || `/data/${filename}`;
+const isChrome = /chrome|crios/i.test(navigator.userAgent);
+
+// ✅ תיקון: מניעת שגיאות ב־www — נורמליזציה חכמה
+const cleanOrigin = window.location.origin.startsWith("https://www.")
+  ? window.location.origin.replace("https://www.", "https://")
+  : window.location.origin;
 
   // אם יש API פעיל נעדיף אותו
   if (window.VCardAPI?.download) {
