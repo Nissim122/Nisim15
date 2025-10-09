@@ -334,15 +334,21 @@ window.addEventListener("load", function () {
     console.error("❌ window.cardData לא קיים!");
     return;
   }
-
-  // ✅ Structured Data JSON-LD injection
-  if (data.schema) {
+// ✅ Structured Data JSON-LD injection (with duplicate prevention)
+if (data.schema) {
+  // בדיקה אם כבר קיים בלוק JSON-LD בעמוד
+  const existingLD = document.querySelector('script[type="application/ld+json"]');
+  if (!existingLD) {
     const ldJson = document.createElement("script");
     ldJson.type = "application/ld+json";
     ldJson.textContent = JSON.stringify(data.schema, null, 2);
     document.head.appendChild(ldJson);
-    console.log("✅ JSON-LD schema injected");
+    console.log("✅ JSON-LD schema injected from DATA");
+  } else {
+    console.log("⚠️ JSON-LD כבר קיים — לא מוזרק שוב מה-DATA");
   }
+}
+
 // ✅ האזנה לכפתור שמירת איש קשר (vCard)
 document.addEventListener("click", (e) => {
   const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
