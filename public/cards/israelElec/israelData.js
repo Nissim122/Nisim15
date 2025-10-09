@@ -219,11 +219,8 @@ placeholder: "איזה שירות אתה צריך?",
       required: false,
       maxLength: 500
     }
-  },// ✅ About
-// ✅ About
-// ✅ About
-// ✅ About
-// ✅ About
+  },
+
 aboutParagraphs: `
   <p><strong class="quote-symbol">''</strong></p>
 
