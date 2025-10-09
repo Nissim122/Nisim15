@@ -321,7 +321,6 @@ window.addEventListener("pageshow", function () {
     window.dispatchEvent(loadEvent);
   }
 });
-
 window.addEventListener("load", function () {
   if (isInitialized) {
     console.log("⚠️ כבר הותחל - מדלג על טעינה חוזרת");
@@ -335,8 +334,6 @@ window.addEventListener("load", function () {
     console.error("❌ window.cardData לא קיים!");
     return;
   }
-  
-
 
   // ✅ Structured Data JSON-LD injection
   if (data.schema) {
@@ -346,19 +343,29 @@ window.addEventListener("load", function () {
     document.head.appendChild(ldJson);
     console.log("✅ JSON-LD schema injected");
   }
+
+  // ✅ האזנה לכפתור שמירת איש קשר (vCard)
   document.addEventListener("click", (e) => {
-  const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
-  if (btn) {
-    e.preventDefault();
-    const filename = (window.cardData?.vcard?.filename || "contact.vcf");
-    if (window.VCardAPI?.download) {
-      console.log("📥 הורדת vCard ישירה (Safari fix)");
-      window.VCardAPI.download(filename);
-    } else {
-      console.warn("⚠️ VCardAPI לא נטען עדיין");
+    const btn = e.target.closest('[data-field="addContact"], [data-action="addContact"]');
+    if (btn) {
+      e.preventDefault();
+
+      const filename = (window.cardData?.vcard?.filename || "contact.vcf");
+
+      // 🔧 הסרת www מהדומיין תמיד
+      const cleanOrigin = window.location.origin.replace("www.", "");
+
+      if (window.VCardAPI?.download) {
+        console.log("📥 הורדת vCard ישירה (Safari fix)");
+        window.VCardAPI.download(filename);
+      } else {
+        // 🔁 fallback – פתיחת הקובץ דרך קישור נקי מ־www
+        const vcardUrl = `${cleanOrigin}/${filename}`;
+        console.log("🔗 פתיחת vCard דרך קישור:", vcardUrl);
+        window.open(vcardUrl, "_blank");
+      }
     }
-  }
-});
+  });
 
   
 
