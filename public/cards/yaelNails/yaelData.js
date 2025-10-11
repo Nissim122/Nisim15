@@ -23,12 +23,11 @@ favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
 
   /* ✅ לוגו/פרופיל */
   logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
-  logoAlt: "לוגו רזי החן – אקדמיה לציפורניים",
+  logoAlt: "לוגו רזי החן - אקדמיה לציפורניים",
   profileImage: "/assets/media/yaelNails/yaelLogo.png",
   profileImageAlt: "סמל אקדמיה רזי החן",
-  
 
-    googleAnalyticsId: "G-5S0Q47GFVE",
+  googleAnalyticsId: "G-5S0Q47GFVE",
 
 
   /* ✅ טקסטים לטפסים */
