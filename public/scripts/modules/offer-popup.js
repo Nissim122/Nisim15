@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ===========================================================
-   📦 Offer Popup – Full Declarative Tracking + UI
+   📦 Offer Popup – Full Declarative Tracking + UI + Countdown
    =========================================================== */
 function showOfferPopup(data) {
   try {
@@ -72,12 +72,19 @@ function showOfferPopup(data) {
     const overlay = document.createElement("div");
     overlay.className = "offer-overlay";
 
-    // גוף הפופאפ
-    const popup = document.createElement("div");
-    popup.className = `offer-popup theme-${data.theme || "default"}`;
+  const popup = document.createElement("div");
+popup.className = `offer-popup theme-${data.theme || "default"}`;
+popup.dataset.id = data.id; // 👈 נדרש כדי לחבר בין הפופאפ ל־DATA שלו
+
+    // טיימר סיום המבצע (אם הוגדר)
+    const countdownHTML = data.endDate
+      ? `<p class="offer-countdown" data-end="${data.endDate}"></p>`
+      : "";
+
     popup.innerHTML = `
       <button class="offer-close" data-analytics="offer_popup_close" aria-label="סגור פופאפ">✖</button>
       <div class="offer-content" style="background-image:url('${data.bgImage || ""}')">
+        ${countdownHTML}
         <div class="offer-text-wrap">
           <h2 class="offer-title">${data.title || "מבצע מיוחד 🎉"}</h2>
           <p class="offer-text">${data.text || "קבלו 25% הנחה על השירותים שלנו!"}</p>
@@ -92,6 +99,7 @@ function showOfferPopup(data) {
       </div>
     `;
 
+    // הוספה למסך
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
     requestAnimationFrame(() => {
@@ -99,6 +107,10 @@ function showOfferPopup(data) {
       popup.classList.add("visible");
     });
 
+    // הפעלת הטיימר אם קיים
+    popup.querySelectorAll(".offer-countdown").forEach(startCountdown);
+
+    // אירוע הצגה
     sendPopupEvent("shown", data);
 
     // סגירה
@@ -130,6 +142,35 @@ function showOfferPopup(data) {
     window.__offerPopupActive = false;
   }
 }
+
+function startCountdown(el) {
+  try {
+    const end = new Date(el.dataset.end);
+    // לוקח את הטקסט מה־DATA של הפופאפ עצמו
+    const popupId = el.closest(".offer-popup")?.dataset.id;
+    const popupData = window.cardData?.offerPopup?.items?.find(p => p.id === popupId);
+    const label = popupData?.countdownText || "נותרו"; // 👈 נשלף מהDATA בלבד
+
+    const tick = () => {
+      const diff = end - new Date();
+      if (diff <= 0) {
+        el.textContent = "⏰ הסתיים!";
+        clearInterval(interval);
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      el.textContent = `${label} ${h} שעות, ${m} דקות ו-${s} שניות`;
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+  } catch (err) {
+    console.error("❌ Countdown Error:", err);
+  }
+}
+
+
 
 /* ===========================================================
    📊 GA4 Tracking Helper

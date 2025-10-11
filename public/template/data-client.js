@@ -19,7 +19,9 @@ offerPopup: {
       buttonLink: "https://wa.me/972532407762",
       bgImage: "https://picsum.photos/600/400?random=1",
       theme: "dark",
-      version: "spring-2025-v3"
+       endDate: "2025-10-30T23:59:59Z",
+      countdownText: "המבצע מסתיים בעוד" ,
+
     },
     {
       id: "popup_2",
@@ -30,7 +32,9 @@ offerPopup: {
       buttonLink: "https://wa.me/972532407762",
       bgImage: "https://picsum.photos/600/400?random=2",
       theme: "light",
-      version: "spring-2025-v3"
+      endDate: "2025-10-30T23:59:59Z",
+      countdownText: "המבצע מסתיים בעוד" ,
+
     },
     {
       id: "popup_3",
@@ -41,7 +45,10 @@ offerPopup: {
       buttonLink: "https://wa.me/972532407762",
       bgImage: "https://picsum.photos/600/400?random=3",
       theme: "modern",
-      version: "spring-2025-v3"
+      version: "spring-2025-v3",
+      endDate: "2025-10-30T23:59:59Z",
+      countdownText: "המבצע מסתיים בעוד" ,
+
     }
   ]
 },
