@@ -1,4 +1,8 @@
-/cards/*    /cards/:splat/index.html   200
-/*          /index.html                200
+# 🎯 הפניה קבועה מכל כתובת עם WWW לגרסה הראשית
 https://www.clix-marketing.co.il/*   https://clix-marketing.co.il/:splat   301!
 
+# 📁 הפניה פנימית לכל כרטיס בתיקיית cards
+/cards/*    /cards/:splat/index.html   200
+
+# 🏠 ברירת מחדל – הפניה לדף הראשי
+/*          /index.html                200
