@@ -1,18 +1,19 @@
 window.cardData = {
   fullName: "Clix Marketing",
   role: " כרטיסי ביקור דיגיטליים ושיווק לעסקים",
-  /* ✅ פופאפ מבצעים דינמי */
-offerPopup: {
-  active: true,
-  delaySeconds: 3,
-  repeatAfterHours: 0.5,
-  title: "מבצע לזמן מוגבל 🎁",
-  text: "קבלו 20% הנחה על כל השירותים!",
-  buttonText: "אני רוצה",
-  buttonLink: "#",
-  bgImage: "https://picsum.photos/600/400"
-}
-,
+
+
+  offerPopup: {
+    active: true,
+    title: "מבצע מיוחד 🎯",
+    text: "לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!",
+    buttonText: "אני רוצה",
+    buttonLink: "https://wa.me/972532407762",
+    bgImage: "https://picsum.photos/600/400",
+    repeatAfterHours: 24,
+    version: "spring-2025-v3"
+},
+
 
 
 theme: {

@@ -816,7 +816,6 @@ if (data.googleAnalyticsId) {
 
 
 
-
 // 🧲 מעקב אחרי קליקים – contact_* + מצטבר contact_click
 const textOf = (el, max = 60) =>
   (el.innerText || el.textContent || "").trim().replace(/\s+/g, " ").slice(0, max);
@@ -824,13 +823,23 @@ const textOf = (el, max = 60) =>
 document.addEventListener("click", (e) => {
   const t = e.target.closest('[data-track="click"],a,button,[role="button"]');
   if (!t) return;
-    // ✅ חריג: אל תעכב הורדה של איש קשר (vCard)
+  
+  // ✅ חריג: אל תעכב הורדה של איש קשר (vCard)
   if (t.matches('[data-field="addContact"], [data-action="addContact"], #vcardDownload')) {
-  console.log("📇 הורדת איש קשר — דילוג על GA בלבד");
-  // לא מחזירים return כדי לא לחסום הורדה
-  return true; // ← רק סימון לוגי, לא עצירה של קליק
-}
+    console.log("📇 הורדת איש קשר — דילוג על GA בלבד");
+    // לא מחזירים return כדי לא לחסום הורדה
+    return true; // ← רק סימון לוגי, לא עצירה של קליק
+  }
 
+// ✅ חדש: מניעת שליחה כפולה של אירועי פופאפ (כולל על אלמנטים פנימיים)
+const popupAnalyticsEl = t.closest('[data-analytics]');
+if (popupAnalyticsEl) {
+  const analyticName = popupAnalyticsEl.getAttribute("data-analytics") || "";
+  if (analyticName.startsWith("offer_popup_")) {
+    console.log(`⚙️ דילוג על click_generic — אירוע ייעודי של פופאפ (${analyticName})`);
+    return; // ← לא שולחים גנרי עבור אירועי פופאפ
+  }
+}
 
 
   const href = t.tagName === "A" ? (t.getAttribute("href") || "").toLowerCase() : "";
@@ -895,8 +904,10 @@ document.addEventListener("click", (e) => {
     return;
   }
 
+  // 🧭 ברירת מחדל – אירוע כללי אם לא זוהה שום סוג
   gtag("event", "click_generic", common);
 });
+
 
 // 📨 form_submit
 document.addEventListener("submit", (e) => {
