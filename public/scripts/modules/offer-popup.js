@@ -1,81 +1,92 @@
 /* ===========================================================
-   📦 Offer Popup – Smart Analytics + Full Declarative Tracking
+   📦 Offer Popup – Sequential Rotation (1→2→3 Loop) + Version Priority
    =========================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const offerData = window.cardData?.offerPopup;
+    if (!offerData || !offerData.enabled) return;
 
+    const STORAGE_LAST_DATE = "offerPopupLastDate";
+    const STORAGE_INDEX = "offerPopupIndex";
+    const repeatDays = Number(offerData.repeatAfterDays) || 30;
+
+    const items = (offerData.items || []).filter(i => i.active);
+    if (!items.length) return;
+
+    // 🧠 בדיקה אם אחד הפופאפים עודכן בגרסה חדשה
+    const versionChanged = items.find(it => {
+      const k = `offerPopupVersion_${it.id}`;
+      const stored = localStorage.getItem(k) || "";
+      return (it.version || "") !== stored;
+    });
+
+    const lastDate = localStorage.getItem(STORAGE_LAST_DATE);
+    const daysPassed = lastDate
+      ? (Date.now() - new Date(lastDate).getTime()) / (1000 * 60 * 60 * 24)
+      : Infinity;
+
+    // ⏳ תנאי הצגה: או שעברה התקופה או שיש גרסה חדשה
+    if (!versionChanged && daysPassed < repeatDays) {
+      console.log(`⏳ טרם עברו ${repeatDays} ימים (${daysPassed.toFixed(1)}) – לא מציג שוב`);
+      return;
+    }
+
+    // 📊 חישוב האינדקס הנוכחי
+    let index = Number(localStorage.getItem(STORAGE_INDEX)) || 0;
+    if (index >= items.length) index = 0; // איפוס מחזור
+
+    // אם יש גרסה חדשה, מציג אותה מיד (מתעלם מהסדר)
+    const selected = versionChanged || items[index];
+    if (!selected) return;
+
+    console.log(`🎯 מציג פופאפ ${selected.id} – ${selected.title}`);
+
+    // הצגה בפועל
+    showOfferPopup(selected);
+
+    // שמירה בזיכרון
+    localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+    localStorage.setItem(STORAGE_INDEX, versionChanged ? index : index + 1);
+    localStorage.setItem(`offerPopupVersion_${selected.id}`, selected.version || "");
+  } catch (err) {
+    console.error("❌ OfferPopup Sequential Rotation Error:", err);
+  }
+});
+
+/* ===========================================================
+   📦 Offer Popup – Full Declarative Tracking + UI
+   =========================================================== */
 function showOfferPopup(data) {
   try {
-    const STORAGE_KEY = "offerPopupLastShown";
-    const VERSION_KEY = "offerPopupVersion";
-    const CLOSE_COUNT_KEY = "offerPopupCloseCount";
-    const CTA_COUNT_KEY = "offerPopupCtaCount";
-
-    // ✅ מניעת פתיחה כפולה
+    const STORAGE_LAST_DATE = "offerPopupLastDate";
     if (window.__offerPopupActive) {
-      console.log("⚠️ הפופאפ כבר פעיל – מבטל פתיחה נוספת");
+      console.log("⚠️ הפופאפ כבר פעיל – ביטול פתיחה נוספת");
       return;
     }
     window.__offerPopupActive = true;
 
-    // 🔍 בדיקת טעינה של CSS
-    if (!document.querySelector('link[href*="offer-popup.css"]')) {
-      console.warn("⚠️ offer-popup.css לא נטען – בדוק את הנתיב או את הקובץ");
-    }
-
-    // ⚙️ יצירת מזהה גרסה לפי התוכן
-    const currentVersion =
-      data.version ||
-      `${data.title || ""}_${data.text || ""}_${data.buttonText || ""}`.trim();
-
-    // 📦 נתונים קודמים
-    const lastShown = Number(localStorage.getItem(STORAGE_KEY)) || 0;
-    const lastVersion = localStorage.getItem(VERSION_KEY) || "";
-    const repeatAfter = Number(data.repeatAfterHours) || 24;
-    const hoursPassed = (Date.now() - lastShown) / (1000 * 60 * 60);
-
-    // ✅ הצגה רק אם עבר הזמן או התוכן חדש
-    const shouldShow =
-      hoursPassed >= repeatAfter || currentVersion !== lastVersion;
-
-    if (!shouldShow) {
-      console.log(
-        `⏳ הפופאפ לא יוצג (עברו רק ${hoursPassed.toFixed(
-          2
-        )} שעות, ואין שינוי תוכן)`
-      );
-      window.__offerPopupActive = false;
-      return;
-    }
-
-    // 🧹 ניקוי מופעים קודמים
+    // ניקוי פופאפים קיימים
     document.querySelectorAll(".offer-popup, .offer-overlay").forEach(el => el.remove());
 
-    // 🎨 רקע
+    // שכבת רקע
     const overlay = document.createElement("div");
     overlay.className = "offer-overlay";
 
-    // 💬 פופאפ עם data-analytics על כל פקד חשוב
+    // גוף הפופאפ
     const popup = document.createElement("div");
-    popup.className = "offer-popup";
+    popup.className = `offer-popup theme-${data.theme || "default"}`;
     popup.innerHTML = `
-      <button
-        class="offer-close"
-        data-analytics="offer_popup_close"
-        data-analytics-context="${data.version || 'unknown'}"
-        aria-label="סגור פופאפ"
-      >✖</button>
+      <button class="offer-close" data-analytics="offer_popup_close" aria-label="סגור פופאפ">✖</button>
       <div class="offer-content" style="background-image:url('${data.bgImage || ""}')">
         <div class="offer-text-wrap">
-          <h2 class="offer-title" data-analytics="offer_popup_title">
-            ${data.title || "מבצע מיוחד 🎉"}
-          </h2>
-          <p class="offer-text">${data.text || "קבלו 25% הנחה על כל השירותים שלנו!"}</p>
+          <h2 class="offer-title">${data.title || "מבצע מיוחד 🎉"}</h2>
+          <p class="offer-text">${data.text || "קבלו 25% הנחה על השירותים שלנו!"}</p>
           <a href="${data.buttonLink || "#"}"
              class="offer-btn"
              target="_blank"
              rel="noopener"
-             data-analytics="offer_popup_cta_click"
-             data-analytics-context="${data.version || 'unknown'}">
-            ${data.buttonText || "אני רוצה"}
+             data-analytics="offer_popup_cta_click">
+             ${data.buttonText || "אני רוצה"}
           </a>
         </div>
       </div>
@@ -83,67 +94,35 @@ function showOfferPopup(data) {
 
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
-
     requestAnimationFrame(() => {
       overlay.classList.add("active");
       popup.classList.add("visible");
     });
 
-    console.log("🎯 הפופאפ מוצג מעל כל הדף (סגירה רק באיקס)");
-
-    // שליחת אירוע הצגה
     sendPopupEvent("shown", data);
 
-    // 🧩 סגירה רק באיקס
-    const close = () => {
+    // סגירה
+    popup.querySelector(".offer-close").addEventListener("click", () => {
       popup.classList.remove("visible");
       overlay.classList.remove("active");
-
-      const currentCloseCount = Number(localStorage.getItem(CLOSE_COUNT_KEY)) || 0;
-      localStorage.setItem(CLOSE_COUNT_KEY, currentCloseCount + 1);
-      sendPopupEvent("closed", data);
-
       setTimeout(() => {
-        overlay.remove();
         popup.remove();
+        overlay.remove();
         window.__offerPopupActive = false;
-        localStorage.setItem(STORAGE_KEY, Date.now());
-        localStorage.setItem(VERSION_KEY, currentVersion);
-        console.log(
-          `🕒 הפופאפ נסגר – ייפתח שוב רק אם יעברו ${repeatAfter} שעות או שתוכן חדש יוגדר`
-        );
+        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        sendPopupEvent("closed", data);
       }, 400);
-    };
+    });
 
-    popup.querySelector(".offer-close").addEventListener("click", close);
-
-    // 🧠 מעקב על כל פקד עם data-analytics בתוך הפופאפ
-    popup.addEventListener("click", (e) => {
+    // מעקב אנליטיקס על לחיצות
+    popup.addEventListener("click", e => {
       const el = e.target.closest("[data-analytics]");
       if (!el) return;
-
       const eventName = el.getAttribute("data-analytics");
-      const context = el.getAttribute("data-analytics-context") || data.version || "unknown";
-
-      // שליחת אירוע ייעודי ל-GA
-      if (typeof gtag === "function") {
-        gtag("event", eventName, {
-          event_category: "Offer Popup",
-          event_label: context,
-          offer_version: data.version || "unknown",
-          offer_title: data.title || "",
-          offer_button_text: data.buttonText || "",
-          offer_link: data.buttonLink || "",
-          timestamp: new Date().toISOString(),
-        });
-        console.log(`📈 GA Event → ${eventName} (${context})`);
-      }
-
-      // 🟢 ספירת קליקים על כפתור הנעה לפעולה (CTA)
+      sendPopupEvent(eventName, data);
       if (eventName === "offer_popup_cta_click") {
-        const currentCtaCount = Number(localStorage.getItem(CTA_COUNT_KEY)) || 0;
-        localStorage.setItem(CTA_COUNT_KEY, currentCtaCount + 1);
-        sendPopupEvent("cta", data); // ← אירוע גלובלי נוסף ל-GA
+        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        sendPopupEvent("cta", data);
       }
     });
   } catch (err) {
@@ -157,25 +136,19 @@ function showOfferPopup(data) {
    =========================================================== */
 function sendPopupEvent(action, data) {
   try {
-    if (typeof gtag !== "function") {
-      console.warn("⚠️ gtag() לא זמין – האירוע לא נשלח לאנליטיקס");
-      return;
-    }
-
-    const eventLabel = `offer_popup_${action}`;
-
-    gtag("event", eventLabel, {
+    if (typeof gtag !== "function") return;
+    const label = data.id || "unknown";
+    gtag("event", `offer_popup_${action}`, {
       event_category: "Offer Popup",
-      event_action: action,
-      event_label: data.version || "unknown",
+      event_label: label,
+      offer_id: data.id,
       offer_title: data.title || "",
-      offer_version: data.version || "unknown",
+      offer_version: data.version || "",
       offer_button_text: data.buttonText || "",
       offer_link: data.buttonLink || "",
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString()
     });
-
-    console.log(`📈 GA Event → ${eventLabel}`);
+    console.log(`📈 GA Event → offer_popup_${action} (${label})`);
   } catch (err) {
     console.error("❌ GA Event Error:", err);
   }

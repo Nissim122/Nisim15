@@ -3,16 +3,49 @@ window.cardData = {
   role: " כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
 
-  offerPopup: {
-    active: true,
-    title: "מבצע מיוחד 🎯",
-    text: "לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!",
-    buttonText: "אני רוצה",
-    buttonLink: "https://wa.me/972532407762",
-    bgImage: "https://picsum.photos/600/400",
-    repeatAfterHours: 24,
-    version: "spring-2025-v3"
+/* ===========================================================
+   🎯 Dynamic Offer Popup – 3 Variants (Spring 2025)
+   =========================================================== */
+offerPopup: {
+  enabled: true,          // ✅ הפעלה כללית של מערכת הפופאפים
+  repeatAfterDays: 2,    // ⏳ פופאפ אחד בלבד כל 30 יום
+  items: [
+    {
+      id: "popup_1",
+      active: true,
+      title: "מבצע פתיחת חודש 🎯",
+      text: "לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!",
+      buttonText: "אני רוצה",
+      buttonLink: "https://wa.me/972532407762",
+      bgImage: "https://picsum.photos/600/400?random=1",
+      theme: "dark",
+      version: "spring-2025-v3"
+    },
+    {
+      id: "popup_2",
+      active: true,
+      title: "מבצע אמצע חודש 💎",
+      text: "מבצע מיוחד: לקוחה חדשה? קבלי טיפול פנים במתנה על כל טיפול יופי!",
+      buttonText: "בדקי פרטים",
+      buttonLink: "https://wa.me/972532407762",
+      bgImage: "https://picsum.photos/600/400?random=2",
+      theme: "light",
+      version: "spring-2025-v3"
+    },
+    {
+      id: "popup_3",
+      active: true,
+      title: "מבצע סוף חודש 🔥",
+      text: "הנחות מטורפות רק עד סוף החודש — אל תפספסי!",
+      buttonText: "לחצי כאן",
+      buttonLink: "https://wa.me/972532407762",
+      bgImage: "https://picsum.photos/600/400?random=3",
+      theme: "modern",
+      version: "spring-2025-v3"
+    }
+  ]
 },
+
 
 
 

@@ -28,14 +28,11 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
   width: 90%;
   max-width: 380px;
-
-  /* שליטה בגובה */
   height: auto;
   max-height: 85vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.4) transparent;
-
   opacity: 0;
   z-index: 9999;
   transition: all 0.4s ease;
