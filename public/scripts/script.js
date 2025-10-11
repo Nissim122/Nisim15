@@ -201,7 +201,7 @@ function formatForWa(phoneDigits = "") {
 const cardUrl = (() => {
   try {
     // 1. דומיין הפקה קבוע
-    const base = "https://www.clix-marketing.co.il";
+const base = "https://clix-marketing.co.il";
     // 2. נורמליזציה של הנתיב הנוכחי (ללא / בסוף)
     const path = location.pathname.replace(/\/+$/, "");
     // ✅ 3. שימוש קבוע בבסיס ההפקה — גם בלוקאל וגם בפרודקשן
