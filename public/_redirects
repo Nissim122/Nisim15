@@ -1,8 +1,5 @@
-# הפניה מכל WWW לגרסה הראשית
-/www/*     /:splat    301!
+# ✅ הפניה לכל כרטיס בתיקיית /cards
+/cards/*    /cards/:splat/index.html   200
 
-# הפניה פנימית לכל כרטיס
-/cards/*   /cards/:splat/index.html   200
-
-# ברירת מחדל
-/*         /index.html   200
+# ✅ ברירת מחדל – דף הבית הראשי
+/*           /index.html               200
