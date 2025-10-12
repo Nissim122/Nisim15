@@ -17,7 +17,7 @@ offerPopup: {
       text: "לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!",
       buttonText: "אני רוצה",
       buttonLink: "https://wa.me/972532407762",
-      bgImage: "https://picsum.photos/600/400?random=1",
+      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
       theme: "dark",
        endDate: "2025-10-30T23:59:59Z",
       countdownText: "המבצע מסתיים בעוד" ,
@@ -30,7 +30,7 @@ offerPopup: {
       text: "מבצע מיוחד: לקוחה חדשה? קבלי טיפול פנים במתנה על כל טיפול יופי!",
       buttonText: "בדקי פרטים",
       buttonLink: "https://wa.me/972532407762",
-      bgImage: "https://picsum.photos/600/400?random=2",
+      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
       theme: "light",
       endDate: "2025-10-30T23:59:59Z",
       countdownText: "המבצע מסתיים בעוד" ,
@@ -43,7 +43,7 @@ offerPopup: {
       text: "הנחות מטורפות רק עד סוף החודש — אל תפספסי!",
       buttonText: "לחצי כאן",
       buttonLink: "https://wa.me/972532407762",
-      bgImage: "https://picsum.photos/600/400?random=3",
+      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
       theme: "modern",
       version: "spring-2025-v3",
       endDate: "2025-10-30T23:59:59Z",

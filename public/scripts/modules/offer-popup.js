@@ -51,10 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (err) {
     console.error("❌ OfferPopup Sequential Rotation Error:", err);
   }
-});
-
-/* ===========================================================
-   📦 Offer Popup – Full Declarative Tracking + UI + Countdown
+});/* ===========================================================
+   📦 Offer Popup – Background & Countdown from DATA only (Final Version)
    =========================================================== */
 function showOfferPopup(data) {
   try {
@@ -65,25 +63,36 @@ function showOfferPopup(data) {
     }
     window.__offerPopupActive = true;
 
-    // ניקוי פופאפים קיימים
+    // ניקוי מופעים קודמים
     document.querySelectorAll(".offer-popup, .offer-overlay").forEach(el => el.remove());
 
     // שכבת רקע
     const overlay = document.createElement("div");
     overlay.className = "offer-overlay";
 
-  const popup = document.createElement("div");
-popup.className = `offer-popup theme-${data.theme || "default"}`;
-popup.dataset.id = data.id; // 👈 נדרש כדי לחבר בין הפופאפ ל־DATA שלו
+    // 🎨 רקע דינמי לפי DATA בלבד
+    let backgroundStyle = "";
+    if (data.bgImage && data.bgImage !== "none") {
+      backgroundStyle = `background-image:url('${data.bgImage}'); background-size:cover; background-position:center;`;
+    } else if (data.bgColor) {
+      backgroundStyle = `background-color:${data.bgColor};`;
+    } else {
+      backgroundStyle = `background-color:#ffffff;`; // ברירת מחדל
+    }
 
-    // טיימר סיום המבצע (אם הוגדר)
+    // 🕒 טיימר מתוך DATA
     const countdownHTML = data.endDate
-      ? `<p class="offer-countdown" data-end="${data.endDate}"></p>`
+      ? `<p class="offer-countdown" data-end="${data.endDate}" data-label="${data.countdownText || "המבצע מסתיים בעוד"}"></p>`
       : "";
+
+    // ✨ יצירת הפופאפ בפועל
+    const popup = document.createElement("div");
+    popup.className = `offer-popup theme-${data.theme || "default"}`;
+    popup.dataset.id = data.id;
 
     popup.innerHTML = `
       <button class="offer-close" data-analytics="offer_popup_close" aria-label="סגור פופאפ">✖</button>
-      <div class="offer-content" style="background-image:url('${data.bgImage || ""}')">
+      <div class="offer-content" style="${backgroundStyle}">
         ${countdownHTML}
         <div class="offer-text-wrap">
           <h2 class="offer-title">${data.title || "מבצע מיוחד 🎉"}</h2>
@@ -102,15 +111,15 @@ popup.dataset.id = data.id; // 👈 נדרש כדי לחבר בין הפופאפ
     // הוספה למסך
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
+
     requestAnimationFrame(() => {
       overlay.classList.add("active");
       popup.classList.add("visible");
     });
 
-    // הפעלת הטיימר אם קיים
+    // הפעלת טיימר
     popup.querySelectorAll(".offer-countdown").forEach(startCountdown);
 
-    // אירוע הצגה
     sendPopupEvent("shown", data);
 
     // סגירה
@@ -126,7 +135,7 @@ popup.dataset.id = data.id; // 👈 נדרש כדי לחבר בין הפופאפ
       }, 400);
     });
 
-    // מעקב אנליטיקס על לחיצות
+    // מעקב אנליטיקס
     popup.addEventListener("click", e => {
       const el = e.target.closest("[data-analytics]");
       if (!el) return;
@@ -143,33 +152,41 @@ popup.dataset.id = data.id; // 👈 נדרש כדי לחבר בין הפופאפ
   }
 }
 
+/* ===========================================================
+   ⏰ Countdown – from DATA only
+   =========================================================== */
 function startCountdown(el) {
   try {
     const end = new Date(el.dataset.end);
-    // לוקח את הטקסט מה־DATA של הפופאפ עצמו
+    if (isNaN(end)) {
+      el.textContent = "⏳ ללא תאריך סיום";
+      return;
+    }
+
+    // שליפת טקסט מה־DATA של הפופאפ עצמו
     const popupId = el.closest(".offer-popup")?.dataset.id;
     const popupData = window.cardData?.offerPopup?.items?.find(p => p.id === popupId);
-    const label = popupData?.countdownText || "נותרו"; // 👈 נשלף מהDATA בלבד
+    const label = popupData?.countdownText || el.dataset.label || "המבצע מסתיים בעוד";
 
     const tick = () => {
       const diff = end - new Date();
       if (diff <= 0) {
-        el.textContent = "⏰ הסתיים!";
+        el.textContent = "⏰ המבצע הסתיים!";
         clearInterval(interval);
         return;
       }
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      el.textContent = `${label} ${h} שעות, ${m} דקות ו-${s} שניות`;
+      const hours = Math.floor(diff / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      el.textContent = `${label} ${hours} שעות, ${minutes} דקות ו־${seconds} שניות`;
     };
+
     tick();
     const interval = setInterval(tick, 1000);
   } catch (err) {
     console.error("❌ Countdown Error:", err);
   }
 }
-
 
 
 /* ===========================================================

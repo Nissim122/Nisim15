@@ -2,22 +2,25 @@
 @import url("/assets/base.css");  /* ← נתיב מוחלט נכון */
 
 :root {
-  /* קיבוע גובה האזור העליון */
   --header-height: 60px;  
   --icon-button-bg: transparent;
-
-
-  /* התמונה תמלא את הגובה של הקונטיינר */
   --header-img-height: 100%;
-  
-
-  /* שאר ה־overrides שביקשת (לא חובה לשינוי הגובה) */
   --name-role-font-family: var(--font-family-display);
   --header-img-bg: #fffaf2;
   --header-img-offset-x: 3px;
   --quote-font-color: var(--about-bg-color);
   --btn-scl-text-color-filled: #fffaf2;
   --header-img-bg : #ffffff;
+
+    --offer-popup-bg-image: none;              /* ביטול תמונת רקע */
+  --offer-popup-bg-color: #ffffff;           /* רקע לבן מלא */
+  --offer-popup-title-color: #000000;        /* טקסט כותרת שחור */
+  --offer-popup-text-color: #333333;         /* טקסט גוף אפור כהה */
+  --offer-popup-btn-bg: #000000;             /* כפתור שחור */
+  --offer-popup-btn-color: #ffffff;          /* טקסט כפתור לבן */
+  --offer-popup-countdown-bg: rgba(0, 0, 0, 0.05); /* רקע מונה בהיר */
+  --offer-popup-countdown-color: #000000;    /* טקסט מונה שחור */
+  --offer-popup-countdown-font: 15px;        /* גודל גופן למונה */
 
 }
 #pageMainTitle {
