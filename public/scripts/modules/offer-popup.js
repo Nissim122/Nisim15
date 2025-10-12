@@ -62,9 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 /* ===========================================================
-   📦 Offer Popup – Background & Countdown from DATA only (Final Version)
+   📦 Offer Popup – Dynamic Layout Per Client (Full Version)
    =========================================================== */
 function showOfferPopup(data) {
   try {
@@ -89,12 +88,16 @@ function showOfferPopup(data) {
     } else if (data.bgColor) {
       backgroundStyle = `background-color:${data.bgColor};`;
     } else {
-      backgroundStyle = `background-color:#ffffff;`; // ברירת מחדל
+      backgroundStyle = `background-color:#ffffff;`;
     }
+
+    // 🧩 פריסת Layout דינמית
+    const layoutOrder = data.layout?.order || {};
+    const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
 
     // 🕒 טיימר מתוך DATA
     const countdownHTML = data.endDate
-      ? `<p class="offer-countdown" data-end="${data.endDate}" data-label="${data.countdownText || "המבצע מסתיים בעוד"}"></p>`
+      ? `<p class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" data-label="${data.countdownText || "המבצע מסתיים בעוד"}"></p>`
       : "";
 
     // ✨ יצירת הפופאפ בפועל
@@ -105,12 +108,13 @@ function showOfferPopup(data) {
     popup.innerHTML = `
       <button class="offer-close" data-analytics="offer_popup_close" aria-label="סגור פופאפ">✖</button>
       <div class="offer-content" style="${backgroundStyle}">
-        ${countdownHTML}
         <div class="offer-text-wrap">
-          <h2 class="offer-title">${data.title || "מבצע מיוחד 🎉"}</h2>
-          <p class="offer-text">${data.text || "קבלו 25% הנחה על השירותים שלנו!"}</p>
+          ${countdownHTML}
+          <h2 class="offer-title" ${getOrder("title", 2)}>${data.title || "מבצע מיוחד 🎉"}</h2>
+          <p class="offer-text" ${getOrder("text", 3)}>${data.text || "קבלו 25% הנחה על השירותים שלנו!"}</p>
           <a href="${data.buttonLink || "#"}"
              class="offer-btn"
+             ${getOrder("button", 4)}
              target="_blank"
              rel="noopener"
              data-analytics="offer_popup_cta_click">
@@ -142,7 +146,6 @@ function showOfferPopup(data) {
         popup.remove();
         overlay.remove();
         window.__offerPopupActive = false;
-        // לא לעדכן תאריך אם תמיד מציגים
         if (!window.__offerAlwaysShow) {
           localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
         }
@@ -156,14 +159,11 @@ function showOfferPopup(data) {
       if (!el) return;
       const eventName = el.getAttribute("data-analytics");
       sendPopupEvent(eventName, data);
-      if (eventName === "offer_popup_cta_click") {
-        // לא לעדכן תאריך אם תמיד מציגים
-        if (!window.__offerAlwaysShow) {
-          localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
-        }
-        sendPopupEvent("cta", data);
+      if (eventName === "offer_popup_cta_click" && !window.__offerAlwaysShow) {
+        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
       }
     });
+
   } catch (err) {
     console.error("❌ OfferPopup Error:", err);
     window.__offerPopupActive = false;

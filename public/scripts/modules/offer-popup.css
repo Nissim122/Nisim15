@@ -1,12 +1,52 @@
 /* ===========================================================
-   🎯 Offer Popup – Full Client-Level Design Control
+   🎯 Offer Popup – Full Client-Level Design Control (V2)
    =========================================================== */
+
+/* ===========================
+   🎨 משתנים גלובליים (ברירת מחדל)
+   =========================== */
+:root {
+  --offer-overlay-bg: rgba(0, 0, 0, 0.7);
+  --offer-popup-bg: #ffffff;
+  --offer-popup-radius: 22px;
+  --offer-popup-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  --offer-popup-font: "Heebo", "Assistant", sans-serif;
+
+  --offer-title-color: #003366;
+  --offer-title-size: 26px;
+  --offer-title-weight: 800;
+  --offer-title-align: center;
+  --offer-title-margin: 10px 0 15px;
+
+  --offer-text-color: #000000;
+  --offer-text-size: 17px;
+  --offer-text-weight: 400;
+  --offer-text-line: 1.6;
+  --offer-text-align: center;
+
+  --offer-btn-bg: #003366;
+  --offer-btn-bg-hover: #001f4d;
+  --offer-btn-color: #ffffff;
+  --offer-btn-font-size: 18px;
+  --offer-btn-font-weight: 600;
+  --offer-btn-radius: 20px;
+
+  --offer-close-bg: #003366;
+  --offer-close-color: #ffffff;
+  --offer-close-size: 17px;
+
+  --offer-countdown-bg: #f5f8ff;
+  --offer-countdown-color: #003366;
+  --offer-countdown-radius: 10px;
+  --offer-countdown-font-size: 15px;
+  --offer-countdown-font-weight: 700;
+}
 
 /* שכבת הרקע */
 .offer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--offer-overlay-bg);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 9998;
@@ -23,11 +63,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
-  background: #ffffff;                     /* 🎨 צבע רקע הפופאפ */
-  border-radius: 22px;                     /* 🟢 פינות מעוגלות */
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  background: var(--offer-popup-bg);
+  border-radius: var(--offer-popup-radius);
+  box-shadow: var(--offer-popup-shadow);
   width: 92%;
-  max-width: 420px;                        /* 🧱 רוחב מקסימלי */
+  max-width: 420px;
   height: auto;
   max-height: 130vh;
   overflow-y: auto;
@@ -36,105 +76,93 @@
   opacity: 0;
   z-index: 9999;
   transition: all 0.4s ease;
-  font-family: "Heebo", "Assistant", sans-serif; /* ✍️ גופן לקוח */
+  font-family: var(--offer-popup-font);
 }
 .offer-popup.visible {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
+
 /* תוכן הפופאפ */
 .offer-content {
-  min-height: 460px;              /* 📏 שליטה בגובה הכללי */
-  background-color: #ffffff;      /* 🎨 רקע אחיד ללא תמונה */
-  color: #222;                    /* 🖤 צבע טקסט כללי */
-  padding: 0 24px;                /* הצדדים בלבד – גובה נקבע ע"י text-wrap */
+  min-height: 460px;
+  background-color: var(--offer-popup-bg);
+  color: var(--offer-text-color);
+  padding: 0 24px;
   position: relative;
   overflow: hidden;
-  display: flex;                  /* 👈 מאפשר חלוקה אנכית */
+  display: flex;
   flex-direction: column;
 }
-
-/* ביטול שכבת כהות */
-.offer-content::before {
-  display: none !important;
-}
+.offer-content::before { display: none !important; }
 
 /* עיטוף טקסטים */
 .offer-text-wrap {
-  flex: 1 1 auto;                 /* 👈 מתרחב לגובה פנוי */
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* 👈 מחלק בין עליון לתחתון */
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding: 30px 20px;             /* 👈 רווח שווה מלמעלה ולמטה */
+  padding: 30px 20px;
 }
-
-
-/* 🖱️ כפתור */
-.offer-btn {
-  order: 4;
-  display: inline-block;
-  background: #003366;
-  color: #fff;
-  padding: 14px 26px;
-  border-radius: 10px;
-    margin-top: 0;
-  align-self: center;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  margin-top: auto; /* 👈 דוחף את הכפתור לתחתית */
-
-
-}
-
-/* 🕒 מונה זמן */
-.offer-countdown {
-  position: relative;
-  display: block;
-  order: 1;
-  background: #f5f8ff;
-  color: #003366;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  margin: 60px 20px 20px; /* 👈 60px כדי ליצור רווח מתחת לאיקס */
-  box-shadow: inset 0 0 0 1px #d2d8ef;
-}
-
 
 /* 🏷️ כותרת */
 .offer-title {
-  order: 2;
-  font-size: 26px;
-  font-weight: 800;
-  color: #003366;
-  margin: 10px 0 15px;
+  order: 3;
+  color: var(--offer-title-color);
+  font-size: var(--offer-title-size);
+  font-weight: var(--offer-title-weight);
+  text-align: var(--offer-title-align);
+  margin: var(--offer-title-margin);
   line-height: 1.4;
   letter-spacing: -0.5px;
 }
 
 /* 📄 טקסט */
 .offer-text {
-  order: 3;
-  font-size: 17px;
-  color: #222;
-  line-height: 1.6;
+  order: 2;
+  font-size: var(--offer-text-size);
+  color: var(--offer-text-color);
+  font-weight: var(--offer-text-weight);
+  line-height: var(--offer-text-line);
+  text-align: var(--offer-text-align);
   margin-bottom: 25px;
-  font-weight: 400;
-  text-align: center;
   width: 90%;
 }
 
+/* 🕒 מונה זמן */
+.offer-countdown {
+  order: 2;
+  display: block;
+  background: var(--offer-countdown-bg);
+  color: var(--offer-countdown-color);
+  padding: 10px 16px;
+  border-radius: var(--offer-countdown-radius);
+  font-size: var(--offer-countdown-font-size);
+  font-weight: var(--offer-countdown-font-weight);
+  text-align: center;
+  margin: 60px 20px 20px;
+  box-shadow: inset 0 0 0 1px #d2d8ef;
+}
 
-
+/* 🖱️ כפתור */
+.offer-btn {
+  order: 4;
+  display: inline-block;
+  background: var(--offer-btn-bg);
+  color: var(--offer-btn-color);
+  padding: 14px 26px;
+  border-radius: var(--offer-btn-radius);
+  text-decoration: none;
+  font-size: var(--offer-btn-font-size);
+  font-weight: var(--offer-btn-font-weight);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  margin-top: auto;
+}
 .offer-btn:hover {
-  background: #001f4d;
+  background: var(--offer-btn-bg-hover);
   transform: translateY(-2px);
 }
 
@@ -143,10 +171,10 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  background: #003366;
+  background: var(--offer-close-bg);
+  color: var(--offer-close-color);
   border: none;
-  color: #fff;
-  font-size: 20px;
+  font-size: var(--offer-close-size);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -162,19 +190,19 @@
   transform: scale(1.1);
 }
 
-/* 📱 התאמה לנייד */
+/* 📱 רספונסיביות */
 @media (max-width: 480px) {
   .offer-popup {
     width: 94%;
-    border-radius: 16px;
+    border-radius: calc(var(--offer-popup-radius) * 0.8);
   }
   .offer-title {
-    font-size: 22px;
+    font-size: calc(var(--offer-title-size) * 0.9);
   }
   .offer-text {
-    font-size: 15px;
+    font-size: calc(var(--offer-text-size) * 0.9);
   }
   .offer-countdown {
-    font-size: 14px;
+    font-size: calc(var(--offer-countdown-font-size) * 0.9);
   }
 }
