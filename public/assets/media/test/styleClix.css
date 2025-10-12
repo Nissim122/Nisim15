@@ -20,16 +20,15 @@
   --offer-overlay-bg: rgba(0, 0, 0, 0.7);           /* רקע מאחורי הפופאפ */
   --offer-overlay-blur: 2px;                        /* טשטוש מאחורי הפופאפ */
 
-  --offer-popup-bg: #09060e;
-  --offer-content-bg: #09060e;  --offer-popup-radius: 22px;                       /* רדיוס פינות */
+  --offer-popup-bg: #bbb2b2;
   --offer-popup-radius: 22px;                       /* רדיוס פינות */
   --offer-popup-shadow: 0 8px 40px rgba(0,0,0,0.45);/* צללה כללית */
   --offer-popup-font: "Heebo", "Assistant", sans-serif; /* גופן כללי */
 
-  --offer-popup-width: 92%;                         /* רוחב אחוזי */
-  --offer-popup-max-width: 420px;                   /* רוחב מקסימלי */
-  --offer-popup-max-height: 130vh;                  /* גובה מקסימלי */
-  --offer-popup-transition: 0.4s ease;              /* זמן אנימציה */
+  --offer-popup-width: 92%;                            /* רוחב אחוזי */
+  --offer-popup-max-width: 420px;                       /* רוחב מקסימלי */
+  --offer-popup-max-height: 130vh;                      /* גובה מקסימלי */
+  --offer-popup-transition: 0.4s ease;                  /* זמן אנימציה */
 
   /* ===========================================================
      🏷️ כותרת הפופאפ
@@ -100,6 +99,9 @@
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+.offer-content {
+  background-color: var(--offer-popup-bg) !important;
 }
 /* ערכי ברירת מחדל לנושא modern */
 body.theme-modern {
