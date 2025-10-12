@@ -1,5 +1,6 @@
 
 @import url("/assets/base.css");  /* ← נתיב מוחלט נכון */
+@import url("/scripts/modules/offer-popup.css"); /* ← מושך את העיצוב הגלובלי */
 
 :root {
   --header-height: 60px;  
@@ -12,15 +13,81 @@
   --btn-scl-text-color-filled: #fffaf2;
   --header-img-bg : #ffffff;
 
-    --offer-popup-bg-image: none;              /* ביטול תמונת רקע */
-  --offer-popup-bg-color: #ffffff;           /* רקע לבן מלא */
-  --offer-popup-title-color: #000000;        /* טקסט כותרת שחור */
-  --offer-popup-text-color: #333333;         /* טקסט גוף אפור כהה */
-  --offer-popup-btn-bg: #000000;             /* כפתור שחור */
-  --offer-popup-btn-color: #ffffff;          /* טקסט כפתור לבן */
-  --offer-popup-countdown-bg: rgba(0, 0, 0, 0.05); /* רקע מונה בהיר */
-  --offer-popup-countdown-color: #000000;    /* טקסט מונה שחור */
-  --offer-popup-countdown-font: 15px;        /* גודל גופן למונה */
+  
+  /* ===========================================================
+     🧱 הגדרות כלליות לפופאפ
+     =========================================================== */
+  --offer-overlay-bg: rgba(0, 0, 0, 0.7);           /* רקע מאחורי הפופאפ */
+  --offer-overlay-blur: 2px;                        /* טשטוש מאחורי הפופאפ */
+
+  --offer-popup-bg: #09060e;
+  --offer-content-bg: #09060e;  --offer-popup-radius: 22px;                       /* רדיוס פינות */
+  --offer-popup-radius: 22px;                       /* רדיוס פינות */
+  --offer-popup-shadow: 0 8px 40px rgba(0,0,0,0.45);/* צללה כללית */
+  --offer-popup-font: "Heebo", "Assistant", sans-serif; /* גופן כללי */
+
+  --offer-popup-width: 92%;                         /* רוחב אחוזי */
+  --offer-popup-max-width: 420px;                   /* רוחב מקסימלי */
+  --offer-popup-max-height: 130vh;                  /* גובה מקסימלי */
+  --offer-popup-transition: 0.4s ease;              /* זמן אנימציה */
+
+  /* ===========================================================
+     🏷️ כותרת הפופאפ
+     =========================================================== */
+  --offer-title-color: #003366;                     /* צבע כותרת */
+  --offer-title-size: 26px;                         /* גודל טקסט */
+  --offer-title-weight: 800;                        /* עובי פונט */
+  --offer-title-align: center;                      /* יישור טקסט */
+  --offer-title-margin: 10px 0 15px;                /* רווחים */
+  --offer-title-line-height: 1.4;                   /* גובה שורה */
+
+  /* ===========================================================
+     📄 טקסט גוף
+     =========================================================== */
+  --offer-text-color: #000000;                      /* צבע טקסט */
+  --offer-text-size: 17px;                          /* גודל טקסט */
+  --offer-text-weight: 400;                         /* עובי טקסט */
+  --offer-text-line: 1.6;                           /* גובה שורה */
+  --offer-text-align: center;                       /* יישור טקסט */
+  --offer-text-margin-bottom: 25px;                 /* רווח מתחת */
+  --offer-text-width: 90%;                          /* רוחב טקסט */
+
+  /* ===========================================================
+     🕒 מונה זמן (Countdown)
+     =========================================================== */
+  --offer-countdown-bg: #f5f8ff;                    /* רקע מונה */
+  --offer-countdown-color: #660031;                 /* צבע טקסט מונה */
+  --offer-countdown-radius: 10px;                   /* פינות מעוגלות */
+  --offer-countdown-font-size: 15px;                /* גודל טקסט */
+  --offer-countdown-font-weight: 700;               /* עובי טקסט */
+  --offer-countdown-margin: 60px 20px 20px;         /* רווחים */
+  --offer-countdown-shadow: inset 0 0 0 1px #d2d8ef;/* גבול פנימי */
+
+  /* ===========================================================
+     🖱️ כפתור פעולה
+     =========================================================== */
+  --offer-btn-bg: #003366;                          /* רקע הכפתור */
+  --offer-btn-bg-hover: #001f4d;                    /* רקע במעבר */
+  --offer-btn-color: #ffffff;                       /* צבע טקסט */
+  --offer-btn-font-size: 18px;                      /* גודל טקסט */
+  --offer-btn-font-weight: 600;                     /* עובי טקסט */
+  --offer-btn-radius: 20px;                         /* רדיוס פינות */
+  --offer-btn-padding: 14px 26px;                   /* ריווח פנימי */
+  --offer-btn-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);/* הצללה */
+  --offer-btn-transition: 0.3s ease;                /* מהירות מעבר */
+  --offer-btn-hover-translate: -2px;                /* תזוזה במעבר */
+
+  /* ===========================================================
+     ❌ כפתור סגירה
+     =========================================================== */
+  --offer-close-bg: #003366;                        /* רקע */
+  --offer-close-color: #ffffff;                     /* צבע טקסט */
+  --offer-close-size: 17px;                         /* גודל איקס */
+  --offer-close-top: 14px;                          /* מרחק מלמעלה */
+  --offer-close-right: 14px;                        /* מרחק מימין */
+  --offer-close-radius: 50%;                        /* עיגול מלא */
+  --offer-close-bg-hover: #001f4d;                  /* רקע במעבר */
+  --offer-close-hover-scale: 1.1;                   /* הגדלה במעבר */
 
 }
 #pageMainTitle {
