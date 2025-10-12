@@ -8,21 +8,27 @@ window.cardData = {
    =========================================================== */
 offerPopup: {
   enabled: true,          // ✅ הפעלה כללית של מערכת הפופאפים
-  repeatAfterDays: 2,    // ⏳ פופאפ אחד בלבד כל 30 יום
+  repeatAfterDays: 0,     // ⏳ מרווח זמן להצגה חוזרת (2 ימים)
+  delaySeconds: 8, // ⏱️ דיליי של 8 שניות לפני הצגה
+
   items: [
     {
       id: "popup_1",
       active: true,
-      title: "מבצע פתיחת חודש 🎯",
-      text: "לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!",
+      title: "🎯 מבצע פתיחת חודש",
+      text: `
+        לקוחות חדשים מקבלים טיפול שני ב־50% הנחה!<br>
+        בנוסף, לקוחה שמביאה חברה מקבלת <strong>פדיקור מתנה!</strong><br>
+        <em>המבצע בתוקף עד סוף החודש בלבד!</em>
+      `,
       buttonText: "אני רוצה",
       buttonLink: "https://wa.me/972532407762",
-      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
-      theme: "dark",
-       endDate: "2025-10-30T23:59:59Z",
-      countdownText: "המבצע מסתיים בעוד" ,
-
+      bgColor: "#ffffff",        // 👈 רקע לבן (אפשר גם gradient)
+      theme: "dark",             // 🎨 נושא כהה או בהיר
+      endDate: "2025-10-30T23:59:59Z",
+      countdownText: "⏰ המבצע מסתיים בעוד"
     },
+
     {
       id: "popup_2",
       active: true,
@@ -39,7 +45,7 @@ offerPopup: {
     {
       id: "popup_3",
       active: true,
-      title: "מבצע סוף חודש 🔥",
+      title: " סוף חודש 🔥",
       text: "הנחות מטורפות רק עד סוף החודש — אל תפספסי!",
       buttonText: "לחצי כאן",
       buttonLink: "https://wa.me/972532407762",

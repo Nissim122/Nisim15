@@ -1,6 +1,3 @@
-/* ===========================================================
-   📦 Offer Popup – Sequential Rotation (1→2→3 Loop) + Version Priority
-   =========================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   try {
     const offerData = window.cardData?.offerPopup;
@@ -8,7 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const STORAGE_LAST_DATE = "offerPopupLastDate";
     const STORAGE_INDEX = "offerPopupIndex";
-    const repeatDays = Number(offerData.repeatAfterDays) || 30;
+
+    // ❗ אסור להשתמש ב-|| 30 כדי לא לדרוס 0
+    const repeatDaysRaw = Number(offerData.repeatAfterDays);
+    const repeatDays = Number.isFinite(repeatDaysRaw) ? repeatDaysRaw : 30;
+
+    // ✅ אם repeatAfterDays = 0 → הפופאפ יוצג תמיד
+    const alwaysShow = repeatDays === 0;
+    window.__offerAlwaysShow = alwaysShow;
 
     const items = (offerData.items || []).filter(i => i.active);
     if (!items.length) return;
@@ -25,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ? (Date.now() - new Date(lastDate).getTime()) / (1000 * 60 * 60 * 24)
       : Infinity;
 
-    // ⏳ תנאי הצגה: או שעברה התקופה או שיש גרסה חדשה
-    if (!versionChanged && daysPassed < repeatDays) {
+    // ⏳ תנאי הצגה: או שעברה התקופה, או שיש גרסה חדשה, או שהוגדר alwaysShow
+    if (!versionChanged && !alwaysShow && daysPassed < repeatDays) {
       console.log(`⏳ טרם עברו ${repeatDays} ימים (${daysPassed.toFixed(1)}) – לא מציג שוב`);
       return;
     }
@@ -35,23 +39,31 @@ document.addEventListener("DOMContentLoaded", () => {
     let index = Number(localStorage.getItem(STORAGE_INDEX)) || 0;
     if (index >= items.length) index = 0; // איפוס מחזור
 
-    // אם יש גרסה חדשה, מציג אותה מיד (מתעלם מהסדר)
     const selected = versionChanged || items[index];
     if (!selected) return;
 
-    console.log(`🎯 מציג פופאפ ${selected.id} – ${selected.title}`);
+    // ⏱️ השהיה לפי DATA
+    const delayMs = (Number(offerData.delaySeconds) || 0) * 1000;
+    console.log(`🎯 פופאפ ${selected.id} יוצג בעוד ${delayMs / 1000} שניות`);
 
-    // הצגה בפועל
-    showOfferPopup(selected);
+    setTimeout(() => {
+      showOfferPopup(selected);
 
-    // שמירה בזיכרון
-    localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
-    localStorage.setItem(STORAGE_INDEX, versionChanged ? index : index + 1);
-    localStorage.setItem(`offerPopupVersion_${selected.id}`, selected.version || "");
+      // שמירה בזיכרון (רק אם לא alwaysShow)
+      if (!alwaysShow) {
+        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        localStorage.setItem(STORAGE_INDEX, versionChanged ? index : index + 1);
+        localStorage.setItem(`offerPopupVersion_${selected.id}`, selected.version || "");
+      }
+    }, delayMs);
+
   } catch (err) {
     console.error("❌ OfferPopup Sequential Rotation Error:", err);
   }
-});/* ===========================================================
+});
+
+
+/* ===========================================================
    📦 Offer Popup – Background & Countdown from DATA only (Final Version)
    =========================================================== */
 function showOfferPopup(data) {
@@ -130,7 +142,10 @@ function showOfferPopup(data) {
         popup.remove();
         overlay.remove();
         window.__offerPopupActive = false;
-        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        // לא לעדכן תאריך אם תמיד מציגים
+        if (!window.__offerAlwaysShow) {
+          localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        }
         sendPopupEvent("closed", data);
       }, 400);
     });
@@ -142,7 +157,10 @@ function showOfferPopup(data) {
       const eventName = el.getAttribute("data-analytics");
       sendPopupEvent(eventName, data);
       if (eventName === "offer_popup_cta_click") {
-        localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        // לא לעדכן תאריך אם תמיד מציגים
+        if (!window.__offerAlwaysShow) {
+          localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
+        }
         sendPopupEvent("cta", data);
       }
     });
@@ -187,7 +205,6 @@ function startCountdown(el) {
     console.error("❌ Countdown Error:", err);
   }
 }
-
 
 /* ===========================================================
    📊 GA4 Tracking Helper
