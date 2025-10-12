@@ -1,8 +1,0 @@
-# ✅ הפניה מ-www לכתובת הראשית (מניעת כפילויות ב-SEO)
-https://www.clix-marketing.co.il/*   https://clix-marketing.co.il/:splat   301!
-
-# ✅ הפניה לכל כרטיס בתיקיית /cards
-/cards/*    /cards/:splat/index.html   200
-
-# ✅ ברירת מחדל – דף הבית הראשי
-/*           /index.html               200
