@@ -26,7 +26,6 @@ offerPopup: {
   buttonText: "אני רוצה עכשיו 💬",
   buttonLink: "https://wa.me/972532407762",
   bgColor: "#ffffff",       // 👈 רקע לבן (אפשר גם gradient)
-  theme: "dark",            // 🎨 נושא כהה או בהיר
   endDate: "2025-10-30T23:59:59Z",
   countdownText: "המבצע מסתיים בעוד",
   layout: {

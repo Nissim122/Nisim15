@@ -3,7 +3,7 @@
 
   <!-- דף התבנית (העמוד הקנוני) -->
   <url>
-    <loc>https://clix-marketing.co.il/template/template-generic.html</loc>
+    <loc>https://clix-marketing.co.il</loc>
     <lastmod>2025-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -29,13 +29,6 @@
   <url>
     <loc>https://clix-marketing.co.il/cards/israel/israel.html</loc>
     <lastmod>2025-10-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-    <url>
-    <loc>https://clix-marketing.co.il/cards/amit/amit.html</loc>
-    <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
