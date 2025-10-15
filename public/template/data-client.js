@@ -31,7 +31,7 @@ offerPopup: {
   priceBox: `
     <div class="price-box">
       <span class="discount-tag">הנחה 30%</span>
-      <div class="new-price">₪2,099</div>
+      <div class="new-price">₪2,599</div>
     </div>
   `,
   buttonText: "אני רוצה את החבילה! 💪",
