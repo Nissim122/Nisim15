@@ -12,30 +12,45 @@ offerPopup: {
   delaySeconds: 7, // ⏱️ דיליי של 7 שניות לפני הצגה
 
   items: [
- {
-  id: "popup_1",
+{
+  id: "popup_digital_promo",
   active: true,
-  title: " מבצע פתיחת חודש – טיפול מפנק במחיר מיוחד!",
+  title: "חבילת קידום משתלמת במיוחד!",
   text: `
-    לקוחות חדשים נהנים מהנחה ענקית של <strong>50% על הטיפול השני</strong> בכל אחד מהשירותים שלנו!<br><br>
-    בנוסף, אם תגיעי עם חברה – תקבלי <strong>פדיקור מתנה</strong> לגמרי עלינו 💅<br>
-    השירותים שלנו כוללים טיפולי יופי, בניית ציפורניים, לק ג'ל, עיצוב גבות וטיפוח אישי ברמה הגבוהה ביותר.<br><br>
-    🎁 <u>בונוס נוסף:</u> לכל נרשמת החודש – קופון מתנה לשימוש עתידי בשווי 80 ₪.<br><br>
-    <em>המבצע בתוקף עד סוף החודש או עד גמר המלאי. אל תפספסי הזדמנות!</em>
+    <div class="package-box">
+      <div class="package-title">
+        <span class="package-icon">🚀</span>
+        מה כלול בחבילה?
+      </div>
+      <ul class="package-list">
+        <li>כרטיס ביקור דיגיטלי מעוצב ומקצועי</li>
+        <li>קמפיין קידום ממומן ממוקד לקהל היעד</li>
+        <li>הגדלת חשיפה ומכירות מובטחת</li>
+        <li>תמיכה ולווי מלא לאורך הדרך</li>
+      </ul>
+    </div>
+
+    <div class="price-box">
+      <span class="discount-tag">הנחה 30%</span>
+      <div class="old-price">₪2,999</div>
+      <div class="new-price">₪2,099</div>
+      <div class="price-note">🎉 חיסכון של 900 ₪!</div>
+    </div>
   `,
-  buttonText: "אני רוצה עכשיו 💬",
-  buttonLink: "https://wa.me/972532407762",
-  bgColor: "#ffffff",       // 👈 רקע לבן (אפשר גם gradient)
-  endDate: "2025-10-30T23:59:59Z",
+  buttonText: "אני רוצה את החבילה! 💪",
+  buttonLink: "https://wa.me/972XXXXXXXXX",
+  bgColor: "#ffffff",
+  endDate: "2025-10-31T23:59:59Z",
   countdownText: "המבצע מסתיים בעוד",
-  layout: {
-        order: {
-          countdown: 1,
-          title: 2,
-          text: 3,
-          button: 4
-        }
-      }
+layout: {
+  order: {
+    title: 3,
+    countdown: 2,
+    text: 4,
+    button: 5
+  }
+},
+
 },
 
 

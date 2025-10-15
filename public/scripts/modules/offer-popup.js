@@ -104,25 +104,37 @@ function showOfferPopup(data) {
     const popup = document.createElement("div");
     popup.className = `offer-popup theme-${data.theme || "default"}`;
     popup.dataset.id = data.id;
+popup.innerHTML = `
+  <button class="offer-close"
+          data-analytics="offer_popup_close"
+          aria-label="סגור פופאפ">✖</button>
 
-    popup.innerHTML = `
-      <button class="offer-close" data-analytics="offer_popup_close" aria-label="סגור פופאפ">✖</button>
-      <div class="offer-content" style="${backgroundStyle}">
-        <div class="offer-text-wrap">
-          ${countdownHTML}
-          <h2 class="offer-title" ${getOrder("title", 2)}>${data.title || "מבצע מיוחד 🎉"}</h2>
-          <p class="offer-text" ${getOrder("text", 3)}>${data.text || "קבלו 25% הנחה על השירותים שלנו!"}</p>
-          <a href="${data.buttonLink || "#"}"
-             class="offer-btn"
-             ${getOrder("button", 4)}
-             target="_blank"
-             rel="noopener"
-             data-analytics="offer_popup_cta_click">
-             ${data.buttonText || "אני רוצה"}
-          </a>
-        </div>
+  <div class="offer-content" style="${backgroundStyle}">
+    <div class="offer-text-wrap">
+      ${countdownHTML}
+
+      <h2 class="offer-title" ${getOrder("title", 2)}>
+        ${data.title || "מבצע מיוחד 🎉"}
+      </h2>
+
+      <!-- ✅ DIV גנרי לתוכן – תומך בכל סוג HTML -->
+      <div class="offer-text" ${getOrder("text", 3)}>
+        ${data.text || ""}
       </div>
-    `;
+
+      <a href="${data.buttonLink || "#"}"
+         class="offer-btn"
+         ${getOrder("button", 4)}
+         target="_blank"
+         rel="noopener"
+         data-analytics="offer_popup_cta_click">
+         ${data.buttonText || "אני רוצה"}
+      </a>
+    </div>
+  </div>
+`;
+
+
 
     // הוספה למסך
     document.body.appendChild(overlay);

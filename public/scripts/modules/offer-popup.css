@@ -126,6 +126,150 @@
   background: var(--offer-btn-bg-hover, #001f4d);
   transform: translateY(var(--offer-btn-hover-translate, -2px));
 }
+/* תיבת החבילה */
+.package-box {
+  background: #f5f8ff;
+  border: 2px solid #e0e7ff;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0 0 24px 0;
+  text-align: right;
+}
+
+.package-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.package-icon {
+  font-size: 22px;
+}
+
+.package-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.package-list li {
+  padding: 10px 0;
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.package-list li:last-child {
+  border-bottom: none;
+}
+
+.package-list li::before {
+  content: '✓';
+  color: #10b981;
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* תיבת מחיר */
+.price-box {
+  background: #fffbeb;
+  border: 2px solid #fbbf24;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0 0 24px 0;
+  text-align: center;
+  position: relative;
+}
+
+.discount-tag {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #dc2626;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.old-price {
+  color: #991b1b;
+  text-decoration: line-through;
+  font-size: 18px;
+  margin-bottom: 5px;
+  opacity: 0.7;
+}
+
+.new-price {
+  color: #065f46;
+  font-size: 40px;
+  font-weight: 800;
+  margin: 8px 0;
+  direction: ltr;
+}
+
+.price-note {
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* רספונסיבי */
+@media (max-width: 480px) {
+  .package-box,
+  .price-box {
+    padding: 20px;
+  }
+
+  .new-price {
+    font-size: 36px;
+  }
+}
+.offer-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.offer-text-wrap > * {
+  order: unset;
+}
+/* מוודא ש־order יעבוד על הילדים */
+.offer-text-wrap{display:flex;flex-direction:column}
+
+/* אין לאפס order לילדים – הסר/השבת את הכלל הבא אם קיים: */
+/* .offer-text-wrap > * { order: unset; } */
+
+/* למקרה של DIV */
+.offer-text{display:block}
+.offer-text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: var(--offer-text-size, 17px);
+  line-height: var(--offer-text-line, 1.6);
+  color: var(--offer-text-color, #000);
+  margin: var(--offer-text-margin, 10px 0 25px);
+}
+
+.offer-text * {
+  text-align: inherit;
+  font-family: inherit;
+  color: inherit;
+  margin: 0 auto;
+}
+
+
 
 /* ❌ כפתור סגירה */
 .offer-close {
