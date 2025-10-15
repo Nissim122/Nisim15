@@ -180,43 +180,43 @@ cardUrl: "https://clix-marketing.co.il/",
 
   },
 
+/* ✅ רשתות חברתיות */
+instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
+facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
+youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
+tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
 
-  /* ✅ רשתות חברתיות */
-  instagramLink: "https://www.instagram.com/clix__marketing?igsh=ZnF2eDIzcmlxaGY5&utm_source=qr",
-  facebookLink: "https://www.facebook.com/share/17EphvBoGg/?mibextid=wwXIfr",
-  youtubeLink: "https://www.youtube.com/embed/G-o9zEVxxD0?rel=0&modestbranding=1&playsinline=1",
-  tiktokLink: "https://www.tiktok.com/@clix_beauty_cards?_t=ZS-8zYXJje2r4r&_r=1",
+/* ✅ טקסטים לטפסים */
+submitText: "שלח לוואטסאפ",
+btnEmailText: "תחזרו אלי",
 
-  /* ✅ טקסטים לטפסים */
-  submitText: "שלח לוואטסאפ",
-  btnEmailText: "תחזרו אלי",
+/* ✅ לוגו/פרופיל */
+logoSrc: "/assets/logo/myLogo.jpg",
+logoAlt: "לוגו של Clix Marketing",
+profileImage: "/assets/logo/myLogo.jpg",
+profileImageAlt: "תמונת פרופיל של Clix Marketing",
 
-  /* ✅ לוגו/פרופיל */
-  logoSrc: "/assets/logo/myLogo.jpg",
-  logoAlt: "לוגו של Clix Marketing",
-  profileImage: "/assets/logo/myLogo.jpg",
-  profileImageAlt: "תמונת פרופיל של Clix Marketing",
-
-  /* ✅ SEO בסיסי */
+/* ✅ SEO בסיסי */
 metaDescription: "בעל עסק? זה הזמן לעבור לכרטיס ביקור דיגיטלי שנמצא בגוגל, מעוצב אישית ותומך ב־NFC.",
 metaKeywords: "כרטיס ביקור דיגיטלי NFC, דוגמאות כרטיס ביקור דיגיטלי, מה זה כרטיס ביקור דיגיטלי, כרטיס דיגיטלי לעסקים, כרטיס ביקור דיגיטלי בזול, כרטיס ביקור דיגיטלי מעוצב, כרטיס ביקור דיגיטלי עם שיתוף, כרטיס ביקור דיגיטלי 2025, כרטיס ביקור דיגיטלי היתרונות",
-  canonicalHref: "https://clix-marketing.co.il/template/template-generic.html",
-  metaRobots: "index, follow",
-  sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
+canonicalHref: "https://clix-marketing.co.il/",
+metaRobots: "index, follow",
+sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
-  /* ✅ Open Graph */
-  ogType: "website",
+/* ✅ Open Graph */
+ogType: "website",
 ogTitle: "כרטיס ביקור דיגיטלי – הדור החדש לעסקים",
 ogDescription: "כרטיס דיגיטלי שמופיע בגוגל, תומך ב-NFC, כולל דוגמאות מעוצבות ושיתוף קל. זול יותר מאתר – ומוכן בשבילך במהירות.",
-  ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
-  ogImageAlt: "לוגו של Clix Marketing",
-  ogUrl: "https://clix-marketing.co.il/template/template-generic.html",
+ogImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+ogImageAlt: "לוגו של Clix Marketing",
+ogUrl: "https://clix-marketing.co.il/",
 
-  /* ✅ Twitter Cards */
-  twitterCard: "summary_large_image",
+/* ✅ Twitter Cards */
+twitterCard: "summary_large_image",
 twitterTitle: "כרטיס ביקור דיגיטלי NFC – זול, מהיר ומעוצב",
 twitterDescription: "גלה דוגמאות לכרטיסי ביקור דיגיטליים שמופיעים בגוגל, תומכים ב־NFC ונותנים לעסק שלך יתרון אמיתי.",
-  twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+twitterImage: "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
+
 /* ✅ Structured Data – JSON-LD (Focused on Digital Business Card + NFC) */
 schema: {
   "@context": "https://schema.org",
@@ -224,14 +224,12 @@ schema: {
   "name": "Clix Marketing",
   "alternateName": "קליקס מרקטינג",
   "inLanguage": "he-IL",
-
   "description": "Clix Marketing מתמחה בבניית כרטיסי ביקור דיגיטליים לעסקים – כולל דוגמאות חיות, תמיכה ב-NFC לשיתוף בלחיצה, התאמה אישית לעסק והגדרה לנראות בגוגל.",
-  "url": "https://clix-marketing.co.il",
+  "url": "https://clix-marketing.co.il/",
   "logo": "https://clix-marketing.co.il/assets/logo/myLogo.jpg",
   "image": ["https://clix-marketing.co.il/assets/logo/myLogo.jpg"],
   "telephone": "+972-53-2407-762",
   "priceRange": "$$",
-
   "areaServed": { "@type": "Country", "name": "IL" },
   "address": {
     "@type": "PostalAddress",
@@ -297,12 +295,11 @@ schema: {
   /* ▶️ Helpful for link previews / actions */
   "potentialAction": {
     "@type": "ViewAction",
-    "target": "https://clix-marketing.co.il/template/template-generic.html",
+    "target": "https://clix-marketing.co.il/",
     "name": "צפה בכרטיס ביקור דיגיטלי לדוגמה"
   },
   "brand": { "@type": "Brand", "name": "Clix Marketing" }
 },
-
 
   /* ✅ שיתוף */
   shareOptions: {
