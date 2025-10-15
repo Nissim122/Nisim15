@@ -4,14 +4,14 @@ window.cardData = {
 
   // שדה ייעודי לכותרת האתר
 pageTitle: "רזי החן | לימודי ציפורניים וציורי ציפורניים ברמת גן",
-favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
+favicon: "https://clix-marketing.co.il/assets/media/yael/yaelLogo.png",
 
   phone: "054-8787-702",
   email: "yaelartgallery@gmail.com",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
   company: "אקדמיה רזי החן",
-  cardUrl: "https://clix-marketing.co.il/cards/yaelNails/index.html",
+  cardUrl: "https://clix-marketing.co.il/cards/yael/index.html",
   vcard: { filename: "contact.vcf" },
 
   /* ✅ קישורים */
@@ -22,9 +22,9 @@ favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
   tiktokLink: "https://www.tiktok.com/@yael_artgallery?_t=8ZlqY3XJH7V&_r=1",
 
   /* ✅ לוגו/פרופיל */
-  logoSrc: "/assets/media/yaelNails/yaelBack.jpg",
+  logoSrc: "/assets/media/yael/yaelBack.jpg",
   logoAlt: "לוגו רזי החן - אקדמיה לציפורניים",
-  profileImage: "/assets/media/yaelNails/yaelLogo.png",
+  profileImage: "/assets/media/yael/yaelLogo.png",
   profileImageAlt: "סמל אקדמיה רזי החן",
 
   googleAnalyticsId: "G-5S0Q47GFVE",
@@ -63,7 +63,7 @@ favicon: "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
   /* ✅ SEO בסיסי */
 metaDescription: "אקדמיית רזי החן ברמת גן – לימודי ציפורניים, קורס לק ג׳ל וציורי ציפורניים ברמה הגבוהה בישראל. קורסים אישיים, ליווי צמוד ותעודה בסיום עם יעל חן רז.",
 metaKeywords: "לימודי ציפורניים, קורס ציפורניים, ציורי ציפורניים, קורס לק ג'ל, עיצוב ציפורניים, קורס בניית ציפורניים, לימודי לק ג'ל, קורס אומנות על ציפורניים, יעל חן רז, רזי החן רמת גן, קורס ציפורניים ברמת גן",
-  canonicalHref: "https://clix-marketing.co.il/cards/yael/yael.html",
+  canonicalHref: "https://clix-marketing.co.il/cards/yael/yae.html",
   metaRobots: "index, follow",
   sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
@@ -71,15 +71,15 @@ metaKeywords: "לימודי ציפורניים, קורס ציפורניים, צ�
 ogType: "website",
 ogTitle: "רזי החן – לימודי ציפורניים ואומנות על ציפורניים | יעל חן רז",
 ogDescription: "אקדמיית רזי החן ברמת גן – לימודי ציפורניים, ציורי ציפורניים והשתלמויות מקצועיות לאומנות הציפורן. תוכנית אישית בקצב שלך וליווי צמוד עד שתהיי מקצועית ובטוחה בעצמך.",
-ogImage: "https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg",
+ogImage: "https://clix-marketing.co.il/assets/media/yael/yaelBack.jpg",
 ogImageAlt: "רזי החן – לימודי ציפורניים וציורי ציפורניים עם יעל חן רז",
-ogUrl: "https://clix-marketing.co.il/cards/yaelNails/yael.html",
+ogUrl: "https://clix-marketing.co.il/cards/yael/yae.html",
 
 /* ✅ Twitter Cards */
 twitterCard: "summary_large_image",
 twitterTitle: "רזי החן – לימודי ציפורניים וציורי ציפורניים ברמת גן",
 twitterDescription: "אקדמיית רזי החן של יעל חן רז – קורסים מקצועיים בציור ועיצוב ציפורניים, השתלמויות למתקדמות ותוכנית אישית בקצב שלך.",
-twitterImage: "https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg",
+twitterImage: "https://clix-marketing.co.il/assets/media/yael/yaelBack.jpg",
 
 /* ✅ Structured Data – JSON-LD (SEO MAX - FINAL) */
 schema: {
@@ -89,10 +89,10 @@ schema: {
   "alternateName": "רזי החן | קורסי ציפורניים וציורי ציפורניים ברמת גן",
   "inLanguage": "he-IL",
   "description": "אקדמיית רזי החן בהובלת יעל חן רז – לימודי ציפורניים, קורס לק ג'ל וציורי ציפורניים ברמת גן. קורסים אישיים, ליווי צמוד ותעודה בסיום. מתאימה לנשים שמחפשות לרכוש מקצוע יוקרתי בעולם היופי.",
-  "url": "https://clix-marketing.co.il/cards/yaelNails/yael.html",
-  "logo": "https://clix-marketing.co.il/assets/media/yaelNails/yaelLogo.png",
+  "url": "https://clix-marketing.co.il/cards/yael/yae.html",
+  "logo": "https://clix-marketing.co.il/assets/media/yael/yaelLogo.png",
   "image": [
-    "https://clix-marketing.co.il/assets/media/yaelNails/yaelBack.jpg"
+    "https://clix-marketing.co.il/assets/media/yael/yaelBack.jpg"
   ],
   "priceRange": "$$",
   "telephone": "+972-54-8787-702",

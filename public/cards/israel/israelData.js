@@ -58,14 +58,14 @@ wazeLink: "https://waze.com/ul/hsv8y0u3z2",
   btnEmailText: "שלח",
 
   /* ✅ לוגו/פרופיל */
-logoSrc: "/assets/media/israelElec/AA.JPG",
+logoSrc: "/assets/media/israel/AA.JPG",
   logoAlt: "לוגו של ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
 // profileImage: "/assets/media/israelElec/AA.JPG",
   profileImageAlt: "ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
 /* ✅ SEO + Open Graph – ישראל יוסופוביץ | חשמל ומיזוג אוויר */
 metaDescription: "ישראל יוסופוביץ - חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. מבצע התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים, עם שירות אמין, מקצועי וזמינות גבוהה.",
 metaKeywords: "ישראל יוסופוביץ, חשמלאי מוסמך, חשמלאי במרכז, חשמלאי באזור המרכז, מיזוג אוויר במרכז, תיקון מזגנים במרכז, התקנת מזגנים במרכז, חשמלאי מקצועי, עבודות חשמל, חשמל לבית ולעסק, תחזוקת חשמל, שירותי חשמל לעסקים",
-canonicalHref: "https://clix-marketing.co.il/cards/israe/index.html",
+canonicalHref: "https://clix-marketing.co.il/cards/israel/index.html",
 metaRobots: "index, follow",
 sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
@@ -73,16 +73,16 @@ sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 ogType: "website",
 ogTitle: "ישראל יוסופוביץ - חשמל ומיזוג אוויר | שירות מקצועי ואמין במרכז",
 ogDescription: "ישראל יוסופוביץ – חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים עם שירות מהיר ומקצועי.",
-ogImage: "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
+ogImage: "https://clix-marketing.co.il/cards/israel/og-image.jpg",
 ogImageAlt: "ישראל יוסופוביץ - חשמל ומיזוג אוויר",
-ogUrl: "https://clix-marketing.co.il/cards/israelElec/index.html",
+ogUrl: "https://clix-marketing.co.il/cards/israel/index.html",
 
 
  /* ✅ Twitter Cards – ישראל יוסופוביץ | חשמל ומיזוג אוויר */
 twitterCard: "summary_large_image",
 twitterTitle: "ישראל יוסופוביץ - חשמל ומיזוג אוויר במרכז | שירות אמין ומקצועי",
 twitterDescription: "חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. התקנות, תיקונים ותחזוקה לבתים ולעסקים - באמינות, מקצועיות וזמינות גבוהה.",
-twitterImage: "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
+twitterImage: "https://clix-marketing.co.il/cards/israel/og-image.jpg",
 
 /* ✅ Structured Data – JSON-LD (ישראל יוסופוביץ | חשמל ומיזוג אוויר) */
 schema: {
@@ -93,9 +93,9 @@ schema: {
   "inLanguage": "he-IL",
 
   "description": "ישראל יוסופוביץ – חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. מבצע התקנות, תיקונים ותחזוקה לבתים ולעסקים, עם שירות אמין, מקצועי וזמינות גבוהה בכל ימות השבוע (א'-ה').",
-  "url": "https://clix-marketing.co.il/cards/israelElec/index.html",
-  "logo": "https://clix-marketing.co.il/cards/israelElec/og-image.jpg",
-  "image": ["https://clix-marketing.co.il/cards/israelElec/og-image.jpg"],
+  "url": "https://clix-marketing.co.il/cards/israel/index.html",
+  "logo": "https://clix-marketing.co.il/cards/israel/og-image.jpg",
+  "image": ["https://clix-marketing.co.il/cards/israel/og-image.jpg"],
   "telephone": "+972-54-2920-605",
   "priceRange": "$$",
 
@@ -174,7 +174,7 @@ schema: {
   /* ▶️ פעולת צפייה */
   "potentialAction": {
     "@type": "ViewAction",
-    "target": "https://clix-marketing.co.il/cards/israelElec/index.html",
+    "target": "https://clix-marketing.co.il/cards/israel/index.html",
     "name": "צפה בכרטיס של ישראל יוסופוביץ - חשמל ומיזוג אוויר"
   },
 
