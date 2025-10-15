@@ -35,7 +35,7 @@ offerPopup: {
     </div>
   `,
   buttonText: "אני רוצה את החבילה! 💪",
-  buttonLink: "https://wa.me/972XXXXXXXXX",
+  buttonLink: "https://wa.me/972532407762",
   bgColor: "#ffffff",
   endDate: "2025-10-31T23:59:59Z",
   countdownText: "⏳",
