@@ -11,7 +11,7 @@ favicon: "https://clix-marketing.co.il/assets/media/yael/yaelLogo.png",
   phoneDigits: "548787702",
   vcardLink: "./contact.vcf",
   company: "אקדמיה רזי החן",
-  cardUrl: "https://clix-marketing.co.il/cards/yael/index.html",
+  cardUrl: "https://clix-marketing.co.il/cards/yael/",
   vcard: { filename: "contact.vcf" },
 
   /* ✅ קישורים */
@@ -63,7 +63,7 @@ favicon: "https://clix-marketing.co.il/assets/media/yael/yaelLogo.png",
   /* ✅ SEO בסיסי */
 metaDescription: "אקדמיית רזי החן ברמת גן – לימודי ציפורניים, קורס לק ג׳ל וציורי ציפורניים ברמה הגבוהה בישראל. קורסים אישיים, ליווי צמוד ותעודה בסיום עם יעל חן רז.",
 metaKeywords: "לימודי ציפורניים, קורס ציפורניים, ציורי ציפורניים, קורס לק ג'ל, עיצוב ציפורניים, קורס בניית ציפורניים, לימודי לק ג'ל, קורס אומנות על ציפורניים, יעל חן רז, רזי החן רמת גן, קורס ציפורניים ברמת גן",
-  canonicalHref: "https://clix-marketing.co.il/cards/yael/yae.html",
+  canonicalHref: "https://clix-marketing.co.il/cards/yael/",
   metaRobots: "index, follow",
   sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
@@ -73,7 +73,7 @@ ogTitle: "רזי החן – לימודי ציפורניים ואומנות על 
 ogDescription: "אקדמיית רזי החן ברמת גן – לימודי ציפורניים, ציורי ציפורניים והשתלמויות מקצועיות לאומנות הציפורן. תוכנית אישית בקצב שלך וליווי צמוד עד שתהיי מקצועית ובטוחה בעצמך.",
 ogImage: "https://clix-marketing.co.il/assets/media/yael/yaelBack.jpg",
 ogImageAlt: "רזי החן – לימודי ציפורניים וציורי ציפורניים עם יעל חן רז",
-ogUrl: "https://clix-marketing.co.il/cards/yael/yae.html",
+ogUrl: "https://clix-marketing.co.il/cards/yael/",
 
 /* ✅ Twitter Cards */
 twitterCard: "summary_large_image",
@@ -89,7 +89,7 @@ schema: {
   "alternateName": "רזי החן | קורסי ציפורניים וציורי ציפורניים ברמת גן",
   "inLanguage": "he-IL",
   "description": "אקדמיית רזי החן בהובלת יעל חן רז – לימודי ציפורניים, קורס לק ג'ל וציורי ציפורניים ברמת גן. קורסים אישיים, ליווי צמוד ותעודה בסיום. מתאימה לנשים שמחפשות לרכוש מקצוע יוקרתי בעולם היופי.",
-  "url": "https://clix-marketing.co.il/cards/yael/yae.html",
+  "url": "https://clix-marketing.co.il/cards/yael/",
   "logo": "https://clix-marketing.co.il/assets/media/yael/yaelLogo.png",
   "image": [
     "https://clix-marketing.co.il/assets/media/yael/yaelBack.jpg"
