@@ -19,7 +19,6 @@ offerPopup: {
   text: `
     <div class="package-box">
       <div class="package-title">
-        <span class="package-icon">🚀</span>
         מה כלול בחבילה?
       </div>
       <ul class="package-list">
@@ -32,15 +31,13 @@ offerPopup: {
 
     <div class="price-box">
       <span class="discount-tag">הנחה 30%</span>
-      <div class="old-price">₪2,999</div>
       <div class="new-price">₪2,099</div>
-      <div class="price-note">🎉 חיסכון של 900 ₪!</div>
     </div>
   `,
   buttonText: "אני רוצה את החבילה! 💪",
   buttonLink: "https://wa.me/972XXXXXXXXX",
   bgColor: "#ffffff",
-  endDate: "2025-10-31T23:59:59Z",
+endDate: "2025-10-31T23:59:59Z",
   countdownText: "המבצע מסתיים בעוד",
 layout: {
   order: {

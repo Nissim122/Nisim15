@@ -183,7 +183,7 @@ popup.innerHTML = `
 }
 
 /* ===========================================================
-   ⏰ Countdown – from DATA only
+   ⏰ Countdown – from DATA only (Days, Hours, Seconds)
    =========================================================== */
 function startCountdown(el) {
   try {
@@ -205,10 +205,12 @@ function startCountdown(el) {
         clearInterval(interval);
         return;
       }
-      const hours = Math.floor(diff / 3600000);
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
-      el.textContent = `${label} ${hours} שעות, ${minutes} דקות ו־${seconds} שניות`;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+el.innerHTML = `${label}<br>${days} ימים, ${hours} שעות ו־${seconds} שניות`;
     };
 
     tick();

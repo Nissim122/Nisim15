@@ -103,7 +103,7 @@
   font-size: var(--offer-countdown-font-size, 15px);
   font-weight: var(--offer-countdown-font-weight, 700);
   text-align: center;
-  margin: var(--offer-countdown-margin, 10px 20px 20px);
+  margin-top: 20px ; /* 👈 מכריח לעקוף את המשתנה */
   box-shadow: var(--offer-countdown-shadow, inset 0 0 0 1px #d2d8ef);
 }
 
@@ -133,8 +133,9 @@
   border-radius: 16px;
   padding: 24px;
   margin: 0 0 24px 0;
-  text-align: right;
+  text-align: center; /* ✅ במקום right */
 }
+
 
 .package-title {
   font-size: 18px;
@@ -143,8 +144,11 @@
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+  justify-content: center; /* 👈 מוסיף יישור למרכז */
   gap: 8px;
+  text-align: center; /* 👈 למקרה שיש טקסט רב־שורות */
 }
+
 
 .package-icon {
   font-size: 22px;
@@ -164,6 +168,7 @@
   align-items: flex-start;
   gap: 10px;
   border-bottom: 1px solid #e0e7ff;
+  text-align: right;
 }
 
 .package-list li:last-child {
@@ -184,16 +189,19 @@
   background: #fffbeb;
   border: 2px solid #fbbf24;
   border-radius: 16px;
-  padding: 24px;
+  padding: 12px;
   margin: 0 0 24px 0;
   text-align: center;
   position: relative;
+  overflow: visible; /* 👈 מאפשר ל"תג" לבלוט החוצה */
+  width: 200px;   /* 👈 רוחב קבוע – אפשר גם באחוזים: 80%, 90% וכו’ */
+  height: 90px;  /* 👈 גובה קבוע – משנה את “האורך” של התיבה */
 }
 
 .discount-tag {
   position: absolute;
-  top: -12px;
-  right: 20px;
+  top: -14px;       /* חצי מחוץ לתיבה */
+  right: -20px;      /* 👈 מרחק מהקצה הימני */
   background: #dc2626;
   color: white;
   padding: 6px 16px;
@@ -201,7 +209,10 @@
   font-size: 13px;
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+  z-index: 2;
 }
+
+
 
 .old-price {
   color: #991b1b;
@@ -212,12 +223,16 @@
 }
 
 .new-price {
-  color: #065f46;
-  font-size: 40px;
+  color: #000;
+  font-size: 39px; /* 👈 הגדל לפי הצורך */
   font-weight: 800;
-  margin: 8px 0;
-  direction: ltr;
+  margin: 12px 0;
+  direction: rtl;
+  text-align: center;
+  display: block;
+  width: 100%;     /* 👈 תופס את כל הרקע */
 }
+
 
 .price-note {
   color: #92400e;
