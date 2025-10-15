@@ -95,10 +95,12 @@ function showOfferPopup(data) {
     const layoutOrder = data.layout?.order || {};
     const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
 
-    // 🕒 טיימר מתוך DATA
-    const countdownHTML = data.endDate
-      ? `<p class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" data-label="${data.countdownText || "המבצע מסתיים בעוד"}"></p>`
-      : "";
+// 🕒 טיימר מתוך DATA
+const countdownHTML = data.endDate
+  ? `<p class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" ${
+      data.countdownText ? `data-label="${data.countdownText}"` : ""
+    }></p>`
+  : "";
 
     // ✨ יצירת הפופאפ בפועל
     const popup = document.createElement("div");
@@ -196,7 +198,7 @@ function startCountdown(el) {
     // שליפת טקסט מה־DATA של הפופאפ עצמו
     const popupId = el.closest(".offer-popup")?.dataset.id;
     const popupData = window.cardData?.offerPopup?.items?.find(p => p.id === popupId);
-    const label = popupData?.countdownText || el.dataset.label || "המבצע מסתיים בעוד";
+const label = popupData?.countdownText || el.dataset.label || "";
 
     const tick = () => {
       const diff = end - new Date();
@@ -210,7 +212,10 @@ function startCountdown(el) {
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-el.innerHTML = `${label}<br>${days} ימים, ${hours} שעות ו־${seconds} שניות`;
+el.innerHTML = `
+  <span class="countdown-label">${label}</span><br>
+  <span class="countdown-time">${days} ימים, ${hours} שעות ו־${seconds} שניות</span>
+`;
     };
 
     tick();

@@ -38,7 +38,7 @@ offerPopup: {
   buttonLink: "https://wa.me/972XXXXXXXXX",
   bgColor: "#ffffff",
 endDate: "2025-10-31T23:59:59Z",
-  countdownText: "המבצע מסתיים בעוד",
+  countdownText: " ⏳ ",
 layout: {
   order: {
     title: 3,
