@@ -95,41 +95,51 @@ function showOfferPopup(data) {
 const layoutOrder = data.layout?.order || {};
 const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
 
-// 🕒 טיימר מתוך DATA
 const countdownHTML = data.endDate
-  ? `<p class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" ${
-      data.countdownText ? `data-label="${data.countdownText}"` : ""
-    }></p>`
+  ? `
+    <div class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" ${
+        data.countdownText ? `data-label="${data.countdownText}"` : ""
+      }>
+      <button class="offer-close"
+              data-analytics="offer_popup_close"
+              aria-label="סגור פופאפ">✖</button>
+    </div>
+  `
   : "";
+
+
 
 // 🏷️ כותרת מתוך DATA – רק אם באמת הוגדרה
 const titleHTML = data.title
   ? `<h1 class="offer-title" ${getOrder("title", 2)}>${data.title}</h1>`
   : "";
-
-// ✨ יצירת הפופאפ בפועל
+  // יצירת הפופאפ
+// ✳️ יצירת הפופאפ עם טיימר בראש ואיקס עליו
 const popup = document.createElement("div");
 popup.className = `offer-popup theme-${data.theme || "default"}`;
 popup.dataset.id = data.id;
+
 popup.innerHTML = `
-  <button class="offer-close"
-          data-analytics="offer_popup_close"
-          aria-label="סגור פופאפ">✖</button>
+  <div class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate || ""}" ${
+    data.countdownText ? `data-label="${data.countdownText}"` : ""
+  }>
+    <button class="offer-close"
+            data-analytics="offer_popup_close"
+            aria-label="סגור פופאפ">✖</button>
+  </div>
 
   <div class="offer-content" style="${backgroundStyle}">
     <div class="offer-text-wrap">
-      ${countdownHTML}
       ${titleHTML}
       <div class="offer-text" ${getOrder("text", 3)}>
-  ${data.text || ""}
-</div>
+        ${data.text || ""}
+      </div>
 
-${data.priceBox ? `
-  <div class="price-box" ${getOrder("price", 4)}>
-    ${data.priceBox}
-  </div>
-` : ""}
-
+      ${data.priceBox ? `
+        <div class="price-box" ${getOrder("price", 4)}>
+          ${data.priceBox}
+        </div>
+      ` : ""}
 
       <a href="${data.buttonLink || "#"}"
          class="offer-btn"
@@ -142,6 +152,24 @@ ${data.priceBox ? `
     </div>
   </div>
 `;
+
+// ✅ הוספת הפופאפ בפועל לעמוד
+document.body.appendChild(popup);
+
+// ✅ הוספת מאזין רק אחרי שהאלמנט קיים ב־DOM
+const closeBtn = popup.querySelector('.offer-close');
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => {
+    // אפקט סגירה חלק (אופציונלי)
+    popup.classList.remove('visible');
+    setTimeout(() => popup.remove(), 300);
+  });
+} else {
+  console.warn("⚠️ offer-close button not found inside popup.");
+}
+
+
+
 
 
 

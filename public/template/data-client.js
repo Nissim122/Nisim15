@@ -41,12 +41,13 @@ offerPopup: {
   countdownText: "⏳",
 layout: {
   order: {
-    title: 3,
-    countdown: 2,
-    text: 4,
-    button: 5
+    countdown: 1,  // ✅ מציב את הטיימר ראשון בראש הפופאפ
+    title: 2,
+    text: 3,
+    button: 4
   }
 },
+
 
 },
 
