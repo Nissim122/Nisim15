@@ -4,32 +4,32 @@
   <!-- דף התבנית (העמוד הקנוני) -->
   <url>
     <loc>https://clix-marketing.co.il</loc>
-    <lastmod>2025-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- כרטיס עמית -->
   <url>
     <loc>https://clix-marketing.co.il/cards/amit/amit.html</loc>
-    <lastmod>2025-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
 
   <!-- כרטיס יעל -->
   <url>
     <loc>https://clix-marketing.co.il/cards/yael/yae.html</loc>
-    <lastmod>2025-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
   </url>
 
   <!-- כרטיס ישראל -->
   <url>
     <loc>https://clix-marketing.co.il/cards/israel/israel.html</loc>
-    <lastmod>2025-10-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
