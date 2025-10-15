@@ -66,7 +66,7 @@ logoSrc: "/assets/media/israel/AA.JPG",
 metaDescription: "ישראל יוסופוביץ - חשמלאי מוסמך ומתקין מערכות מיזוג אוויר במרכז הארץ. מבצע התקנות, תיקונים ותחזוקה שוטפת לבתים ולעסקים, עם שירות אמין, מקצועי וזמינות גבוהה.",
 metaKeywords: "ישראל יוסופוביץ, חשמלאי מוסמך, חשמלאי במרכז, חשמלאי באזור המרכז, מיזוג אוויר במרכז, תיקון מזגנים במרכז, התקנת מזגנים במרכז, חשמלאי מקצועי, עבודות חשמל, חשמל לבית ולעסק, תחזוקת חשמל, שירותי חשמל לעסקים",
 canonicalHref: "https://clix-marketing.co.il/cards/israel/index.html",
-metaRobots: "index, follow",
+metaRobots: "noindex, nofollow",
 sitemapHref: "https://clix-marketing.co.il/sitemap.xml",
 
 /* ✅ Open Graph */
