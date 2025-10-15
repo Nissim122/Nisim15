@@ -6,12 +6,12 @@
 .offer-overlay {
   position: fixed;
   inset: 0;
-  background: var(--offer-overlay-bg, rgba(0, 0, 0, 0.7));
-  backdrop-filter: blur(var(--offer-overlay-blur, 6px));
-  -webkit-backdrop-filter: blur(var(--offer-overlay-blur, 6px));
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 9998;
   opacity: 0;
-  transition: opacity var(--offer-overlay-transition, 0.4s ease);
+  transition: opacity 0.4s ease;
 }
 .offer-overlay.active {
   opacity: 1;
@@ -23,33 +23,33 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
-  background: var( #ffffff);
-  border-radius: var(--offer-popup-radius, 22px);
-  box-shadow: var(--offer-popup-shadow, 0 8px 40px rgba(0, 0, 0, 0.45));
-  width: var(--offer-popup-width, 92%);
-  max-width: var(--offer-popup-max-width, 420px);
-  height: var(--offer-popup-height, auto);
-  max-height: var(--offer-popup-max-height, 130vh);
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  width: 92%;
+  max-width: 420px;
+  height: auto;
+  max-height: 130vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.3) transparent;
   opacity: 0;
   z-index: 9999;
   transition: opacity 0.3s ease;
-  font-family: var(--offer-popup-font, "Heebo", "Assistant", sans-serif);
+  font-family: "Heebo", "Assistant", sans-serif;
 }
 .offer-popup.visible {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
-/* תוכן הפופאפ – ללא ריווח כלל */
+/* תוכן הפופאפ */
 .offer-content {
-  min-height: var(--offer-content-min-height, 460px);
-  background-color: var(--offer-popup-bg, #ffffff);
-  color: var(--offer-text-color, #000000);
-  padding: 0 !important;        /* ✅ ביטול מוחלט של ריווחים פנימיים */
-  margin: 0 !important;         /* ✅ ביטול ריווח חיצוני */
+  min-height: 460px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0 !important;
+  margin: 0 !important;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -64,15 +64,13 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;   /* ✅ במקום space-between */
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: var(--offer-text-wrap-padding, 30px 20px);
-  gap: 20px;                     /* ✅ שולט ברווח בין הבלוקים (כולל price-box) */
+  padding: 30px 20px;
+  gap: 20px;
 }
 
-
-/* 🏷️ כותרת פופאפ – שליטה מלאה בעיצוב */
 /* 🏷️ כותרת פופאפ */
 .offer-title {
   order: 3;
@@ -80,16 +78,14 @@
   font-size: 26px;
   font-weight: 800;
   text-align: center;
-  margin: -20px 0 0px;
+  margin: -20px 0 0;
   line-height: 1.4;
   letter-spacing: -0.5px;
   font-family: 'Heebo', 'Assistant', sans-serif;
-  text-transform: none;
   white-space: normal;
   word-break: break-word;
 }
 
-/* 🎯 רספונסיביות */
 @media (max-width: 480px) {
   .offer-title {
     font-size: 22px;
@@ -98,27 +94,24 @@
   }
 }
 
-
-
 /* 📄 טקסט */
 .offer-text {
-  order: var(--offer-text-order, 2);
-  font-size: var(--offer-text-size, 17px);
-  color: var(--offer-text-color, #000000);
-  font-weight: var(--offer-text-weight, 400);
-  line-height: var(--offer-text-line, 1.6);
-  text-align: var(--offer-text-align, center);
-  margin-bottom: var(--offer-text-margin-bottom, 25px);
-  width: var(--offer-text-width, 90%);
-}/* 🎯 טיימר בראש הפופאפ, עם רקע מלא כמו בדוגמה */
+  order: 2;
+  font-size: 17px;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 25px;
+  width: 90%;
+}
 
-
-/* ✅ טיימר בראש הפופאפ עם איקס מוצג עליו */
+/* 🎯 טיימר */
 .offer-countdown {
   position: relative !important;
-  background: var(--offer-countdown-bg, #002b5c);
-  color: var(--offer-countdown-color, #ffffff);
-  flex-direction: column;     /* ✅ מציב את הכותרת מעל הספירה */
+  background: #ffffff;
+  color: #ffffff;
+  flex-direction: column;
   font-weight: 700;
   font-size: 16px;
   text-align: center;
@@ -129,19 +122,17 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 45px; /* ✅ גובה מינימלי כך שהאיקס לא ייחתך */
+  min-height: 45px;
   box-sizing: border-box;
-  overflow: visible !important;  /* ✅ מונע חיתוך של האיקס */
+  overflow: visible !important;
   z-index: 5;
 }
-
 .offer-countdown .icon {
   font-size: 18px;
-  color: var(--offer-countdown-icon, #ffcc00);
-}/* ❌ כפתור סגירה גלוי וצף על גבי הטיימר */
+  color: #ffcc00;
+}
 
-
-/* 💥 מבטל ריווחים כלליים סביב התוכן כדי להצמיד לטיימר */
+/* ביטול ריווחים כלליים */
 .offer-popup,
 .offer-content {
   margin: 0 !important;
@@ -153,58 +144,53 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-
-
-
 .countdown-label {
   display: block;
-  color: #0d47a1;              /* כחול כהה אלגנטי */
-  font-weight: 800;            /* כותרת מודגשת */
-  font-size: 22px;             /* מעט גדול יותר */
-  letter-spacing: 0.5px;       /* ריווח עדין */
-  text-align: center;          /* ממורכז */
-  text-transform: uppercase;   /* אותיות גדולות – מראה רשמי */
-  margin-bottom: 0px;          /* רווח קטן לפני הספירה */
-  padding: 6px 12px;           /* ריווח פנימי */
-  border-radius: 10px;         /* פינות מעוגלות */
+  color: #0d47a1;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  border-radius: 10px;
 }
 
-
 .countdown-time {
-  color: #810b0b;          /* צבע הספרות */
+  color: #810b0b;
   font-weight: 700;
   font-size: 22px;
 }
 
 /* 🖱️ כפתור */
 .offer-btn {
-  order: var(--offer-btn-order, 4);
+  order: 4;
   display: inline-block;
-  background: var(--offer-btn-bg, #003366);
-  color: var(--offer-btn-color, #ffffff);
-  padding: var(--offer-btn-padding, 14px 26px);
-  border-radius: var(--offer-btn-radius, 20px);
+  background: #ffffff;
+  color: #000000;
+  padding: 14px 26px;
+  border-radius: 20px;
   text-decoration: none;
-  font-size: var(--offer-btn-font-size, 18px);
-  font-weight: var(--offer-btn-font-weight, 600);
-  transition: all var(--offer-btn-transition, 0.3s ease);
-  box-shadow: var(--offer-btn-shadow, 0 4px 15px rgba(0, 0, 0, 0.15));
-  margin-top: var(--offer-btn-margin-top, auto);
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  margin-top: auto;
 }
 .offer-btn:hover {
-  background: var(--offer-btn-bg-hover, #001f4d);
-  transform: translateY(var(--offer-btn-hover-translate, -2px));
+  background: #001f4d;
+  transform: translateY(-2px);
 }
+
 /* תיבת החבילה */
 .package-box {
   background: #f5f8ff;
   border: 2px solid #e0e7ff;
   border-radius: 16px;
   padding: 24px;
-  text-align: center; /* ✅ במקום right */
-
+  text-align: center;
 }
-
 
 .package-title {
   font-size: 18px;
@@ -213,12 +199,10 @@
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  justify-content: center; /* 👈 מוסיף יישור למרכז */
+  justify-content: center;
   gap: 8px;
-  text-align: center; /* 👈 למקרה שיש טקסט רב־שורות */
+  text-align: center;
 }
-
-
 .package-icon {
   font-size: 22px;
 }
@@ -228,7 +212,6 @@
   padding: 0;
   margin: 0;
 }
-
 .package-list li {
   padding: 10px 0;
   color: #333;
@@ -239,11 +222,9 @@
   border-bottom: 1px solid #e0e7ff;
   text-align: right;
 }
-
 .package-list li:last-child {
   border-bottom: none;
 }
-
 .package-list li::before {
   content: '✓';
   color: #10b981;
@@ -253,6 +234,7 @@
   margin-top: 2px;
 }
 
+/* מחיר */
 .price-box {
   display: flex;
   flex-direction: column;
@@ -268,14 +250,12 @@
   height: 70px;
   text-align: center;
   position: relative;
-  margin-top: -14px; /* 👈 ריווח מלמעלה בלבד */
+  margin-top: -14px;
 }
-
-
 .discount-tag {
   position: absolute;
-  top: -14px;       /* חצי מחוץ לתיבה */
-  right: -20px;      /* 👈 מרחק מהקצה הימני */
+  top: -14px;
+  right: -20px;
   background: #dc2626;
   color: white;
   padding: 6px 16px;
@@ -285,35 +265,24 @@
   box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
   z-index: 2;
 }
-
-
-
 .old-price {
   color: #991b1b;
   text-decoration: line-through;
   font-size: 18px;
-  margin-bottom: 10px;
   opacity: 0.7;
-    margin-bottom: 2px; /* 👈 קובע את המרווח בין הישן לחדש */
-
+  margin-bottom: 2px;
 }
-
 .new-price {
   color: #000;
-  font-size: 30px;       /* 👈 גודל מודגש וברור */
+  font-size: 30px;
   font-weight: 800;
   direction: rtl;
   text-align: center;
   display: block;
-  width: 100%;           /* 👈 תופס את כל רוחב התיבה */
-  
-  /* ✅ ריווחים מצומצמים בין המחירים */
-  margin-top: 10px;       /* היה 12px → עכשיו צמוד יותר למחיר הישן */
-  margin-bottom: -10px;    /* רווח עדין מתחת למחיר החדש */
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: -10px;
 }
-
-
-
 .price-note {
   color: #92400e;
   font-size: 14px;
@@ -327,23 +296,21 @@
   .price-box {
     padding: 20px;
   }
-
   .new-price {
     font-size: 36px;
   }
 }
 
-.offer-text{display:block}
+/* טקסט נוסף */
 .offer-text {
   display: block;
   width: 100%;
   text-align: center;
-  font-size: var(--offer-text-size, 17px);
-  line-height: var(--offer-text-line, 1.6);
-  color: var(--offer-text-color, #000);
-  margin: var(--offer-text-margin, 10px 0 25px);
+  font-size: 17px;
+  line-height: 1.6;
+  color: #000;
+  margin: 10px 0 25px;
 }
-
 .offer-text * {
   text-align: inherit;
   font-family: inherit;
@@ -351,21 +318,19 @@
   margin: 0 auto;
 }
 
-
-
 /* 📱 רספונסיביות */
 @media (max-width: 480px) {
   .offer-popup {
-    width: var(--offer-popup-width-mobile, 94%);
-    border-radius: calc(var(--offer-popup-radius, 22px) * 0.8);
+    width: 94%;
+    border-radius: 18px;
   }
   .offer-title {
-    font-size: calc(var(--offer-title-size, 26px) * 0.9);
+    font-size: 23px;
   }
   .offer-text {
-    font-size: calc(var(--offer-text-size, 17px) * 0.9);
+    font-size: 15px;
   }
   .offer-countdown {
-    font-size: calc(var(--offer-countdown-font-size, 15px) * 0.9);
+    font-size: 14px;
   }
 }
