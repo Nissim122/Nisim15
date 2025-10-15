@@ -90,7 +90,6 @@ function showOfferPopup(data) {
     } else {
       backgroundStyle = `background-color:#ffffff;`;
     }
-
 // 🧩 פריסת Layout דינמית
 const layoutOrder = data.layout?.order || {};
 const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
@@ -99,22 +98,16 @@ const countdownHTML = data.endDate
   ? `
     <div class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate}" ${
         data.countdownText ? `data-label="${data.countdownText}"` : ""
-      }>
-      <button class="offer-close"
-              data-analytics="offer_popup_close"
-              aria-label="סגור פופאפ">✖</button>
-    </div>
+      }></div>
   `
   : "";
-
-
 
 // 🏷️ כותרת מתוך DATA – רק אם באמת הוגדרה
 const titleHTML = data.title
   ? `<h1 class="offer-title" ${getOrder("title", 2)}>${data.title}</h1>`
   : "";
-  // יצירת הפופאפ
-// ✳️ יצירת הפופאפ עם טיימר בראש ואיקס עליו
+
+// ✳️ יצירת הפופאפ ללא איקס
 const popup = document.createElement("div");
 popup.className = `offer-popup theme-${data.theme || "default"}`;
 popup.dataset.id = data.id;
@@ -122,11 +115,7 @@ popup.dataset.id = data.id;
 popup.innerHTML = `
   <div class="offer-countdown" ${getOrder("countdown", 1)} data-end="${data.endDate || ""}" ${
     data.countdownText ? `data-label="${data.countdownText}"` : ""
-  }>
-    <button class="offer-close"
-            data-analytics="offer_popup_close"
-            aria-label="סגור פופאפ">✖</button>
-  </div>
+  }></div>
 
   <div class="offer-content" style="${backgroundStyle}">
     <div class="offer-text-wrap">
@@ -156,17 +145,6 @@ popup.innerHTML = `
 // ✅ הוספת הפופאפ בפועל לעמוד
 document.body.appendChild(popup);
 
-// ✅ הוספת מאזין רק אחרי שהאלמנט קיים ב־DOM
-const closeBtn = popup.querySelector('.offer-close');
-if (closeBtn) {
-  closeBtn.addEventListener('click', () => {
-    // אפקט סגירה חלק (אופציונלי)
-    popup.classList.remove('visible');
-    setTimeout(() => popup.remove(), 300);
-  });
-} else {
-  console.warn("⚠️ offer-close button not found inside popup.");
-}
 
 
 
@@ -187,20 +165,7 @@ if (closeBtn) {
 
     sendPopupEvent("shown", data);
 
-    // סגירה
-    popup.querySelector(".offer-close").addEventListener("click", () => {
-      popup.classList.remove("visible");
-      overlay.classList.remove("active");
-      setTimeout(() => {
-        popup.remove();
-        overlay.remove();
-        window.__offerPopupActive = false;
-        if (!window.__offerAlwaysShow) {
-          localStorage.setItem(STORAGE_LAST_DATE, new Date().toISOString());
-        }
-        sendPopupEvent("closed", data);
-      }, 400);
-    });
+
 
     // מעקב אנליטיקס
     popup.addEventListener("click", e => {

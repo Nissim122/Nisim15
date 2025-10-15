@@ -139,28 +139,7 @@
   font-size: 18px;
   color: var(--offer-countdown-icon, #ffcc00);
 }/* ❌ כפתור סגירה גלוי וצף על גבי הטיימר */
-.offer-countdown .offer-close {
-  position: absolute !important;
-  top: 6px;
-  right: 10px;
-  background: #003366;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  z-index: 9;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-.offer-countdown .offer-close:hover {
-  background: #001f4d;
-  transform: scale(1.05);
-}
+
 
 /* 💥 מבטל ריווחים כלליים סביב התוכן כדי להצמיד לטיימר */
 .offer-popup,
@@ -367,31 +346,6 @@
 }
 
 
-
-/* ❌ כפתור סגירה */
-.offer-close {
-  position: absolute;
-  top: var(--offer-close-top, 0px);
-  right: var(--offer-close-right, 0px);
-  background: var(--offer-close-bg, #003366);
-  color: var(--offer-close-color, #ffffff);
-  border: none;
-  font-size: var(--offer-close-size, 17px);
-  border-radius: var(--offer-close-radius, 50%);
-  width: var(--offer-close-width, 36px);
-  height: var(--offer-close-height, 36px);
-  cursor: pointer;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--offer-close-transition, 0.3s ease),
-              transform var(--offer-close-transform, 0.2s ease);
-}
-.offer-close:hover {
-  background: var(--offer-close-bg-hover, #001f4d);
-  transform: scale(var(--offer-close-hover-scale, 1.1));
-}
 
 /* 📱 רספונסיביות */
 @media (max-width: 480px) {
