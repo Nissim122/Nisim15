@@ -13,22 +13,22 @@ offerPopup: {
 
   items: [
 {
+
   id: "popup_digital_promo",
   active: true,
   title: "חבילת קידום משתלמת במיוחד!",
   text: `
     <div class="package-box">
-      <div class="package-title">
-        מה כלול בחבילה?
-      </div>
+      <div class="package-title">מה כלול בחבילה?</div>
       <ul class="package-list">
         <li>כרטיס ביקור דיגיטלי מעוצב ומקצועי</li>
         <li>קמפיין קידום ממומן ממוקד לקהל היעד</li>
         <li>הגדלת חשיפה ומכירות מובטחת</li>
-        <li>תמיכה ולווי מלא לאורך הדרך</li>
+        <li>תמיכה וליווי מלא לאורך הדרך</li>
       </ul>
     </div>
-
+  `,
+  priceBox: `
     <div class="price-box">
       <span class="discount-tag">הנחה 30%</span>
       <div class="new-price">₪2,099</div>
@@ -37,8 +37,8 @@ offerPopup: {
   buttonText: "אני רוצה את החבילה! 💪",
   buttonLink: "https://wa.me/972XXXXXXXXX",
   bgColor: "#ffffff",
-endDate: "2025-10-31T23:59:59Z",
-  countdownText: " ⏳ ",
+  endDate: "2025-10-31T23:59:59Z",
+  countdownText: "⏳",
 layout: {
   order: {
     title: 3,

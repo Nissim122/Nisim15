@@ -91,9 +91,9 @@ function showOfferPopup(data) {
       backgroundStyle = `background-color:#ffffff;`;
     }
 
-    // 🧩 פריסת Layout דינמית
-    const layoutOrder = data.layout?.order || {};
-    const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
+// 🧩 פריסת Layout דינמית
+const layoutOrder = data.layout?.order || {};
+const getOrder = (key, def) => `style="order:${layoutOrder[key] || def}"`;
 
 // 🕒 טיימר מתוך DATA
 const countdownHTML = data.endDate
@@ -102,10 +102,15 @@ const countdownHTML = data.endDate
     }></p>`
   : "";
 
-    // ✨ יצירת הפופאפ בפועל
-    const popup = document.createElement("div");
-    popup.className = `offer-popup theme-${data.theme || "default"}`;
-    popup.dataset.id = data.id;
+// 🏷️ כותרת מתוך DATA – רק אם באמת הוגדרה
+const titleHTML = data.title
+  ? `<h1 class="offer-title" ${getOrder("title", 2)}>${data.title}</h1>`
+  : "";
+
+// ✨ יצירת הפופאפ בפועל
+const popup = document.createElement("div");
+popup.className = `offer-popup theme-${data.theme || "default"}`;
+popup.dataset.id = data.id;
 popup.innerHTML = `
   <button class="offer-close"
           data-analytics="offer_popup_close"
@@ -114,19 +119,21 @@ popup.innerHTML = `
   <div class="offer-content" style="${backgroundStyle}">
     <div class="offer-text-wrap">
       ${countdownHTML}
-
-      <h2 class="offer-title" ${getOrder("title", 2)}>
-        ${data.title || "מבצע מיוחד 🎉"}
-      </h2>
-
-      <!-- ✅ DIV גנרי לתוכן – תומך בכל סוג HTML -->
+      ${titleHTML}
       <div class="offer-text" ${getOrder("text", 3)}>
-        ${data.text || ""}
-      </div>
+  ${data.text || ""}
+</div>
+
+${data.priceBox ? `
+  <div class="price-box" ${getOrder("price", 4)}>
+    ${data.priceBox}
+  </div>
+` : ""}
+
 
       <a href="${data.buttonLink || "#"}"
          class="offer-btn"
-         ${getOrder("button", 4)}
+         ${getOrder("button", 5)}
          target="_blank"
          rel="noopener"
          data-analytics="offer_popup_cta_click">
