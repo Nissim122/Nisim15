@@ -23,7 +23,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
-  background: var(--offer-popup-bg, #ffffff);
+  background: var( #ffffff);
   border-radius: var(--offer-popup-radius, 22px);
   box-shadow: var(--offer-popup-shadow, 0 8px 40px rgba(0, 0, 0, 0.45));
   width: var(--offer-popup-width, 92%);
@@ -118,6 +118,7 @@
   position: relative !important;
   background: var(--offer-countdown-bg, #002b5c);
   color: var(--offer-countdown-color, #ffffff);
+  flex-direction: column;     /* ✅ מציב את הכותרת מעל הספירה */
   font-weight: 700;
   font-size: 16px;
   text-align: center;
@@ -127,7 +128,6 @@
   display: flex !important;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   width: 100%;
   min-height: 45px; /* ✅ גובה מינימלי כך שהאיקס לא ייחתך */
   box-sizing: border-box;
@@ -258,14 +258,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff8eb;
+  background: #d8f7d0;
   color: #000000;
   font-family: 'Heebo', 'Assistant', sans-serif;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
   border-radius: 10px;
   width: 150px;
-  height: 60px;
+  height: 70px;
   text-align: center;
   position: relative;
   margin-top: -14px; /* 👈 ריווח מלמעלה בלבד */
@@ -292,20 +292,26 @@
   color: #991b1b;
   text-decoration: line-through;
   font-size: 18px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   opacity: 0.7;
+    margin-bottom: 2px; /* 👈 קובע את המרווח בין הישן לחדש */
+
 }
 
 .new-price {
   color: #000;
-  font-size: 30px; /* 👈 הגדל לפי הצורך */
+  font-size: 30px;       /* 👈 גודל מודגש וברור */
   font-weight: 800;
-  margin: 12px 0;
   direction: rtl;
   text-align: center;
   display: block;
-  width: 100%;     /* 👈 תופס את כל הרקע */
+  width: 100%;           /* 👈 תופס את כל רוחב התיבה */
+  
+  /* ✅ ריווחים מצומצמים בין המחירים */
+  margin-top: 10px;       /* היה 12px → עכשיו צמוד יותר למחיר הישן */
+  margin-bottom: -10px;    /* רווח עדין מתחת למחיר החדש */
 }
+
 
 
 .price-note {

@@ -213,9 +213,10 @@ const label = popupData?.countdownText || el.dataset.label || "";
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
 el.innerHTML = `
-  <span class="countdown-label">${label}</span><br>
+  <span class="countdown-label">${label}</span>
   <span class="countdown-time">${days} ימים, ${hours} שעות ו־${seconds} שניות</span>
 `;
+
     };
 
     tick();

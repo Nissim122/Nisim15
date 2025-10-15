@@ -2,83 +2,117 @@ window.cardData = {
   fullName: "Clix Marketing",
   role: " כרטיסי ביקור דיגיטליים ושיווק לעסקים",
 
-
 /* ===========================================================
    🎯 Dynamic Offer Popup – 3 Variants (Spring 2025)
    =========================================================== */
 offerPopup: {
-  enabled: true,          // ✅ הפעלה כללית של מערכת הפופאפים
-  repeatAfterDays: 0,     // ⏳ מרווח זמן להצגה חוזרת (2 ימים)
-  delaySeconds: 7, // ⏱️ דיליי של 7 שניות לפני הצגה
+  enabled: true,           // ✅ הפעלה כללית של מערכת הפופאפים
+  repeatAfterDays: 0.0000000000000001,      // כרגע בדיקות – יוצג תמיד
+  delaySeconds: 7,         // ⏱️ הצגה אחרי 7 שניות
 
   items: [
-{
+    {
+      id: "popup_digital_promo",
+      active: true,
+      title: "חבילת קידום + כרטיס ביקור דיגיטלי",
+      text: `
+        <div class="package-box">
+          <div class="package-title">מה כלול בחבילה?</div>
+          <ul class="package-list">
+            <li>כרטיס ביקור דיגיטלי שמופיע בחיפוש בגוגל</li>
+            <li>קידום ממומן חכם וממוקד לקהל היעד שלך</li>
+            <li>תוכן, עיצוב ומעקב ביצועים מלאים</li>
+            <li>ליווי אישי עד להשגת תוצאות אמיתיות</li>
+          </ul>
+        </div>
+      `,
+      priceBox: `
+        <div class="price-box">
+          <span class="discount-tag">הנחה 20%</span>
+          <div class="new-price">₪2,689</div>
+          <div class="old-price">₪3,300</div>
+        </div>
+      `,
+      buttonText: "אני רוצה את  החבילה! 🚀",
+      buttonLink: "https://wa.me/972532407762",
+      bgColor: "#ffffff",
+      endDate: "2025-10-31T23:59:59Z",
+      countdownText: "המבצע תקף רק ל־:",
+      layout: {
+        order: {
+          countdown: 1,  // ✅ טיימר בראש
+          title: 2,
+          text: 3,
+          price: 4,
+          button: 5
+        }
+      },
+      version: "spring-2025-v1"
+    },
 
-  id: "popup_digital_promo",
+   {
+  id: "popup_2",
   active: true,
-  title: "חבילת קידום משתלמת במיוחד!",
+  title: "קידום ממומן במחיר מבצע מיוחד 💎",
   text: `
     <div class="package-box">
-      <div class="package-title">מה כלול בחבילה?</div>
+      <div class="package-title">מה כלול בשירות?</div>
       <ul class="package-list">
-        <li>כרטיס ביקור דיגיטלי מעוצב ומקצועי</li>
-        <li>קמפיין קידום ממומן ממוקד לקהל היעד</li>
-        <li>הגדלת חשיפה ומכירות מובטחת</li>
-        <li>תמיכה וליווי מלא לאורך הדרך</li>
+        <li>הקמה מלאה של קמפיין ממומן בפייסבוק ובאינסטגרם</li>
+        <li>ניתוח קהל יעד ומסרים שיווקיים מותאמים לעסק</li>
+        <li>הכנת מודעות מקצועיות כולל עיצוב ותוכן</li>
+        <li>דוחות ביצועים ושיפורים שבועיים בזמן אמת</li>
+      </ul>
+    </div>
+  `,
+  priceBox: `
+    <div class="price-box">
+      <span class="discount-tag">הנחה 20%</span>
+      <div class="new-price">₪1,800</div>
+      <div class="old-price">₪2,200</div>
+    </div>
+  `,
+  buttonText: "אני רוצה להתחיל בקידום 🚀",
+  buttonLink: "https://wa.me/972532407762",
+  bgColor: "#ffffff",
+  theme: "light",
+  endDate: "2025-10-30T23:59:59Z",
+  countdownText: "המבצע מסתיים בעוד:",
+  version: "spring-2025-v2"
+},
+
+{
+  id: "popup_3",
+  active: true,
+  title: "כרטיס ביקור דיגיטלי עם קידום אורגני בגוגל 🔥",
+  text: `
+    <div class="package-box">
+      <div class="package-title">מה כלול בשירות?</div>
+      <ul class="package-list">
+        <li>כרטיס ביקור דיגיטלי מעוצב ומקצועי שמופיע בחיפוש בגוגל</li>
+        <li>הגדרת מילות מפתח רלוונטיות לעסק אחת לחודשיים</li>
+        <li>התאמה מלאה לקידום אורגני (SEO) כולל כותרות ותגיות META</li>
+        <li>תמיכה ועדכונים שוטפים לשמירה על דירוג גבוה</li>
       </ul>
     </div>
   `,
   priceBox: `
     <div class="price-box">
       <span class="discount-tag">הנחה 30%</span>
-      <div class="new-price">₪2,599</div>
+      <div class="new-price">₪1,500</div>
+      <div class="old-price">₪2,169</div>
+
     </div>
   `,
-  buttonText: "אני רוצה את החבילה! 💪",
+  buttonText: "אני רוצה להופיע בגוגל! 🌐",
   buttonLink: "https://wa.me/972532407762",
   bgColor: "#ffffff",
-  endDate: "2025-10-31T23:59:59Z",
-  countdownText: "⏳",
-layout: {
-  order: {
-    countdown: 1,  // ✅ מציב את הטיימר ראשון בראש הפופאפ
-    title: 2,
-    text: 3,
-    button: 4
-  }
+  theme: "modern",
+  endDate: "2025-10-30T23:59:59Z",
+  countdownText: "המבצע מסתיים בעוד:",
+  version: "spring-2025-v3"
 },
 
-
-},
-
-
-    {
-      id: "popup_2",
-      active: true,
-      title: "מבצע אמצע חודש 💎",
-      text: "מבצע מיוחד: לקוחה חדשה? קבלי טיפול פנים במתנה על כל טיפול יופי!",
-      buttonText: "בדקי פרטים",
-      buttonLink: "https://wa.me/972532407762",
-      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
-      theme: "light",
-      endDate: "2025-10-30T23:59:59Z",
-      countdownText: "המבצע מסתיים בעוד" ,
-
-    },
-    {
-      id: "popup_3",
-      active: true,
-      title: " סוף חודש 🔥",
-      text: "הנחות מטורפות רק עד סוף החודש — אל תפספסי!",
-      buttonText: "לחצי כאן",
-      buttonLink: "https://wa.me/972532407762",
-      bgColor: "#ffffff", // 👈 רקע לבן (אפשר גם gradient)
-      theme: "modern",
-      version: "spring-2025-v3",
-      endDate: "2025-10-30T23:59:59Z",
-      countdownText: "המבצע מסתיים בעוד" ,
-
-    }
   ]
 },
 
