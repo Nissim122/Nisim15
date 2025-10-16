@@ -58,7 +58,7 @@ wazeLink: "https://waze.com/ul/hsv8y0u3z2",
   btnEmailText: "שלח",
 
   /* ✅ לוגו/פרופיל */
-logoSrc: "/assets/media/israel/AA.JPG",
+logoSrc: "/assets/media/israelElec/AA.JPG",
   logoAlt: "לוגו של ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
 // profileImage: "/assets/media/israelElec/AA.JPG",
   profileImageAlt: "ישראל יוסופוביץ - חשמל תקשורת ומיזוג אוויר",
