@@ -92,7 +92,7 @@ schema: {
   "alternateName": "amit nails | מניקוריסטית ברמת גן",
   "inLanguage": "he-IL",
   "description": "amit nails – עמית אבן צור, מניקוריסטית מקצועית ברמת גן. מתמחה בלק ג׳ל אנטומי, בנייה, מילוי וציפורניים ברגליים באווירה אישית, רגועה ומוקפדת. כל לקוחה מקבלת יחס חם, דיוק מקצועי ותוצאה מושלמת בכל טיפול.",
-  "url": "https://clix-marketing.co.il/amit/",
+  "url": "https://clix-marketing.co.il/amit.html",
   "logo": "https://clix-marketing.co.il/assets/media/amitNails/amitLogo.png",
   "image": [
     "https://clix-marketing.co.il/assets/media/amit/amitBack.jpg"
@@ -105,7 +105,7 @@ schema: {
   "alternateName": "amit nails | מניקוריסטית ברמת גן",
   "inLanguage": "he-IL",
   "description": "amit nails – עמית אבן צור, מניקוריסטית מקצועית ברמת גן. מתמחה בלק ג׳ל אנטומי, בנייה, מילוי וציפורניים ברגליים באווירה אישית, רגועה ומוקפדת. כל לקוחה מקבלת יחס חם, דיוק מקצועי ותוצאה מושלמת בכל טיפול.",
-  "url": "https://clix-marketing.co.il/amit/",
+  "url": "https://clix-marketing.co.il/amit.html",
   "logo": "https://clix-marketing.co.il/assets/media/amitNails/amitLogo.png",
   "image": [
     "https://clix-marketing.co.il/assets/media/amit/amitBack.jpg"
