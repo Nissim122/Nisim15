@@ -17,12 +17,12 @@ offerPopup: {
       title: "חבילת קידום + כרטיס ביקור דיגיטלי",
       text: `
         <div class="package-box">
-          <div class="package-title">מה כלול בחבילה?</div>
           <ul class="package-list">
             <li>כרטיס ביקור דיגיטלי שמופיע בחיפוש בגוגל</li>
             <li>קידום ממומן חכם וממוקד לקהל היעד שלך</li>
             <li>תוכן, עיצוב ומעקב ביצועים מלאים</li>
             <li>ליווי אישי עד להשגת תוצאות אמיתיות</li>
+            <li>הגדרת מילות מפתח רלוונטיות לעסק שלך לחודשים הראשונים</li>
           </ul>
         </div>
       `,
@@ -38,15 +38,7 @@ offerPopup: {
       bgColor: "#ffffff",
       endDate: "2025-10-31T23:59:59Z",
       countdownText: "המבצע תקף רק ל־:",
-      layout: {
-        order: {
-          countdown: 1,  // ✅ טיימר בראש
-          title: 2,
-          text: 3,
-          price: 4,
-          button: 5
-        }
-      },
+
       version: "spring-2025-v1"
     },
 
@@ -56,12 +48,12 @@ offerPopup: {
   title: "קידום ממומן במחיר מבצע מיוחד 💎",
   text: `
     <div class="package-box">
-      <div class="package-title">מה כלול בשירות?</div>
       <ul class="package-list">
         <li>הקמה מלאה של קמפיין ממומן בפייסבוק ובאינסטגרם</li>
         <li>ניתוח קהל יעד ומסרים שיווקיים מותאמים לעסק</li>
         <li>הכנת מודעות מקצועיות כולל עיצוב ותוכן</li>
         <li>דוחות ביצועים ושיפורים שבועיים בזמן אמת</li>
+        <li>מעקב אישי והכוונה שיווקית לשיפור מתמיד של תוצאות</li>
       </ul>
     </div>
   `,
@@ -84,10 +76,9 @@ offerPopup: {
 {
   id: "popup_3",
   active: true,
-  title: "כרטיס ביקור דיגיטלי עם קידום אורגני בגוגל 🔥",
+  title: "כרטיס ביקור דיגיטלי עם קידום אורגני בגוגל ",
   text: `
     <div class="package-box">
-      <div class="package-title">מה כלול בשירות?</div>
       <ul class="package-list">
         <li>כרטיס ביקור דיגיטלי מעוצב ומקצועי שמופיע בחיפוש בגוגל</li>
         <li>הגדרת מילות מפתח רלוונטיות לעסק אחת לחודשיים</li>
@@ -113,7 +104,16 @@ offerPopup: {
   version: "spring-2025-v3"
 },
 
-  ]
+  ],
+       layout: {
+        order: {
+          countdown: 1,  // ✅ טיימר בראש
+          title: 2,
+          text: 3,
+          price: 4,
+          button: 5
+        }
+      },
 },
 
 

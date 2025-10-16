@@ -18,26 +18,36 @@
 }
 
 /* תיבת הפופאפ */
+/* תיבת הפופאפ */
 .offer-popup {
-  position: fixed;
-  top: 50%;
+  position: fixed; /* ✅ חוזר להיות ממורכז במסך */
+  overflow: hidden !important; 
+   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
+
   background: #ffffff;
-  border-radius: 22px;
+  border-radius: 32px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
   width: 92%;
   max-width: 420px;
-  height: auto;
-  max-height: 87vh;
-  overflow-y: auto;
+  height: 490px;
+  max-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* מחלק את הגובה בין האזורים */
+
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.3) transparent;
+
   opacity: 0;
   z-index: 9999;
   transition: opacity 0.3s ease;
   font-family: "Heebo", "Assistant", sans-serif;
+
 }
+
 .offer-popup.visible {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
@@ -78,7 +88,8 @@
   font-size: 26px;
   font-weight: 800;
   text-align: center;
-  margin: -20px 0 0;
+    margin-top: 40px !important; /* 👈 עכשיו זה יעבוד */
+  margin-bottom: -40px !important; /* 👈 עכשיו זה יעבוד */
   line-height: 1.4;
   letter-spacing: -0.5px;
   font-family: 'Heebo', 'Assistant', sans-serif;
@@ -107,26 +118,24 @@
 }
 
 /* 🎯 טיימר */
+/* ✅ מציב את הטיימר בחלק העליון של הפופאפ */
 .offer-countdown {
-  position: relative !important;
-  background: #ffffff;
-  color: #ffffff;
-  flex-direction: column;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: center;
-  padding: 14px 0 !important;
-  margin: 0 !important;
-  border-radius: 22px 22px 0 0;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+  position: absolute;            /* נצמד ל־offer-popup */
+  top: 0px;                    /* 👈 תזוזה למעלה כך שיוצג במלואו */
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  min-height: 45px;
-  box-sizing: border-box;
-  overflow: visible !important;
-  z-index: 5;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 0px 0;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10000;
 }
+
 .offer-countdown .icon {
   font-size: 18px;
   color: #ffcc00;
@@ -152,9 +161,11 @@
   letter-spacing: 0.5px;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 0;
+  margin-bottom: 2;
   padding: 6px 12px;
   border-radius: 10px;
+    margin-top: 0;        /* 👈 ודא שאין רווח עליון */
+  line-height: 1.1;     /* 👈 מקרב את השורה עצמה */
 }
 
 .countdown-time {
@@ -169,7 +180,7 @@
   display: inline-block;
   background: #ffffff;
   color: #000000;
-  padding: 14px 26px;
+  padding: 10px 26px;
   border-radius: 20px;
   text-decoration: none;
   font-size: 18px;
@@ -183,26 +194,24 @@
   transform: translateY(-2px);
 }
 
-/* תיבת החבילה */
 .package-box {
+  position: relative; /* 👈 מאפשר למקם ילדים באופן חופשי */
   background: #f5f8ff;
   border: 2px solid #e0e7ff;
   border-radius: 16px;
-  padding: 24px;
   text-align: center;
+  width: 100%;
+  max-width: 380px;
+  height: 210px;
+  max-height: 220px;
+  margin-top: 30px !important;
+
+  padding: 0px 16px 16px; /* עדיין יש ריווח בסיסי */
+  box-sizing: border-box;
 }
 
-.package-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #003366;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-}
+
+
 .package-icon {
   font-size: 22px;
 }
@@ -211,9 +220,12 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-top: -20px !important;
+
+
 }
 .package-list li {
-  padding: 10px 0;
+  padding: 6px 0;
   color: #333;
   font-size: 15px;
   display: flex;
@@ -221,6 +233,7 @@
   gap: 10px;
   border-bottom: 1px solid #e0e7ff;
   text-align: right;
+
 }
 .package-list li:last-child {
   border-bottom: none;
@@ -231,7 +244,7 @@
   font-weight: bold;
   font-size: 18px;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: -5px;
 }
 
 /* מחיר */
@@ -247,14 +260,14 @@
   font-weight: 600;
   border-radius: 10px;
   width: 150px;
-  height: 70px;
+  height: 50px;
   text-align: center;
   position: relative;
-  margin-top: -14px;
+  margin-top: -30px !important;;
 }
 .discount-tag {
   position: absolute;
-  top: -14px;
+  top: -20px;
   right: -20px;
   background: #dc2626;
   color: white;
@@ -268,20 +281,19 @@
 .old-price {
   color: #991b1b;
   text-decoration: line-through;
-  font-size: 18px;
+  font-size: 15px;
   opacity: 0.7;
   margin-bottom: 2px;
 }
 .new-price {
   color: #000;
-  font-size: 30px;
-  font-weight: 800;
+  font-weight: 600;
   direction: rtl;
   text-align: center;
   display: block;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: -10px;
+  margin-top: 0px;
+  margin-bottom: -9px;
 }
 .price-note {
   color: #92400e;
