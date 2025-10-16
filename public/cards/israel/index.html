@@ -148,19 +148,21 @@ document.dispatchEvent(new Event("cardReady"));
   </div>
 <div class="card" role="main" aria-labelledby="pageMainTitle" tabindex="0">
   <div class="parallax-bg" aria-hidden="true"></div>
+<!-- SEO Title Hidden -->
+<h1 id="pageMainTitle" data-field="h1Title" class="visually-hidden">כרטיס ביקור דיגיטלי</h1>
+<script>
+  (function(){
+    const d = window.cardData || {};
+    const el = document.querySelector('[data-field="h1Title"]');
+    if (el) {
+      el.textContent = d.fullName 
+        ? d.fullName + (d.role ? ' – ' + d.role : '')
+        : 'כרטיס ביקור דיגיטלי';
+    }
+  })();
+</script>
 
-  <h1 id="pageMainTitle" data-field="h1Title" class="visually-hidden">כרטיס ביקור דיגיטלי</h1>
-  <script>
-    (function(){
-      const d = window.cardData || {};
-      const el = document.querySelector('[data-field="h1Title"]');
-      if (el) {
-        el.textContent = d.fullName 
-          ? d.fullName + (d.role ? ' – ' + d.role : '')
-          : 'כרטיס ביקור דיגיטלי';
-      }
-    })();
-  </script>
+<!-- 🔝 אזור עליון -->
 <header class="top-section" role="banner" aria-label="חלק עליון" tabindex="0">
   <div class="logo-box">
     <a href="/" aria-label="דף הבית">
@@ -176,44 +178,48 @@ document.dispatchEvent(new Event("cardReady"));
   <hr class="gold-line" />
 </header>
 
-  <!-- ✅ תוכן ראשי -->
-  <main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
+<!-- ✅ תוכן ראשי -->
+<main class="bottom-section" aria-label="תוכן ראשי" tabindex="0">
 
-<!-- <div class="profile-wrapper" data-phase="P1">
-  <img class="profile-img"
-       data-role="logo"
-       data-order="0"
-       data-field="profileImage"
-       src="#"
-       alt=""
-       data-field-alt="profileImageAlt"
-       width="240" height="240"
-       decoding="async"
-       loading="lazy" />
-</div> -->
+  <!-- 🖼️ תמונת פרופיל (חובה לשלד ה־Flow) -->
+  <div class="profile-wrapper" data-phase="P1">
+    <img
+      class="profile-img"
+      data-role="logo"
+      data-effect="drop-elegant"
+      data-order="0"
+      data-field="profileImage"
+      src="#"
+      alt=""
+      data-field-alt="profileImageAlt"
+      width="240"
+      height="240"
+      decoding="async"
+      loading="lazy"
+    />
+  </div>
+<!-- ✨ שם מלא + תיאור תפקיד -->
+<h1
+  id="pageMainTitle"
+  class="main-title"
+  data-role="title"
+  data-order="1"
+  data-field="fullName"
+>
+  <span data-field="fullName">מומלץ להכניס כאן שם מלא</span>
+</h1>
 
-<!-- בלוק שני (נשמר, ללא מחיקה) -->
-<div class="name-role" tabindex="0" aria-hidden="true">
-  <h1 id="pageMainTitleClone" class="main-title" data-field="fullName">שם מלא</h1>
-</div>
+<h2
+  class="secondary-title"
+  data-role="subtitle"
+  data-order="2"
+>
+  <span data-field="role">מומלץ להכניס כאן תיאור תפקיד</span>
+</h2>
 
 
+</main>
 
-<!-- ✅ כותרת עליונה עם שם מלא ותפקיד - ערכים מוזרקים מ־DATA -->
-<div class="name-role" data-phase="P1" tabindex="0">
-  <h1
-    id="pageMainTitle"
-    class="main-title"
-    data-role="title"
-    data-order="1"
-    data-field="fullName"
-  >
-    <span data-field="fullName">מומלץ להכניס כאן שם מלא</span>
-  </h1>
-  <h2 class="secondary-title">
-    <span data-field="role">מומלץ להכניס כאן תיאור תפקיד</span>
-  </h2>
-</div>
 
 
   <nav class="icons icon-grid" role="navigation" aria-label="קישורי יצירת קשר">
