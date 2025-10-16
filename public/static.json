@@ -1,6 +1,0 @@
-{
-  "redirects": [
-    { "source": "/", "destination": "/template/template-generic.html", "statusCode": 301 },
-    { "source": "/index.html", "destination": "/template/template-generic.html", "statusCode": 301 }
-  ]
-}
